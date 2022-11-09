@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'art';
+  src: url('../../public/font/GenSenRounded-R.ttc');
+}
+
+#dog {
+  background-color: #c9bc9c;
+}
+#cat {
+  background-color: #4c748e;
+}
+
+#switch_button {
+  font-size: 50px;
+}
+
+#dog .bg_main_color {
+  background-color: #ea5514;
+}
+
+#dog .text_main_color {
+  color: #ea5514;
+}
+
+#dog .bg_main_light_color1 {
+  background-color: #f8b62b;
+  &:hover {
+    background-color: #ea5514;
+  }
+}
+
+#dog .bg_main_light_color1.active {
+  background-color: #ea5514;
+}
+
+#dog .text_main_light_color1 {
+  color: #f8b62b;
+}
+
+#dog .bg_main_light_color2 {
+  background-color: #c9bc9c;
+}
+
+#dog .text_main_light_color2 {
+  color: #c9bc9c;
+}
+
+#dog .bg_main_dark_color1 {
+  background-color: #956134;
+}
+
+#dog .text_main_dark_color1 {
+  color: #956134;
+}
+
+#dog .bg_main_dark_color2 {
+  background-color: #40220f;
+}
+
+#dog .text_main_dark_color2 {
+  color: #40220f;
+}
+
+#dog.bg_bright_color {
+  background-color: #fff5de;
+}
+
+#dog .text_bright_color {
+  color: #fff5de;
+}
+
+#cat .bg_main_color {
+  background-color: #4c748e;
+}
+
+#cat .text_main_color {
+  color: #4c748e;
+}
+
+#cat .bg_main_light_color1 {
+  background-color: #00a29a;
+  &:hover {
+    background-color: #4c748e;
+  }
+}
+
+#cat .bg_main_light_color1.active {
+  background-color: #4c748e;
+}
+
+#cat .text_main_light_color1 {
+  color: #00a29a;
+}
+
+#cat .bg_main_light_color2 {
+  background-color: #4c748e;
+}
+
+#cat .text_main_light_color2 {
+  color: #4c748e;
+}
+
+#cat .bg_main_dark_color1 {
+  background-color: #fff5de;
+}
+
+#cat .text_main_dark_color1 {
+  color: #fff5de;
+}
+
+#cat .bg_main_dark_color2 {
+  background-color: #18334e;
+}
+
+#cat .text_main_dark_color2 {
+  color: #18334e;
+}
+
+#cat.bg_bright_color {
+  background-color: #a4ced0;
+}
+
+#cat .text_bright_color {
+  color: #a4ced0;
+}

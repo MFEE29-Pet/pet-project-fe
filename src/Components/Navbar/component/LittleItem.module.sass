@@ -1,0 +1,93 @@
+$btn1_bg: #f3b524
+$index_bg1: #fff5de
+$index_bg2: #c9bc9c
+$font_color: #956134
+$font_color2: #40220f
+$back_blur: #ffffff70
+$photo_boxshadow: #c9a063
+$photo_people_title: #727171
+
+.href
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  position: relative
+  background-color: #fff
+  &:hover
+    .shadow
+      opacity: 1
+      transition: 0.2s
+    .foot
+      opacity: 1
+      top: 45px
+      transition: 0.2s
+      transition-delay: 0.2s
+    .list
+      display: block
+
+.little_href
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-align: center
+  padding: 10px 20px
+  font-family: art
+  cursor: pointer
+  color: $font_color2
+  
+
+.title
+  font-family: art
+  font-size: 20px
+  width: 140px
+  font-weight: 700
+  text-align: center
+  cursor: pointer
+  margin-bottom: 5px
+  color: $font_color2
+  background-color: #fff
+
+.small
+  font-family: art
+  font-size: 18px
+  width: 140px
+  text-align: center
+  cursor: pointer
+  color: $font_color2
+  background-color: #fff
+
+.list
+  width: 140px
+  position: absolute
+  top: 80px
+  left: 50%
+  transform: translateX(-50%)
+  background: $back_blur
+  backdrop-filter: blur(5px)
+  border-radius: 20px
+  z-index: -3
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  padding: 20px
+  display: none
+
+.foot
+  width: 50px
+  position: absolute
+  top: 0px
+  right: 50%
+  transform: rotate(180deg) translateX(-50%)
+  z-index: -2
+  opacity: 0
+
+.shadow
+  width: 60%
+  position: absolute
+  top: 31.4px
+  left: 50%
+  z-index: 1
+  transform: translateX(-50%)
+  opacity: 0
