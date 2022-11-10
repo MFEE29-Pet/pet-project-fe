@@ -3,7 +3,10 @@ import styled from 'styled-components'
 
 const I = styled.i`
   font-size: 30px;
-  color: #00ddff;
+  color: #00a29a;
+  &:hover{
+    color: #18334e;
+  }
 `
 
 function ThemeDogIcon() {

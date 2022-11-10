@@ -1,9 +1,9 @@
 import React from 'react';
 import Login from './Login';
 import Cart from './Cart';
+import LoginInfo from './LoginInfo';
 import styled from 'styled-components';
 import ThemeChange from './ThemeChange';
-import SwitchButton from '../../SwitchButton/SwitchButton';
 
 const RightBox = styled.div`
   display: flex;
@@ -15,7 +15,8 @@ const RightBox = styled.div`
 function Right(props) {
   return (
     <RightBox>
-      <Login />
+      {/* <Login /> */}
+      <LoginInfo/>
       <Cart />
       <ThemeChange />
     </RightBox>
