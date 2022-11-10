@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { imgUrl } from '../../../config';
+import FishIcon from './FishIcon';
+import BoneIcon from './BoneIcon';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 const LittleItemBox = styled.div`
   display: flex;
@@ -85,16 +88,25 @@ const List = styled.ul`
 `;
 const LittleHref = styled.li`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 10px 20px;
   font-family: art;
   cursor: pointer;
 `;
 
+const LI = styled(Link)`
+  position: relative;
+  &:hover{
+    .icon{
+      opacity:1;
+    }
+  }
+`;
 
 export const LittleItem = ({ ItemData, Title, EnTitle }) => {
+  const { mode } = useContext(SwitchButtonContext);
   return (
     <LittleItemBox>
       <TitleBox className="text_main_dark_color2">{Title}</TitleBox>
@@ -105,8 +117,11 @@ export const LittleItem = ({ ItemData, Title, EnTitle }) => {
         {ItemData.map((e, i) => {
           const { id, name, to } = e;
           return (
-            <LittleHref key={id} >
-              <Link className="text_main_dark_color2" to={to}>{name}</Link>
+            <LittleHref key={id}>
+              <LI className="text_main_dark_color2" to={to}>
+                {name}
+                {mode === 'dog' ? <BoneIcon/> : <FishIcon />}
+              </LI>
             </LittleHref>
           );
         })}

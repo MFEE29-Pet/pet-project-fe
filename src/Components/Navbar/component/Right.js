@@ -17,6 +17,7 @@ function Right(props) {
     <RightBox>
       {/* <Login /> */}
       <LoginInfo/>
+
       <Cart />
       <ThemeChange />
     </RightBox>

@@ -7,12 +7,17 @@ const LoginInfoTop = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 220px;
-  cursor: pointer;
 `;
 const H2 = styled.h2`
   font-family: art;
   font-size: 20px;
   font-weight: 700;
+`;
+
+const H3 = styled.h3`
+  font-family: art;
+  font-size: 16px;
+  cursor: pointer;
 `;
 
 const PHOTO = styled.div`
@@ -30,11 +35,11 @@ const IMG = styled.img`
 function LoginInfoBoxTop() {
   return (
     <LoginInfoTop>
-      <H2 className="text_main_dark_color2">歡迎回來</H2>
       <H2 className="text_main_dark_color2">甜甜圈</H2>
       <PHOTO className="border_big_main_light_color1">
         <IMG src={`${imgUrl}/images/test.webp`} alt="" />
       </PHOTO>
+      <H3 className='text_main_dark_color2'>登出</H3>
     </LoginInfoTop>
   );
 }

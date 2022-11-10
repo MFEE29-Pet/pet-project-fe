@@ -9,7 +9,6 @@ const LoginInfoBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 220px;
-  cursor: pointer;
 `;
 
 function LoginInfo() {

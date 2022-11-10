@@ -5,14 +5,13 @@ import styled from 'styled-components';
 
 const FOOTER = styled.div`
   width: 100%;
+  height: 370px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
 `;
 const FOOTERBOX = styled.div`
   width: 1400px;
-  height: 200px;
   display: flex;
   justify-content: space-between;
 `;
@@ -20,7 +19,7 @@ const FOOTERBOX = styled.div`
 function Footer() {
   return (
     <>
-      <FOOTER>
+      <FOOTER className='bg_main_dark_color2'>
         <FOOTERBOX>
           <FooterLeft />
           <FooterRight />

@@ -39,9 +39,7 @@
   }
 }
 
-#dog .border_bottom_main_light_color1 {
-  border-bottom: 2px solid #40220f;
-}
+
 
 #dog .bg_main_light_color1.active {
   background-color: #ea5514;
@@ -73,6 +71,13 @@
 
 #dog .text_main_dark_color2 {
   color: #40220f;
+}
+
+#dog .text_hover_main_dark_color2 {
+  color: #40220f;
+  &:hover{
+    color: #fff;
+  }
 }
 
 #dog.bg_bright_color {
@@ -131,9 +136,6 @@
   }
 }
 
-#cat .border_bottom_main_light_color1 {
-  border-bottom: 2px solid #18334e;
-}
 
 
 #cat .bg_main_light_color1.active {
@@ -166,6 +168,14 @@
 
 #cat .text_main_dark_color2 {
   color: #18334e;
+}
+
+
+#cat .text_hover_main_dark_color2 {
+  color: #18334e;
+  &:hover{
+    color: #fff;
+  }
 }
 
 

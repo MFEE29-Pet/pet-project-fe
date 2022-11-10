@@ -18,6 +18,8 @@ const H2 = styled.h2`
   line-height: 35px;
   margin-bottom: 5px;
   font-family: art;
+  color: #fff;
+  border-bottom: 2px solid #fff;
 `;
 
 const LI = styled.li`
@@ -25,16 +27,17 @@ const LI = styled.li`
   text-decoration: none;
   cursor: pointer;
   font-family: art;
+  color: #fff;
 `;
 
 function LeftLittleItem({ ItemData, Title }) {
   return (
     <LITTLE_ITEM>
-      <H2 className="text_main_dark_color2 border_bottom_main_light_color1">{Title}</H2>
+      <H2>{Title}</H2>
       <ul>
         {ItemData.map((e, i) => {
           const { id, name } = e;
-          return <LI key={id} className="text_main_dark_color2">{name}</LI>;
+          return <LI key={id} className="">{name}</LI>;
         })}
       </ul>
     </LITTLE_ITEM>
