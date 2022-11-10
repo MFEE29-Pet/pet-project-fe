@@ -14,7 +14,7 @@ const COPYRIGHTBOX = styled.div`
 function Copyright() {
   return (
     <COPYRIGHT>
-      <COPYRIGHTBOX>
+      <COPYRIGHTBOX className="text_main_dark_color2">
         <div>©</div>
         <div>All</div>
         <div>Right</div>

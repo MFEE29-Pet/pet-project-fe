@@ -1,6 +1,6 @@
 export const appConfig = {
   debug: true,
-  devUrl: 'http://localhost:3002',
+  devUrl: 'http://localhost:3000',
   prodUrl: 'https://www.abc.com',
 }
 

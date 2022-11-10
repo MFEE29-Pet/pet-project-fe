@@ -18,13 +18,13 @@ function App() {
   const [switchMode, setSwitchMode] = useState('dog');
   const { name } = useContext(SwitchButtonContext);
   // console.log(initMode);
-  console.log(name);
+  // console.log(name);
 
   return (
     <div
       id={switchMode}
       className="bg_bright_color"
-      style={{ width: '100%', height: '2000px' }}
+      style={{ width: '100%' }}
     >
       {/* 測試用，別管他 */}
       <SwitchButton
@@ -37,7 +37,7 @@ function App() {
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <Navbar />
-        <section style={{ height: '1500px' }}></section>
+        <section style={{ height: '100px' }}></section>
         <Routes>
           <Route path="/" element={<Index />} />
 

@@ -1,17 +1,23 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { imgUrl } from '../../../config';
-const LogoBox = styled.div`
+
+const LOGOBOX = styled.div`
   width: 30%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
 `;
-const Img = styled.img`
+const LOGO = styled(Link)`
   width: 80px;
+  height: 80px;
+  cursor: pointer;
 `;
 
 function Logo() {
   return (
-    <LogoBox>
-      <Img src={`${imgUrl}/images/logo_PetBan_2_2.png`} alt="" />
-    </LogoBox>
+    <LOGOBOX>
+      <LOGO className="logo" to="/"></LOGO>
+    </LOGOBOX>
   );
 }
 

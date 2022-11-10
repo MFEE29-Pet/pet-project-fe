@@ -29,7 +29,7 @@ const UL = styled.ul`
         height: 40px;
         border-radius: 50%;
         display: block;
-        background: #40220f;
+        background: linear-gradient(#e66465, #9198e5);
         transition: all 265ms ease-out;
     }
     &:hover{
