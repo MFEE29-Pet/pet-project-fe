@@ -11,7 +11,12 @@ const ThemeBox = styled.div`
 function ThemeChange() {
   const { mode, setMode } = useContext(SwitchButtonContext);
   const [theme, setTheme] = useState(1);
+  // console.log(mode);
   const ChangeTheme = () => {
+    setMode(mode === 'dog' ? 'cat' : 'dog');
+
+    // setMode();
+
     setTheme(theme === 1 ? 0 : 1);
   };
   return (
