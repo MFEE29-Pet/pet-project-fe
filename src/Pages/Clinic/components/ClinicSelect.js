@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Select from '../../../Components/Select/Select';
 import CheckBox from './CheckBox';
+import DogButton from '../../../Components/Buttons/DogButton';
+import GlassIcon from './GlassIcon';
+import styled from 'styled-components';
 
 const AreaOptions = [
   {
@@ -48,14 +51,16 @@ const ClinicOptions = [
   },
 ];
 
+const checkOptions = ['非犬貓', '24小時急診'];
 
-const fruitOptions2 = ['西瓜', '芒果', '香蕉', '龍眼']
-
+const Check = styled.div`
+  display: flex;
+`
 
 function ClinicSelect() {
   const [selectedArea, setSelectedArea] = useState('');
   const [selectedClinic, setSelectedClinic] = useState('');
-  const [likeList2, setLikeList2] = useState([])
+  const [likeList2, setLikeList2] = useState([]);
   return (
     <>
       <Select
@@ -70,16 +75,19 @@ function ClinicSelect() {
         placeholder="請選擇診所"
         onSelect={(value) => setSelectedClinic(value)}
       />
-      {fruitOptions2.map((v, i) => {
-        return (
-          <CheckBox
-            key={i}
-            value={v}
-            checkedValueList={likeList2}
-            setCheckedValueList={setLikeList2}
-          />
-        )
-      })}
+      <Check>
+        {checkOptions.map((v, i) => {
+          return (
+            <CheckBox
+              key={i}
+              value={v}
+              checkedValueList={likeList2}
+              setCheckedValueList={setLikeList2}
+            />
+          );
+        })}
+        <DogButton ClassName="bg_main_light_color1" Text={<GlassIcon/>}/>
+      </Check>
     </>
   );
 }
