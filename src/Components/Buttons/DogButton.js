@@ -7,7 +7,6 @@ const BTN = styled.button`
   padding: 8px 15px;
   font-size: 18px;
   border-radius: 18px;
-  margin-right: 10px;
   cursor: pointer;
 `;
 
