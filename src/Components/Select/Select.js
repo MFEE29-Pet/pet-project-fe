@@ -75,7 +75,7 @@ const MenuItem = styled.div`
       border-bottom-right-radius: 8px;
     }
   &:hover {
-    background: #ece405;
+    background: ${(props) =>(props.$mode === 'dog' ? '#f8b62d' :"#00a29a")};
     &:first-child{
       border-start-end-radius: 8px;
       border-start-start-radius: 8px;
