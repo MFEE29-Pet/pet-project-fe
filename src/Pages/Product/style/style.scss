@@ -60,6 +60,10 @@ main {
     }
 
     ul.categories {
+        p {
+            color: $p_color2;
+        }
+
         >li:nth-child(1) {
             margin: 10px;
 
@@ -93,9 +97,6 @@ main {
         li {
             display: flex;
 
-            p {
-                color: $p_color;
-            }
 
             ul {
 
@@ -105,7 +106,7 @@ main {
                     padding: 1px 5px;
                     margin: 0 5px 10px 15px;
 
-                    img {
+                    i {
                         width: 20px;
                         height: 20px;
                         opacity: 0;
@@ -119,8 +120,8 @@ main {
                 }
 
                 li:hover {
-                    img {
-                        opacity: 1;
+                    i {
+                        opacity: .5;
                     }
                 }
             }

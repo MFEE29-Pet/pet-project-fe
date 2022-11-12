@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 function ProductSidebar() {
   const [cates, setCates] = useState([]);
+  const { mode } = useContext(SwitchButtonContext);
 
   const getCates = async () => {
     try {
-      const res = await axios.get('http://localhost:6002/product/c-json');
+      const res = await axios.get('http://localhost:6001/product/c-json');
 
       setCates(res.data.rows);
     } catch (e) {
@@ -57,7 +59,6 @@ function ProductSidebar() {
             <p>所有商品</p>
           </a>
         </li>
-        {/* <img src="./icons/Vector.svg" alt="" /> */}
         {/* 短路求值 */}
         {cate &&
           cate.map((e, i) => {
@@ -73,6 +74,7 @@ function ProductSidebar() {
                         <a href="/#">
                           <p>{e2.name}</p>
                         </a>
+                        <i className={`fa-duotone ${mode === 'dog' ? 'fa-bone' : 'fa-fish'} text_main_light_color1`}></i>
                       </li>
                     );
                   })}
