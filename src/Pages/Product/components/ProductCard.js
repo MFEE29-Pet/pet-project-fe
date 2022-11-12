@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
 import ProductDataContext from '../../../contexts/ProductDataContext';
 import { Link, useLocation } from 'react-router-dom';
+import Pagination from './Pagination';
 
 function ProductCard(props) {
   // 商品資訊 state
@@ -25,10 +26,13 @@ function ProductCard(props) {
   // 總頁數
   const [totalPages, setTotalPages] = useState(0);
 
+  // 頁數
+  const [page, setPage] = useState(1);
+
   // 取得 queryString
   const location = useLocation();
   const usp = location.search;
-  console.log(usp);
+  // console.log(usp);
 
   // 取得商品資料
   const getProducts = async () => {
@@ -37,6 +41,7 @@ function ProductCard(props) {
 
       // console.log(res.data);
       setTotalPages(res.data.totalPages);
+      setPage(res.data.page);
 
       const products = res.data.rows;
       setProduct(products);
@@ -80,46 +85,7 @@ function ProductCard(props) {
           </div>
         );
       })}
-      <div className="page">
-        <ul>
-          <li>
-            <Link to="/product?page=1">
-              <i className="fa-solid fa-angle-left"></i>
-            </Link>
-          </li>
-          {Array(totalPages) &&
-            Array(totalPages)
-              .fill(1)
-              .map((e, i) => {
-                return (
-                  <li key={i}>
-                    <Link to={`/product?page=${i + 1}`} className="active">
-                      {i + 1}
-                    </Link>
-                  </li>
-                );
-              })}
-          {/* <li>
-            <Link to="/product?page=1" className="active">
-              1
-            </Link>
-          </li>
-          <li>
-            <a href="">2</a>
-          </li>
-          <li>
-            <a href="">3</a>
-          </li>
-          <li>
-            <a href="">...</a>
-          </li>*/}
-          <li>
-            <a href="">
-              <i className="fa-solid fa-angle-right"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <Pagination totalPages={totalPages} page={page} usp={usp} />
     </>
   );
 }
