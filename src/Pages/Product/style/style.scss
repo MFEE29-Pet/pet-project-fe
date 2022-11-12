@@ -747,6 +747,14 @@ section.right {
                 a {
                     display: block;
                     color: $p_color;
+                    position: relative;
+                    i.fa-bone, i.fa-fish{
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(-20%) rotate(-45deg);
+                        opacity: 0.5;
+                        font-size: 30px;
+                    }
                 }
 
                 a.active {
