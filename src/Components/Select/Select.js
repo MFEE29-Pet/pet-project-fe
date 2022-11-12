@@ -47,7 +47,7 @@ const ArrowDown = styled.div`
 `;
 
 const Menu = styled.div`
-  min-width: 180px;
+  width: 100%;
   display: inline-flex;
   flex-direction: column;
 `;
