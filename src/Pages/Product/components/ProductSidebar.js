@@ -65,17 +65,21 @@ function ProductSidebar() {
           cate.map((e, i) => {
             return (
               <li key={e.sid}>
-                <Link to={`/product?cate=${e.sid}`}>
+                <Link to={`/product?page=1&cate=${e.sid}`}>
                   <p>{e.name}</p>
                 </Link>
                 <ul>
                   {e.child.map((e2, i2) => {
                     return (
                       <li key={e2.sid}>
-                        <Link to={`/product?cate=${e2.sid}`}>
+                        <Link to={`/product?page=1&cate=${e2.sid}`}>
                           <p>{e2.name}</p>
                         </Link>
-                        <i className={`fa-duotone ${mode === 'dog' ? 'fa-bone' : 'fa-fish'} text_main_light_color1`}></i>
+                        <i
+                          className={`fa-duotone ${
+                            mode === 'dog' ? 'fa-bone' : 'fa-fish'
+                          } text_main_light_color1`}
+                        ></i>
                       </li>
                     );
                   })}

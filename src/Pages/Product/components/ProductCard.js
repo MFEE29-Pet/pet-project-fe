@@ -4,8 +4,9 @@ import _ from 'lodash';
 import ProductDataContext from '../../../contexts/ProductDataContext';
 import { Link, useLocation } from 'react-router-dom';
 import Pagination from './Pagination';
+import { PRODUCT_LIST } from '../my-config';
 
-function ProductCard(props) {
+function ProductCard() {
   // 商品資訊 state
   const [product, setProduct] = useState([
     {
@@ -31,13 +32,17 @@ function ProductCard(props) {
 
   // 取得 queryString
   const location = useLocation();
-  const usp = location.search;
-  // console.log(usp);
+  const params = new URLSearchParams(location.search);
+  const usp = +params.get('page') || 1;
+  const cate = +params.get('cate');
+  console.log({ page, cate });
+
+  // TODO : 思考如果所有商品該如何處理 ?
 
   // 取得商品資料
   const getProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:6001/product/p-json${usp}`);
+      const res = await axios.get(`${PRODUCT_LIST}?page=${usp}&cate=${cate}`);
 
       // console.log(res.data);
       setTotalPages(res.data.totalPages);
@@ -58,7 +63,6 @@ function ProductCard(props) {
   // console.log(product);
 
   const rowProducts = _.chunk(product, 4);
-  // console.log(rowProducts);
 
   return (
     <>
