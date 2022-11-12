@@ -6,8 +6,6 @@ import { useState } from 'react';
 import Pagination from './components/Pagination';
 
 function Product() {
-  const [getTotalPages, setGetTotalPages] = useState(0);
-
   return (
     <>
       <main>
