@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
 import ProductDataContext from '../../../contexts/ProductDataContext';
+import { Link, useLocation } from 'react-router-dom';
 
 function ProductCard(props) {
   // 商品資訊 state
@@ -21,16 +22,21 @@ function ProductCard(props) {
       on_sale: 1,
     },
   ]);
-  // // 總頁數
+  // 總頁數
   const [totalPages, setTotalPages] = useState(0);
+
+  // 取得 queryString
+  const location = useLocation();
+  const usp = location.search;
+  console.log(usp);
+
   // 取得商品資料
   const getProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:6001/product/p-json');
+      const res = await axios.get(`http://localhost:6001/product/p-json${usp}`);
 
       // console.log(res.data);
       setTotalPages(res.data.totalPages);
-      props.setGetTotalPages(totalPages);
 
       const products = res.data.rows;
       setProduct(products);
@@ -39,11 +45,10 @@ function ProductCard(props) {
     }
   };
 
-  // console.log(totalPages);
   // didMount 載入資料
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [location]);
 
   // console.log(product);
 
@@ -58,21 +63,63 @@ function ProductCard(props) {
             {e.map((e2, i2) => {
               return (
                 <div className="pro-card" key={e2.sid}>
-                  <div className="img-wrap bg_bright_color">
-                    <img src={`/images/test/${e2.img}`} alt="" />
-                  </div>
-                  <div className="pro-title">
-                    <p>{e2.name}</p>
-                    <p>
-                      <s>{e2.price}</s> <span>{e2.member_price}</span>
-                    </p>
-                  </div>
+                  <Link to="">
+                    <div className="img-wrap bg_bright_color">
+                      <img src={`/images/test/${e2.img}`} alt="" />
+                    </div>
+                    <div className="pro-title">
+                      <p>{e2.name}</p>
+                      <p>
+                        <s>${e2.price}</s> <span>${e2.member_price}</span>
+                      </p>
+                    </div>
+                  </Link>
                 </div>
               );
             })}
           </div>
         );
       })}
+      <div className="page">
+        <ul>
+          <li>
+            <Link to="/product?page=1">
+              <i className="fa-solid fa-angle-left"></i>
+            </Link>
+          </li>
+          {Array(totalPages) &&
+            Array(totalPages)
+              .fill(1)
+              .map((e, i) => {
+                return (
+                  <li key={i}>
+                    <Link to={`/product?page=${i + 1}`} className="active">
+                      {i + 1}
+                    </Link>
+                  </li>
+                );
+              })}
+          {/* <li>
+            <Link to="/product?page=1" className="active">
+              1
+            </Link>
+          </li>
+          <li>
+            <a href="">2</a>
+          </li>
+          <li>
+            <a href="">3</a>
+          </li>
+          <li>
+            <a href="">...</a>
+          </li>*/}
+          <li>
+            <a href="">
+              <i className="fa-solid fa-angle-right"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }
