@@ -1,15 +1,18 @@
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 export default function Pagination() {
   return (
     <>
-      <div class="page">
+      <div className="page">
         <ul>
           <li>
-            <a href="">
-              <i class="fa-solid fa-angle-left"></i>
-            </a>
+            <Link to="/product?page=1">
+              <i className="fa-solid fa-angle-left"></i>
+            </Link>
           </li>
           <li>
-            <a href="" class="active">
+            <a href="" className="active">
               1
             </a>
           </li>
@@ -24,7 +27,7 @@ export default function Pagination() {
           </li>
           <li>
             <a href="">
-              <i class="fa-solid fa-angle-right"></i>
+              <i className="fa-solid fa-angle-right"></i>
             </a>
           </li>
         </ul>
