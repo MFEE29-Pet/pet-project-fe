@@ -33,11 +33,14 @@ function ProductCard() {
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const usp = +params.get('page') || 1;
-  const cate = +params.get('cate');
-  console.log({ page, cate });
+  let usp = +params.get('page') || 1;
+  let cate = +params.get('cate');
+  // console.log({ page, cate });
 
   // TODO : 思考如果所有商品該如何處理 ?
+  // if(usp!==0) {
+  //   usp = '?'
+  // }
 
   // 取得商品資料
   const getProducts = async () => {
