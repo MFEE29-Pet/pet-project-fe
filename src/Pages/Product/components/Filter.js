@@ -21,7 +21,11 @@ function Filter() {
             <button className="bestProduct bg_main_light_color1">
               熱賣商品
             </button>
-            <select name="priceSort" id="priceSort">
+            <select
+              name="priceSort"
+              id="priceSort"
+              className="bg_main_light_color1"
+            >
               <option value="">價格排序</option>
               <option value="positive">低到高</option>
               <option value="reverse">高到低</option>
