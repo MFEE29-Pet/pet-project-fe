@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import styled, { css } from "styled-components";
+import SwitchButtonContext from "../../contexts/SwitchButtonContext";
+
 
 import Dropdown from "./Dropdown";
 
@@ -22,12 +24,13 @@ const SelectBox = styled.div`
   justify-content: space-between;
   height: 38px;
   box-sizing: border-box;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
   font-family: art;
   border-radius: 20px;
-  background: #dddddd;
+  background: #fff;
   padding: 6px 12px;
   cursor: pointer;
+  width: 100%;
   min-width: 180px;
   & > *:not(:first-child) {
     margin-left: 12px;
@@ -52,14 +55,25 @@ const Menu = styled.div`
   flex-direction: column;
 `;
 
+
 const MenuItem = styled.div`
   display: inline-flex;
   align-items: center;
   height: 38px;
+  width: 100%;
   padding: 6px 12px;
   box-sizing: border-box;
   cursor: pointer;
   color: ${(props) => (props.$isSelected ? "#ffffff" : "#222")};
+  background-color: ${(props) => (props.$isSelected ? `${props.$mode === 'dog' ? '#f8b62d' :"#00a29a"}` : "#fff")};
+  &:first-child{
+      border-start-end-radius: 8px;
+      border-start-start-radius: 8px;
+    }
+    &:last-child{
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   &:hover {
     background: #ece405;
     &:first-child{
@@ -86,9 +100,12 @@ const Select = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const {mode} = useContext(SwitchButtonContext);
+
   const foundOption = options.find((option) => option.value === value) || {};
 
   return (
+    
     <Dropdown
       isOpen={isOpen}
       onClick={() => (isDisabled || isLoading ? null : setIsOpen(true))}
@@ -101,6 +118,7 @@ const Select = ({
               key={option.value}
               role="presentation"
               $isSelected={option.value === value}
+              $mode={mode}
               onClick={() => {
                 onSelect(option.value);
                 setIsOpen(false);
