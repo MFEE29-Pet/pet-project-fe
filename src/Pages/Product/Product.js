@@ -16,9 +16,8 @@ function Product() {
           <Filter />
 
           <div className="product-list">
-            <ProductCard setGetTotalPages={setGetTotalPages} />
+            <ProductCard />
           </div>
-          <Pagination />
         </section>
       </main>
     </>
