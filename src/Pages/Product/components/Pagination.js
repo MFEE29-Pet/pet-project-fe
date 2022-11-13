@@ -1,15 +1,37 @@
-import { useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useContext, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+
+// TODO : pagination 如何保留原有的 search or params ??
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
+  const [currentPage, setCurrentPage] = useState(0);
+  const handleClick = (i) => {
+    setCurrentPage(i);
+  };
+  const location = useLocation();
+  // console.log(location.search.split(''));
+  const p = location.search.split('');
+  const pageNum = +p[p.length - 1];
+  console.log(location.pathname);
+  // console.log(pageNum);
+  console.log(location.search.split('=')[0]);
+
   return (
     <>
       <div className="page">
         <ul>
           <li>
-            <Link to={`/product?page=${+usp > 1 ? +usp - 1 : 1}`}>
+            <Link
+              to={
+                pageNum > 1
+                  ? `${location.pathname}${location.search.split('=')[0]}=${
+                      pageNum - 1
+                    }`
+                  : `${location.pathname}${location.search.split('=')[0]}=1`
+              }
+            >
               <i className="fa-solid fa-angle-left"></i>
             </Link>
           </li>
@@ -25,7 +47,11 @@ export default function Pagination({ totalPages, page, usp }) {
                 return (
                   <li key={i}>
                     <Link
-                      to={`/product?page=${i + 1}`}
+                      to={`${location.pathname}${
+                        location.search.split('=')[0]
+                          ? `${location.search.split('=')[0]}=`
+                          : '?page='
+                      }${i + 1}`}
                       className={+usp === i + 1 ? 'active' : ''}
                     >
                       <i
@@ -43,7 +69,17 @@ export default function Pagination({ totalPages, page, usp }) {
               })}
           <li>
             <Link
-              to={`/product?page=${+usp < totalPages ? +usp + 1 : totalPages}`}
+              to={
+                pageNum < totalPages
+                  ? `${location.pathname}${
+                      location.search.split('=')[0]
+                        ? `${location.search.split('=')[0]}=`
+                        : '/'
+                    }${pageNum + 1}`
+                  : `${location.pathname}${`${
+                      location.search.split('=')[0]
+                    }=`}${totalPages}`
+              }
             >
               <i className="fa-solid fa-angle-right"></i>
             </Link>
