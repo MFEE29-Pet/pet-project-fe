@@ -35,19 +35,32 @@ function ProductCard() {
   const params = new URLSearchParams(location.search);
   let usp = +params.get('page') || 1;
   let cate = +params.get('cate');
-  // console.log({ page, cate });
+  let p_sid = +params.get('p_sid');
+  console.log({ usp, cate });
 
-  // TODO : 思考如果所有商品該如何處理 ?
-  // if(usp!==0) {
-  //   usp = '?'
-  // }
+  //  思考如果所有商品該如何處理 ?
+  // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
+  if (!usp) {
+    usp = '';
+  } else {
+    usp = `?page=${usp}`;
+  }
+
+  if (!cate) {
+    cate = '';
+  } else if (cate === 1 || cate === 2) {
+    cate = `/pcate/${cate}/`;
+  } else {
+    cate = `/cate/${cate}/`;
+  }
+  console.log({ cate, usp });
 
   // 取得商品資料
   const getProducts = async () => {
     try {
-      const res = await axios.get(`${PRODUCT_LIST}?page=${usp}&cate=${cate}`);
+      const res = await axios.get(`${PRODUCT_LIST}${cate}${usp}`);
 
-      // console.log(res.data);
+      console.log(res);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
 
@@ -66,6 +79,7 @@ function ProductCard() {
   // console.log(product);
 
   const rowProducts = _.chunk(product, 4);
+  // console.log(rowProducts);
 
   return (
     <>
