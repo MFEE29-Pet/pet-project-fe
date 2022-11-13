@@ -1,6 +1,6 @@
 import React,{useContext} from 'react';
-import Section1Top from './Section1Top';
-import Section1Bottom from './Section1Bottom';
+import AboutTop from './AboutTop';
+import AboutBottom from './AboutBottom';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 
@@ -43,16 +43,16 @@ const SectionBox = styled.div`
   z-index: 1;
 `
 
-function Section1() {
+function About() {
   const { mode } = useContext(SwitchButtonContext);
   return (
     <Setion className='bg_main_light_color2' $mode={mode}>
       <SectionBox>
-        <Section1Top />
-        <Section1Bottom />
+        <AboutTop />
+        <AboutBottom />
       </SectionBox>
     </Setion>
   );
 }
 
-export default Section1;
+export default About;

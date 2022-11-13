@@ -31,7 +31,7 @@ function App() {
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <Navbar />
-        <section style={{ height: '100px' }}></section>
+        <section style={{ height: '1000px' }}></section>
         <Routes>
           <Route path="/" element={<Index />} />
 

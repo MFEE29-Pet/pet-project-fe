@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { imgUrl } from '../../config';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const About = styled.div`
   display: flex;
@@ -44,13 +47,29 @@ const Button = styled.button`
   font-family: art;
 `;
 
-function Section1Top() {
+function AboutTop() {
+  const left = useRef();
+  const right = useRef()
+  useEffect(() => {
+    const Left = left.current;
+    const Right = right.current
+    gsap.fromTo(
+      Left,
+      { opacity: 0 },
+      { opacity: 1, duration: 2, scrollTrigger: { start: "top bottom",trigger: Left } }
+    );
+    gsap.fromTo(
+      Right,
+      { opacity: 0 },
+      { opacity: 1, duration: 2, scrollTrigger: { start: "top bottom",trigger: Right } }
+    );
+  }, []);
   return (
     <About>
-      <div class="left">
-        <img src={`${imgUrl}/images/Cat.png`} alt="" />
+      <div className="left" ref={left}>
+        <img src={`${imgUrl}/images/Cat.png`} alt=""  />
       </div>
-      <div class="right">
+      <div className="right" ref={right}>
         <h2 className="text_main_dark_color2">彼此珍惜的最佳夥伴</h2>
         <p className="text_main_dark_color1">
           如果交朋友需要一個值得好好相處的理由，那毛孩絕對是人類排第一的益友，不論是哪種毛孩在你生活中，都是有益身心的好夥伴!
@@ -61,4 +80,4 @@ function Section1Top() {
   );
 }
 
-export default Section1Top;
+export default AboutTop;

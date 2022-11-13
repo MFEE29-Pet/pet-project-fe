@@ -1,9 +1,11 @@
-import Section1 from "./Section1";
+import About from "./About";
+import Photo from "./Photo";
 
 
 function Index() {
   return <>
-    <Section1/>
+    <About/>
+    <Photo/>
   </>;
 }
 

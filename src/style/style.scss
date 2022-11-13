@@ -3,6 +3,10 @@
   src: url('../../public/font/GenSenRounded-R.ttc');
 }
 
+*{
+  box-sizing: border-box;
+}
+
 #dog {
   background-color: #c9bc9c;
 }
@@ -80,7 +84,7 @@
   }
 }
 
-#dog.bg_bright_color {
+#dog .bg_bright_color {
   background-color: #fff5de;
 }
 
@@ -101,6 +105,11 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+#dog .index_photo_bg{
+  background-image: url('../../public/images/room_1_DogMode.png');
+}
+
 #dog .border_big_main_light_color1 {
   border:3px solid #f8b62b;
   background-color: #fff;
@@ -179,7 +188,7 @@
 }
 
 
-#cat.bg_bright_color {
+#cat .bg_bright_color {
   background-color: #a4ced0;
 }
 
@@ -199,6 +208,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+#cat .index_photo_bg{
+  background-image: url('../../public/images/room_1_CatMode.png');
 }
 
 #cat .border_big_main_light_color1 {
