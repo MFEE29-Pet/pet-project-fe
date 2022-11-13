@@ -149,15 +149,15 @@ section.right {
             text-align: center;
             padding-top: 5px;
             height: 20px;
-            background-color: $button-color;
+            // background-color: $button-color;
             width: 25px;
             margin: 0;
             border-radius: 0 10px 10px 0;
             cursor: pointer;
 
-            &:hover {
-                background-color: $button-active-color;
-            }
+            // &:hover {
+            //     background-color: $button-active-color;
+            // }
         }
     }
 
@@ -218,6 +218,7 @@ section.right {
 
         .img-wrap {
             width: 50%;
+            margin-right: 50px;
 
             img {
                 width: 100%;
@@ -288,7 +289,7 @@ section.right {
 
                 p {
                     display: block;
-                    color: $p_color3;
+                    // color: $p_color3;
                     font-weight: bold;
                     line-height: 1.5;
                 }
@@ -369,16 +370,16 @@ section.right {
                 }
 
                 .cart-btn {
-                    color: $d-main-color;
-                    background-color: $button-color;
+                    color: #fff;
+                    // background-color: $button-color;
                     margin-right: 20px;
                 }
 
-                .buy-btn {
-                    color: $button-color;
-                    border: 1px solid $button-color;
-                    background-color: $d-main-color;
-                }
+                // .buy-btn {
+                //     color: $button-color;
+                //     border: 1px solid $button-color;
+                //     background-color: $d-main-color;
+                // }
             }
         }
 
@@ -774,8 +775,8 @@ section.history {
     height: 100%;
     position: absolute;
     right: 0;
-    top: 0;
-    transform: translateY(-110%);
+    top: 40%;
+    transform: translateY(-210%);
 
     .history-side-div {
         width: 180px;
@@ -826,12 +827,12 @@ section.history {
 
 section.bottom-pro-list {
     width: 100%;
-    height: 200px;
+    height: 400px;
     position: relative;
 
     .bottom-list-pro-title {
         margin: 50px auto;
-        width: 50%;
+        width: 100%;
 
 
         h2 {
@@ -852,7 +853,7 @@ section.bottom-pro-list {
     .bottom-pro-ls-row {
         display: flex;
         width: 100%;
-        height: 100%;
+        height: 50%;
         justify-content: space-around;
         align-items: center;
 
