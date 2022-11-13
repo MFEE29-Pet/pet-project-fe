@@ -5,7 +5,10 @@ function Filter() {
         <div className="filter-s-p">
           <div className="search-bar">
             <input type="search" name="search" id="search" />
-            <i className="fa-solid fa-magnifying-glass" id="pro-search"></i>
+            <i
+              className="fa-solid fa-magnifying-glass bg_main_light_color1"
+              id="pro-search"
+            ></i>
           </div>
           <div className="price-filter">
             <i className="fa-solid fa-filter"></i>
