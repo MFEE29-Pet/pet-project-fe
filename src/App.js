@@ -11,6 +11,7 @@ import Footer from './Components/Footer/Footer';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
+import ProductDetail from './Pages/Product/ProductDetail';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -36,7 +37,7 @@ function App() {
           <Route path="/" element={<Index />} />
 
           <Route path="product" element={<Product />} />
-          <Route path="product/:sid" />
+          <Route path="product/detail/" element={<ProductDetail />} />
 
           <Route path="cart" element={<Cart />} />
 
