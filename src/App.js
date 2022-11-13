@@ -12,6 +12,8 @@ import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
+import Photographer from './Pages/Product/Photographer';
+import PhotographerForm from './Pages/Product/PhotographerForm';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -38,6 +40,11 @@ function App() {
 
           <Route path="product" element={<Product />} />
           <Route path="product/detail/" element={<ProductDetail />} />
+          <Route path="product/phtotgraphers/" element={<Photographer />} />
+          <Route
+            path="product/phtotgraphers/form"
+            element={<PhotographerForm />}
+          />
 
           <Route path="cart" element={<Cart />} />
 
