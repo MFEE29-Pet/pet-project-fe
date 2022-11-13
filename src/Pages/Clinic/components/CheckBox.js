@@ -18,11 +18,12 @@ const Input = styled.input`
 const Label = styled.label`
   display: inline-block;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #c9caca;
   cursor: pointer;
+  margin-right: 2px;
   &::after {
     content: '';
     position: absolute;

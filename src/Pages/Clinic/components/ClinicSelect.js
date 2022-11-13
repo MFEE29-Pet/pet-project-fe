@@ -55,6 +55,7 @@ const checkOptions = ['非犬貓', '24小時急診'];
 
 const Check = styled.div`
   display: flex;
+  justify-content: space-between;
 `
 
 function ClinicSelect() {

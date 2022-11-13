@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import InfiniteScroll from './InfiniteScroll';
+
+const ResultBox = styled.div`
+  width: 100%;
+  height: 400px;
+`;
 
 function ClinicResult() {
   return (
-    <div>ClinicResult</div>
-  )
+    <ResultBox>
+      <InfiniteScroll />
+    </ResultBox>
+  );
 }
 
-export default ClinicResult
+export default ClinicResult;
