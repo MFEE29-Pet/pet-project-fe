@@ -1,22 +1,18 @@
-import { useEffect, useContext, useState } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
-// TODO : pagination 如何保留原有的 search or params ??
+// pagination 如何保留原有的 search or params ??
+// 目前解法: 用 URLSearchParams 取得 params 判斷是否有 cate 和 page
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
-  const [currentPage, setCurrentPage] = useState(0);
-  const handleClick = (i) => {
-    setCurrentPage(i);
-  };
+
   const location = useLocation();
-  // console.log(location.search.split(''));
-  const p = location.search.split('');
-  const pageNum = +p[p.length - 1];
-  console.log(location.pathname);
-  // console.log(pageNum);
-  console.log(location.search.split('=')[0]);
+
+  const params = new URLSearchParams(location.search);
+  let cate = +params.get('cate') || '';
+  let nowPage = +params.get('page') || 1;
 
   return (
     <>
@@ -25,11 +21,15 @@ export default function Pagination({ totalPages, page, usp }) {
           <li>
             <Link
               to={
-                pageNum > 1
-                  ? `${location.pathname}${location.search.split('=')[0]}=${
-                      pageNum - 1
+                nowPage > 1
+                  ? `${location.pathname}${
+                      cate
+                        ? `?cate=${cate}&page=${nowPage <= 1 ? 1 : nowPage - 1}`
+                        : `?page=${nowPage <= 1 ? 1 : nowPage - 1}`
                     }`
-                  : `${location.pathname}${location.search.split('=')[0]}=1`
+                  : `${location.pathname}${
+                      cate ? `?cate=${cate}&page=${1}` : `?page=${1}`
+                    }`
               }
             >
               <i className="fa-solid fa-angle-left"></i>
@@ -39,27 +39,20 @@ export default function Pagination({ totalPages, page, usp }) {
             Array(totalPages)
               .fill(1)
               .map((e, i) => {
-                // console.log(usp);
-                // const p = page + i;
-                // console.log(p);
-                // console.log(usp);
-                // if (p < 1 || p > totalPages) return null;
                 return (
                   <li key={i}>
                     <Link
                       to={`${location.pathname}${
-                        location.search.split('=')[0]
-                          ? `${location.search.split('=')[0]}=`
-                          : '?page='
-                      }${i + 1}`}
-                      className={+usp === i + 1 ? 'active' : ''}
+                        cate ? `?cate=${cate}&page=${i + 1}` : `?page=${i + 1}`
+                      }`}
+                      className={nowPage === i + 1 ? 'active' : ''}
                     >
                       <i
                         className={`fa-duotone ${
                           mode === 'dog' ? 'fa-bone' : 'fa-fish'
                         } text_main_light_color1`}
                         style={{
-                          display: `${+usp === i + 1 ? 'block' : 'none'}`,
+                          display: `${nowPage === i + 1 ? 'block' : 'none'}`,
                         }}
                       ></i>
                       {i + 1}
@@ -70,15 +63,21 @@ export default function Pagination({ totalPages, page, usp }) {
           <li>
             <Link
               to={
-                pageNum < totalPages
+                nowPage < totalPages
                   ? `${location.pathname}${
-                      location.search.split('=')[0]
-                        ? `${location.search.split('=')[0]}=`
-                        : '/'
-                    }${pageNum + 1}`
-                  : `${location.pathname}${`${
-                      location.search.split('=')[0]
-                    }=`}${totalPages}`
+                      cate
+                        ? `?cate=${cate}&page=${
+                            nowPage >= totalPages ? totalPages : nowPage + 1
+                          }`
+                        : `?page=${
+                            nowPage >= totalPages ? totalPages : nowPage + 1
+                          }`
+                    }`
+                  : `${location.pathname}${
+                      cate
+                        ? `?cate=${cate}&page=${totalPages}`
+                        : `?page=${totalPages}`
+                    }`
               }
             >
               <i className="fa-solid fa-angle-right"></i>

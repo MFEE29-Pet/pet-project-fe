@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import _ from 'lodash';
-import ProductDataContext from '../../../contexts/ProductDataContext';
 import { Link, useLocation } from 'react-router-dom';
 import Pagination from './Pagination';
 import { PRODUCT_LIST } from '../my-config';
@@ -35,8 +34,8 @@ function ProductCard() {
   const params = new URLSearchParams(location.search);
   let usp = +params.get('page') || 1;
   let cate = +params.get('cate');
-  let p_sid = +params.get('p_sid');
-  console.log({ usp, cate });
+  // let p_sid = +params.get('p_sid');
+  // console.log({ usp, cate });
 
   //  思考如果所有商品該如何處理 ?
   // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
@@ -53,14 +52,14 @@ function ProductCard() {
   } else {
     cate = `/cate/${cate}/`;
   }
-  console.log({ cate, usp });
+  // console.log({ cate, usp });
 
   // 取得商品資料
   const getProducts = async () => {
     try {
       const res = await axios.get(`${PRODUCT_LIST}${cate}${usp}`);
 
-      console.log(res);
+      // console.log(res);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
 
