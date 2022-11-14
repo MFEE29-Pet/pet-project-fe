@@ -119,7 +119,7 @@ const OverlayWrapper = styled.div`
   position: absolute;
   top: ${(props) => props.$position.top}px;
   left: ${(props) => props.$position.left}px;
-  background: #c72424;
+  background: #fff;
   border-radius: 10px;
   font-family: art;
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
@@ -195,7 +195,7 @@ const Dropdown = ({
         ref={childrenRef}
         data-dropdown-id="dropdown"
         onClick={onClick}
-        style={{width:'180px'}}
+        style={{width:'100%'}}
       >
         {children}
       </div>
