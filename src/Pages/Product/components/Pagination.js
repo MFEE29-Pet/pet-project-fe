@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
@@ -9,6 +9,9 @@ export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
 
   const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const params = new URLSearchParams(location.search);
   let cate = +params.get('cate') || '';

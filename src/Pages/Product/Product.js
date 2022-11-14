@@ -3,7 +3,6 @@ import Filter from './components/Filter';
 import './style/style.scss';
 import ProductCard from './components/ProductCard';
 import { useState } from 'react';
-import Pagination from './components/Pagination';
 import Popup from './components/Popup';
 
 function Product() {
