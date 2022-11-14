@@ -1,9 +1,20 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import _ from 'lodash';
 import { Link, useLocation } from 'react-router-dom';
 import Pagination from './Pagination';
 import { PRODUCT_LIST } from '../my-config';
+import styled from 'styled-components';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+
+const LIST = styled.div`
+  &::before {
+    background-color: ${(props) =>
+      props.$mode === 'dog' ? '#fff5de' : '#a4ced0'};
+    border: 1px solid
+      ${(props) => (props.$mode === 'dog' ? '#fff5de' : '#a4ced0')};
+  }
+`;
 
 function ProductCard() {
   // 商品資訊 state
@@ -28,6 +39,9 @@ function ProductCard() {
 
   // 頁數
   const [page, setPage] = useState(1);
+
+  // context
+  const { mode } = useContext(SwitchButtonContext);
 
   // 取得 queryString
   const location = useLocation();
@@ -75,7 +89,7 @@ function ProductCard() {
     getProducts();
   }, [location]);
 
-  // console.log(product);
+  console.log(product);
 
   const rowProducts = _.chunk(product, 4);
   // console.log(rowProducts);
@@ -84,7 +98,7 @@ function ProductCard() {
     <>
       {rowProducts.map((e, i) => {
         return (
-          <div className="list-row" key={i}>
+          <LIST $mode={mode} className="list-row" key={i}>
             {e.map((e2, i2) => {
               return (
                 <div className="pro-card" key={e2.sid}>
@@ -102,7 +116,7 @@ function ProductCard() {
                 </div>
               );
             })}
-          </div>
+          </LIST>
         );
       })}
       <Pagination totalPages={totalPages} page={page} usp={usp} />
