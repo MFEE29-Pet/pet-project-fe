@@ -70,7 +70,7 @@ const Shadow = styled.img`
   opacity: 0;
 `;
 const List = styled.ul`
-  width: 140px;
+  width: 150px;
   position: absolute;
   top: 80px;
   left: 50%;
