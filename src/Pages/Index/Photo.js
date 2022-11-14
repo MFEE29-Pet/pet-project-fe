@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PhotographerOne from './PhotographerOne';
 import PhotographerTwo from './PhotographerTwo';
@@ -25,26 +25,37 @@ const PhotoBox = styled.div`
 `;
 
 function Photo() {
-  const PhotoMove = useRef();
+  const PhotoAAA = useRef();
+  const PhotoBBB = useRef();
 
-  useEffect(() => {
-    let container = document.querySelector(".bbb");
-    let t2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.aaa',
-        end: () => container.scrollWidth - document.documentElement.clientWidth,
-        scrub: true,
-        pin: true,
-      },
-      defaults: { ease: 'none'},
-    });
+  useLayoutEffect(() => {
+    const Photo_AAA = PhotoAAA.current;
+    const Photo_BBB = PhotoBBB.current;
 
-    t2.to('.bbb', { x: '-66%' });
+    const ctx = gsap.context(() => {
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: Photo_AAA,
+          end: 'bottom',
+          scrub: true,
+          pin: true,
+        },
+        defaults: { ease: 'none' },
+        // smoothChildTiming: true,
+        // autoRemoveChildren: true,
+      });
+
+      t1.to(Photo_BBB, { x: '-66%' });
+    }, Photo_AAA);
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <PHOTO className="aaa">
-      <PhotoBox className="index_photo_bg bbb" ref={PhotoMove} >
+    <PHOTO ref={PhotoAAA}>
+      <PhotoBox className="index_photo_bg" ref={PhotoBBB}>
         <PhotographerOne />
         <PhotographerTwo />
         <PhotographerThree />
