@@ -15,6 +15,7 @@ const ClinicBoxContainer = styled.div`
   height: 600px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 100px;
 `
 
 function Clinic() {

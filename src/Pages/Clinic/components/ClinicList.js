@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ClinicSelect from './ClinicSelect';
-import ClinicResult from './ClinicResult';
+// import ClinicResult from './ClinicResult';
 import styled from 'styled-components';
 
 const ListBox = styled.div`
@@ -12,10 +12,11 @@ const ListBox = styled.div`
 `
 
 function ClinicList() {
+  const [dataFromSelect,setDataFromSelect] = useState([])
   return (
     <ListBox>
-      <ClinicSelect />
-      <ClinicResult />
+      <ClinicSelect setDataFromSelect={setDataFromSelect}/>
+      {console.log(dataFromSelect)}
     </ListBox>
   );
 }
