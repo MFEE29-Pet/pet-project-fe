@@ -40,9 +40,9 @@ function App() {
 
           <Route path="product" element={<Product />} />
           <Route path="product/detail/" element={<ProductDetail />} />
-          <Route path="product/phtotgraphers/" element={<Photographer />} />
+          <Route path="product/photographers/" element={<Photographer />} />
           <Route
-            path="product/phtotgraphers/form"
+            path="product/photographers/form"
             element={<PhotographerForm />}
           />
 
