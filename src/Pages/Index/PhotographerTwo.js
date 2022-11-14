@@ -16,7 +16,6 @@ const PhotographerBox = styled.div`
     position: absolute;
     bottom: 0px;
     left: 70px;
-    box-shadow: -30px 0px #c9a063;
     background-image: url(${img});
     background-repeat: no-repeat;
     background-position: 60% center;
