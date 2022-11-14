@@ -911,21 +911,21 @@ section.bottom-pro-list {
 }
 
 
-
 section.popup {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.152);
     height: 100vh;
     position: fixed;
     top: 0;
-    display: none;
+    // display: none;
+    z-index: 5;
 
 
     .filter-popup {
         position: absolute;
         background-color: $d-main-color;
-        height: 380px;
-        width: 300px;
+        height: 390px;
+        width: 350px;
         top: 20%;
         right: 10%;
         padding: 30px 20px;
@@ -953,6 +953,7 @@ section.popup {
                 display: inline;
                 color: $p_color;
                 font-size: $p_size;
+                margin-right: 5px;
             }
         }
 
@@ -964,13 +965,14 @@ section.popup {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
+                // justify-content: flex-start;
 
                 input {
-                    margin: 10px 10px 10px 0;
+                    margin: 20px 5px 5px 0;
                     border-radius: 15px;
                     border: none;
                     padding: 10px 20px;
-                    width: 70px;
+                    width: 100px;
                 }
 
                 span {
@@ -981,16 +983,19 @@ section.popup {
                 .btn-group {
                     display: flex;
                     justify-content: space-around;
-                    margin: 10px 0;
+                    margin: 5px 0 10px 0;
+                    flex-wrap: wrap;
+                    width: 100%;
 
                     button {
                         border-radius: 20px;
                         border: none;
-                        padding: 10px 20px;
+                        padding: 10px 10px;
                         background-color: #fff;
-                        margin: 10px 0;
+                        margin: 5px 0px;
                         color: rgb(162, 162, 162);
                         font-size: $p_size;
+                        width: 30%;
                     }
 
                     button.active {
@@ -1004,8 +1009,8 @@ section.popup {
                     background-color: $button-color;
                     border: none;
                     color: $d-main-color;
-                    padding: 10px 20px;
-                    margin: 10px 100px;
+                    padding: 10px 40px;
+                    margin: 10px 80px;
                 }
 
                 button.price_filter_reset {
@@ -1031,7 +1036,7 @@ section.popup {
             }
 
             label {
-                margin: 10px 10px;
+                margin: 20px 10px;
                 background-color: #fff;
                 padding: 10px 30px;
                 color: rgb(162, 162, 162);
@@ -1040,7 +1045,7 @@ section.popup {
             }
 
             label.active {
-                border: 2px solid $button-color;
+                outline: 2px solid $button-color;
             }
 
             #sale {

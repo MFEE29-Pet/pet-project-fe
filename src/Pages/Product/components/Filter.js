@@ -1,4 +1,7 @@
-function Filter() {
+import { useState } from 'react';
+import Popup from './Popup';
+
+function Filter({ trigger, setTrigger }) {
   return (
     <>
       <div className="filter">
@@ -10,7 +13,12 @@ function Filter() {
               id="pro-search"
             ></i>
           </div>
-          <div className="price-filter">
+          <div
+            className="price-filter"
+            onClick={() => {
+              setTrigger(!trigger);
+            }}
+          >
             <i className="fa-solid fa-filter"></i>
             <p>篩選</p>
           </div>
