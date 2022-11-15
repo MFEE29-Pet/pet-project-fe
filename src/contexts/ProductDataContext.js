@@ -53,11 +53,11 @@ export const ProductDataContextProvider = function ({ children }) {
   if (!cate) {
     cate = '';
   } else if (cate === 1 || cate === 2) {
-    cate = `/pcate/${cate}/`;
+    cate = `/cate/${cate}/`;
   } else {
     cate = `/cate/${cate}/`;
   }
-  // console.log({ cate, usp });
+  console.log({ cate, usp });
 
   // 取得商品資料
   const getProducts = async () => {
