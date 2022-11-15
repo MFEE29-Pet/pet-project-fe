@@ -31,7 +31,7 @@ function ProductCard() {
                   key={e2.sid}
                   onClick={() => {
                     // console.log(e2.sid);
-                    navigate(`product/detail/${e2.sid}`);
+                    navigate(`detail/?sid=${e2.sid}`);
                   }}
                 >
                   <Link to="">
