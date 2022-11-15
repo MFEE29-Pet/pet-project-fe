@@ -81,6 +81,7 @@ export const ProductDataContextProvider = function ({ children }) {
   }, [location]);
 
   // console.log(product);
+  // console.log(totalPages);
 
   const rowProducts = _.chunk(product, 4);
   // console.log(rowProducts);

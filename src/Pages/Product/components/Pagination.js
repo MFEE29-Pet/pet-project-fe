@@ -8,12 +8,12 @@ import PageContext from '../contexts/PageContext';
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
-  // console.log(page);
+  // console.log(totalPages);
 
   const location = useLocation();
   const { cate, nowPage } = useContext(PageContext);
 
-  return (
+  return totalPages > 1 ? (
     <>
       <div className="page">
         <ul>
@@ -38,9 +38,9 @@ export default function Pagination({ totalPages, page, usp }) {
             Array(totalPages)
               .fill(1)
               .map((e, i) => {
-                const p = page - 1 + i;
+                const p = page - 3 + i;
                 if (p < 1 || p > totalPages) return '';
-                if (p >= nowPage + 2 || p <= nowPage - 1) return '...';
+                if (p > nowPage + 2 || p < nowPage - 2) return '...';
                 return (
                   <li key={i}>
                     <Link
@@ -88,5 +88,7 @@ export default function Pagination({ totalPages, page, usp }) {
         </ul>
       </div>
     </>
+  ) : (
+    <></>
   );
 }
