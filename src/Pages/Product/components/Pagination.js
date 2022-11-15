@@ -1,6 +1,7 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import PageContext from '../contexts/PageContext';
 
 // pagination 如何保留原有的 search or params ??
 // 目前解法: 用 URLSearchParams 取得 params 判斷是否有 cate 和 page
@@ -9,13 +10,7 @@ export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
 
   const location = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
-  const params = new URLSearchParams(location.search);
-  let cate = +params.get('cate') || '';
-  let nowPage = +params.get('page') || 1;
+  const { cate, nowPage } = useContext(PageContext);
 
   return (
     <>

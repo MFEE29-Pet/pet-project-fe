@@ -1,13 +1,27 @@
-import { useState } from 'react';
-import Popup from './Popup';
+import { useState, useContext } from 'react';
+import ProductDataContext from '../../../contexts/ProductDataContext';
+import PageContext from '../contexts/PageContext';
 
 function Filter({ trigger, setTrigger }) {
+  const [keywords, setKeywords] = useState('');
+  const { totalPages } = useContext(ProductDataContext);
+  const { nowPage } = useContext(PageContext);
+
+  console.log(totalPages);
+  const handleClick = (e) => {
+    setKeywords(e.target.value);
+  };
   return (
     <>
       <div className="filter">
         <div className="filter-s-p">
           <div className="search-bar">
-            <input type="search" name="search" id="search" />
+            <input
+              type="search"
+              name="search"
+              id="search"
+              onClick={handleClick}
+            />
             <i
               className="fa-solid fa-magnifying-glass bg_main_light_color1"
               id="pro-search"
@@ -44,7 +58,7 @@ function Filter({ trigger, setTrigger }) {
           </div>
           <div className="pageSel">
             <p>
-              <span>1</span>/ 10
+              <span>{nowPage}</span>/ {totalPages}
             </p>
             <div className="changeBtn">
               <div className="pre-page disable">
