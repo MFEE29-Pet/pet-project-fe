@@ -75,37 +75,49 @@ const InfiniteScroll = styled.div`
   height: 480px;
   overflow-y: auto;
   &::-webkit-scrollbar {
-    display: none;
+    background-color: transparent;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color:#ccc;
   }
 `;
 
-function ClinicSelect() {
+function ClinicSelect({setDataFromSelect}) {
   const [selectedArea, setSelectedArea] = useState('');
   // const [selectedClinic, setSelectedClinic] = useState('');
   const [likeList2, setLikeList2] = useState([]);
 
   const [clinicList, setClinicList] = useState([]);
+  const [showList, setShowList] = useState([]);
 
   const getClinic = async () => {
     try {
       const res = await axios.get('http://localhost:6001/clinic/list');
       setClinicList(res.data.rows);
+
+      setShowList(res.data.rows);
+
+      setDataFromSelect(res.data.rows)
+      
     } catch (e) {
       console.log(e.message);
     }
   };
 
-  let ClinicOptions = [];
-
-  ClinicOptions = clinicList.filter((e, i) => {
-    const { area } = e;
-    return area === selectedArea;
-  });
-  console.log(ClinicOptions);
-
   useEffect(() => {
     getClinic();
   }, []);
+
+  useEffect(() => {
+    const ClinicOptions = clinicList.filter((e, i) => {
+      const { area } = e;
+      return area === selectedArea;
+    });
+    setShowList(ClinicOptions);
+    setDataFromSelect(ClinicOptions)
+  }, [selectedArea]);
   return (
     <>
       <Select
@@ -134,7 +146,7 @@ function ClinicSelect() {
         <DogButton ClassName="bg_main_light_color1" Text={<GlassIcon />} />
       </Check>
       <InfiniteScroll>
-        {ClinicOptions.map((e, i) => {
+        {showList.map((e, i) => {
           const { name, address, mobile } = e;
           return (
             <ClinicItem name={name} address={address} mobile={mobile} key={i} />
