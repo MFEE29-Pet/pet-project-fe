@@ -8,11 +8,12 @@ import PageContext from '../contexts/PageContext';
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
+  // console.log(totalPages);
 
   const location = useLocation();
   const { cate, nowPage } = useContext(PageContext);
 
-  return (
+  return totalPages > 1 ? (
     <>
       <div className="page">
         <ul>
@@ -37,23 +38,26 @@ export default function Pagination({ totalPages, page, usp }) {
             Array(totalPages)
               .fill(1)
               .map((e, i) => {
+                const p = page - 3 + i;
+                if (p < 1 || p > totalPages) return '';
+                if (p > nowPage + 2 || p < nowPage - 2) return '...';
                 return (
                   <li key={i}>
                     <Link
                       to={`${location.pathname}${
-                        cate ? `?cate=${cate}&page=${i + 1}` : `?page=${i + 1}`
+                        cate ? `?cate=${cate}&page=${p}` : `?page=${p}`
                       }`}
-                      className={nowPage === i + 1 ? 'active' : ''}
+                      className={nowPage === p ? 'active' : ''}
                     >
                       <i
                         className={`fa-duotone ${
                           mode === 'dog' ? 'fa-bone' : 'fa-fish'
                         } text_main_light_color1`}
                         style={{
-                          display: `${nowPage === i + 1 ? 'block' : 'none'}`,
+                          display: `${nowPage === p ? 'block' : 'none'}`,
                         }}
                       ></i>
-                      {i + 1}
+                      {p}
                     </Link>
                   </li>
                 );
@@ -84,5 +88,7 @@ export default function Pagination({ totalPages, page, usp }) {
         </ul>
       </div>
     </>
+  ) : (
+    <></>
   );
 }

@@ -17,7 +17,7 @@ export const PageContextProvider = function ({ children }) {
   console.log(nowPage);
 
   return (
-    <PageContext.Provider value={{ cate, nowPage }}>
+    <PageContext.Provider value={{ cate, nowPage, location }}>
       {children}
     </PageContext.Provider>
   );

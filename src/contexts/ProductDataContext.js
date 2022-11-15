@@ -53,10 +53,11 @@ export const ProductDataContextProvider = function ({ children }) {
   if (!cate) {
     cate = '';
   } else if (cate === 1 || cate === 2) {
-    cate = `/pcate/${cate}/`;
+    cate = `/cate/${cate}/`;
   } else {
     cate = `/cate/${cate}/`;
   }
+
   // console.log({ cate, usp });
 
   // 取得商品資料
@@ -81,6 +82,7 @@ export const ProductDataContextProvider = function ({ children }) {
   }, [location]);
 
   // console.log(product);
+  // console.log(totalPages);
 
   const rowProducts = _.chunk(product, 4);
   // console.log(rowProducts);

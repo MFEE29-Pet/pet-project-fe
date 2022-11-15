@@ -1,6 +1,89 @@
 import ProductSidebar from './components/ProductSidebar';
+import { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { PRODUCT_LIST } from './my-config';
+import styled from 'styled-components';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+
+const InfoDiv = styled.div`
+  &::before {
+    background-color: ${(props) =>
+      props.$mode === 'dog' ? '#fff5de' : '#a4ced0'};
+    border: 1px solid
+      ${(props) => (props.$mode === 'dog' ? '#fff5de' : '#a4ced0')};
+  }
+`;
 
 function ProductDetail() {
+  const { mode } = useContext(SwitchButtonContext);
+
+  // 初始狀態
+  let initProductDetail = [
+    {
+      sid: 0,
+      name: '',
+      category: 0,
+      img: '',
+      price: 0,
+      member: 0,
+      member_price: 0,
+      specials: '',
+      info: '',
+      created_at: '',
+      inventory: 0,
+      on_sale: 1,
+    },
+  ];
+  // 商品細節資訊 state
+  const [productDetail, setProductDetail] = useState(initProductDetail);
+
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  // let usp = +params.get('page') || 1;
+  // let cate = +params.get('cate');
+  let sid = +params.get('sid');
+  // let p_sid = +params.get('p_sid');
+  // console.log({ usp, cate });
+
+  //  思考如果所有商品該如何處理 ?
+  // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
+  if (!sid) {
+    sid = '';
+  } else {
+    sid = `/detail/${sid}`;
+  }
+
+  // console.log({ sid });
+
+  // 取得商品資料
+  const getProducts = async () => {
+    try {
+      const res = await axios.get(`${PRODUCT_LIST}${sid}`);
+
+      // console.log(res);
+
+      const productData = res.data.rows;
+      setProductDetail(productData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  // didMount 載入資料
+  useEffect(() => {
+    getProducts();
+  }, [location]);
+
+  // console.log(productDetail);
+
+  const pd = productDetail.map((e, i) => {
+    return { ...e };
+  });
+  const data = pd[0];
+  // console.log(data);
+
   return (
     <>
       <main>
@@ -25,9 +108,9 @@ function ProductDetail() {
           </div>
 
           {/* <!-- products info --> */}
-          <div className="product-info-div">
+          <InfoDiv $mode={mode} className="product-info-div bg_bright_color">
             <div className="img-wrap">
-              <img src="/images/test/can1.jpg" alt="" />
+              <img src={`/images/test/${data.img}`} alt="" />
             </div>
             <div className="product-info-text">
               {/* <!-- breadcrumb --> */}
@@ -41,20 +124,18 @@ function ProductDetail() {
               </nav>
 
               <div className="product-title-wrap">
-                <h2>濃郁雞白罐頭</h2>
+                <h2>{data.name}</h2>
               </div>
 
               <div className="product-price-wrap">
                 <p>
-                  <span>$980</span>
-                  <s>$1,280</s>{' '}
+                  <span>${data.member_price}</span>
+                  <s>${data.price}</s>{' '}
                 </p>
               </div>
 
               <div className="product-info-introduce">
-                <p className="text_main_light_color2">
-                  如果別人做得到，那我也可以做到。透過逆向歸納，得以用最佳的策略去分析罐頭。儘管如此，別人往往卻不這麼想。李大釗說過一句富有哲理的話，人類的生活，必須時時刻刻拿最大的努力，向最高的理想擴張傳衍，流轉無窮，把那陳舊的組織、腐滯的機能一一的掃蕩摧清，別開一種新局面。這段話讓我的心境提高了一個層次。面對如此難題，我們必須設想周全。我們要從本質思考，從根本解決問題。
-                </p>
+                <p className="text_main_light_color2">{data.info}</p>
               </div>
 
               <div className="product-q-loved">
@@ -91,7 +172,7 @@ function ProductDetail() {
                 </button>
               </div>
             </div>
-          </div>
+          </InfoDiv>
 
           {/* <!-- score div --> */}
           <div className="score-div">
@@ -287,7 +368,12 @@ function ProductDetail() {
         </div>
       </section>
 
-      <div className="go-to-top">
+      <div
+        className="go-to-top"
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+      >
         <svg
           width="333"
           height="460"

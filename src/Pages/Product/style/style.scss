@@ -193,7 +193,7 @@ section.right {
         border-radius: 50px 50px 0 0;
         background-color: rgba(0, 0, 0, 0);
         bottom: 5%;
-        z-index: -2;
+        z-index: 2;
         box-shadow: 15px 5px 15px 1.5px rgba(0, 0, 0, 0.82);
     }
 
@@ -204,10 +204,10 @@ section.right {
         display: block;
         position: absolute;
 
-        background-color: $d-main-color;
-        border: 1px solid $d-main-color;
+        // background-color: $d-main-color;
+        // border: 1px solid $d-main-color;
         bottom: 1%;
-        z-index: -1;
+        z-index: 3;
     }
 
     .product-info-div {
