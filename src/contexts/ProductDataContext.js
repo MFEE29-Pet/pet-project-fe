@@ -57,7 +57,8 @@ export const ProductDataContextProvider = function ({ children }) {
   } else {
     cate = `/cate/${cate}/`;
   }
-  console.log({ cate, usp });
+
+  // console.log({ cate, usp });
 
   // 取得商品資料
   const getProducts = async () => {
