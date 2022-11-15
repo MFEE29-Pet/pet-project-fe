@@ -1,61 +1,123 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from '../../../Components/Select/Select';
 import CheckBox from './CheckBox';
+import DogButton from '../../../Components/Buttons/DogButton';
+import GlassIcon from './GlassIcon';
+import styled from 'styled-components';
+import axios from 'axios';
+import ClinicItem from './ClinicItem';
 
 const AreaOptions = [
   {
-    label: '我全都要',
-    value: 'all',
+    label: '中正區',
+    value: 1,
   },
   {
-    label: 'AZ 疫苗',
-    value: 'AZ',
+    label: '大同區',
+    value: 2,
   },
   {
-    label: 'BNT 疫苗',
-    value: 'BNT',
+    label: '中山區',
+    value: 3,
   },
   {
-    label: '莫德納疫苗',
-    value: 'Moderna',
+    label: '松山區',
+    value: 4,
   },
   {
-    label: '高端疫苗',
-    value: 'Vaccine',
+    label: '大安區',
+    value: 5,
+  },
+  {
+    label: '萬華區',
+    value: 6,
+  },
+  {
+    label: '信義區',
+    value: 7,
+  },
+  {
+    label: '士林區',
+    value: 8,
+  },
+  {
+    label: '北投區',
+    value: 9,
+  },
+  {
+    label: '內湖區',
+    value: 10,
+  },
+  {
+    label: '南港區',
+    value: 11,
+  },
+  {
+    label: '文山區',
+    value: 12,
   },
 ];
 
-const ClinicOptions = [
-  {
-    label: '我全都要',
-    value: 'all',
-  },
-  {
-    label: 'AZ 疫苗',
-    value: 'AZ',
-  },
-  {
-    label: 'BNT 疫苗',
-    value: 'BNT',
-  },
-  {
-    label: '莫德納疫苗',
-    value: 'Moderna',
-  },
-  {
-    label: '高端疫苗',
-    value: 'Vaccine',
-  },
-];
+const checkOptions = ['非犬貓', '24小時急診'];
 
+const Check = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
 
-const fruitOptions2 = ['西瓜', '芒果', '香蕉', '龍眼']
+const InfiniteScroll = styled.div`
+  font-family: art;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  height: 480px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color:#ccc;
+  }
+`;
 
-
-function ClinicSelect() {
+function ClinicSelect({setDataFromSelect}) {
   const [selectedArea, setSelectedArea] = useState('');
-  const [selectedClinic, setSelectedClinic] = useState('');
-  const [likeList2, setLikeList2] = useState([])
+  // const [selectedClinic, setSelectedClinic] = useState('');
+  const [likeList2, setLikeList2] = useState([]);
+
+  const [clinicList, setClinicList] = useState([]);
+  const [showList, setShowList] = useState([]);
+
+  const getClinic = async () => {
+    try {
+      const res = await axios.get('http://localhost:6001/clinic/list');
+      setClinicList(res.data.rows);
+
+      setShowList(res.data.rows);
+
+      setDataFromSelect(res.data.rows)
+      
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    getClinic();
+  }, []);
+
+  useEffect(() => {
+    const ClinicOptions = clinicList.filter((e, i) => {
+      const { area } = e;
+      return area === selectedArea;
+    });
+    setShowList(ClinicOptions);
+    setDataFromSelect(ClinicOptions)
+  }, [selectedArea]);
   return (
     <>
       <Select
@@ -64,22 +126,33 @@ function ClinicSelect() {
         placeholder="請選擇行政區"
         onSelect={(value) => setSelectedArea(value)}
       />
-      <Select
+      {/* <Select
         value={selectedClinic}
         options={ClinicOptions}
         placeholder="請選擇診所"
         onSelect={(value) => setSelectedClinic(value)}
-      />
-      {fruitOptions2.map((v, i) => {
-        return (
-          <CheckBox
-            key={i}
-            value={v}
-            checkedValueList={likeList2}
-            setCheckedValueList={setLikeList2}
-          />
-        )
-      })}
+      /> */}
+      <Check>
+        {checkOptions.map((v, i) => {
+          return (
+            <CheckBox
+              key={i}
+              value={v}
+              checkedValueList={likeList2}
+              setCheckedValueList={setLikeList2}
+            />
+          );
+        })}
+        <DogButton ClassName="bg_main_light_color1" Text={<GlassIcon />} />
+      </Check>
+      <InfiniteScroll>
+        {showList.map((e, i) => {
+          const { name, address, mobile } = e;
+          return (
+            <ClinicItem name={name} address={address} mobile={mobile} key={i} />
+          );
+        })}
+      </InfiniteScroll>
     </>
   );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import ClinicList from './components/ClinicList';
+import React, { useState } from 'react';
+import ClinicSelect from './components/ClinicSelect';
 import ClinicMap from './components/ClinicMap';
 import styled from 'styled-components';
 
@@ -15,14 +15,27 @@ const ClinicBoxContainer = styled.div`
   height: 600px;
   display: flex;
   justify-content: space-between;
-`
+  margin-bottom: 100px;
+`;
+
+const ListBox = styled.div`
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 function Clinic() {
+  const [dataFromSelect,setDataFromSelect] = useState([])
   return (
     <ClinicBox>
       <ClinicBoxContainer>
-        <ClinicList />
-        <ClinicMap />
+        <ListBox>
+          <ClinicSelect setDataFromSelect={setDataFromSelect}/>
+          {/* {console.log(dataFromSelect)} */}
+        </ListBox>
+        <ClinicMap dataFromSelect={dataFromSelect}/>
       </ClinicBoxContainer>
     </ClinicBox>
   );

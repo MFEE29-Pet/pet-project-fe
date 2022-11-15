@@ -104,6 +104,11 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+#dog .index_photo_bg{
+  background-image: url('../../public/images/room_1_DogMode.png');
+}
+
 #dog .border_big_main_light_color1 {
   border: 3px solid #f8b62b;
   background-color: #fff;
@@ -198,6 +203,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+#cat .index_photo_bg{
+  background-image: url('../../public/images/room_1_CatMode.png');
 }
 
 #cat .border_big_main_light_color1 {
