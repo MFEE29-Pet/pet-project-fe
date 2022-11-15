@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
 import styled from 'styled-components';
 import ProductDataContext from '../../../contexts/ProductDataContext';
@@ -17,6 +17,7 @@ const LIST = styled.div`
 function ProductCard() {
   const { totalPages, page, rowProducts, usp } = useContext(ProductDataContext);
   const { mode } = useContext(SwitchButtonContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +26,14 @@ function ProductCard() {
           <LIST $mode={mode} className="list-row" key={i}>
             {e.map((e2, i2) => {
               return (
-                <div className="pro-card" key={e2.sid}>
+                <div
+                  className="pro-card"
+                  key={e2.sid}
+                  onClick={() => {
+                    // console.log(e2.sid);
+                    navigate(`product/detail/${e2.sid}`);
+                  }}
+                >
                   <Link to="">
                     <div className="img-wrap bg_bright_color">
                       <img src={`/images/test/${e2.img}`} alt="" />
