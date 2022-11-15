@@ -78,13 +78,13 @@ const InfiniteScroll = styled.div`
     background-color: transparent;
     width: 10px;
   }
-  &::-webkit-scrollbar-thumb{
+  &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color:#ccc;
+    background-color: #ccc;
   }
 `;
 
-function ClinicSelect({setDataFromSelect}) {
+function ClinicSelect({ setDataFromSelect }) {
   const [selectedArea, setSelectedArea] = useState('');
   // const [selectedClinic, setSelectedClinic] = useState('');
   const [likeList2, setLikeList2] = useState([]);
@@ -99,8 +99,7 @@ function ClinicSelect({setDataFromSelect}) {
 
       setShowList(res.data.rows);
 
-      setDataFromSelect(res.data.rows)
-      
+      setDataFromSelect(res.data.rows);
     } catch (e) {
       console.log(e.message);
     }
@@ -116,7 +115,7 @@ function ClinicSelect({setDataFromSelect}) {
       return area === selectedArea;
     });
     setShowList(ClinicOptions);
-    setDataFromSelect(ClinicOptions)
+    setDataFromSelect(ClinicOptions);
   }, [selectedArea]);
   return (
     <>

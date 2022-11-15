@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Check= styled.div`
+const Check = styled.div`
   display: flex;
   align-items: center;
   font-family: art;
   cursor: pointer;
-`
+`;
 
 const Input = styled.input`
   display: none;
