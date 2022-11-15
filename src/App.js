@@ -14,6 +14,7 @@ import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
 import Photographer from './Pages/Product/Photographer';
 import PhotographerForm from './Pages/Product/PhotographerForm';
+import AllContextProviders from './contexts/AllContextProviders';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -33,27 +34,29 @@ function App() {
 
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
-        <Navbar />
-        <section style={{ height: '100px' }}></section>
-        <Routes>
-          <Route path="/" element={<Index />} />
+        <AllContextProviders>
+          <Navbar />
+          <section style={{ height: '100px' }}></section>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-          <Route path="product" element={<Product />} />
-          <Route path="product/detail/" element={<ProductDetail />} />
-          <Route path="product/photographers/" element={<Photographer />} />
-          <Route
-            path="product/photographers/form"
-            element={<PhotographerForm />}
-          />
+            <Route path="product" element={<Product />} />
+            <Route path="product/detail/" element={<ProductDetail />} />
+            <Route path="product/photographers/" element={<Photographer />} />
+            <Route
+              path="product/photographers/form"
+              element={<PhotographerForm />}
+            />
 
-          <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart />} />
 
-          <Route path="clinic" element={<Clinic />} />
+            <Route path="clinic" element={<Clinic />} />
 
-          <Route path="forum" element={<Forum />} />
+            <Route path="forum" element={<Forum />} />
 
-          <Route path="member" element={<Member />} />
-        </Routes>
+            <Route path="member" element={<Member />} />
+          </Routes>
+        </AllContextProviders>
         <Footer />
       </BrowserRouter>
     </div>
