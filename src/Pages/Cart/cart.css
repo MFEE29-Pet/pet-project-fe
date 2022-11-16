@@ -26,7 +26,7 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: #c9bc9c;
-  z-index: -1;
+  z-index: 0;
 }
 
 .eason_dot {
@@ -36,6 +36,7 @@
   border-radius: 50%;
   margin: 8px 0;
   background-color: #fff5de;
+  z-index: 1;
 }
 
 .eason_order .eason_dot {
