@@ -305,6 +305,20 @@ section.right {
                     justify-content: space-around;
                     align-items: flex-end;
 
+                    // 以下為去除 input number 箭頭
+                    /* Chrome, Safari, Edge, Opera */
+                    input[type=number]::-webkit-outer-spin-button,
+                    input[type=number]::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+
+                    /* Firefox */
+                    input[type=number] {
+                        -moz-appearance: textfield;
+                    }
+
                     .q-reduce,
                     .q-add {
                         background-color: $p_color3;
@@ -683,7 +697,7 @@ section.right {
                         height: 100%;
                         width: 100%;
                         object-fit: contain;
-                        
+
                     }
                 }
 
@@ -755,7 +769,9 @@ section.right {
                     display: block;
                     color: $p_color;
                     position: relative;
-                    i.fa-bone, i.fa-fish{
+
+                    i.fa-bone,
+                    i.fa-fish {
                         position: absolute;
                         left: 50%;
                         transform: translateX(-50%) translateY(-20%) rotate(-45deg);
