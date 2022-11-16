@@ -291,19 +291,19 @@ function ProductDetail() {
           </div>
           <div className="div-product-seen">
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
