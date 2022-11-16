@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { imgUrl } from '../../../config/index';
+import { Link } from 'react-router-dom';
 
 const LoginInfoTop = styled.div`
   display: flex;
@@ -31,15 +32,27 @@ const IMG = styled.img`
   width: 80px;
   height: 80px;
 `;
+const MemberBox = styled(Link)`
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Logout = styled(Link)``;
 
 function LoginInfoBoxTop() {
   return (
     <LoginInfoTop>
-      <H2 className="text_main_dark_color2">甜甜圈</H2>
-      <PHOTO className="border_big_main_light_color1">
-        <IMG src={`${imgUrl}/images/test.webp`} alt="" />
-      </PHOTO>
-      <H3 className='text_main_dark_color2'>登出</H3>
+      <MemberBox to="/member">
+        <H2 className="text_main_dark_color2">甜甜圈</H2>
+        <PHOTO className="border_big_main_light_color1">
+          <IMG src={`${imgUrl}/images/test.webp`} alt="" />
+        </PHOTO>
+      </MemberBox>
+      <Logout to='/'>
+        <H3 className="text_main_dark_color2">登出</H3>
+      </Logout>
     </LoginInfoTop>
   );
 }
