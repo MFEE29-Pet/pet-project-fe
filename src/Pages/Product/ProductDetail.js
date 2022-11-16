@@ -7,6 +7,7 @@ import ProductDetailContext from '../../contexts/ProductDetailContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import { Link } from 'react-router-dom';
+import ReplyPopup from './components/ReplyPopup';
 
 const InfoDiv = styled.div`
   &::before {
@@ -23,6 +24,7 @@ function ProductDetail() {
   const [loved, setLoved] = useState(false);
   const [lovedHover, setLovedHover] = useState(false);
   // console.log(data);
+  const [showDiv, setShowDiv] = useState(false);
 
   const routes = [
     {
@@ -186,7 +188,12 @@ function ProductDetail() {
                   <i className="fa-solid fa-star "></i>
                   <i className="fa-solid fa-star "></i>
                   <i className="fa-solid fa-star-half-stroke "></i>
-                  <div className="write-reply">
+                  <div
+                    className="write-reply"
+                    onClick={() => {
+                      setShowDiv(!showDiv);
+                    }}
+                  >
                     <i className="fa-light fa-message-pen"></i>
                     <p>
                       {/* <!-- 彈跳視窗 --> */}
@@ -283,6 +290,7 @@ function ProductDetail() {
           </div>
         </section>
       </main>
+      <ReplyPopup setShowDiv={setShowDiv} showDiv={showDiv} />
       {/* <!-- history sec --> */}
       <section className="history">
         <div className="history-side-div">
