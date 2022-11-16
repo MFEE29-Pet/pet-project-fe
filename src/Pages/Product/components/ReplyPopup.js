@@ -55,7 +55,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
             height: '100px',
             overflow: 'hidden',
             position: 'relative',
-            marginBottom: '50px',
+            marginBottom: '20px',
           }}
         >
           <img
@@ -70,6 +70,16 @@ function ReplyPopup({ showDiv, setShowDiv }) {
             alt="person_image"
           />
         </div>
+        <div
+          className="star-wrap"
+          style={{ marginBottom: '20px', fontSize: '30px' }}
+        >
+          <i class="fa-regular fa-star" style={{ marginRight: '10px' }}></i>
+          <i class="fa-regular fa-star" style={{ marginRight: '10px' }}></i>
+          <i class="fa-regular fa-star" style={{ marginRight: '10px' }}></i>
+          <i class="fa-regular fa-star" style={{ marginRight: '10px' }}></i>
+          <i class="fa-regular fa-star" style={{ marginRight: '10px' }}></i>
+        </div>
         <form
           action=""
           style={{
@@ -83,18 +93,24 @@ function ReplyPopup({ showDiv, setShowDiv }) {
             id=""
             cols="40"
             rows="10"
-            style={{ marginBottom: '20px' }}
+            style={{
+              marginBottom: '20px',
+              borderRadius: '20px',
+              padding: '10px',
+            }}
+            placeholder="留下商品評價"
           ></textarea>
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <button
               type="button"
-              className="bg_main_light_color1"
+              className="text_main_light_color2"
               style={{
                 borderRadius: '20px',
                 border: 'none',
                 padding: '10px 40px',
                 fontWeight: 'bold',
-                color:'#fff'
+                color: '#fff',
+                background: 'rgba(0,0,0,0)',
               }}
               onClick={() => {
                 setShowDiv(!showDiv);
@@ -103,7 +119,19 @@ function ReplyPopup({ showDiv, setShowDiv }) {
               取消
             </button>
             {/* 要改submit */}
-            <button type="button">確定</button>
+            <button
+              type="button"
+              className="bg_main_light_color1"
+              style={{
+                borderRadius: '20px',
+                border: 'none',
+                padding: '10px 40px',
+                fontWeight: 'bold',
+                color: '#fff',
+              }}
+            >
+              確定
+            </button>
           </div>
         </form>
       </Reply>
