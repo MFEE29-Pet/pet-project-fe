@@ -52,7 +52,7 @@ function ProductDetail() {
             </div>
             <div className="pro-loved-list">
               <Link
-                href="/#"
+                href=""
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}

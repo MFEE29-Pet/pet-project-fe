@@ -627,7 +627,7 @@ section.right {
             padding: 5px 10px;
 
             span {
-                color: $button-color;
+                // color: $button-color;
             }
         }
 
@@ -806,6 +806,7 @@ section.history {
     z-index: 1;
     // transform: translateX(-110%);
     transition: 1s;
+    display: none;
 
     .history-side-div {
         width: 180px;
@@ -952,7 +953,7 @@ section.popup {
 
     .filter-popup {
         position: absolute;
-        background-color: $d-main-color;
+        // background-color: $d-main-color;
         height: 390px;
         width: 350px;
         top: 20%;
@@ -1035,16 +1036,16 @@ section.popup {
                 button.price_filter_submit,
                 .price_filter_reset {
                     border-radius: 15px;
-                    background-color: $button-color;
+                    // background-color: $button-color;
                     border: none;
-                    color: $d-main-color;
+                    color: #fff;
                     padding: 10px 40px;
                     margin: 10px 80px;
                 }
 
                 button.price_filter_reset {
-                    background-color: $d-main-color;
-                    color: $p_color;
+                    // background-color: $d-main-color;
+                    color: #fff;
                     text-decoration: underline;
 
                 }
@@ -1074,7 +1075,7 @@ section.popup {
             }
 
             label.active {
-                outline: 2px solid $button-color;
+                // outline: 2px solid $button-color;
             }
 
             #sale {

@@ -44,6 +44,11 @@
   }
 }
 
+#dog .border_main_light_color1.active {
+  color: #ea5514;
+  border: 2px solid #ea5514;
+}
+
 #dog .bg_main_light_color1.active {
   background-color: #ea5514;
 }
@@ -84,6 +89,9 @@
 }
 
 #dog.bg_bright_color {
+  background-color: #fff5de;
+}
+#dog .bg_bright_color {
   background-color: #fff5de;
 }
 
@@ -139,6 +147,11 @@
   }
 }
 
+#cat .border_main_light_color1.active {
+  color: #4c748e;
+  border: 2px solid #4c748e;
+}
+
 #cat .bg_main_light_color1.active {
   background-color: #00535c;
 }
@@ -179,6 +192,9 @@
 }
 
 #cat.bg_bright_color {
+  background-color: #a4ced0;
+}
+#cat .bg_bright_color {
   background-color: #a4ced0;
 }
 
