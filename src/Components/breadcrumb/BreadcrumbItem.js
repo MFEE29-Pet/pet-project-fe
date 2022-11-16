@@ -29,7 +29,9 @@ function BreadcrumbItem({ label, icon, to }) {
       onClick={() => handleClickPath(to)}
     >
       {icon}
-      <Link to={to}>{label}</Link>
+      <Link to={to} style={{ color: '#727171' }}>
+        {label}
+      </Link>
     </StyledItem>
   );
 }
