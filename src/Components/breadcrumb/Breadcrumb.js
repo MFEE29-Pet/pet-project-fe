@@ -1,7 +1,6 @@
 import React from "react";
 import Breadcrumbs from "./Breadcrumbs";
 import BreadcrumbItem from "./BreadcrumbItem";
-import { Link } from "react-router-dom";
 
 function Breadcrumb({ maxItems, routes, separator }) {
   return (
