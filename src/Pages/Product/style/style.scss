@@ -796,6 +796,10 @@ section.right {
 
 }
 
+section.history.show {
+    transform: translateY(0%);
+}
+
 section.history {
     width: 15%;
     height: 100%;
