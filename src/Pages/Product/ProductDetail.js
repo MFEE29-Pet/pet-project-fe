@@ -1,13 +1,12 @@
 import ProductSidebar from './components/ProductSidebar';
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { PRODUCT_LIST } from './my-config';
+import { useContext, useState } from 'react';
+
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import ProductDetailContext from '../../contexts/ProductDetailContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import { Link } from 'react-router-dom';
 
 const InfoDiv = styled.div`
   &::before {
@@ -21,6 +20,8 @@ const InfoDiv = styled.div`
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
   const { data, amount, setAmount } = useContext(ProductDetailContext);
+  const [loved, setLoved] = useState(false);
+  const [lovedHover, setLovedHover] = useState(false);
   // console.log(data);
 
   const routes = [
@@ -50,10 +51,22 @@ function ProductDetail() {
               ></i>
             </div>
             <div className="pro-loved-list">
-              <a href="#">
-                <i className="fa-regular fa-heart"></i>
-                <p>我的最愛</p>
-              </a>
+              <Link
+                href="/#"
+                onMouseEnter={() => {
+                  setLovedHover(!lovedHover);
+                }}
+                onMouseLeave={() => {
+                  setLovedHover(!lovedHover);
+                }}
+              >
+                <i
+                  className={`${
+                    lovedHover ? 'fa-solid' : 'fa-regular'
+                  } fa-heart`}
+                ></i>
+                <p>我的收藏</p>
+              </Link>
             </div>
           </div>
 
@@ -124,9 +137,13 @@ function ProductDetail() {
                   ></i>
                 </div>
                 <div className="add-loved">
-                  <p>加入收藏</p>{' '}
-                  <i className="fa-regular fa-heart add-love-icon"></i>
-                  <i className="fa-solid fa-heart add-love-icon hide"></i>
+                  <p>{loved ? '取消追蹤' : '加入追蹤'}</p>
+                  <i
+                    className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                    onClick={() => {
+                      setLoved(!loved);
+                    }}
+                  ></i>
                 </div>
               </div>
 
