@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ClinicSelect from './components/ClinicSelect';
 import ClinicMap from './components/ClinicMap';
 import styled from 'styled-components';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 
 const ClinicBox = styled.div`
   width: 100%;
@@ -27,15 +28,16 @@ const ListBox = styled.div`
 `;
 
 function Clinic() {
-  const [dataFromSelect,setDataFromSelect] = useState([])
+  const [dataFromSelect, setDataFromSelect] = useState([]);
   return (
     <ClinicBox>
+      <Breadcrumb />
       <ClinicBoxContainer>
         <ListBox>
-          <ClinicSelect setDataFromSelect={setDataFromSelect}/>
+          <ClinicSelect setDataFromSelect={setDataFromSelect} />
           {/* {console.log(dataFromSelect)} */}
         </ListBox>
-        <ClinicMap dataFromSelect={dataFromSelect}/>
+        <ClinicMap dataFromSelect={dataFromSelect} />
       </ClinicBoxContainer>
     </ClinicBox>
   );
