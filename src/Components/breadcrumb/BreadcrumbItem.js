@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledItem = styled.div`
   display: flex;
   align-items: center;
-  ${(props) => props.$isClickable && "cursor: pointer;"}
+  ${(props) => props.$isClickable && 'cursor: pointer;'}
   & > *:not(:first-child) {
     margin-left: 4px;
   }
@@ -27,7 +28,7 @@ function BreadcrumbItem({ label, icon, to }) {
       onClick={() => handleClickPath(to)}
     >
       {icon}
-      <span>{label}</span>
+      <Link to={to}>{label}</Link>
     </StyledItem>
   );
 }
