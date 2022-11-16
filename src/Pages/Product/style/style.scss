@@ -796,9 +796,6 @@ section.right {
 
 }
 
-section.history.show {
-    transform: translateY(0%);
-}
 
 section.history {
     width: 15%;
@@ -806,7 +803,9 @@ section.history {
     position: absolute;
     right: 0;
     top: 40%;
-    transform: translateY(-210%);
+    z-index: 1;
+    // transform: translateX(-110%);
+    transition: 1s;
 
     .history-side-div {
         width: 180px;
