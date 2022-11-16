@@ -225,10 +225,10 @@
 }
 
 .eason_s3_left button {
-  background-color: transparent;
+  background-color: #f8b62d;
+  color: #fff;
   border-radius: 15px;
-  border: 2.5px solid #c9caca;
-  color: #c9caca;
+  border: none;
   font-weight: 900;
   padding: 3px 0;
   margin-right: 10px;
@@ -236,8 +236,8 @@
 }
 
 .eason_s3_left button:hover {
-  border: 2.5px solid #727171;
-  color: #727171;
+  color: #fff;
+  background-color: #ea5514;
 }
 
 .eason_s3_right {
@@ -272,6 +272,10 @@
   padding: 3px 28px;
   font-weight: 900;
   margin-bottom: 20px;
+}
+
+.eason_pay_btn:hover {
+  background-color: #ea5514;
 }
 
 .eason_total table {

@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import './cart.css';
 
 function Cart() {
+  const [click, setClick] = useState(true);
+  const [otherClick, setOtherClick] = useState(true);
   return (
     <>
       <div class="eason_container">
@@ -8,31 +11,39 @@ function Cart() {
         <div class="eason_progress_bar">
           <div class="eason_order">
             <i class="fa-light fa-file-pen fa-3x"></i>
-            <div class="eason_dot"></div>
+            <div class="eason_dot "></div>
             <a href="/#" style={{ color: '#40220f' }}>
               確認訂單
             </a>
           </div>
-          <div class="eason_pay">
+          <div class="eason_pay ">
             <i class="fa-light fa-envelope-open-dollar fa-3x"></i>
-            <div class="eason_dot"></div>
-            <a href="/#">確認付款</a>
+            <div class="eason_dot "></div>
+            <a href="/#" className="">
+              確認付款
+            </a>
           </div>
-          <div class="eason_check">
+          <div class="eason_check ">
             <i class="fa-light fa-circle-check fa-3x"></i>
-            <div class="eason_dot"></div>
+            <div class="eason_dot "></div>
 
-            <a href="/#">訂單成立</a>
+            <a href="/#" className="">
+              訂單成立
+            </a>
           </div>
-          <div class="eason_truck">
+          <div class="eason_truck ">
             <i class="fa-light fa-truck-fast fa-3x"></i>
-            <div class="eason_dot"></div>
-            <a href="/#">配送中</a>
+            <div class="eason_dot "></div>
+            <a href="/#" className="">
+              配送中
+            </a>
           </div>
-          <div class="eason_complete">
+          <div class="eason_complete ">
             <i class="fa-light fa-house-flag fa-3x"></i>
-            <div class="eason_dot"></div>
-            <a href="/#">訂單完成</a>
+            <div class="eason_dot "></div>
+            <a href="/#" className="">
+              訂單完成
+            </a>
           </div>
         </div>
 
@@ -239,8 +250,37 @@ function Cart() {
         <div class="eason_section_3">
           <div class="eason_s3_left">
             <h2>付款方式</h2>
-            <button>貨到付款</button>
-            <button>信用卡</button>
+            <button
+              className={
+                click === true ? 'bg_main_light_color1' : 'bg_main_color'
+              }
+              onClick={() => {
+                if (click === true) {
+                  setClick(false);
+                  setOtherClick(true);
+                } else {
+                  setClick(true);
+                }
+              }}
+            >
+              貨到付款
+            </button>
+            {console.log(click)}
+            <button
+              className={
+                otherClick === true ? 'bg_main_light_color1' : 'bg_main_color'
+              }
+              onClick={() => {
+                if (otherClick === true) {
+                  setOtherClick(false);
+                  setClick(true)
+                } else {
+                  setOtherClick(true);
+                }
+              }}
+            >
+              信用卡
+            </button>
           </div>
 
           <div class="eason_s3_right">

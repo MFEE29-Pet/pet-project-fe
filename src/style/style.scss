@@ -3,6 +3,11 @@
   src: url('../../public/font/GenSenRounded-R.ttc');
 }
 
+* {
+box-sizing: border-box;
+font-family: 'art';
+}
+
 #dog {
   background-color: #c9bc9c;
 }
