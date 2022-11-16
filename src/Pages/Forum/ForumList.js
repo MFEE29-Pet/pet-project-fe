@@ -17,4 +17,4 @@ function ForumList() {
   );
 }
 
-export default ForumListBar;
+export default ForumList;
