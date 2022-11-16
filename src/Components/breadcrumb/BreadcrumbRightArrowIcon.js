@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const I = styled.i`
   font-size: 20px;
+  color: #727171;
 `;
 
 function BreadcrumbRightArrowIcon() {

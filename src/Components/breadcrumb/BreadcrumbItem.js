@@ -10,6 +10,7 @@ const StyledItem = styled.div`
     margin-left: 4px;
   }
   font-family: art;
+  color: #727171;
 `;
 
 function BreadcrumbItem({ label, icon, to }) {
