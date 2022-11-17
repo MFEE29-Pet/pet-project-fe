@@ -17,9 +17,9 @@ const clinicItem = [
 ];
 
 const productItem = [
-  { id: 1, name: "狗勾汪汪" ,to:'/product/?dog'},
-  { id: 2, name: "貓貓喵喵" ,to:'/product/?cat'},
-  { id: 3, name: "攝影服務" ,to:'/product/?photo'},
+  { id: 1, name: "狗勾汪汪" ,to:'product?cate=1&page=1'},
+  { id: 2, name: "貓貓喵喵" ,to:'product?cate=2&page=1'},
+  { id: 3, name: "攝影服務" ,to:'product'},
 ];
 
 const ItemBox = styled.div`
