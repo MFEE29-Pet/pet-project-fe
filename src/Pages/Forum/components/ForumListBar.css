@@ -1,0 +1,41 @@
+.forumBar{
+  width: 1200px;
+  height: 150px;
+  background-color: white;
+  margin: 50px auto;
+  border-radius: 15px;
+  display: flex;
+}
+.forumIconBar{
+  display: flex;
+  width: 180px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#proIcon{
+font-size: 320%;
+}
+
+.forumTitleBar{
+  /* background-color: gray; */
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+}
+.forumTitle{
+  font-weight: bold;
+  line-height: 30px;
+}
+.forumTag{
+  color: #c9caca;
+}
+
+.forumUserBar{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}

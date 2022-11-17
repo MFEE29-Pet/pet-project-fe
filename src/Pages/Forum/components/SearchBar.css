@@ -3,8 +3,8 @@
   margin-top: 10px;
   display: flex;
 } */
-.searchArea{
-  width: 900px;
+.search_area{
+  width: 1200px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@
   width: 300px;
   }
 
-  #pro-search {
+  #pro_search {
   color: white;
   text-align: center;
   padding-top: 4px;
@@ -34,10 +34,11 @@ background: red;
   } */
 
   #select{
-    width: 100px;
+    width: 120px;
     height: 25px;
     border: none;
     border-radius: 10px;
     color: #c9caca;
   }
+
 

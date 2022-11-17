@@ -6,8 +6,10 @@ import Clinic from './Pages/Clinic/Clinic';
 import Forum from './Pages/Forum/ForumList';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
+import MemberSing from './Pages/Member/MemberSing';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
+import Reserve from './Pages/Clinic/Reserve';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
@@ -36,6 +38,12 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           <Navbar />
+          <i
+            className={`fa-light fa-shield-cat text_main_light_color1`}
+            style={{ opacity: 0, position: 'absolute' }}
+            // onClick={handleClick}
+            // id="switch_button"
+          ></i>
           <section style={{ height: '100px' }}></section>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -50,11 +58,13 @@ function App() {
 
             <Route path="cart" element={<Cart />} />
 
-            <Route path="clinic" element={<Clinic />} />
+          <Route path="clinic" element={<Clinic />} />
+          <Route path="clinic/reserve" element={<Reserve />} />
 
             <Route path="forum" element={<Forum />} />
 
             <Route path="member" element={<Member />} />
+            <Route path="member/memberShipAdd" element={<MemberSing />} />
           </Routes>
         </AllContextProviders>
         <Footer />

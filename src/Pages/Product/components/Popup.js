@@ -7,7 +7,7 @@ function Popup({ trigger, setTrigger }) {
   return trigger ? (
     <>
       <section className="popup">
-        <div className="filter-popup">
+        <div className="filter-popup bg_bright_color">
           <div className="filter-title">
             <i className="fa-solid fa-caret-right"></i>
             <h2>價格範圍</h2>
@@ -52,7 +52,7 @@ function Popup({ trigger, setTrigger }) {
                 {/* <!-- 使用自動填入 --> */}
                 <button
                   type="button"
-                  className="active"
+                  className="border_main_light_color1 active"
                   onClick={() => {
                     setMinPrice(0);
                     setMaxPrice(500);
@@ -61,6 +61,7 @@ function Popup({ trigger, setTrigger }) {
                   0-500
                 </button>
                 <button
+                  className="border_main_light_color1"
                   type="button"
                   onClick={() => {
                     setMinPrice(500);
@@ -70,6 +71,7 @@ function Popup({ trigger, setTrigger }) {
                   500-1000
                 </button>
                 <button
+                  className="border_main_light_color1"
                   type="button"
                   onClick={() => {
                     setMinPrice(1000);
@@ -90,16 +92,18 @@ function Popup({ trigger, setTrigger }) {
           <div className="service_sale_form">
             <form method="get">
               {/* <!-- 被選取的話增加class active --> */}
-              <label htmlFor="sale" className="active">
+              <label htmlFor="sale" className="border_main_light_color1 active">
                 特價促銷
               </label>
               <input type="radio" name="sale" id="sale" />
-              <label htmlFor="multi">多件優惠</label>
+              <label htmlFor="multi" className="border_main_light_color1">
+                多件優惠
+              </label>
               <input type="radio" name="sale" id="multi" />
 
-              <button className="price_filter_submit">確定</button>
+              <button className="price_filter_submit bg_main_light_color1">確定</button>
               <button
-                className="price_filter_reset"
+                className="price_filter_reset bg_main_light_color2"
                 type="button"
                 onClick={() => {
                   setMinPrice(0);

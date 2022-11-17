@@ -14,7 +14,7 @@ export const PageContextProvider = function ({ children }) {
   const params = new URLSearchParams(location.search);
   let cate = +params.get('cate') || '';
   let nowPage = +params.get('page') || 1;
-  console.log(nowPage);
+  // console.log(nowPage);
 
   return (
     <PageContext.Provider value={{ cate, nowPage, location }}>

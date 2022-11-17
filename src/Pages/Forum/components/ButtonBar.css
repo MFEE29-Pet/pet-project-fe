@@ -1,0 +1,16 @@
+.btn_area{
+    margin: 30px auto;
+    width: 1200px;
+
+    display: flex;
+    justify-content: space-between;
+
+  }
+  .btn_total{
+  width: 120px;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: $d-main-color;
+  }

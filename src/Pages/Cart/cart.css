@@ -1,0 +1,297 @@
+.eason_container {
+  margin: auto;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 進度條CSS--------------------------------------------------------------- */
+.eason_progress_bar {
+  width: 880px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  color: #c9bc9c;
+}
+
+.eason_progress_bar::after {
+  content: '';
+  position: absolute;
+  width: 95%;
+  height: 3px;
+  top: 59%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #c9bc9c;
+  z-index: 0;
+}
+
+.eason_dot {
+  width: 15px;
+  height: 15px;
+  border: 0.13rem solid #c9bc9c;
+  border-radius: 50%;
+  margin: 8px 0;
+  background-color: #fff5de;
+  z-index: 1;
+}
+
+.eason_order .eason_dot {
+  border: 0.13rem solid #40220f;
+}
+
+.eason_order i {
+  color: #40220f;
+}
+
+.eason_progress_bar a {
+  text-decoration: none;
+  color: #c9bc9c;
+  font-weight: 900;
+}
+
+.eason_order,
+.eason_pay,
+.eason_check,
+.eason_truck,
+.eason_complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+}
+
+/* 攝影預約 CSS----------------------------------------------------------- */
+.eason_section_1 .eason_list_title {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.eason_product_check {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  color: #40220f;
+}
+
+.eason_list_table {
+  color: #40220f;
+  margin-top: 25px;
+  margin-bottom: 40px;
+  width: 900px;
+  background-color: #fff;
+  border-radius: 15px;
+  text-align: center;
+  font-size: smaller;
+}
+
+.eason_list_table thead {
+  line-height: 40px;
+  font-size: small;
+  color: #727171;
+}
+
+.eason_list_table tbody {
+  line-height: 100px;
+}
+
+.eason_list_table td {
+  vertical-align: middle;
+}
+
+.eason_section_1 .p_name {
+  font-weight: 900;
+}
+
+.eason_section_1 .table_img img {
+  vertical-align: middle;
+}
+
+.eason_section_1 .list_table th:nth-child(1) {
+  width: 15%;
+}
+
+.eason_section_1 .list_table th:nth-child(2) {
+  width: 15%;
+}
+
+.eason_section_1 .list_table th:nth-child(3) {
+  width: 15%;
+}
+
+.eason_section_1 .table_price {
+  font-weight: 900;
+  color: red;
+}
+
+.fa-pen-to-square {
+  color: #c9caca;
+}
+
+.fa-pen-to-square:hover {
+  color: #40220f;
+}
+.eason_section_1 .list_table th:nth-child(4) {
+  width: 15%;
+}
+
+.eason_section_1 .list_table th:nth-child(5) {
+  width: 15%;
+}
+
+.eason_section_1 .list_table th:nth-child(6) {
+  width: 13%;
+}
+
+.eason_section_1 .list_table th:nth-child(7) {
+  width: 15%;
+}
+
+.fa-trash-can {
+  color: #c9caca;
+}
+
+.fa-trash-can:hover {
+  color: #40220f;
+}
+
+.fa-solid {
+  color: #c9bc9c;
+}
+
+/* 商品訂單 CSS----------------------------------------------------------- */
+.eason_section_2 .list_title {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.eason_eason_section_2 .p_name {
+  font-weight: 900;
+}
+
+.section_2 .table_img img {
+  vertical-align: middle;
+}
+
+.eason_section_2 .list_table th:nth-child(1) {
+  width: 12.5%;
+}
+
+.eason_section_2 .list_table th:nth-child(2) {
+  width: 20%;
+}
+
+.eason_section_2 .list_table th:nth-child(3) {
+  width: 15%;
+}
+
+.eason_section_2 .table_price {
+  color: #727171;
+}
+
+.eason_section_2 .list_table th:nth-child(4) {
+  width: 15%;
+}
+
+.eason_section_2 .table_amount {
+  letter-spacing: 5px;
+}
+
+.eason_section_2 .list_table th:nth-child(5) {
+  width: 10%;
+}
+
+.eason_section_2 .eason_table_total {
+  font-weight: 900;
+  color: red;
+}
+
+.eason_section_2 .list_table th:nth-child(6) {
+  width: 10%;
+}
+
+/* 下方區域 CSS----------------------------------------------------------- */
+.eason_section_3 {
+  width: 880px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 35px;
+}
+
+.eason_s3_left button {
+  background-color: #f8b62d;
+  color: #fff;
+  border-radius: 15px;
+  border: none;
+  font-weight: 900;
+  padding: 3px 0;
+  margin-right: 10px;
+  width: 120px;
+}
+
+.eason_s3_left button:hover {
+  color: #fff;
+  background-color: #ea5514;
+}
+
+.eason_s3_right {
+  display: flex;
+  flex-direction: column;
+}
+
+.eason_discount_code {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 260px;
+  height: 25px;
+  border: none;
+}
+
+.eason_discount_code:focus {
+  outline: none;
+}
+
+.eason_s3_right_top {
+  margin-bottom: 20px;
+}
+
+.eason_pay_btn {
+  margin-top: 20px;
+  background-color: #f8b62d;
+  color: #fff;
+  display: flex;
+  float: right;
+  border: none;
+  border-radius: 12px;
+  padding: 3px 28px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.eason_pay_btn:hover {
+  background-color: #ea5514;
+}
+
+.eason_total table {
+  width: 260px;
+}
+
+.eason_total th {
+  text-align: left;
+  color: #40220f;
+  font-size: small;
+  font-weight: 900;
+}
+
+.eason_total td {
+  text-align: right;
+  color: #40220f;
+  font-size: x-small;
+  font-weight: 900;
+}

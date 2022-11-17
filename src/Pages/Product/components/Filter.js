@@ -60,7 +60,7 @@ function Filter({ trigger, setTrigger }) {
           </div>
           <div className="pageSel">
             <p>
-              <span>{nowPage}</span>/ {totalPages}
+              <span className="text_main_color">{nowPage}</span>/ {totalPages}
             </p>
             <div className="changeBtn">
               <div
