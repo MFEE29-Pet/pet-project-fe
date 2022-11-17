@@ -8,6 +8,7 @@ import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import { Link } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
+import CartIcon from './components/CartIcon';
 
 const InfoDiv = styled.div`
   &::before {
@@ -44,6 +45,7 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
+          <CartIcon />
           <div className="filter-s-p">
             <div className="search-bar">
               <input type="search" name="search" id="search" />
