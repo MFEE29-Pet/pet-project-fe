@@ -1,0 +1,43 @@
+
+/* .forum_search_area {
+  margin-top: 10px;
+  display: flex;
+} */
+.searchArea{
+  width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#search {
+  height: 25px;
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+  width: 300px;
+  }
+
+  #pro-search {
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+  height: 20px;
+  width: 25px;
+  margin: 0;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  }
+
+  /* .forum_select_area{
+width: 500px;
+background: red;
+  } */
+
+  #select{
+    width: 100px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    color: #c9caca;
+  }
+

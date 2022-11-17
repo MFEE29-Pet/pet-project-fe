@@ -1,0 +1,254 @@
+$titlesize: 48px;
+$h1size : 24px;
+$h2size : 18px;
+$p_size : 14px;
+$d-main-color: #fff5de;
+$button-color: #f8b62d;
+$button-active-color: #ea5514;
+$p_color : #40220f;
+$p_color2 : #956134;
+$p_color3 : #c9bc9c;
+$p_gray_color: #c9caca;
+$p_gray_dark_color: #727171;
+$p_gray_light_color: #dcdddd;
+$p_gray_light_color2: #efefef;
+
+
+body {
+    background-color: $d-main-color;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+    color: $p_color;
+}
+
+
+button,
+select {
+    cursor: pointer;
+}
+
+// .navContainer {
+//     width: 100%;
+//     height: 100px;
+//     background-color: #ccc;
+// }
+
+main {
+    // display: flex;
+    width: 1200px;
+    // justify-content: center;
+    margin: 50px auto;
+
+    .nav-breadcrumb {
+        margin: 20px 0 50px 0;
+
+        .breadcrumb {
+            display: flex;
+
+            li {
+                color: $p_color3;
+                margin: 0 3px;
+
+                a {
+                    &:hover {
+                        color: $p_color;
+                    }
+
+                    color: $p_color3;
+                }
+
+                span {
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .breadcrumb li:nth-child(1)::after {
+            content: '>';
+            margin-left: 5px;
+        }
+
+        .breadcrumb li:nth-child(2)::after {
+            content: '>';
+            margin-left: 5px;
+        }
+    }
+
+    .photographer-form {
+        background-color: #fff;
+        width: 90%;
+        border-radius: 15px;
+        padding: 50px 80px;
+
+        h1 {
+            font-size: $h1size;
+            color: $p_color;
+            font-weight: bold;
+        }
+
+        .photographer-name {
+            display: flex;
+            color: $p_color;
+            margin: 20px 0;
+            align-items: flex-end;
+
+            i {
+                margin-right: 20px;
+                color: $button-color;
+            }
+
+            p {
+                color: $p_color;
+                font-size: $p_size;
+            }
+        }
+
+        form {
+            input {
+                border-radius: 20px;
+                border: 2px solid $p_gray_light_color;
+                padding: 5px 15px;
+                color: $p_gray_dark_color;
+                font-size: $p_size;
+            }
+
+            select {
+                border-radius: 20px;
+                border: 2px solid $p_gray_light_color;
+                padding: 5px 15px;
+                color: $p_gray_dark_color;
+            }
+
+            h2 {
+                color: $p_color2;
+                font-size: $h2size;
+                font-weight: bold;
+                margin: 50px 30px;
+            }
+
+            .reserve-time {
+                label {
+                    color: $p_color;
+                    font-weight: bold;
+                    margin: 0 80px 0 30px;
+                }
+
+                input,
+                select {
+                    margin-right: 10px;
+                    width: 120px;
+                }
+
+                select {
+                    padding-top: 7px;
+                }
+            }
+
+            .member-data {
+                display: block;
+
+                div {
+                    margin: 30px 0;
+                }
+
+                label {
+                    color: $p_color;
+                    font-weight: bold;
+                    margin: 0 80px 0 30px;
+                }
+
+                input {
+                    margin-left: 30px;
+                }
+
+                input#name {
+                    width: 100px;
+                }
+
+                input#address {
+                    width: 300px;
+                }
+
+                select {
+                    margin-left: 30px;
+                }
+            }
+
+            .pet-data {
+                div {
+                    margin: 30px 0;
+                }
+
+                label {
+                    color: $p_color;
+                    font-weight: bold;
+                    margin: 0 80px 0 30px;
+                }
+
+                input {
+                    margin-left: 30px;
+                }
+
+                input#pet-name,
+                #pet-age {
+                    width: 100px;
+                }
+
+                .pet-image {
+                    display: flex;
+                    align-items: flex-start;
+
+                    .img-file-wrap {
+                        width: 150px;
+                        height: 120px;
+                        border: 1px dashed $p_gray_light_color;
+                        margin: 0 15px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+
+                        p,
+                        i {
+                            color: $p_gray_light_color;
+                            margin-bottom: 10px;
+                        }
+
+                        p {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.go-to-top {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.664);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    cursor: pointer;
+
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+
+}

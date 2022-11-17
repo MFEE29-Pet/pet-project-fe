@@ -1,5 +1,10 @@
-import { SwitchButtonContextProvider } from './SwitchButtonContext';
+import { PageContextProvider } from '../Pages/Product/contexts/PageContext';
+import { ProductDataContextProvider } from './ProductDataContext';
 
 export default function AllContextProviders({ children }) {
-  return <SwitchButtonContextProvider>{children}</SwitchButtonContextProvider>;
+  return (
+    <ProductDataContextProvider>
+      <PageContextProvider>{children}</PageContextProvider>
+    </ProductDataContextProvider>
+  );
 }
