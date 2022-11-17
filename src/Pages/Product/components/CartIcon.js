@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Badge, { BadgeProps } from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -9,8 +9,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
     top: 13,
-    border: `2px solid ${theme.palette.background.paper}`,
+    border: `2px solid #fff`,
     padding: '0 4px',
+    background:'#ea5514'
   },
 }));
 
