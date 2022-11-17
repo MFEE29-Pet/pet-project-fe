@@ -6,6 +6,7 @@ import Clinic from './Pages/Clinic/Clinic';
 import Forum from './Pages/Forum/ForumList';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
+import MemberSing from './Pages/Member/MemberSing';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
@@ -15,7 +16,6 @@ import ProductDetail from './Pages/Product/ProductDetail';
 import Photographer from './Pages/Product/Photographer';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
-// import MemberSing from './Pages/Member/MemberSing';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -56,7 +56,7 @@ function App() {
             <Route path="forum" element={<Forum />} />
 
             <Route path="member" element={<Member />} />
-            {/* <Route path="member/memberShipAdd" element={<MemberSing />} /> */}
+            <Route path="member/memberShipAdd" element={<MemberSing />} />
           </Routes>
         </AllContextProviders>
         <Footer />
