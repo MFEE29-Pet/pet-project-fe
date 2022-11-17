@@ -3,6 +3,7 @@ import LoginInfo from './LoginInfo';
 import styled from 'styled-components';
 import ThemeChange from './ThemeChange';
 import CartIcon from '../../../Pages/Product/components/CartIcon';
+import { Link } from 'react-router-dom';
 
 const RightBox = styled.div`
   display: flex;
@@ -10,20 +11,19 @@ const RightBox = styled.div`
   align-items: center;
   width: 30%;
 `;
-const CART = styled.div`
+const CART = styled(Link)`
   width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 function Right(props) {
   return (
     <RightBox>
       <LoginInfo />
 
-
-      <CART>
+      <CART to="/cart">
         <CartIcon />
       </CART>
       <ThemeChange />
