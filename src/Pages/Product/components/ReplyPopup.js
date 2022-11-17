@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import ProductDetailContext from '../../../contexts/ProductDetailContext';
 import { useContext, useState } from 'react';
 import StarRate from './StarRate';
 
@@ -39,9 +40,43 @@ const Textarea = styled.textarea`
 
 function ReplyPopup({ showDiv, setShowDiv }) {
   const { mode } = useContext(SwitchButtonContext);
+  const { data } = useContext(ProductDetailContext);
   const [starValue, setStarValue] = useState(0);
-  console.log(starValue);
-  // const [showDiv, setShowDiv] = useState(false);
+
+  let initFields = {
+    scores: starValue,
+    comment: '',
+    p_sid: data.sid,
+    m_sid: 1,
+    // localStorage or session 取得
+    o_sid: 1,
+    // 考慮刪除
+  };
+  // 傳送出去的資料
+  const [fields, setFields] = useState(initFields);
+
+  // console.log(starValue);
+  console.log(fields);
+
+  // console.log(data.sid);
+  // const inputFields = { ...fields };
+  // console.log(inputFields.scores);
+
+  const handleChange = (e) => {
+    setFields({ ...fields, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!fields.comment) {
+      alert('請輸入評價');
+      return;
+    } else if (fields.scores === 0) {
+      alert('請輸入評價');
+      return;
+    }
+  };
+
   return (
     <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}>
       <Reply
@@ -91,23 +126,26 @@ function ReplyPopup({ showDiv, setShowDiv }) {
           <StarRate setStarValue={setStarValue} />
         </div>
         <form
-          action=""
+          onSubmit={handleSubmit}
           style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}
         >
+          <input type="number" name="p_sid" defaultValue={data.sid} hidden />
+          <input type="number" name="m_sid" defaultValue={1} hidden />
+          <input type="number" name="o_sid" defaultValue={1} hidden />
           {/* 接收星星的值 */}
-          <input type="number" defaultValue={starValue} hidden />
+          <input type="number" defaultValue={starValue} name="scores" hidden />
           <Textarea
-            name=""
+            name="comment"
             id=""
             cols="40"
             rows="10"
             placeholder="留下商品評價"
-            onChange={() => {}}
-          ></Textarea>
+            onChange={handleChange}
+          />
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <button
               type="button"
