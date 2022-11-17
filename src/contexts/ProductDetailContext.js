@@ -63,6 +63,7 @@ export const ProductDetailContextProvider = function ({ children }) {
   // didMount 載入資料
   useEffect(() => {
     getProducts();
+    setAmount(1);
   }, [location]);
 
   // console.log(productDetail);

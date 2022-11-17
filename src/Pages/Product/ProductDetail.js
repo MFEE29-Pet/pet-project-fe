@@ -47,7 +47,6 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
-          <CartIcon amount={amount} />
           <div className="filter-s-p">
             <div className="search-bar">
               <input type="search" name="search" id="search" />
