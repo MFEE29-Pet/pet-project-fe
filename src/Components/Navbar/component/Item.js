@@ -34,9 +34,9 @@ function Item() {
 
   return (
     <ItemBox>
-      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" />
-      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" />
-      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" />
+      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" To='/forum' />
+      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" To='/clinic'/>
+      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" To='/product' />
     </ItemBox>
   );
 }
