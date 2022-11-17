@@ -31,7 +31,7 @@ const CharacterFirst = styled.div`
 `;
 
 const CharacterSecond = styled.div`
-  color: ${(props) => (props.$isActive ? props.$starColor : '#F0F0F0')};
+  color: ${(props) => (props.$isActive ? props.$starColor : '#c0c0c0')};
   cursor: pointer;
 `;
 
