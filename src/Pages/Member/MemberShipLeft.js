@@ -27,7 +27,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul>
-            <i className="fa-thin fa-shield-dog"></i>
+            <i className="fa-light fa-shield-dog"></i>
             <li
               onClick={() => {
                 setPageIndex(1);
@@ -38,28 +38,38 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           </ul>
           <ul>
             <i className="fa-light fa-books"></i>
-            <li>文章收藏</li>
-          </ul>
-          <ul>
-            <i className="fa-thin fa-book-medical"></i>
-            <li>預約掛號</li>
+            <li onClick={() => {
+                setPageIndex(2);
+              }}>文章收藏</li>
           </ul>
           <ul>
             <i className="fa-light fa-folder-bookmark"></i>
-            <li>商品收藏</li>
+            <li onClick={() => {
+                setPageIndex(3);
+              }}>商品收藏</li>
           </ul>
+          <ul>
+            <i className="fa-thin fa-book-medical"></i>
+            <li onClick={() => {
+                setPageIndex(4);
+              }}>預約掛號</li>
+          </ul>
+          
           <ul>
             <i className="fa-thin fa-rectangle-history-circle-plus"></i>
-            <li>歷史訂單（商品）</li>
+            <li onClick={() => {
+                setPageIndex(5);
+              }}
+            >歷史訂單（商品）</li>
           </ul>
           <ul>
             <i className="fa-light fa-camera"></i>
-            <li>歷史訂單（攝影）</li>
+            <li onClick={() => {
+                setPageIndex(6);
+              }}
+            >歷史訂單（攝影）</li>
           </ul>
-          <ul>
-            <i className="fa-light fa-camera"></i>
-            <li>歷史訂單（攝影）</li>
-          </ul>
+          
           <ul>
             <i className="fa-light fa-user-gear"></i>
             <li>修改資料</li>

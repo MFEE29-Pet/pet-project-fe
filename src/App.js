@@ -6,6 +6,7 @@ import Clinic from './Pages/Clinic/Clinic';
 import Forum from './Pages/Forum/Forum';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
+import MemberSing from './Pages/Member/MemberSing';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
@@ -45,6 +46,7 @@ function App() {
           <Route path="forum" element={<Forum />} />
 
           <Route path="member" element={<Member />} />
+          <Route path="member/memberShipAdd" element={<MemberSing />} />
         </Routes>
         <Footer />
       </BrowserRouter>
