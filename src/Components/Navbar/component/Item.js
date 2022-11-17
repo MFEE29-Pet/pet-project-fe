@@ -5,7 +5,7 @@ import { LittleItem } from "./LittleItem.js";
 const forumItem = [
   { id: 1, name: "閒聊版" ,to:'/forum/?talk'},
   { id: 2, name: "發問版" ,to:'/forum/?question'},
-  { id: 3, name: "經驗版" ,to:'/forum/?experssion'},
+  { id: 3, name: "經驗版" ,to:'/forum/?expression'},
   { id: 4, name: "活動版" ,to:'/forum/?active'},
   { id: 5, name: "送養版" ,to:'/forum/?gut'},
   { id: 6, name: "領養版" ,to:'/forum/?get'},
