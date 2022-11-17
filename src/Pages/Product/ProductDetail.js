@@ -21,7 +21,9 @@ const InfoDiv = styled.div`
 
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
-  const { data, amount, setAmount } = useContext(ProductDetailContext);
+  const { data, amount, setAmount, setCartAmount, cartAmount } =
+    useContext(ProductDetailContext);
+
   const [loved, setLoved] = useState(false);
   const [lovedHover, setLovedHover] = useState(false);
   // console.log(data);
@@ -45,7 +47,7 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
-          <CartIcon />
+          <CartIcon amount={amount} />
           <div className="filter-s-p">
             <div className="search-bar">
               <input type="search" name="search" id="search" />
@@ -163,7 +165,13 @@ function ProductDetail() {
               </div>
 
               <div className="buy-button-group">
-                <button className="cart-btn bg_main_light_color1 ">
+                <button
+                  className="cart-btn bg_main_light_color1 "
+                  type="button"
+                  onClick={() => {
+                    setCartAmount(cartAmount + amount);
+                  }}
+                >
                   加入購物車
                 </button>
                 <button className="buy-btn border_main_light_color1">

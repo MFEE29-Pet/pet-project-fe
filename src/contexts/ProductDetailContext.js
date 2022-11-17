@@ -30,6 +30,10 @@ export const ProductDetailContextProvider = function ({ children }) {
   // 數量 state
   const [amount, setAmount] = useState(1);
 
+  // 購物車數字
+  const [cartAmount, setCartAmount] = useState(0);
+  console.log(cartAmount);
+
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -69,7 +73,9 @@ export const ProductDetailContextProvider = function ({ children }) {
   const data = pd[0];
   // console.log(data);
   return (
-    <ProductDetailContext.Provider value={{ data, amount, setAmount }}>
+    <ProductDetailContext.Provider
+      value={{ data, amount, setAmount, setCartAmount, cartAmount }}
+    >
       {children}
     </ProductDetailContext.Provider>
   );
