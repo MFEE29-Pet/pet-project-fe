@@ -42,7 +42,7 @@ const Clinicroutes = [
   },
   {
     to: '/clinic',
-    label: '醫療診所',
+    label: '地圖診所',
   },
 ];
 

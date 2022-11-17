@@ -1,14 +1,40 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Radio from './components/Radio';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 
 const varietyOptions = ['狗', '貓', '其他'];
+const genderOptions = ['公', '母'];
 
+const Clinicroutes = [
+  {
+    to: '/',
+    label: '首頁',
+  },
+  {
+    to: '/clinic',
+    label: '地圖診所',
+  },
+  {
+    to: '/clinic/reserve',
+    label: '預約掛號',
+  },
+];
 
 const ReserveBox = styled.div`
   width: 100%;
   display: flex;
+  flex-direction:column;
   justify-content: center;
+  align-items: center;
+`;
+
+const BreadcrumbBox = styled.div`
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom:50px;
 `;
 
 const PhotographerForm = styled.div`
@@ -177,11 +203,15 @@ const PhotographerForm = styled.div`
       }
     }
     .pet-gender {
-      label {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      h1 {
         font-weight: bold;
-        margin: 0 80px 0 30px;
+        margin: 0 110px 0 30px;
         font-family: art;
         color: #727171;
+        font-size: 16px;
       }
       input {
         margin-left: 30px;
@@ -244,9 +274,16 @@ const PhotographerForm = styled.div`
 `;
 
 function Reserve() {
-  const [variety,setVariety]= useState('')
+  const [variety, setVariety] = useState('');
+  const [gender, setGender] = useState('');
   return (
     <ReserveBox>
+      <BreadcrumbBox>
+        <Breadcrumb
+          routes={Clinicroutes}
+          separator={<BreadcrumbRightArrowIcon />}
+        />
+      </BreadcrumbBox>
       <PhotographerForm>
         <h1 className="text_main_dark_color2">暖陽寵物照護中心</h1>
         <div className="content_box">
@@ -332,13 +369,24 @@ function Reserve() {
             </div>
             {/* <!-- 寵物性別 --> */}
             <div className="pet-gender">
-              <label htmlFor="pet-gender">性別</label>
-              
+              <h1 htmlFor="gender">性別</h1>
+              {genderOptions.map((v, i) => {
+                return (
+                  <Radio
+                    key={i}
+                    value={v}
+                    checkedValue={gender}
+                    setCheckedValue={setGender}
+                  />
+                );
+              })}
             </div>
             {/* 晶片編號 */}
             <div className="pet-pid">
               <label htmlFor="pet-pid">晶片編號</label>
-              <span>PID-</span>
+              <span style={{ fontFamily: 'art', marginRight: '5px' }}>
+                PID-
+              </span>
               <input type="text" id="pet-pid" />
             </div>
             {/* 不適症狀 */}
