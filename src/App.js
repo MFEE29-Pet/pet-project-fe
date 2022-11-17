@@ -8,6 +8,7 @@ import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
+import Reserve from './Pages/Clinic/Reserve';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
@@ -41,6 +42,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
 
           <Route path="clinic" element={<Clinic />} />
+          <Route path="clinic/reserve" element={<Reserve />} />
 
           <Route path="forum" element={<Forum />} />
 
