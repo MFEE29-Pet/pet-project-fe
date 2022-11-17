@@ -1,10 +1,14 @@
 import ProductSidebar from './components/ProductSidebar';
-import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { PRODUCT_LIST } from './my-config';
+import { useContext, useState } from 'react';
+
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import ProductDetailContext from '../../contexts/ProductDetailContext';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import { Link } from 'react-router-dom';
+import ReplyPopup from './components/ReplyPopup';
+import CartIcon from './components/CartIcon';
 
 const InfoDiv = styled.div`
   &::before {
@@ -17,72 +21,24 @@ const InfoDiv = styled.div`
 
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
+  const { data, amount, setAmount, setCartAmount, cartAmount } =
+    useContext(ProductDetailContext);
 
-  // 初始狀態
-  let initProductDetail = [
+  const [loved, setLoved] = useState(false);
+  const [lovedHover, setLovedHover] = useState(false);
+  // console.log(data);
+  const [showDiv, setShowDiv] = useState(false);
+
+  const routes = [
     {
-      sid: 0,
-      name: '',
-      category: 0,
-      img: '',
-      price: 0,
-      member: 0,
-      member_price: 0,
-      specials: '',
-      info: '',
-      created_at: '',
-      inventory: 0,
-      on_sale: 1,
+      to: '/product',
+      label: `所有商品`,
+    },
+    {
+      to: `/product?cate=${data.category}&page=1`,
+      label: `${data.cname}`,
     },
   ];
-  // 商品細節資訊 state
-  const [productDetail, setProductDetail] = useState(initProductDetail);
-
-  // 取得 queryString
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  // let usp = +params.get('page') || 1;
-  // let cate = +params.get('cate');
-  let sid = +params.get('sid');
-  // let p_sid = +params.get('p_sid');
-  // console.log({ usp, cate });
-
-  //  思考如果所有商品該如何處理 ?
-  // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
-  if (!sid) {
-    sid = '';
-  } else {
-    sid = `/detail/${sid}`;
-  }
-
-  // console.log({ sid });
-
-  // 取得商品資料
-  const getProducts = async () => {
-    try {
-      const res = await axios.get(`${PRODUCT_LIST}${sid}`);
-
-      // console.log(res);
-
-      const productData = res.data.rows;
-      setProductDetail(productData);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
-  // didMount 載入資料
-  useEffect(() => {
-    getProducts();
-  }, [location]);
-
-  // console.log(productDetail);
-
-  const pd = productDetail.map((e, i) => {
-    return { ...e };
-  });
-  const data = pd[0];
-  // console.log(data);
 
   return (
     <>
@@ -91,6 +47,7 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
+          <CartIcon amount={amount} />
           <div className="filter-s-p">
             <div className="search-bar">
               <input type="search" name="search" id="search" />
@@ -100,10 +57,22 @@ function ProductDetail() {
               ></i>
             </div>
             <div className="pro-loved-list">
-              <a href="#">
-                <i className="fa-regular fa-heart"></i>
-                <p>我的最愛</p>
-              </a>
+              <Link
+                href=""
+                onMouseEnter={() => {
+                  setLovedHover(!lovedHover);
+                }}
+                onMouseLeave={() => {
+                  setLovedHover(!lovedHover);
+                }}
+              >
+                <i
+                  className={`${
+                    lovedHover ? 'fa-solid' : 'fa-regular'
+                  } fa-heart`}
+                ></i>
+                <p>我的收藏</p>
+              </Link>
             </div>
           </div>
 
@@ -114,14 +83,10 @@ function ProductDetail() {
             </div>
             <div className="product-info-text">
               {/* <!-- breadcrumb --> */}
-              <nav className="nav-breadcrumb">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item">
-                    <a href="#">狗勾</a>
-                  </li>
-                  <li className="breadcrumb-item">飼料</li>
-                </ol>
-              </nav>
+              <Breadcrumb
+                routes={routes}
+                separator={<BreadcrumbRightArrowIcon />}
+              />
 
               <div className="product-title-wrap">
                 <h2>{data.name}</h2>
@@ -141,14 +106,50 @@ function ProductDetail() {
               <div className="product-q-loved">
                 <div className="product-quanity">
                   <p>數量</p>
-                  <i className="fa-solid fa-minus q-reduce bg_main_light_color2"></i>
-                  <p className="q-num">1</p>
-                  <i className="fa-solid fa-plus q-add bg_main_light_color2"></i>
+                  <i
+                    className="fa-solid fa-minus q-reduce bg_main_light_color2"
+                    onClick={() => {
+                      setAmount(amount > 1 ? amount - 1 : 1);
+                    }}
+                  ></i>
+                  <input
+                    className="q-num"
+                    value={amount}
+                    style={{
+                      background: 'rgba(0,0,0,0)',
+                      border: 'none',
+                      width: '30px',
+                      fontSize: '16px',
+                    }}
+                    type="number"
+                    id="product-amount"
+                    onChange={(e) => {
+                      if (+e.target.value < 1) {
+                        setAmount(1);
+                      } else if (+e.target.value > data.inventory) {
+                        setAmount(data.inventory);
+                      } else {
+                        setAmount(Math.floor(+e.target.value));
+                      }
+                    }}
+                  />
+                  <i
+                    className="fa-solid fa-plus q-add bg_main_light_color2"
+                    onClick={() => {
+                      setAmount(
+                        amount < +data.inventory ? amount + 1 : data.inventory
+                      );
+                    }}
+                  ></i>
                 </div>
                 <div className="add-loved">
-                  <p>加入收藏</p>{' '}
-                  <i className="fa-regular fa-heart add-love-icon"></i>
-                  <i className="fa-solid fa-heart add-love-icon hide"></i>
+                  <p>{loved ? '取消追蹤' : '加入追蹤'}</p>
+                  <i
+                    className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                    onClick={() => {
+                      setLoved(!loved);
+                    }}
+                  ></i>
                 </div>
               </div>
 
@@ -164,7 +165,13 @@ function ProductDetail() {
               </div>
 
               <div className="buy-button-group">
-                <button className="cart-btn bg_main_light_color1 ">
+                <button
+                  className="cart-btn bg_main_light_color1 "
+                  type="button"
+                  onClick={() => {
+                    setCartAmount(cartAmount + amount);
+                  }}
+                >
                   加入購物車
                 </button>
                 <button className="buy-btn border_main_light_color1">
@@ -191,7 +198,12 @@ function ProductDetail() {
                   <i className="fa-solid fa-star "></i>
                   <i className="fa-solid fa-star "></i>
                   <i className="fa-solid fa-star-half-stroke "></i>
-                  <div className="write-reply">
+                  <div
+                    className="write-reply"
+                    onClick={() => {
+                      setShowDiv(!showDiv);
+                    }}
+                  >
                     <i className="fa-light fa-message-pen"></i>
                     <p>
                       {/* <!-- 彈跳視窗 --> */}
@@ -288,6 +300,7 @@ function ProductDetail() {
           </div>
         </section>
       </main>
+      <ReplyPopup setShowDiv={setShowDiv} showDiv={showDiv} />
       {/* <!-- history sec --> */}
       <section className="history">
         <div className="history-side-div">
@@ -296,19 +309,19 @@ function ProductDetail() {
           </div>
           <div className="div-product-seen">
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
             <div className="product-img-wrap">
-              <a href="">
+              <Link href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

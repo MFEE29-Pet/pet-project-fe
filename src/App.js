@@ -38,6 +38,12 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           <Navbar />
+          <i
+            className={`fa-light fa-shield-cat text_main_light_color1`}
+            style={{ opacity: 0, position: 'absolute' }}
+            // onClick={handleClick}
+            // id="switch_button"
+          ></i>
           <section style={{ height: '100px' }}></section>
           <Routes>
             <Route path="/" element={<Index />} />

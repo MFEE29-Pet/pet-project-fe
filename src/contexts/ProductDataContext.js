@@ -43,7 +43,7 @@ export const ProductDataContextProvider = function ({ children }) {
   // console.log({ usp, cate });
 
   //  思考如果所有商品該如何處理 ?
-  // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
+  // 目前解法: 後端設變數判斷篩選
   if (!usp) {
     usp = '';
   } else {

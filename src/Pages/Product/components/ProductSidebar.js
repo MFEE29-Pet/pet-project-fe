@@ -83,6 +83,16 @@ function ProductSidebar() {
                       </li>
                     );
                   })}
+                  <li key={99}>
+                    <Link to={`photographers`}>
+                      <p>攝影服務</p>
+                    </Link>
+                    <i
+                      className={`fa-duotone ${
+                        mode === 'dog' ? 'fa-bone' : 'fa-fish'
+                      } text_main_light_color1`}
+                    ></i>
+                  </li>
                 </ul>
               </li>
             );
