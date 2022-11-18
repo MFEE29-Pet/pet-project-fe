@@ -104,6 +104,14 @@
   vertical-align: middle;
 }
 
+.date,.dayparts{
+  border:1px solid #dcdddd ;
+  border-radius: 15px;
+  color: #40220f;
+  padding:5px ;
+
+}
+
 .eason_section_1 .p_name {
   font-weight: 900;
 }

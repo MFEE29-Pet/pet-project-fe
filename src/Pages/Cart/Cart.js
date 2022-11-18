@@ -77,10 +77,10 @@ function Cart() {
 
                 <td class="eason_p_name">柏延</td>
                 <td>
-                  <input type="date" name="" id="" />
+                  <input className='date' type="date" name="" id="" />
                 </td>
                 <td>
-                  <select name="" id="">
+                  <select className='dayparts' name="" id="">
                     <option value="">上午</option>
                     <option value="">下午</option>
                   </select>
