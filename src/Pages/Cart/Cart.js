@@ -12,7 +12,8 @@ const EasonProgressBar = styled.div`
       props.$mode === 'dog' ? '#dcdddd' : '#00a29a'};
   }
   & .eason_dot {
-    border: 0.13rem solid ${(props) => (props.$mode === 'dog' ? '#ccc' : '#00a29a')};
+    border: 0.13rem solid
+      ${(props) => (props.$mode === 'dog' ? '#ccc' : '#00a29a')};
   }
   & a {
     color: ${(props) => (props.$mode === 'dog' ? '#dcdddd' : '#00a29a')};
@@ -33,7 +34,10 @@ function Cart() {
               className="fa-light fa-file-pen fa-3x"
               style={{ color: '#40220f' }}
             ></i>
-            <div className="eason_dot bg_bright_color "></div>
+            <div
+              className="eason_dot bg_bright_color "
+              style={{ border: '0.13rem solid #40220f' }}
+            ></div>
             <a href="/#" style={{ color: '#40220f' }}>
               確認訂單
             </a>
