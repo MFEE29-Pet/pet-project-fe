@@ -1100,3 +1100,223 @@ select {
   width: 100%;
   padding: 10px;
 }
+
+/* --------------------------------------------------------------------- */
+/* MemberPassword */
+
+ 
+.input input{
+  border: none;
+  outline: none;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  background-color: rgb(242, 140, 31);
+  border-radius: 30px;
+  border-color: #ccc;
+  color: rgb(255, 253, 253);
+  font-size: 14px;
+  border: none;
+  margin-top: 30px;
+}
+
+
+.pagePassword {
+  width: 700px;
+  margin: 0 auto;
+  /* padding: 40px 0px; */
+  height: 350px;
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter-A {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #FaFaFa;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.enter-C{
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #FaFaFa;
+  display: flex;
+  align-items: center;
+  
+}
+.input{
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.Revise {
+  width: 300px;
+  height: 200px;
+  background-color: #FaFaFa;
+  margin: 30px;
+  border-radius: 30px;
+}
+
+.text {
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------- */
+ /*MemberProfileUp */
+
+
+ .singUp-page {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+ .pageProfileUp {
+  width: 700px;
+  margin: 0 auto;
+  padding: 30px 0px;
+  /* height: 350px; */
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
+.page-left {
+  width: 70%;
+}
+.enter-A {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.enter-C {
+  display: flex;
+
+  align-items: center;
+}
+.address {
+  display: flex;
+  width: 250px;
+}
+.addressText {
+  margin-left: 140px;
+  margin-bottom: 10px;
+}
+.input {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.text {
+  justify-content: center;
+}
+
+.up-photoProfile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #dcdddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a4a5a5;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.up-photoProfile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.radio {
+  width: 250px;
+}
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo input {
+  background-color: #fff;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid#989898;
+  color: #989898;
+}
+.cc {
+  width: 250px;
+  outline: 1px solid #989898;
+  height: 30px;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+
+
+
+/* --------------------------------------------------------------------- */
+ /* ForgrtPasswordsuccess . MemberSingsuccess */
+
+
+.fill{
+  width: 100%;
+  height: 100vh;
+  background-color: #989898;
+  opacity: 0.7;
+  position: absolute;
+}
+.success{
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 30px;
+  top: 40%;
+  left: 40%;
+}
+.success h1{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}

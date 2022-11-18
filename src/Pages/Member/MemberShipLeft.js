@@ -72,11 +72,15 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           
           <ul>
             <i className="fa-light fa-user-gear"></i>
-            <li>修改資料</li>
+            <li onClick={() => {
+                setPageIndex(7);
+              }}>修改資料</li>
           </ul>
           <ul>
             <i className="fa-thin fa-key"></i>
-            <li>密碼修改</li>
+            <li onClick={() => {
+                setPageIndex(8);
+              }}>密碼修改</li>
           </ul>
         </div>
       </div>
