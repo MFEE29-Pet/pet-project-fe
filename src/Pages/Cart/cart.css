@@ -103,12 +103,12 @@
   vertical-align: middle;
 }
 
-.date,.dayparts{
-  border:1px solid #dcdddd ;
+.date,
+.dayparts {
+  border: 1px solid #dcdddd;
   border-radius: 15px;
   color: #40220f;
-  padding:5px ;
-
+  padding: 5px;
 }
 
 .eason_section_1 .p_name {
@@ -136,8 +136,10 @@
   color: red;
 }
 
+
 .fa-pen-to-square {
   color: #c9caca;
+  cursor: pointer;
 }
 
 .fa-pen-to-square:hover {
@@ -161,6 +163,7 @@
 
 .fa-trash-can {
   color: #c9caca;
+  cursor: pointer;
 }
 
 .fa-trash-can:hover {
@@ -169,6 +172,7 @@
 
 .fa-solid {
   color: #c9bc9c;
+  cursor: pointer;
 }
 
 /* 商品訂單 CSS----------------------------------------------------------- */

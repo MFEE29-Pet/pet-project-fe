@@ -118,9 +118,9 @@ function Cart() {
                   </a>
                 </td>
                 <td>
-                  <a href="/#">
+                  <span>
                     <i className="fa-light fa-trash-can"></i>
-                  </a>
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -162,20 +162,20 @@ function Cart() {
                 <td className="eason_table_price">$980</td>
 
                 <td className="eason_table_amount">
-                  <a href="/#">
+                  <span className=''>
                     <i className="fa-solid fa-circle-minus"> </i>
-                  </a>
+                  </span>
                   2
-                  <a href="/#">
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </a>
+                  <span className=''>
+                      <i className="fa-solid fa-circle-plus"></i>
+                  </span>
                 </td>
 
                 <td className="eason_table_total">$1960</td>
                 <td>
-                  <a href="/#">
-                    <i className="fa-light fa-trash-can"></i>
-                  </a>
+                  <span>
+                      <i className="fa-light fa-trash-can"></i>
+                  </span>
                 </td>
               </tr>
 
@@ -192,20 +192,20 @@ function Cart() {
                 <td className="eason_table_price">$690</td>
 
                 <td className="eason_table_amount">
-                  <a href="/#">
+                <span className=''>
                     <i className="fa-solid fa-circle-minus"> </i>
-                  </a>
+                  </span>
                   1
-                  <a href="/#">
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </a>
+                  <span className=''>
+                      <i className="fa-solid fa-circle-plus"></i>
+                  </span>
                 </td>
 
                 <td className="eason_table_total">$690</td>
                 <td>
-                  <a href="/#">
+                  <span>
                     <i className="fa-light fa-trash-can"></i>
-                  </a>
+                  </span>
                 </td>
               </tr>
 
@@ -222,20 +222,20 @@ function Cart() {
                 <td className="eason_table_price">$980</td>
 
                 <td className="eason_table_amount">
-                  <a href="/#">
+                <span className=''>
                     <i className="fa-solid fa-circle-minus"> </i>
-                  </a>
+                  </span>
                   2
-                  <a href="/#">
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </a>
+                  <span className=''>
+                      <i className="fa-solid fa-circle-plus"></i>
+                  </span>
                 </td>
 
                 <td className="eason_table_total">$1960</td>
                 <td>
-                  <a href="/#">
+                  <span href="/#">
                     <i className="fa-light fa-trash-can"></i>
-                  </a>
+                  </span>
                 </td>
               </tr>
 
@@ -252,20 +252,20 @@ function Cart() {
                 <td className="eason_table_price">$690</td>
 
                 <td className="eason_table_amount">
-                  <a href="/#">
+                <span className=''>
                     <i className="fa-solid fa-circle-minus"> </i>
-                  </a>
+                  </span>
                   1
-                  <a href="/#">
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </a>
+                  <span className=''>
+                      <i className="fa-solid fa-circle-plus"></i>
+                  </span>
                 </td>
 
                 <td className="eason_table_total">$690</td>
                 <td>
-                  <a href="/#">
+                  <span>
                     <i className="fa-light fa-trash-can"></i>
-                  </a>
+                  </span>
                 </td>
               </tr>
             </tbody>
