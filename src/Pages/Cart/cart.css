@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  color: #c9bc9c;
+  color: #dcdddd;
 }
 
 .eason_progress_bar::after {
@@ -25,14 +25,14 @@
   top: 59%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #c9bc9c;
+  background-color: #dcdddd;
   z-index: 0;
 }
 
 .eason_dot {
   width: 15px;
   height: 15px;
-  border: 0.13rem solid #c9bc9c;
+  border: 0.13rem solid #dcdddd;
   border-radius: 50%;
   margin: 8px 0;
   background-color: #fff5de;
@@ -49,7 +49,7 @@
 
 .eason_progress_bar a {
   text-decoration: none;
-  color: #c9bc9c;
+  color: #dcdddd;
   font-weight: 900;
 }
 

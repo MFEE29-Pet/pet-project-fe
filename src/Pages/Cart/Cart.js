@@ -2,8 +2,8 @@ import { useState } from 'react';
 import './cart.css';
 
 function Cart() {
-  const [click, setClick] = useState(true);
-  const [otherClick, setOtherClick] = useState(true);
+  const [arrivedClick, setArrivedClick] = useState(false);
+  const [creditClick, setCreditClick] = useState(false);
   return (
     <>
       <div class="eason_container">
@@ -11,21 +11,21 @@ function Cart() {
         <div class="eason_progress_bar">
           <div class="eason_order">
             <i class="fa-light fa-file-pen fa-3x"></i>
-            <div class="eason_dot "></div>
+            <div class="eason_dot bg_bright_color "></div>
             <a href="/#" style={{ color: '#40220f' }}>
               確認訂單
             </a>
           </div>
           <div class="eason_pay ">
             <i class="fa-light fa-envelope-open-dollar fa-3x"></i>
-            <div class="eason_dot "></div>
+            <div class="eason_dot bg_bright_color "></div>
             <a href="/#" className="">
               確認付款
             </a>
           </div>
           <div class="eason_check ">
             <i class="fa-light fa-circle-check fa-3x"></i>
-            <div class="eason_dot "></div>
+            <div class="eason_dot bg_bright_color"></div>
 
             <a href="/#" className="">
               訂單成立
@@ -33,14 +33,14 @@ function Cart() {
           </div>
           <div class="eason_truck ">
             <i class="fa-light fa-truck-fast fa-3x"></i>
-            <div class="eason_dot "></div>
+            <div class="eason_dot bg_bright_color"></div>
             <a href="/#" className="">
               配送中
             </a>
           </div>
           <div class="eason_complete ">
             <i class="fa-light fa-house-flag fa-3x"></i>
-            <div class="eason_dot "></div>
+            <div class="eason_dot bg_bright_color"></div>
             <a href="/#" className="">
               訂單完成
             </a>
@@ -252,30 +252,32 @@ function Cart() {
             <h2>付款方式</h2>
             <button
               className={
-                click === true ? 'bg_main_light_color1' : 'bg_main_color'
+                arrivedClick === false
+                  ? 'bg_main_light_color1'
+                  : 'bg_main_color'
               }
               onClick={() => {
-                if (click === true) {
-                  setClick(false);
-                  setOtherClick(true);
+                if (arrivedClick === false) {
+                  setArrivedClick(true);
+                  setCreditClick(false);
                 } else {
-                  setClick(true);
+                  setArrivedClick(false);
                 }
               }}
             >
               貨到付款
             </button>
-            {console.log(click)}
+
             <button
               className={
-                otherClick === true ? 'bg_main_light_color1' : 'bg_main_color'
+                creditClick === false ? 'bg_main_light_color1' : 'bg_main_color'
               }
               onClick={() => {
-                if (otherClick === true) {
-                  setOtherClick(false);
-                  setClick(true);
+                if (creditClick === true) {
+                  setCreditClick(false);
+                  setArrivedClick(false);
                 } else {
-                  setOtherClick(true);
+                  setCreditClick(true);
                 }
               }}
             >
@@ -316,7 +318,7 @@ function Cart() {
                 </table>
               </div>
 
-              <button class="eason_pay_btn">前往付款</button>
+              <button class="eason_pay_btn bg_main_light_color1 ">前往付款</button>
             </div>
           </div>
         </div>
