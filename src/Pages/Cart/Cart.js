@@ -163,7 +163,7 @@ function Cart() {
 
                 {/* 資料引入測試------------------------------------- */}
                 {/* {data.map((v, i) => {
-                  return <td>{v.productName}</td>;
+                  return <td key={v.id} >{v.productName}</td>;
                 })} */}
 
                 <td className="eason_p_name">濃郁雞白罐頭</td>
