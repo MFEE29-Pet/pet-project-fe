@@ -25,7 +25,6 @@
   top: 59%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #dcdddd;
   z-index: 0;
 }
 
@@ -120,19 +119,19 @@
   vertical-align: middle;
 }
 
-.eason_section_1 .list_table th:nth-child(1) {
+.eason_section_1 .eason_list_table th:nth-child(1) {
   width: 15%;
 }
 
-.eason_section_1 .list_table th:nth-child(2) {
+.eason_section_1 .eason_list_table th:nth-child(2) {
   width: 15%;
 }
 
-.eason_section_1 .list_table th:nth-child(3) {
+.eason_section_1 .eason_list_table th:nth-child(3) {
   width: 15%;
 }
 
-.eason_section_1 .table_price {
+.eason_section_1 .eason_table_price {
   font-weight: 900;
   color: red;
 }
@@ -144,19 +143,19 @@
 .fa-pen-to-square:hover {
   color: #40220f;
 }
-.eason_section_1 .list_table th:nth-child(4) {
+.eason_section_1 .eason_list_table th:nth-child(4) {
   width: 15%;
 }
 
-.eason_section_1 .list_table th:nth-child(5) {
+.eason_section_1 .eason_list_table th:nth-child(5) {
   width: 15%;
 }
 
-.eason_section_1 .list_table th:nth-child(6) {
+.eason_section_1 .eason_list_table th:nth-child(6) {
   width: 13%;
 }
 
-.eason_section_1 .list_table th:nth-child(7) {
+.eason_section_1 .eason_list_table th:nth-child(7) {
   width: 15%;
 }
 
@@ -173,45 +172,45 @@
 }
 
 /* 商品訂單 CSS----------------------------------------------------------- */
-.eason_section_2 .list_title {
+.eason_section_2 .eason_list_title {
   margin-top: 20px;
   display: flex;
   align-items: center;
 }
 
-.eason_eason_section_2 .p_name {
+.eason_eason_section_2 .eason_p_name {
   font-weight: 900;
 }
 
-.section_2 .table_img img {
+.section_2 .eason_table_img img {
   vertical-align: middle;
 }
 
-.eason_section_2 .list_table th:nth-child(1) {
+.eason_section_2 .eason_list_table th:nth-child(1) {
   width: 12.5%;
 }
 
-.eason_section_2 .list_table th:nth-child(2) {
+.eason_section_2 .eason_list_table th:nth-child(2) {
   width: 20%;
 }
 
-.eason_section_2 .list_table th:nth-child(3) {
+.eason_section_2 .eason_list_table th:nth-child(3) {
   width: 15%;
 }
 
-.eason_section_2 .table_price {
+.eason_section_2 .eason_table_price {
   color: #727171;
 }
 
-.eason_section_2 .list_table th:nth-child(4) {
+.eason_section_2 .eason_list_table th:nth-child(4) {
   width: 15%;
 }
 
-.eason_section_2 .table_amount {
+.eason_section_2 .eason_table_amount {
   letter-spacing: 5px;
 }
 
-.eason_section_2 .list_table th:nth-child(5) {
+.eason_section_2 .eason_list_table th:nth-child(5) {
   width: 10%;
 }
 
@@ -220,7 +219,7 @@
   color: red;
 }
 
-.eason_section_2 .list_table th:nth-child(6) {
+.eason_section_2 .eason_list_table th:nth-child(6) {
   width: 10%;
 }
 
