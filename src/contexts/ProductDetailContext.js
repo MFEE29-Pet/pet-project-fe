@@ -32,7 +32,7 @@ export const ProductDetailContextProvider = function ({ children }) {
 
   // 購物車數字
   const [cartAmount, setCartAmount] = useState(0);
-  console.log(cartAmount);
+  // console.log(cartAmount);
 
   // 取得 queryString
   const location = useLocation();

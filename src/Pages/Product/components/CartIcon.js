@@ -19,7 +19,7 @@ const StyledBadge = styled(Badge)((props) => ({
 export default function CustomizedBadges() {
   const { mode } = useContext(SwitchButtonContext);
   const { cartAmount } = useContext(ProductDetailContext);
-  console.log(cartAmount);
+  // console.log(cartAmount);
   return (
     <IconButton aria-label="cart">
       <StyledBadge badgeContent={cartAmount} mode={mode} color="secondary">

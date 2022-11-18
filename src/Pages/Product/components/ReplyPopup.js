@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import ProductDetailContext from '../../../contexts/ProductDetailContext';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import StarRate from './StarRate';
+import axios from 'axios';
+import { INSERT_REPLY } from '../my-config';
 
 const ReplyBackground = styled.div`
   width: 100vw;
@@ -56,7 +58,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
   const [fields, setFields] = useState(initFields);
 
   // console.log(starValue);
-  console.log(fields);
+  // console.log(fields);
 
   // console.log(data.sid);
   // const inputFields = { ...fields };
@@ -67,7 +69,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (!fields.comment) {
       alert('請輸入評價');
       return;
@@ -75,7 +77,16 @@ function ReplyPopup({ showDiv, setShowDiv }) {
       alert('請輸入評價');
       return;
     }
+    await setFields({ ...fields, p_sid: data.sid });
+
+    const res = await axios.post(`${INSERT_REPLY}`, fields);
+    console.log(res);
+
+    setShowDiv(!showDiv);
+    setFields(initFields);
   };
+  // console.log(INSERT_REPLY);
+  // const fd = new FormData(form);
 
   return (
     <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}>
@@ -123,9 +134,14 @@ function ReplyPopup({ showDiv, setShowDiv }) {
           className="star-wrap"
           style={{ marginBottom: '20px', fontSize: '30px' }}
         >
-          <StarRate setStarValue={setStarValue} />
+          <StarRate
+            setStarValue={setStarValue}
+            setFields={setFields}
+            fields={fields}
+          />
         </div>
         <form
+          id="form"
           onSubmit={handleSubmit}
           style={{
             display: 'flex',
@@ -137,7 +153,13 @@ function ReplyPopup({ showDiv, setShowDiv }) {
           <input type="number" name="m_sid" defaultValue={1} hidden />
           <input type="number" name="o_sid" defaultValue={1} hidden />
           {/* 接收星星的值 */}
-          <input type="number" defaultValue={starValue} name="scores" hidden />
+          <input
+            type="number"
+            value={starValue}
+            name="scores"
+            hidden
+            readOnly
+          />
           <Textarea
             name="comment"
             id=""
@@ -164,9 +186,10 @@ function ReplyPopup({ showDiv, setShowDiv }) {
             >
               取消
             </button>
+
             {/* 要改submit */}
             <button
-              type="button"
+              type="submit"
               className="bg_main_light_color1"
               style={{
                 borderRadius: '20px',
@@ -175,6 +198,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
                 fontWeight: 'bold',
                 color: '#fff',
               }}
+              onClick={handleSubmit}
             >
               確定
             </button>
