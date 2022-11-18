@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+// import { data } from './orderTest';
 
 const EasonProgressBar = styled.div`
   i {
@@ -24,6 +25,7 @@ function Cart() {
   const { mode } = useContext(SwitchButtonContext);
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
+  const [amount, setAmount] = useState(1);
   return (
     <>
       <div className="eason_container">
@@ -158,23 +160,37 @@ function Cart() {
                     height="65px"
                   />
                 </th>
+
+                {/* 資料引入測試------------------------------------- */}
+                {/* {data.map((v, i) => {
+                  return <td>{v.productName}</td>;
+                })} */}
+
                 <td className="eason_p_name">濃郁雞白罐頭</td>
                 <td className="eason_table_price">$980</td>
-
                 <td className="eason_table_amount">
-                  <span className=''>
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount - 1);
+                    }}
+                  >
                     <i className="fa-solid fa-circle-minus"> </i>
                   </span>
-                  2
-                  <span className=''>
-                      <i className="fa-solid fa-circle-plus"></i>
+                  {amount}
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount + 1);
+                    }}
+                  >
+                    <i className="fa-solid fa-circle-plus"></i>
                   </span>
                 </td>
-
                 <td className="eason_table_total">$1960</td>
                 <td>
                   <span>
-                      <i className="fa-light fa-trash-can"></i>
+                    <i className="fa-light fa-trash-can"></i>
                   </span>
                 </td>
               </tr>
@@ -192,12 +208,22 @@ function Cart() {
                 <td className="eason_table_price">$690</td>
 
                 <td className="eason_table_amount">
-                <span className=''>
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount - 1);
+                    }}
+                  >
                     <i className="fa-solid fa-circle-minus"> </i>
                   </span>
-                  1
-                  <span className=''>
-                      <i className="fa-solid fa-circle-plus"></i>
+                  {amount}
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount + 1);
+                    }}
+                  >
+                    <i className="fa-solid fa-circle-plus"></i>
                   </span>
                 </td>
 
@@ -222,12 +248,22 @@ function Cart() {
                 <td className="eason_table_price">$980</td>
 
                 <td className="eason_table_amount">
-                <span className=''>
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount - 1);
+                    }}
+                  >
                     <i className="fa-solid fa-circle-minus"> </i>
                   </span>
-                  2
-                  <span className=''>
-                      <i className="fa-solid fa-circle-plus"></i>
+                  {amount}
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount + 1);
+                    }}
+                  >
+                    <i className="fa-solid fa-circle-plus"></i>
                   </span>
                 </td>
 
@@ -252,12 +288,22 @@ function Cart() {
                 <td className="eason_table_price">$690</td>
 
                 <td className="eason_table_amount">
-                <span className=''>
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount - 1);
+                    }}
+                  >
                     <i className="fa-solid fa-circle-minus"> </i>
                   </span>
-                  1
-                  <span className=''>
-                      <i className="fa-solid fa-circle-plus"></i>
+                  {amount}
+                  <span
+                    className=""
+                    onClick={() => {
+                      setAmount(amount + 1);
+                    }}
+                  >
+                    <i className="fa-solid fa-circle-plus"></i>
                   </span>
                 </td>
 
