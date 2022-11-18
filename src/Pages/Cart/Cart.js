@@ -273,7 +273,7 @@ function Cart() {
               onClick={() => {
                 if (otherClick === true) {
                   setOtherClick(false);
-                  setClick(true)
+                  setClick(true);
                 } else {
                   setOtherClick(true);
                 }
