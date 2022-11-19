@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
-// import { data } from './orderTest';
+// import jsonData from './orderTest.json';
 
 const EasonProgressBar = styled.div`
   i {
@@ -162,8 +162,8 @@ function Cart() {
                 </th>
 
                 {/* 資料引入測試------------------------------------- */}
-                {/* {data.map((v, i) => {
-                  return <td key={v.id} >{v.productName}</td>;
+                {/* {jsonData.map((v, i) => {
+                  return <td key={v.id}>{v.productName}</td>;
                 })} */}
 
                 <td className="eason_p_name">濃郁雞白罐頭</td>
