@@ -99,9 +99,9 @@ function Cart() {
 
             <tbody>
               <tr>
-                <th className="eason_table_img">
+                <td className="eason_table_img">
                   <img src="./imgs/person_2.jpeg" alt="" width="100px" />
-                </th>
+                </td>
 
                 <td className="eason_p_name">柏延</td>
                 <td>
@@ -152,14 +152,14 @@ function Cart() {
 
             <tbody>
               <tr>
-                <th className="eason_table_img">
+                <td className="eason_table_img">
                   <img
                     src="./imgs/product_3.png"
                     alt=""
                     width="65px"
                     height="65px"
                   />
-                </th>
+                </td>
 
                 {/* 資料引入測試------------------------------------- */}
                 {/* {jsonData.map((v, i) => {
@@ -196,14 +196,14 @@ function Cart() {
               </tr>
 
               <tr>
-                <th className="eason_table_img">
+                <td className="eason_table_img">
                   <img
                     src="./imgs/product_toy_2.png"
                     alt=""
                     width="65px"
                     height="65px"
                   />
-                </th>
+                </td>
                 <td className="eason_p_name">寵物絨毛玩具-牛哞</td>
                 <td className="eason_table_price">$690</td>
 
@@ -236,14 +236,14 @@ function Cart() {
               </tr>
 
               <tr>
-                <th className="eason_table_img">
+                <td className="eason_table_img">
                   <img
                     src="./imgs/product_1.png"
                     alt=""
                     width="65px"
                     height="65px"
                   />
-                </th>
+                </td>
                 <td className="eason_p_name">活力火雞乾糧</td>
                 <td className="eason_table_price">$980</td>
 
@@ -276,14 +276,14 @@ function Cart() {
               </tr>
 
               <tr>
-                <th className="eason_table_img">
+                <td className="eason_table_img">
                   <img
                     src="./imgs/product_toy_4.png"
                     alt=""
                     width="65px"
                     height="65px"
                   />
-                </th>
+                </td>
                 <td className="eason_p_name">寵物絨毛玩具-狗勾</td>
                 <td className="eason_table_price">$690</td>
 
