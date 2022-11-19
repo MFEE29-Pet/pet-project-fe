@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef} from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 import styled from 'styled-components';
 import Radio from './components/Radio';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
@@ -6,8 +6,12 @@ import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRigh
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { addDays, getDay } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+import { display } from '@mui/system';
 
 const varietyOptions = ['狗', '貓', '其他'];
 const genderOptions = ['公', '母'];
@@ -95,7 +99,7 @@ const PhotographerForm = styled.div`
       display: flex;
       align-items: center;
       margin: 0 30px;
-      width: 300px;
+      width: 440px;
       h3 {
         font-weight: bold;
         font-family: art;
@@ -302,18 +306,27 @@ const PhotographerForm = styled.div`
 `;
 
 function Reserve() {
-  const [clinicDetail, setClinicDetail] = useState([{
-    name:'',
-    address:'',
-    mobile:'',
-    code:''
-  }]);
+  const [clinicDetail, setClinicDetail] = useState([
+    {
+      name: '',
+      address: '',
+      mobile: '',
+      code: '',
+    },
+  ]);
 
   const [variety, setVariety] = useState('');
   const [gender, setGender] = useState('');
   const [control, setControl] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [datepicker, setDatepicker] = useState(4);
+  const [selectedTime, setSelectedTime] = useState('');
+
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   //取得qureyString
   const location = useLocation();
@@ -337,14 +350,13 @@ function Reserve() {
       console.log(e.message);
     }
   };
-  const final = {...clinicDetail}
-  
+  const final = { ...clinicDetail };
+
   console.log();
 
   useEffect(() => {
     getClinicData();
   }, [location]);
-
 
   const isWeekday = (date) => {
     const day = getDay(date);
@@ -407,7 +419,7 @@ function Reserve() {
                   selected={startDate}
                   dateFormat="yyyy/MM/dd"
                   onChange={(date) => setStartDate(date)}
-                  customInput={<ExampleCustomInput/>}
+                  customInput={<ExampleCustomInput />}
                   filterDate={isWeekday}
                   includeDateIntervals={[
                     {
@@ -430,11 +442,29 @@ function Reserve() {
                   ]}
                 />
               )}
-
-              <select name="time" id="time">
-                <option value="A">上午</option>
-                <option value="B">下午</option>
-              </select>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <Select
+                  id="demo-select-small"
+                  value={age}
+                  onChange={handleChange}
+                  style={{
+                    borderRadius: '20px',
+                    height: '30px',
+                    border: '2px solid #dcdddd',
+                    fontFamily: 'art',
+                  }}
+                >
+                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
+                    早上
+                  </MenuItem>
+                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
+                    下午
+                  </MenuItem>
+                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
+                    晚上
+                  </MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
 
@@ -455,12 +485,62 @@ function Reserve() {
             </div>
             <div className="address">
               <label htmlFor="address">地址</label>
-              <select type="text" id="address">
-                <option value="taipei">台北市</option>
-              </select>
-              <select type="text" id="address">
-                <option value="1">大安區</option>
-              </select>
+              <FormControl
+                sx={{ m: 1, minWidth: 120 }}
+                style={{ margin: 0 }}
+                size="small"
+              >
+                <Select
+                  id="demo-select-small"
+                  value={age}
+                  onChange={handleChange}
+                  style={{
+                    borderRadius: '20px',
+                    height: '30px',
+                    border: '2px solid #dcdddd',
+                    fontFamily: 'art',
+                    margin: 0,
+                  }}
+                >
+                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
+                    早上
+                  </MenuItem>
+                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
+                    下午
+                  </MenuItem>
+                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
+                    晚上
+                  </MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl
+                sx={{ m: 1, minWidth: 120 }}
+                style={{ margin: 0, border: 'none' }}
+                size="small"
+              >
+                <Select
+                  id="demo-select-small"
+                  value={age}
+                  onChange={handleChange}
+                  style={{
+                    borderRadius: '20px',
+                    height: '30px',
+                    border: '2px solid #dcdddd',
+                    fontFamily: 'art',
+                    margin: 0,
+                  }}
+                >
+                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
+                    早上
+                  </MenuItem>
+                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
+                    下午
+                  </MenuItem>
+                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
+                    晚上
+                  </MenuItem>
+                </Select>
+              </FormControl>
               <input type="text" name="road" id="address" />
             </div>
           </div>
