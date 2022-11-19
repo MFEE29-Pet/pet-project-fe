@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PHOTOGRAPH } from './my-config';
 import PhotographersCard from './components/PhotographersCard';
+import MyCarousel from './components/MyCarousel';
 
 const H2 = styled.h2`
   text-align: center;
@@ -52,50 +53,9 @@ function Photographers() {
         className="photographers_row"
         style={{ display: 'flex', justifyContent: 'space-around' }}
       >
-        {/* <div
-          className="photographer_cards"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <div
-            className="photo_img_wrap"
-            style={{
-              width: '150px',
-              height: '200px',
-              overflow: 'hidden',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <img
-              src="/images/test/person_5.jpeg"
-              alt=""
-              style={{ height: '100%' }}
-            />
-          </div>
-          <div className="photograph_name">
-            <p>柏延</p>
-          </div>
-          <div className="reserver_btn">
-            <button
-              type="button"
-              className="bg_main_light_color1"
-              style={{
-                color: '#fff',
-                border: 'none',
-                borderRadius: '20px',
-                padding: ' 10px 50px',
-                fontWeight: 'bold ',
-              }}
-            >
-              立即預約
-            </button>
-          </div>
-        </div> */}
         <PhotographersCard photoGraphers={photoGraphers} />
       </div>
+      <MyCarousel />
     </>
   );
 }
