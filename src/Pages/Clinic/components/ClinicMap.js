@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect,useState, useCallback, useMemo } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -12,7 +12,10 @@ import { useEventHandlers } from '@react-leaflet/core';
 import { Rectangle } from 'react-leaflet/Rectangle';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import ClinicMaker from './ClinicMaker';
+import OneMaker from './OneMaker';
+import TwoMaker from './TwoMaker';
+import ThreeMaker from './ThreeMaker';
+import FourMaker from './FourMaker';
 
 //React control
 
@@ -103,6 +106,7 @@ function LocationMarker() {
     locationfound(e) {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom());
+      console.log(e.latlng.lat);
     },
   });
 
@@ -115,51 +119,12 @@ function LocationMarker() {
 
 //clinicMaker
 
-
-function ClinicMap({ dataFromSelect }) {
-  // const demoDataFromServer = [
-  //   { lat: 41.19197, lng: 25.33719 },
-  //   { lat: 41.26352, lng: 25.1471 },
-  //   { lat: 41.26365, lng: 25.24215 },
-  //   { lat: 41.26369, lng: 25.33719 },
-  //   { lat: 41.26365, lng: 25.43224 },
-  //   { lat: 41.26352, lng: 25.52728 },
-  //   { lat: 41.2633, lng: 25.62233 },
-  //   { lat: 41.263, lng: 25.71737 },
-  //   { lat: 41.3082, lng: 22.95892 },
-  //   { lat: 41.31041, lng: 23.054 },
-  // ];
-
-  // const initState = {
-  //   coords: [
-  //     { lat: 41.19197, lng: 25.33719 },
-  //     { lat: 41.26352, lng: 25.1471 },
-  //     { lat: 41.26365, lng: 25.24215 },
-  //     { lat: 41.26369, lng: 25.33719 },
-  //     { lat: 41.26365, lng: 25.43224 },
-  //     { lat: 41.26352, lng: 25.52728 },
-  //     { lat: 41.2633, lng: 25.62233 },
-  //     { lat: 41.263, lng: 25.71737 },
-  //     { lat: 41.3082, lng: 22.95892 },
-  //     { lat: 41.31041, lng: 23.054 },
-  //   ],
-  //   zoom: 7,
-  // }
-
-  // const [state, setState] = useState([]);
-
-  // useEffect(() => {
-  //   // 連接資料庫
-  //   // 設定狀態
-  //   // console.log('didmount');
-  //   setState(demoDataFromServer);
-  // }, []);
-
+function ClinicMap({ dataFromSelect, location }) {
   return (
     <MapContainer
-      center={[25.033671,121.564427]}
+      center={[25.033671, 121.564427]}
       scrollWheelZoom={true}
-      zoom={17}
+      zoom={21}
       style={{ height: '600px', width: '75%', borderRadius: '10px', zIndex: 0 }}
     >
       <TileLayer
@@ -167,8 +132,12 @@ function ClinicMap({ dataFromSelect }) {
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
 
-      <LocationMarker/>
-      <ClinicMaker dataFromSelect={dataFromSelect} />
+      {/* <LocationMarker /> */}
+      {/* {console.log(location)} */}
+      <OneMaker dataFromSelect={dataFromSelect} location={location}/>
+      <TwoMaker dataFromSelect={dataFromSelect}/>
+      <ThreeMaker dataFromSelect={dataFromSelect} />
+      <FourMaker dataFromSelect={dataFromSelect} />
       {/* {console.log(dataFromSelect)} */}
       <MinimapControl position="topright" />
     </MapContainer>

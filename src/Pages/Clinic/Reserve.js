@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, forwardRef} from 'react';
 import styled from 'styled-components';
 import Radio from './components/Radio';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import { addDays, getDay } from 'date-fns';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const varietyOptions = ['狗', '貓', '其他'];
 const genderOptions = ['公', '母'];
+const controlOptions = ['未節育', '已節育'];
 
 const Clinicroutes = [
   {
@@ -25,7 +31,7 @@ const Clinicroutes = [
 const ReserveBox = styled.div`
   width: 100%;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -34,7 +40,7 @@ const BreadcrumbBox = styled.div`
   width: 1200px;
   display: flex;
   justify-content: flex-start;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 `;
 
 const PhotographerForm = styled.div`
@@ -85,18 +91,25 @@ const PhotographerForm = styled.div`
     }
   }
   .reserve_form {
+    .dayTime {
+      display: flex;
+      align-items: center;
+      margin: 0 30px;
+      width: 300px;
+      h3 {
+        font-weight: bold;
+        font-family: art;
+        color: #727171;
+        margin-right: 65px;
+        width: 218px;
+      }
+    }
     .reserve-time {
       h2 {
         font-size: 18px;
         font-family: art;
         font-weight: bold;
         margin: 50px 30px;
-      }
-      label {
-        font-weight: bold;
-        margin: 0 80px 0 30px;
-        font-family: art;
-        color: #727171;
       }
     }
   }
@@ -217,6 +230,21 @@ const PhotographerForm = styled.div`
         margin-left: 30px;
       }
     }
+    .pet-control {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      h1 {
+        font-weight: bold;
+        margin: 0 110px 0 30px;
+        font-family: art;
+        color: #727171;
+        font-size: 16px;
+      }
+      input {
+        margin-left: 30px;
+      }
+    }
     .pet-pid {
       label {
         font-weight: bold;
@@ -274,8 +302,72 @@ const PhotographerForm = styled.div`
 `;
 
 function Reserve() {
+  const [clinicDetail, setClinicDetail] = useState([{
+    name:'',
+    address:'',
+    mobile:'',
+    code:''
+  }]);
+
   const [variety, setVariety] = useState('');
   const [gender, setGender] = useState('');
+  const [control, setControl] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
+  const [datepicker, setDatepicker] = useState(4);
+
+  //取得qureyString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let sid = +params.get('sid');
+
+  if (!sid) {
+    sid = '';
+  } else {
+    sid = `/reserve/${sid}`;
+  }
+
+  const getClinicData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:6001/clinic/${sid}`);
+
+      const clinicData = res.data.rows;
+
+      setClinicDetail(clinicData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+  const final = {...clinicDetail}
+  
+  console.log();
+
+  useEffect(() => {
+    getClinicData();
+  }, [location]);
+
+
+  const isWeekday = (date) => {
+    const day = getDay(date);
+    return day !== 1;
+  };
+
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button
+      style={{
+        backgroundColor: '#fff',
+        borderRadius: '20px',
+        fontFamily: 'art',
+        border: '2px solid #dcdddd',
+        padding: '5px 15px',
+      }}
+      onClick={onClick}
+      ref={ref}
+      type="button"
+    >
+      {value}
+    </button>
+  ));
+
   return (
     <ReserveBox>
       <BreadcrumbBox>
@@ -285,15 +377,18 @@ function Reserve() {
         />
       </BreadcrumbBox>
       <PhotographerForm>
-        <h1 className="text_main_dark_color2">暖陽寵物照護中心</h1>
+        <h1 className="text_main_dark_color2">{final[0].name}</h1>
         <div className="content_box">
           <div className="address">
             <i className="fa-sharp fa-solid fa-location-dot text_main_light_color1"></i>
-            <p className="text_main_dark_color2">116 文山區景美街15號</p>
+            <p className="text_main_dark_color2">
+              {final[0].code}
+              {final[0].address}
+            </p>
           </div>
           <div className="mobile">
             <i className="fa-sharp fa-solid fa-phone text_main_light_color1"></i>
-            <p className="text_main_dark_color2">(02)2328-5915</p>
+            <p className="text_main_dark_color2">{final[0].mobile}</p>
           </div>
         </div>
         <form
@@ -305,12 +400,42 @@ function Reserve() {
           {/* <!-- 預約時段 --> */}
           <div className="reserve-time">
             <h2 className="text_main_dark_color2">預約時間</h2>
-            <label htmlFor="">日期時段</label>
-            <input type="date" name="date" id="date" />
-            <select name="time" id="time">
-              <option value="A">上午</option>
-              <option value="B">下午</option>
-            </select>
+            <div className="dayTime">
+              <h3>日期時段</h3>
+              {datepicker === 4 ? (
+                <DatePicker
+                  selected={startDate}
+                  dateFormat="yyyy/MM/dd"
+                  onChange={(date) => setStartDate(date)}
+                  customInput={<ExampleCustomInput/>}
+                  filterDate={isWeekday}
+                  includeDateIntervals={[
+                    {
+                      start: addDays(new Date(), 0),
+                      end: addDays(new Date(), 7),
+                    },
+                  ]}
+                />
+              ) : (
+                <DatePicker
+                  selected={startDate}
+                  dateFormat="yyyy/MM/dd"
+                  onChange={(date) => setStartDate(date)}
+                  customInput={<ExampleCustomInput />}
+                  includeDateIntervals={[
+                    {
+                      start: addDays(new Date(), 0),
+                      end: addDays(new Date(), 7),
+                    },
+                  ]}
+                />
+              )}
+
+              <select name="time" id="time">
+                <option value="A">上午</option>
+                <option value="B">下午</option>
+              </select>
+            </div>
           </div>
 
           {/* <!-- 會員資料 --> */}
@@ -377,6 +502,20 @@ function Reserve() {
                     value={v}
                     checkedValue={gender}
                     setCheckedValue={setGender}
+                  />
+                );
+              })}
+            </div>
+            {/* <!-- 節育狀況 --> */}
+            <div className="pet-control">
+              <h1 htmlFor="control">性別</h1>
+              {controlOptions.map((v, i) => {
+                return (
+                  <Radio
+                    key={i}
+                    value={v}
+                    checkedValue={control}
+                    setCheckedValue={setControl}
                   />
                 );
               })}

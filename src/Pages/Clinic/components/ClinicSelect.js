@@ -84,13 +84,15 @@ const InfiniteScroll = styled.div`
   }
 `;
 
-function ClinicSelect({ setDataFromSelect }) {
+function ClinicSelect({ setDataFromSelect ,setLocation}) {
   const [selectedArea, setSelectedArea] = useState('');
   // const [selectedClinic, setSelectedClinic] = useState('');
   const [likeList2, setLikeList2] = useState([]);
 
   const [clinicList, setClinicList] = useState([]);
   const [showList, setShowList] = useState([]);
+
+  const [dataFromItem,setDataFromItem] = useState([])
 
   const getClinic = async () => {
     try {
@@ -145,10 +147,22 @@ function ClinicSelect({ setDataFromSelect }) {
         <DogButton ClassName="bg_main_light_color1" Text={<GlassIcon />} />
       </Check>
       <InfiniteScroll>
+      {/* {console.log(dataFromItem)} */}
         {showList.map((e, i) => {
-          const { name, address, mobile } = e;
+          const { name, address, mobile,code, sid,lat,lng } = e;
           return (
-            <ClinicItem name={name} address={address} mobile={mobile} key={i} />
+            <ClinicItem
+              name={name}
+              address={address}
+              mobile={mobile}
+              code={code}
+              key={i}
+              sid={sid}
+              lat={lat}
+              lng={lng}
+              setLocation={setLocation}
+            />
+          
           );
         })}
       </InfiniteScroll>
