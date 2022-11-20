@@ -9,6 +9,10 @@
   display: flex;
   justify-content: space-between;
 }
+.forum_search_bar{
+  display: flex;
+  align-items: center;
+}
 
 #search {
   height: 25px;
@@ -20,11 +24,11 @@
   #pro_search {
   color: white;
   text-align: center;
-  padding-top: 4px;
-  height: 20px;
+  height: 25px;
   width: 25px;
   margin: 0;
   border-radius: 0 10px 10px 0;
+  line-height: 25px;
   cursor: pointer;
   }
 
