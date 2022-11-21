@@ -73,7 +73,9 @@ function Product() {
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        `${PRODUCT_LIST}${cate}${sortMethod}${usp}&min_price=${minPrice}&max_price=${maxPrice}`
+        `${PRODUCT_LIST}${cate}${sortMethod}${usp}&min_price=${minPrice}&max_price=${maxPrice}${
+          searchWord ? `&search=${searchWord}` : ``
+        }`
       );
 
       console.log(res);
@@ -88,7 +90,7 @@ function Product() {
   };
 
   // 商品搜尋
-  console.log(product);
+  // console.log(product);
   // const handleSearch = (product, searchWord) => {
   //   let newProducts = product ? [] : [...product];
 
@@ -106,14 +108,22 @@ function Product() {
   useEffect(() => {
     getProducts();
   }, [location]);
+
+  // 排序
   useEffect(() => {
     getProducts();
   }, [sortMethod]);
+
+  // 價格區間
   useEffect(() => {
     getProducts();
   }, [minPrice, maxPrice]);
   // console.log({ minPrice, maxPrice });
 
+  // 搜尋
+  useEffect(() => {
+    getProducts();
+  }, [searchWord]);
   // useEffect(() => {
   //   // 搜尋字串太少不需要搜尋
   //   if (searchWord.length < 3 && searchWord.length !== 0) return
@@ -139,10 +149,8 @@ function Product() {
             sortMethod={sortMethod}
             totalPages={totalPages}
             page={page}
-            // priceSort={priceSort}
-            // setPriceSort={setPriceSort}
-            product={product}
-            // handleSearch={handleSearch}
+            searchWord={searchWord}
+            setSearchWord={setSearchWord}
           />
 
           <div className="product-list">

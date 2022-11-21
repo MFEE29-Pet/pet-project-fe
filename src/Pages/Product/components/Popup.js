@@ -37,7 +37,7 @@ function Popup({
   } else {
     sid = `/detail/${sid}`;
   }
-  console.log({ sid });
+  // console.log({ sid });
 
   // get 篩選
   const handleClick = async (e) => {

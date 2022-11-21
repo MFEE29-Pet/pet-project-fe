@@ -8,10 +8,8 @@ function Filter({
   sortMethod,
   setSortMethod,
   totalPages,
-  page,
-  handleSearch,
+  setSearchWord,
 }) {
-  const [keywords, setKeywords] = useState('');
   const { nowPage, location, cate } = useContext(PageContext);
   const navigate = useNavigate();
   // const params = new URLSearchParams(location.search);
@@ -23,8 +21,8 @@ function Filter({
   // }
   // console.log(searchKeyWords);
 
-  const handleClick = (e) => {
-    setKeywords(e.target.value);
+  const handleChange = (e) => {
+    setSearchWord(e.target.value);
     // navigate(location.pathname);
   };
   return (
@@ -36,7 +34,7 @@ function Filter({
               type="search"
               name="search"
               id="search"
-              // onChange={handleSearch}
+              onChange={handleChange}
             />
             <i
               className="fa-solid fa-magnifying-glass bg_main_light_color1"
