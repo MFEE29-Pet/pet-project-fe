@@ -21,6 +21,8 @@ function Popup({
   setMaxPrice,
   minPrice,
   maxPrice,
+  setSalesType,
+  salesType,
 }) {
   // const [minPrice, setMinPrice] = useState(0);
   // const [maxPrice, setMaxPrice] = useState(0);
@@ -149,7 +151,10 @@ function Popup({
                   className={`border_main_light_color1 ${
                     active === 'sp' ? 'active' : ''
                   }`}
-                  onClick={() => setActive('sp')}
+                  onClick={() => {
+                    setActive('sp');
+                    setSalesType('sp');
+                  }}
                 >
                   特價促銷
                 </label>
@@ -168,7 +173,10 @@ function Popup({
                   className={`border_main_light_color1 ${
                     active === 'multi' ? 'active' : ''
                   }`}
-                  onClick={() => setActive('multi')}
+                  onClick={() => {
+                    setActive('multi');
+                    setSalesType('multi');
+                  }}
                 >
                   多件優惠
                 </label>
@@ -198,6 +206,7 @@ function Popup({
                   setMaxPrice(0);
                   setActive('');
                   setBtnActive(0);
+                  setSalesType('');
                 }}
               >
                 重設

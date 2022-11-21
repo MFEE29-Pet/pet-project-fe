@@ -11,9 +11,12 @@ import _ from 'lodash';
 
 function Product() {
   const [trigger, setTrigger] = useState(false);
+  // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
   // TODO: 特價類型篩選
-  const [saleType, setSaleType] = useState('');
+  const [salesType, setSalesType] = useState('');
+
+  // 價格區間
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(99999);
 
@@ -77,7 +80,7 @@ function Product() {
       const res = await axios.get(
         `${PRODUCT_LIST}${cate}${sortMethod}${usp}&min_price=${minPrice}&max_price=${maxPrice}${
           searchWord ? `&search=${searchWord}` : ``
-        }`
+        }${salesType ? `&salesType=${salesType}` : ``}`
       );
 
       console.log(res);
@@ -121,6 +124,11 @@ function Product() {
     getProducts();
   }, [minPrice, maxPrice]);
   // console.log({ minPrice, maxPrice });
+
+  // 特價類型
+  useEffect(() => {
+    getProducts();
+  }, [salesType]);
 
   // 搜尋
   useEffect(() => {
@@ -175,6 +183,8 @@ function Product() {
         setMaxPrice={setMaxPrice}
         minPrice={minPrice}
         maxPrice={maxPrice}
+        setSalesType={setSalesType}
+        salesType={salesType}
       />
     </>
   );
