@@ -8,7 +8,7 @@ import PageContext from '../contexts/PageContext';
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
-  // console.log(totalPages);
+  console.log({ totalPages, page });
 
   const location = useLocation();
   const { cate, nowPage } = useContext(PageContext);
