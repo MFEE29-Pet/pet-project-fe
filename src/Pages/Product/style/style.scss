@@ -978,15 +978,15 @@ section.popup {
             }
         }
 
-        .price_input_form {
-            label::after {
-                content: '$';
-                display: inline;
-                color: $p_color;
-                font-size: $p_size;
-                margin-right: 5px;
-            }
-        }
+        // .price_input_form {
+        //     // label::after {
+        //     //     content: '$';
+        //     //     display: inline;
+        //     //     color: $p_color;
+        //     //     font-size: $p_size;
+        //     //     margin-right: 5px;
+        //     // }
+        // }
 
         .price_input_form,
         .service_sale_form {
@@ -1004,6 +1004,7 @@ section.popup {
                     border: none;
                     padding: 10px 20px;
                     width: 100px;
+                    z-index: -1;
                 }
 
                 span {

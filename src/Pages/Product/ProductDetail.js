@@ -58,13 +58,12 @@ function ProductDetail() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   let sid = +params.get('sid');
-
   if (!sid) {
     sid = '';
   } else {
     sid = `/detail/${sid}`;
   }
-  // console.log({ sid });
+  console.log({ sid });
 
   // 取得商品資料
   const getProductsDetail = async () => {
