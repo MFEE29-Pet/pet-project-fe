@@ -26,7 +26,8 @@ function Cart() {
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
   const [amount, setAmount] = useState([]);
-  const test = () => {
+
+  const dataAmount = () => {
     console.log(jsonData);
     const a = jsonData.map((v, i) => {
       return [v.amount];
@@ -34,8 +35,9 @@ function Cart() {
     setAmount(a);
   };
   useEffect(() => {
-    test();
+    dataAmount();
   }, []);
+
   return (
     <>
       <div className="eason_container">
@@ -161,11 +163,12 @@ function Cart() {
             </thead>
 
             <tbody>
-              {/* <tr> */}
-              {/* 資料引入測試------------------------------------- */}
+              {/* json假資料引入測試---------------------------------------- */}
+
               {jsonData.map((v, i) => {
+                const sumtotal = 0;
                 return (
-                  <tr key={v.id} >
+                  <tr key={v.id}>
                     <td className="eason_table_img">
                       <img
                         src="./imgs/product_3.png"
@@ -174,19 +177,15 @@ function Cart() {
                         height="65px"
                       />
                     </td>
-                    <td className="eason_p_name">
-                      {v.productName}
-                    </td>
-                    <td className="eason_table_price">
-                      {v.price}
-                    </td>
+                    <td className="eason_p_name">{v.productName}</td>
+                    <td className="eason_table_price">{v.price}</td>
                     <td className="eason_table_amount">
                       <span
                         className=""
                         onClick={() => {
-                          let c = [...amount]
-                          c[i] = +c[i]-1
-                        console.log(amount)
+                          let c = [...amount];
+                          c[i] = +c[i] - 1;
+                          console.log(amount);
                           setAmount(c);
                         }}
                       >
@@ -196,19 +195,26 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          let c = [...amount]
-                          c[i] = +c[i]+1
+                          let c = [...amount];
+                          c[i] = +c[i] + 1;
                           setAmount(c);
                         }}
                       >
                         <i className="fa-solid fa-circle-plus"></i>
                       </span>
                     </td>
-                    <td >{v.totalPrice}</td>
+                    <td className="eason_table_total">{v.price * amount[i]}</td>
+                    <td>
+                      <span>
+                        <i className="fa-light fa-trash-can"></i>
+                      </span>
+                    </td>
                   </tr>
                 );
               })}
 
+              {/* 寫死的html假資料---------------------------------------- */}
+              {/* <tr> */}
               {/* <td className="eason_p_name">濃郁雞白罐頭</td>
                 <td className="eason_table_price">$980</td>
                 <td className="eason_table_amount">
@@ -361,7 +367,7 @@ function Cart() {
           </table>
         </div>
 
-        {/* <!-- 下方區域------------------------------------------------------------- --> */}
+        {/* <!-- 下方區域---------------------------------------------> */}
         <div className="eason_section_3">
           <div className="eason_s3_left">
             <h2>付款方式</h2>
