@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
-// import jsonData from './orderTest.json';
+import jsonData from './orderTest.json';
 
 const EasonProgressBar = styled.div`
   i {
@@ -25,7 +25,17 @@ function Cart() {
   const { mode } = useContext(SwitchButtonContext);
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState([]);
+  const test = () => {
+    console.log(jsonData);
+    const a = jsonData.map((v, i) => {
+      return [v.amount];
+    });
+    setAmount(a);
+  };
+  useEffect(() => {
+    test();
+  }, []);
   return (
     <>
       <div className="eason_container">
@@ -151,22 +161,55 @@ function Cart() {
             </thead>
 
             <tbody>
-              <tr>
-                <td className="eason_table_img">
-                  <img
-                    src="./imgs/product_3.png"
-                    alt=""
-                    width="65px"
-                    height="65px"
-                  />
-                </td>
+              {/* <tr> */}
+              {/* 資料引入測試------------------------------------- */}
+              {jsonData.map((v, i) => {
+                return (
+                  <tr key={v.id} >
+                    <td className="eason_table_img">
+                      <img
+                        src="./imgs/product_3.png"
+                        alt=""
+                        width="65px"
+                        height="65px"
+                      />
+                    </td>
+                    <td className="eason_p_name">
+                      {v.productName}
+                    </td>
+                    <td className="eason_table_price">
+                      {v.price}
+                    </td>
+                    <td className="eason_table_amount">
+                      <span
+                        className=""
+                        onClick={() => {
+                          let c = [...amount]
+                          c[i] = +c[i]-1
+                        console.log(amount)
+                          setAmount(c);
+                        }}
+                      >
+                        <i className="fa-solid fa-circle-minus"> </i>
+                      </span>
+                      {amount[i]}
+                      <span
+                        className=""
+                        onClick={() => {
+                          let c = [...amount]
+                          c[i] = +c[i]+1
+                          setAmount(c);
+                        }}
+                      >
+                        <i className="fa-solid fa-circle-plus"></i>
+                      </span>
+                    </td>
+                    <td >{v.totalPrice}</td>
+                  </tr>
+                );
+              })}
 
-                {/* 資料引入測試------------------------------------- */}
-                {/* {jsonData.map((v, i) => {
-                  return <td key={v.id}>{v.productName}</td>;
-                })} */}
-
-                <td className="eason_p_name">濃郁雞白罐頭</td>
+              {/* <td className="eason_p_name">濃郁雞白罐頭</td>
                 <td className="eason_table_price">$980</td>
                 <td className="eason_table_amount">
                   <span
@@ -312,8 +355,8 @@ function Cart() {
                   <span>
                     <i className="fa-light fa-trash-can"></i>
                   </span>
-                </td>
-              </tr>
+                </td> */}
+              {/* </tr> */}
             </tbody>
           </table>
         </div>
