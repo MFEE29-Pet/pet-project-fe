@@ -459,22 +459,23 @@ section.right {
                         font-size: $h2size;
                     }
 
-                    .write-reply {
-                        margin-left: 130px;
-                        display: flex;
+
+                }
+                .write-reply {
+                    margin-left: 130px;
+                    display: flex;
+                    cursor: pointer;
+
+                    p {
+                        margin-left: 5px;
+                        margin-bottom: 20px;
                         cursor: pointer;
-
-                        p {
-                            margin-left: 5px;
-                            margin-bottom: 20px;
-                            cursor: pointer;
-                        }
-
-                        i.fa-message-pen {
-                            color: $p_color;
-                        }
-
                     }
+
+                    i.fa-message-pen {
+                        color: $p_color;
+                    }
+
                 }
 
                 .stars-progress {

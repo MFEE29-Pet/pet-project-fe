@@ -17,6 +17,12 @@ function ProductCard({ rowProducts, page, totalPages, usp }) {
   const { mode } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
 
+  function formatPrice(price) {
+    let parts = price.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
+
   return (
     <>
       {rowProducts.map((e, i) => {
@@ -39,7 +45,8 @@ function ProductCard({ rowProducts, page, totalPages, usp }) {
                     <div className="pro-title">
                       <p>{e2.name}</p>
                       <p>
-                        <s>${e2.price}</s> <span>${e2.member_price}</span>
+                        <s>${formatPrice(e2.price)}</s>{' '}
+                        <span>${formatPrice(e2.member_price)}</span>
                       </p>
                     </div>
                   </Link>
