@@ -29,7 +29,7 @@ const LittleItemBox = styled.div`
     }
   }
 `;
-const TitleBox = styled.h2`
+const TitleBox = styled(Link)`
   font-family: art;
   font-size: 20px;
   width: 140px;
@@ -70,7 +70,7 @@ const Shadow = styled.img`
   opacity: 0;
 `;
 const List = styled.ul`
-  width: 140px;
+  width: 150px;
   position: absolute;
   top: 80px;
   left: 50%;
@@ -105,11 +105,11 @@ const LI = styled(Link)`
   }
 `;
 
-export const LittleItem = ({ ItemData, Title, EnTitle }) => {
+export const LittleItem = ({ ItemData, Title, EnTitle, To }) => {
   const { mode } = useContext(SwitchButtonContext);
   return (
     <LittleItemBox>
-      <TitleBox className="text_main_dark_color2">{Title}</TitleBox>
+      <TitleBox className="text_main_dark_color2" to={To}>{Title}</TitleBox>
       <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
       <Foot className="foot foot_type" />
       <Shadow src={`${imgUrl}/images/shadow.png`} alt="" className="shadow" />

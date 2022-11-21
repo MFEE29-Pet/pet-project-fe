@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
@@ -12,6 +12,10 @@ import Footer from './Components/Footer/Footer';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
+import ProductDetail from './Pages/Product/ProductDetail';
+import Photographer from './Pages/Product/Photographer';
+import PhotographerForm from './Pages/Product/PhotographerForm';
+import AllContextProviders from './contexts/AllContextProviders';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -31,23 +35,36 @@ function App() {
 
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
-        <Navbar />
-        <section style={{ height: '100px' }}></section>
-        <Routes>
-          <Route path="/" element={<Index />} />
+        <AllContextProviders>
+          <Navbar />
+          <i
+            className={`fa-light fa-shield-cat text_main_light_color1`}
+            style={{ opacity: 0, position: 'absolute' }}
+            // onClick={handleClick}
+            // id="switch_button"
+          ></i>
+          <section style={{ height: '100px' }}></section>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-          <Route path="product" element={<Product />} />
-          <Route path="product/:sid" />
+            <Route path="product" element={<Product />} />
+            <Route path="product/detail/" element={<ProductDetail />} />
+            <Route path="product/photographers/" element={<Photographer />} />
+            <Route
+              path="product/photographers/form"
+              element={<PhotographerForm />}
+            />
 
-          <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart />} />
 
-          <Route path="clinic" element={<Clinic />} />
+            <Route path="clinic" element={<Clinic />} />
 
           <Route path="forum" element={<ForumList />} />
           <Route path="forum/detail" element={<ForumDetail />} />
 
-          <Route path="member" element={<Member />} />
-        </Routes>
+            <Route path="member" element={<Member />} />
+          </Routes>
+        </AllContextProviders>
         <Footer />
       </BrowserRouter>
     </div>

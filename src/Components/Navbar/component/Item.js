@@ -18,9 +18,9 @@ const clinicItem = [
 ];
 
 const productItem = [
-  { id: 1, name: '狗勾汪汪', to: '/product/?dog' },
-  { id: 2, name: '貓貓喵喵', to: '/product/?cat' },
-  { id: 3, name: '攝影服務', to: '/product/?photo' },
+  { id: 1, name: "狗勾汪汪" ,to:'product?cate=1&page=1'},
+  { id: 2, name: "貓貓喵喵" ,to:'product?cate=2&page=1'},
+  { id: 3, name: "攝影服務" ,to:'product'},
 ];
 
 const ItemBox = styled.div`
@@ -33,9 +33,9 @@ const ItemBox = styled.div`
 function Item() {
   return (
     <ItemBox>
-      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" />
-      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" />
-      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" />
+      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" To='/forum' />
+      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" To='/clinic'/>
+      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" To='/product' />
     </ItemBox>
   );
 }
