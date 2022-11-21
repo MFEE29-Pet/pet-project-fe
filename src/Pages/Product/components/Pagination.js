@@ -34,6 +34,7 @@ export default function Pagination({ totalPages, page, usp }) {
               <i className="fa-solid fa-angle-left"></i>
             </Link>
           </li>
+          {/* TODO: 搜尋後頁數顯示異常 */}
           {Array(totalPages) &&
             Array(totalPages)
               .fill(1)
