@@ -26,7 +26,8 @@ function Photographers() {
   const [floatNum, setFloatNum] = useState(1);
 
   const [photoGraphers, setPhotoGraphers] = useState([]);
-  // 取得商品資料
+
+  // 取得攝影師資料
   const getPhotoGraphers = async () => {
     try {
       const res = await axios.get(`${PHOTOGRAPH}`);

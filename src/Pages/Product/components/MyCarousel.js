@@ -107,7 +107,7 @@ const MyCarousel = ({
   // const test = styleImages[0]?.map((e, i) => {
   //   console.log(e);
   // });
-  console.log(floatNum);
+  // console.log(floatNum);
   const makePosition = ({ itemIndex }) =>
     (itemIndex - currentIndex) * imageWidth;
 
@@ -119,7 +119,7 @@ const MyCarousel = ({
   const handleClickNext = useCallback(() => {
     const { nextIndex } = getIndexes();
     setCurrentIndex(nextIndex);
-    console.log(nextIndex);
+    // console.log(nextIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
 
