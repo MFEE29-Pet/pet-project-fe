@@ -10,11 +10,36 @@ import DatePicker from 'react-datepicker';
 import { MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+
 // import Radio from '../../Pages/Clinic/'
 
 const varietyOptions = ['狗', '貓', '其他'];
 const genderOptions = ['公', '母'];
 const controlOptions = ['未節育', '已節育'];
+
+const PhotoRoutes = [
+  {
+    to: '/product',
+    label: '所有商品',
+  },
+  {
+    to: '/product/photographers',
+    label: '攝影服務',
+  },
+  {
+    to: `/product/photographers`,
+    label: '預約攝影',
+  },
+];
+
+const BreadcrumbBox = styled.div`
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+`;
 
 const PhotographersForm = styled.div`
   background-color: #fff;
@@ -363,12 +388,19 @@ function PhotographerForm() {
             </p>
           </div> */}
         {/* <div className="photographer-form"> */}
+
         <PhotographersForm className="photographer-form">
+          <BreadcrumbBox>
+            <Breadcrumb
+              routes={PhotoRoutes}
+              separator={<BreadcrumbRightArrowIcon />}
+            />
+          </BreadcrumbBox>
           <h1>預約寵物攝影</h1>
           <div className="photographerInfo" style={{ display: 'flex' }}>
             <div className="photographer-name">
               <i
-                className="fa-solid fa-camera"
+                className="fa-solid fa-camera text_main_light_color1"
                 style={{ fontSize: '20px' }}
               ></i>
               <p style={{ marginRight: '10px' }}>

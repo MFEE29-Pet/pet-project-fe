@@ -84,7 +84,7 @@ function ProductSidebar() {
                     );
                   })}
                   <li key={99}>
-                    <Link to={`photographers`}>
+                    <Link to={`/product/photographers`}>
                       <p>攝影服務</p>
                     </Link>
                     <i

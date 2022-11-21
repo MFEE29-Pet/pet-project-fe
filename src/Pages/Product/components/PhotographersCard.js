@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NAME = styled.p`
   text-align: center;
@@ -20,6 +21,9 @@ const SPAN = styled.span`
 
 function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
   const { mode } = useContext(SwitchButtonContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location.pathname);
   return (
     <>
       {photoGraphers.map((el, i) => {
@@ -97,7 +101,9 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                   padding: ' 10px 50px',
                   fontWeight: 'bold ',
                 }}
-                onClick={() => {}}
+                onClick={() => {
+                  navigate(`${location.pathname}/form/?sid=${el.sid}`);
+                }}
               >
                 立即預約
               </button>
