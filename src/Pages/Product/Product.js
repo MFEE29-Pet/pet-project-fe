@@ -12,6 +12,8 @@ import _ from 'lodash';
 function Product() {
   const [trigger, setTrigger] = useState(false);
   const [sortMethod, setSortMethod] = useState('created_at');
+  // TODO: 特價類型篩選
+  const [saleType, setSaleType] = useState('');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(99999);
 
