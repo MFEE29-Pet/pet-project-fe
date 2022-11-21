@@ -23,6 +23,8 @@ const H2 = styled.h2`
 `;
 
 function Photographers() {
+  const [floatNum, setFloatNum] = useState(1);
+
   const [photoGraphers, setPhotoGraphers] = useState([]);
   // 取得商品資料
   const getPhotoGraphers = async () => {
@@ -33,16 +35,28 @@ function Photographers() {
 
       const photographers = res.data.rows;
       setPhotoGraphers(photographers);
-      console.log(photoGraphers);
     } catch (e) {
       console.log(e.message);
     }
   };
-
+  console.log(photoGraphers);
   // didMount 載入資料
   useEffect(() => {
     getPhotoGraphers();
   }, []);
+
+  const styleImages = photoGraphers.map((e, i) => {
+    return e.style.split(',');
+  });
+  console.log(styleImages);
+  // const Images = styleImages.map((e, i) => {
+  //   // const styleImage = e.map((e2, i2) => {
+  //   //   return e2;
+  //   // });
+  //   // return styleImage;
+  //   return [...e];
+  // });
+  // console.log(Images);
 
   return (
     <>
@@ -53,9 +67,23 @@ function Photographers() {
         className="photographers_row"
         style={{ display: 'flex', justifyContent: 'space-around' }}
       >
-        <PhotographersCard photoGraphers={photoGraphers} />
+        <PhotographersCard
+          photoGraphers={photoGraphers}
+          floatNum={floatNum}
+          setFloatNum={setFloatNum}
+        />
       </div>
-      <MyCarousel />
+      <H2 style={{ marginTop: '100px' }}>攝影作品</H2>
+      <div
+        className="carouselDiv"
+        style={{
+          display: 'flex',
+          margin: '50px 0 100px 0',
+          justifyContent: 'center',
+        }}
+      >
+        <MyCarousel styleImages={styleImages} floatNum={floatNum} />
+      </div>
     </>
   );
 }

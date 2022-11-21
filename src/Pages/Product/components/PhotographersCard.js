@@ -18,8 +18,7 @@ const SPAN = styled.span`
   }
 `;
 
-function PhotographersCard({ photoGraphers }) {
-  const [floatNum, setFloatNum] = useState(1);
+function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
   const { mode } = useContext(SwitchButtonContext);
   return (
     <>
@@ -45,7 +44,6 @@ function PhotographersCard({ photoGraphers }) {
                 top: '5%',
                 left: '10%',
               }}
-              key={el.sid}
             >
               <img
                 src={`/images/${
@@ -99,6 +97,7 @@ function PhotographersCard({ photoGraphers }) {
                   padding: ' 10px 50px',
                   fontWeight: 'bold ',
                 }}
+                onClick={() => {}}
               >
                 立即預約
               </button>

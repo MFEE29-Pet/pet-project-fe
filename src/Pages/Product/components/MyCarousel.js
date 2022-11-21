@@ -1,25 +1,28 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 import { ArrowRight, ArrowLeft } from '@material-ui/icons';
 
 const CarouselWrapper = styled.div`
   position: relative;
-  width: ${(props) => props.$width}px;
-  height: 400px;
+  width: 800px;
+  height: 500px;
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
+  ${'' /* left: 25%; */}
   overflow: hidden;
   position: relative;
-  background: #fff5de;
+  display: flex;
+  justify-content: center;
+  background: ${(props) => (props.$mode === 'dog' ? '#fff5de' : '#a4ced0')};
 `;
 
 const Image = styled.img`
-  width: 100%;
   position: absolute;
   left: ${(props) => props.$left}px;
   transition: all 0.5s ease;
@@ -44,6 +47,20 @@ const ControlButtons = styled.div`
   }
 `;
 
+const Dots = styled.div`
+  position: absolute;
+  display: flex;
+  align-item: center;
+  justify-content: center;
+  z-index: 10;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  & > *:not(:first-child) {
+    margin-left: 6px;
+  }
+`;
+
 const Dot = styled.div`
   border-radius: 100%;
   width: ${(props) => (props.$isCurrent ? 10 : 8)}px;
@@ -54,48 +71,68 @@ const Dot = styled.div`
   transition: all 0.2s ease-in-out;
 `;
 
-function MyCarousel({
+const ArrowWrapper = styled.div`
+  &:hover {
+    color: ${(props) => (props.$mode === 'dog' ? '#ea5514' : '#00a29a')};
+  }
+  height: 100%;
+  display: flex;
+`;
+
+const MyCarousel = ({
   className,
   dataSource,
   hasDots,
   hasControlArrow,
   autoplay,
-}) {
-  const carousel = useRef();
+  styleImages,
+  floatNum,
+}) => {
+  const carouselRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageWidth, setImageWidth] = useState(600);
-  const getIndex = () => {
-    const preIndex =
-      currentIndex - 1 < 0 ? dataSource.length - 1 : currentIndex - 1;
-    const nextIndex = (currentIndex + 1) % dataSource.length;
+  const { mode } = useContext(SwitchButtonContext);
+  const getIndexes = () => {
+    const prevIndex =
+      currentIndex - 1 < 0
+        ? styleImages[floatNum - 1]?.length - 1
+        : currentIndex - 1;
+    const nextIndex = currentIndex + 1 < 5 ? currentIndex + 1 : 0;
 
-    return { preIndex, nextIndex };
+    return {
+      prevIndex,
+      nextIndex,
+    };
   };
-
+  // const test = styleImages[0]?.map((e, i) => {
+  //   console.log(e);
+  // });
+  console.log(floatNum);
   const makePosition = ({ itemIndex }) =>
     (itemIndex - currentIndex) * imageWidth;
 
   const handleClickPrev = () => {
-    const { preIndex } = getIndex();
-    setCurrentIndex(preIndex);
+    const { prevIndex } = getIndexes();
+    setCurrentIndex(prevIndex);
   };
 
   const handleClickNext = useCallback(() => {
-    const { nextIndex } = getIndex();
+    const { nextIndex } = getIndexes();
     setCurrentIndex(nextIndex);
+    console.log(nextIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
 
-  const handleUpateCarouselWidth = () => {
+  const handleUpdateCarouselWidth = () => {
     const carouselWidth = carouselRef.current.clientWidth;
     setImageWidth(carouselWidth);
   };
 
   useEffect(() => {
-    handleUpateCarouselWidth();
-    window.addEventListener('resize', handleUpateCarouselWidth);
-
+    handleUpdateCarouselWidth();
+    window.addEventListener('resize', handleUpdateCarouselWidth);
     return () => {
-      window.removeEventListener('resize', handleUpateCarouselWidth);
+      window.removeEventListener('resize', handleUpdateCarouselWidth);
     };
   }, []);
 
@@ -104,9 +141,8 @@ function MyCarousel({
     if (autoplay) {
       intervalId = setInterval(() => {
         handleClickNext();
-      }, 3000);
+      }, 5000);
     }
-
     return () => {
       clearInterval(intervalId);
     };
@@ -118,9 +154,125 @@ function MyCarousel({
       className={className}
       $width={imageWidth}
     >
-      <ImageWrapper>{}</ImageWrapper>
+      <div
+        className="littleImageWrap"
+        style={{
+          width: '50px',
+          height: '50px',
+          display: 'flex',
+          justifyContent: 'center',
+          margin: 'auto',
+        }}
+      >
+        <CarouselWrapper
+          ref={carouselRef}
+          className={className}
+          style={{
+            width: '50px',
+            height: '50px',
+            margin: '0',
+            padding: 0,
+            left: 0,
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <ImageWrapper
+            $mode={mode}
+            style={{
+              width: '800px',
+              height: '100%',
+              overflow: 'inherit',
+              display: 'flex',
+            }}
+          >
+            {styleImages[floatNum - 1]?.map((imageUrl, index) => (
+              <Image
+                key={imageUrl}
+                src={`/images/test/photos/${imageUrl}`}
+                alt=""
+                style={
+                  currentIndex === index
+                    ? {
+                        width: '50px',
+                        height: '85%',
+                        objectFit: 'cover',
+                        position: 'static',
+                        border: '2px solid red',
+                        margin: '3px',
+                      }
+                    : {
+                        width: '40px',
+                        height: '80%',
+                        objectFit: 'cover',
+                        position: 'static',
+                        margin: '3px',
+                      }
+                }
+              />
+            ))}
+          </ImageWrapper>
+        </CarouselWrapper>
+      </div>
+      <ImageWrapper $mode={mode} style={{ transform: 'translateX(20%)' }}>
+        {styleImages[floatNum - 1]?.map((imageUrl, index) => (
+          <Image
+            key={imageUrl}
+            src={`/images/test/photos/${imageUrl}`}
+            alt=""
+            $left={makePosition({ itemIndex: index })}
+          />
+        ))}
+      </ImageWrapper>
+      {hasControlArrow && (
+        <ControlButtons>
+          <ArrowWrapper style={{ alignItems: 'center' }} $mode={mode}>
+            <ArrowLeft onClick={handleClickPrev} />
+          </ArrowWrapper>
+          <ArrowWrapper style={{ alignItems: 'center' }} $mode={mode}>
+            <ArrowRight onClick={handleClickNext} />
+          </ArrowWrapper>
+        </ControlButtons>
+      )}
+      {hasDots && (
+        <Dots>
+          {[...Array(styleImages[floatNum - 1]?.length).keys()]?.map(
+            (key, index) => (
+              <Dot
+                key={key}
+                $isCurrent={index === currentIndex}
+                onClick={() => setCurrentIndex(key)}
+              />
+            )
+          )}
+        </Dots>
+      )}
     </CarouselWrapper>
   );
-}
+};
+
+MyCarousel.propTypes = {
+  className: PropTypes.string,
+
+  // 輪播資料
+  dataSource: PropTypes.arrayOf(PropTypes.string),
+
+  // 是否顯示指示點
+  hasDots: PropTypes.bool,
+
+  // 是否顯示上下頁切換鍵
+  hasControlArrow: PropTypes.bool,
+
+  // 是否自動播放
+  autoplay: PropTypes.bool,
+};
+
+MyCarousel.defaultProps = {
+  className: '',
+  dataSource: [],
+  hasDots: true,
+  hasControlArrow: true,
+  autoplay: true,
+};
 
 export default MyCarousel;
