@@ -7,7 +7,7 @@ import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRigh
 import { Link, useLocation } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
-import { PRODUCT_LIST } from './my-config';
+import { PRODUCT_DETAIL } from './my-config';
 
 const InfoDiv = styled.div`
   &::before {
@@ -20,8 +20,6 @@ const InfoDiv = styled.div`
 
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
-  // const { data, amount, setAmount, setCartAmount, cartAmount } =
-  //   useContext(ProductDetailContext);
 
   const [loved, setLoved] = useState(false);
   const [lovedHover, setLovedHover] = useState(false);
@@ -61,14 +59,14 @@ function ProductDetail() {
   if (!sid) {
     sid = '';
   } else {
-    sid = `/detail/${sid}`;
+    sid = `/${sid}`;
   }
   console.log({ sid });
 
   // 取得商品資料
   const getProductsDetail = async () => {
     try {
-      const res = await axios.get(`${PRODUCT_LIST}${sid}`);
+      const res = await axios.get(`${PRODUCT_DETAIL}${sid}`);
 
       // console.log(res);
 
