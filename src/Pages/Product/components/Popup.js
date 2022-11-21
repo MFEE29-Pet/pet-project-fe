@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { PRODUCT_LIST } from '../my-config';
+import { useLocation } from 'react-router-dom';
 
 const LABEL = styled.label`
   &::after {
@@ -11,12 +14,36 @@ const LABEL = styled.label`
   }
 `;
 
-function Popup({ trigger, setTrigger }) {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
+function Popup({
+  trigger,
+  setTrigger,
+  setMinPrice,
+  setMaxPrice,
+  minPrice,
+  maxPrice,
+}) {
+  // const [minPrice, setMinPrice] = useState(0);
+  // const [maxPrice, setMaxPrice] = useState(0);
   const [active, setActive] = useState('');
   const [btnActive, setBtnActive] = useState(0);
   const [checked, setChecked] = useState(false);
+
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let sid = params.get('sid');
+  if (!sid) {
+    sid = '';
+  } else {
+    sid = `/detail/${sid}`;
+  }
+  console.log({ sid });
+
+  // get 篩選
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setTrigger(!trigger);
+  };
 
   return trigger ? (
     <>
@@ -35,7 +62,7 @@ function Popup({ trigger, setTrigger }) {
             </div>
           </div>
           <div className="price_input_form">
-            <form method="get">
+            <form method="post">
               <div className="price_input">
                 <LABEL htmlFor="min_price"></LABEL>
                 <input
@@ -107,8 +134,6 @@ function Popup({ trigger, setTrigger }) {
                   1000-1500
                 </button>
               </div>
-              {/* <!-- <button className="price_filter_submit">確定</button>
-              <button className="price_filter_reset">重設</button> --> */}
               <div className="filter-title">
                 <i className="fa-solid fa-caret-right"></i>
                 <h2>服務與促銷</h2>
@@ -158,7 +183,11 @@ function Popup({ trigger, setTrigger }) {
                 />
               </div>
 
-              <button className="price_filter_submit bg_main_light_color1">
+              <button
+                className="price_filter_submit bg_main_light_color1"
+                onClick={handleClick}
+                type="submit"
+              >
                 確定
               </button>
               <button
