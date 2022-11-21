@@ -15,15 +15,12 @@ margin: 50px auto;
   font-size: 320%;
   margin: 80px 120px;
   }
-
-
-  .forum_detail_text{
+.forum_detail_text{
     line-height: 26px;
   }
-  .forum_detail_pic{
-display: flex;
-justify-content: center;
-align-items: center;
+.forum_detail_pic{
+  display: flex;
+  justify-content: center;
   }
   
 

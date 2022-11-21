@@ -1,7 +1,9 @@
 import React from 'react';
 import './ForumDetailBar.css';
+// import dogpic from '/images/person_4.jpeg';
 
 function ForumDetailBar() {
+  const dogpic = '/images/toys_1.png';
   return (
     <>
       <div className="forum_detail_card">
@@ -16,7 +18,10 @@ function ForumDetailBar() {
             想請問狗狗玩的絨毛娃娃應該如何消毒較好？擔心口水殘留會有細菌滋生，擔心丟洗衣機裡面的填充棉花會乾不了。原本想直接噴酒精，但不確定是否妥當，所以上來問問大家。
           </div>
         </div>
-        <div className="forum_detail_pic">這裡要放狗狗圖片</div>
+
+        <div className="forum_detail_pic">
+          <img src={dogpic} />
+        </div>
       </div>
     </>
   );

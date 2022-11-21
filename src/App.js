@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
 import Clinic from './Pages/Clinic/Clinic';
-import Forum from './Pages/Forum/ForumDetail';
+import ForumList from './Pages/Forum/ForumList';
+import ForumDetail from './Pages/Forum/ForumDetail';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import Navbar from './Components/Navbar/Navbar';
@@ -42,7 +43,8 @@ function App() {
 
           <Route path="clinic" element={<Clinic />} />
 
-          <Route path="forum" element={<Forum />} />
+          <Route path="forum" element={<ForumList />} />
+          <Route path="forum/detail" element={<ForumDetail />} />
 
           <Route path="member" element={<Member />} />
         </Routes>
