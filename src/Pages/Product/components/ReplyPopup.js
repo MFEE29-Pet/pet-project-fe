@@ -45,7 +45,6 @@ function ReplyPopup({ showDiv, setShowDiv, sid }) {
   const [starValue, setStarValue] = useState(0);
   const [pSid, setPSid] = useState(sid);
   // console.log(pSid);
-  const location = useLocation();
 
   let initFields = {
     scores: starValue,
@@ -83,7 +82,7 @@ function ReplyPopup({ showDiv, setShowDiv, sid }) {
       alert('請輸入評價');
       return;
     }
-    // await setFields({ ...fields, p_sid: sid });
+    await setFields({ ...fields, p_sid: sid });
 
     const res = await axios.post(`${INSERT_REPLY}`, fields);
     console.log(res);
