@@ -3,7 +3,8 @@ import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import jsonData from './orderTest.json';
-
+// console.log('12345',jsonData[0].id)
+// console.log(typeof(jsonData))
 const EasonProgressBar = styled.div`
   i {
     color: ${(props) => (props.$mode === 'dog' ? '#dcdddd' : '#00a29a')};
@@ -164,9 +165,10 @@ function Cart() {
 
             <tbody>
               {/* json假資料引入測試---------------------------------------- */}
-
+              
               {jsonData.map((v, i) => {
-                const sumtotal = 0;
+                
+                
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
