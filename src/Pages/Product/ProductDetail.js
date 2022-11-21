@@ -18,6 +18,13 @@ const InfoDiv = styled.div`
   }
 `;
 
+const ShowStars = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  overflow: hidden;
+`;
+
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
 
@@ -45,6 +52,8 @@ function ProductDetail() {
   ];
   // 商品細節資訊 state
   const [productDetail, setProductDetail] = useState(initProductDetail);
+  // 評價平均數
+  const [avgNum, setAvgNum] = useState(0);
   // 數量 state
   const [amount, setAmount] = useState(1);
 
@@ -68,10 +77,11 @@ function ProductDetail() {
     try {
       const res = await axios.get(`${PRODUCT_DETAIL}${sid}`);
 
-      // console.log(res);
+      console.log(res);
 
       const productData = res.data.rows;
       setProductDetail(productData);
+      setAvgNum(res.data.avgScores);
     } catch (e) {
       console.log(e.message);
     }
@@ -90,7 +100,7 @@ function ProductDetail() {
   });
   const data = pd[0];
   // console.log(data);
-
+  // console.log(avgNum);
   const routes = [
     {
       to: '/product',
@@ -251,14 +261,29 @@ function ProductDetail() {
             <div className="score-content">
               <div className="star-score-total">
                 <div className="score">
-                  <h1>4.8</h1>
+                  <h1>{avgNum.toFixed(1)}</h1>
                 </div>
                 <div className="stars">
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star-half-stroke "></i>
+                  <div className="showStars" style={{ position: 'relative' }}>
+                    <div className="noneStars">
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                    </div>
+                    <ShowStars
+                      className="showStars"
+                      avg={avgNum}
+                      style={{ width: `${(avgNum / 5) * 100}%` }}
+                    >
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                    </ShowStars>
+                  </div>
                   <div
                     className="write-reply"
                     onClick={() => {
@@ -272,6 +297,7 @@ function ProductDetail() {
                     </p>
                   </div>
                 </div>
+
                 <div className="stars-progress">
                   <div className="progress-item">
                     <label htmlFor="stars">5</label>
