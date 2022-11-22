@@ -48,6 +48,9 @@ function Product() {
   // 搜尋字串
   const [searchWord, setSearchWord] = useState('');
 
+  // 載入指示器開關
+  const [isLoading, setIsLoading] = useState(false);
+
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -76,6 +79,9 @@ function Product() {
 
   // 取得商品資料
   const getProducts = async () => {
+    // 開啟指示器
+    setIsLoading(true);
+
     try {
       const res = await axios.get(
         `${PRODUCT_LIST}${cate}${sortMethod}${usp}&min_price=${minPrice}&max_price=${maxPrice}${
@@ -134,6 +140,15 @@ function Product() {
   useEffect(() => {
     getProducts();
   }, [searchWord]);
+
+  // 載入指示器
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [isLoading]);
   // useEffect(() => {
   //   // 搜尋字串太少不需要搜尋
   //   if (searchWord.length < 3 && searchWord.length !== 0) return
@@ -150,7 +165,7 @@ function Product() {
   return (
     <>
       <main>
-        <ProductSidebar />
+        <ProductSidebar isLoading={isLoading} />
         <section className="right">
           <Filter
             setTrigger={setTrigger}
@@ -162,7 +177,6 @@ function Product() {
             searchWord={searchWord}
             setSearchWord={setSearchWord}
           />
-
           <div className="product-list">
             <ProductCard
               sortMethod={sortMethod}
@@ -172,6 +186,7 @@ function Product() {
               totalPages={totalPages}
               page={page}
               usp={usp}
+              isLoading={isLoading}
             />
           </div>
         </section>
