@@ -32,9 +32,9 @@ const ItemBox = styled.div`
 function Item() {
   return (
     <ItemBox>
-      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" />
-      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" />
-      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" />
+      <LittleItem ItemData={forumItem} Title="寵物論壇" EnTitle="Forum" to='forum'/>
+      <LittleItem ItemData={clinicItem} Title="醫療診所" EnTitle="Clinic" to='clinic'/>
+      <LittleItem ItemData={productItem} Title="購物商城" EnTitle="Store" to='product'/>
     </ItemBox>
   );
 }

@@ -6,7 +6,7 @@ import FishIcon from './FishIcon';
 import BoneIcon from './BoneIcon';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
-const LittleItemBox = styled.div`
+const LittleItemBox = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +86,7 @@ const List = styled.ul`
   padding: 20px;
   display: none;
 `;
-const LittleHref = styled.li`
+const LittleHref = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,10 +105,10 @@ const LI = styled(Link)`
   }
 `;
 
-export const LittleItem = ({ ItemData, Title, EnTitle }) => {
+export const LittleItem = ({ ItemData, Title, EnTitle,to}) => {
   const { mode } = useContext(SwitchButtonContext);
   return (
-    <LittleItemBox>
+    <LittleItemBox to={to}>
       <TitleBox className="text_main_dark_color2">{Title}</TitleBox>
       <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
       <Foot className="foot foot_type" />
@@ -117,8 +117,8 @@ export const LittleItem = ({ ItemData, Title, EnTitle }) => {
         {ItemData.map((e, i) => {
           const { id, name, to } = e;
           return (
-            <LittleHref key={id}>
-              <LI className="text_main_dark_color2" to={to}>
+            <LittleHref key={id} to={to}>
+              <LI className="text_main_dark_color2">
                 {name}
                 {mode === 'dog' ? <BoneIcon/> : <FishIcon />}
               </LI>
