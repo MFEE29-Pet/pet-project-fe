@@ -38,7 +38,15 @@ function Cart() {
   useEffect(() => {
     dataAmount();
   }, []);
-
+  function eddie(){
+  console.log('eddie')  
+  let a = document.querySelectorAll('.eason_table_total')
+  let b =[];
+  for(let i=0; i<a.length; i++){
+    b.push(a[i].innerHTML)
+  }
+  console.log(b);
+  }
   return (
     <>
       <div className="eason_container">
@@ -189,6 +197,7 @@ function Cart() {
                           c[i] = +c[i] - 1;
                           console.log(amount);
                           setAmount(c);
+                          eddie()
                         }}
                       >
                         <i className="fa-solid fa-circle-minus"> </i>
@@ -200,6 +209,7 @@ function Cart() {
                           let c = [...amount];
                           c[i] = +c[i] + 1;
                           setAmount(c);
+                          eddie()
                         }}
                       >
                         <i className="fa-solid fa-circle-plus"></i>
