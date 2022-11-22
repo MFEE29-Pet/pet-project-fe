@@ -1,10 +1,11 @@
+// 來源引用區-------------------------------------------------------------------------------------
 import { useState, useContext, useEffect } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import jsonData from './orderTest.json';
-// console.log('12345',jsonData[0].id)
-// console.log(typeof(jsonData))
+
+// 主題變色功能區-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
   i {
     color: ${(props) => (props.$mode === 'dog' ? '#dcdddd' : '#00a29a')};
@@ -22,22 +23,25 @@ const EasonProgressBar = styled.div`
   }
 `;
 
+// 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
   const { mode } = useContext(SwitchButtonContext);
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
   const [amount, setAmount] = useState([]);
-  const [totalePrice, settotalPrice] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
   const dataAmount = () => {
     console.log(jsonData);
-    const newAmount = jsonData.map((v, i) => {
+    const origiAmount = jsonData.map((v, i) => {
       return [v.amount];
     });
+    setAmount(origiAmount);
+
     const origiTotalPrice = jsonData.map((v, i) => v.price * v.amount);
-    settotalPrice(origiTotalPrice);
-    setAmount(newAmount);
+    setTotalPrice(origiTotalPrice);
+
     setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
   };
   useEffect(() => {
@@ -47,7 +51,7 @@ function Cart() {
   return (
     <>
       <div className="eason_container">
-        {/* <!-- 進度條--------------------------------------------------------------- --> */}
+        {/* <!-- 進度條------------------------------------------------------------------------> */}
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
           <div className="eason_order">
             <i
@@ -188,18 +192,18 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          let c = [...amount];
-                          c[i] = +c[i] - 1;
+                          let newAmount = [...amount];
+                          newAmount[i] = +newAmount[i] - 1;
                           console.log(amount);
 
-                          const newPrice = [...totalePrice];
-                          newPrice[i] = c[i] * v.price;
+                          const newPrice = [...totalPrice];
+                          newPrice[i] = newAmount[i] * v.price;
                           console.log(newPrice);
                           setNewTotalPrice(newPrice.reduce((a, b) => a + b));
 
-                          setAmount(c);
+                          setAmount(newAmount);
 
-                          settotalPrice(newPrice);
+                          setTotalPrice(newPrice);
                         }}
                       >
                         <i className="fa-solid fa-circle-minus"> </i>
@@ -208,14 +212,16 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          let c = [...amount];
-                          c[i] = +c[i] + 1;
-                          const newPrice = [...totalePrice];
-                          newPrice[i] = c[i] * v.price;
+                          let newAmount = [...amount];
+                          newAmount[i] = +newAmount[i] + 1;
+                          const newPrice = [...totalPrice];
+                          newPrice[i] = newAmount[i] * v.price;
                           console.log(newPrice);
                           setNewTotalPrice(newPrice.reduce((a, b) => a + b));
-                          setAmount(c);
-                          settotalPrice(newPrice);
+                          
+                          setAmount(newAmount);
+                          
+                          setTotalPrice(newPrice);
                         }}
                       >
                         <i className="fa-solid fa-circle-plus"></i>
@@ -452,7 +458,9 @@ function Cart() {
 
                   <tr>
                     <th>付款總額</th>
-                    <td style={{ color: 'red', fontSize: 'large' }}>{newTotalPrice}</td>
+                    <td style={{ color: 'red', fontSize: 'large' }}>
+                      {newTotalPrice}
+                    </td>
                   </tr>
                 </table>
               </div>
