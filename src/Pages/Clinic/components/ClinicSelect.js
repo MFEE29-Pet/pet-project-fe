@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from '../../../Components/Select/Select';
 import CheckBox from './CheckBox';
-import DogButton from '../../../Components/Buttons/DogButton';
 import GlassIcon from './GlassIcon';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -84,14 +83,22 @@ const InfiniteScroll = styled.div`
   }
 `;
 
-function ClinicSelect({ setDataFromSelect ,setLocation}) {
+const Button = styled.button`
+  border: none;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 18px;
+  border-radius: 18px;
+  cursor: pointer;
+`;
+
+function ClinicSelect({ setDataFromSelect, setLocation }) {
   const [selectedArea, setSelectedArea] = useState('');
   // const [selectedClinic, setSelectedClinic] = useState('');
-  const [likeList2, setLikeList2] = useState([]);
+  const [likeList, setLikeList] = useState([]);
 
   const [clinicList, setClinicList] = useState([]);
   const [showList, setShowList] = useState([]);
-
 
   const getClinic = async () => {
     try {
@@ -99,8 +106,6 @@ function ClinicSelect({ setDataFromSelect ,setLocation}) {
       setClinicList(res.data.rows);
 
       setShowList(res.data.rows);
-
-      setDataFromSelect(res.data.rows);
     } catch (e) {
       console.log(e.message);
     }
@@ -110,14 +115,55 @@ function ClinicSelect({ setDataFromSelect ,setLocation}) {
     getClinic();
   }, []);
 
-  useEffect(() => {
-    const ClinicOptions = clinicList.filter((e, i) => {
+  // useEffect(() => {
+  //   const ClinicOptions = clinicList.filter((e, i) => {
+  //     const { area } = e;
+  //     return area === selectedArea;
+  //   });
+  //   setShowList(ClinicOptions);
+  //   setDataFromSelect(ClinicOptions);
+  // }, [selectedArea]);
+
+  const filterClinic = () => {
+    const clinicOptions = clinicList.filter((e, i) => {
       const { area } = e;
       return area === selectedArea;
     });
-    setShowList(ClinicOptions);
-    setDataFromSelect(ClinicOptions);
-  }, [selectedArea]);
+    setShowList(clinicOptions);
+
+    const data = likeList;
+
+    console.log(likeList);
+
+
+    if (data.length === 0) {
+      setShowList(clinicOptions);
+
+      // console.log(clinicOptions);
+    } else if (data.length === 1 && data[0] === '非犬貓') {
+      const data1 = clinicOptions.filter((e, i) => {
+        return e.type === 1;
+      });
+      setShowList(data1);
+
+      // console.log(data1);
+    } else if (data.length === 1 && data[0] === '24小時急診') {
+      const data1 = clinicOptions.filter((e, i) => {
+        return e.allday === 1;
+      });
+      setShowList(data1);
+
+      // console.log(data1);
+    } else {
+      const data1 = clinicOptions.filter((e, i) => {
+        return e.allday === 1 && e.type === 1;
+      });
+      setShowList(data1);
+
+      // console.log(data1);
+    }
+  };
+  setDataFromSelect(showList);
   return (
     <>
       <Select
@@ -138,17 +184,19 @@ function ClinicSelect({ setDataFromSelect ,setLocation}) {
             <CheckBox
               key={i}
               value={v}
-              checkedValueList={likeList2}
-              setCheckedValueList={setLikeList2}
+              checkedValueList={likeList}
+              setCheckedValueList={setLikeList}
             />
           );
         })}
-        <DogButton ClassName="bg_main_light_color1" Text={<GlassIcon />} />
+        <Button className="bg_main_light_color1" onClick={filterClinic}>
+          <GlassIcon />
+        </Button>
       </Check>
       <InfiniteScroll>
-      {/* {console.log(dataFromItem)} */}
+        {/* {console.log(dataFromItem)} */}
         {showList.map((e, i) => {
-          const { name, address, mobile,code, sid,lat,lng } = e;
+          const { name, address, mobile, code, sid, lat, lng } = e;
           return (
             <ClinicItem
               name={name}
@@ -161,7 +209,6 @@ function ClinicSelect({ setDataFromSelect ,setLocation}) {
               lng={lng}
               setLocation={setLocation}
             />
-          
           );
         })}
       </InfiniteScroll>

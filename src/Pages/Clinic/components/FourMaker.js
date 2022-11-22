@@ -2,9 +2,10 @@ import React from 'react';
 import L from 'leaflet';
 import { Marker, Popup, Tooltip } from 'react-leaflet';
 import { imgUrl } from '../../../config';
+import FourTable from './FourTable';
 
 const FourMarker = L.icon({
-  iconUrl: `${imgUrl}/images/PinColor_F3796C.png`,
+  iconUrl: `${imgUrl}/images/PinColor_9C78C2.png`,
   iconSize: [15, 15],
   iconAnchor: [10, 41],
   popupAnchor: [2, -40],
@@ -18,7 +19,9 @@ function FourMaker({ dataFromSelect }) {
           <Tooltip direction="top" offset={[0, -40]} opacity={1} permanent>
             {e.name}
           </Tooltip>
-          <Popup>{e.name}</Popup>
+          <Popup style={{width:'300px',padding:'0px'}}>
+            <FourTable/>
+          </Popup>
         </Marker>
       );
     }

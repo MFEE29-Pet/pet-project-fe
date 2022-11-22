@@ -131,6 +131,7 @@ function ClinicMap({ dataFromSelect, location }) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
+      {/* <MinimapControl position="topright" /> */}
 
       {/* <LocationMarker /> */}
       {/* {console.log(location)} */}
@@ -139,7 +140,7 @@ function ClinicMap({ dataFromSelect, location }) {
       <ThreeMaker dataFromSelect={dataFromSelect} />
       <FourMaker dataFromSelect={dataFromSelect} />
       {/* {console.log(dataFromSelect)} */}
-      <MinimapControl position="topright" />
+      
     </MapContainer>
   );
 }
