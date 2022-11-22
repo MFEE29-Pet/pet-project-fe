@@ -27,26 +27,23 @@ function Cart() {
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
   const [amount, setAmount] = useState([]);
-
+  const [totalePrice, settotalPrice] = useState([]);
+  const [test, setTest] = useState(0);
+  
   const dataAmount = () => {
     console.log(jsonData);
     const a = jsonData.map((v, i) => {
       return [v.amount];
     });
+    const b = jsonData.map((v, i) => v.price * v.amount);
+    settotalPrice(b)
     setAmount(a);
+    setTest(b.reduce((a, b) => a + b))
   };
   useEffect(() => {
     dataAmount();
   }, []);
-  function eddie(){
-  console.log('eddie')  
-  let a = document.querySelectorAll('.eason_table_total')
-  let b =[];
-  for(let i=0; i<a.length; i++){
-    b.push(a[i].innerHTML)
-  }
-  console.log(b);
-  }
+
   return (
     <>
       <div className="eason_container">
@@ -173,10 +170,8 @@ function Cart() {
 
             <tbody>
               {/* json假資料引入測試---------------------------------------- */}
-              
+
               {jsonData.map((v, i) => {
-                
-                
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
@@ -196,8 +191,8 @@ function Cart() {
                           let c = [...amount];
                           c[i] = +c[i] - 1;
                           console.log(amount);
+
                           setAmount(c);
-                          eddie()
                         }}
                       >
                         <i className="fa-solid fa-circle-minus"> </i>
@@ -208,8 +203,12 @@ function Cart() {
                         onClick={() => {
                           let c = [...amount];
                           c[i] = +c[i] + 1;
+                          const newPrice = [...totalePrice];
+                          newPrice[i] = c[i] * v.price;
+                          console.log(newPrice);
+                          setTest(newPrice.reduce((a, b) => a + b));
                           setAmount(c);
-                          eddie()
+                          settotalPrice(newPrice);
                         }}
                       >
                         <i className="fa-solid fa-circle-plus"></i>
@@ -446,7 +445,7 @@ function Cart() {
 
                   <tr>
                     <th>付款總額</th>
-                    <td style={{ color: 'red', fontSize: 'large' }}>$4770</td>
+                    <td style={{ color: 'red', fontSize: 'large' }}>{test}</td>
                   </tr>
                 </table>
               </div>
