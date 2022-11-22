@@ -92,7 +92,6 @@ function ClinicSelect({ setDataFromSelect ,setLocation}) {
   const [clinicList, setClinicList] = useState([]);
   const [showList, setShowList] = useState([]);
 
-  const [dataFromItem,setDataFromItem] = useState([])
 
   const getClinic = async () => {
     try {

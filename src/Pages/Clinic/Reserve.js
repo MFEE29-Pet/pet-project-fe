@@ -8,10 +8,9 @@ import { useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { addDays, getDay } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
-import { display } from '@mui/system';
+import Select from './components/Select';
 
 const varietyOptions = ['狗', '貓', '其他'];
 const genderOptions = ['公', '母'];
@@ -105,7 +104,7 @@ const PhotographerForm = styled.div`
         font-family: art;
         color: #727171;
         margin-right: 65px;
-        width: 218px;
+        width: 293px;
       }
     }
     .reserve-time {
@@ -161,9 +160,13 @@ const PhotographerForm = styled.div`
       }
     }
     .address {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      height: 30px;
       label {
         font-weight: bold;
-        margin: 0 80px 0 30px;
+        margin: 0 110px 0 30px;
         font-family: art;
         color: #727171;
       }
@@ -273,7 +276,7 @@ const PhotographerForm = styled.div`
     }
     .pet-image {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       label {
         font-weight: bold;
         margin: 0 80px 0 30px;
@@ -314,19 +317,45 @@ function Reserve() {
       code: '',
     },
   ]);
+  const [cityData, setCityData] = useState([
+    {
+      sid: '',
+      city_name: '',
+    },
+  ]);
+  const [areaData, setAreaData] = useState([
+    {
+      sid: '',
+      city_name: '',
+      city_sid: '',
+    },
+  ]);
+
+  const timeData = [
+    {
+      label: '早上',
+      value: 1,
+    },
+    {
+      label: '下午',
+      value: 2,
+    },
+    {
+      label: '晚上',
+      value: 3,
+    },
+  ];
+
+  const [filterArea, setFilterArea] = useState([]);
+  const [filterTime, setFilterTime] = useState([]);
 
   const [variety, setVariety] = useState('');
   const [gender, setGender] = useState('');
   const [control, setControl] = useState('');
   const [startDate, setStartDate] = useState(new Date());
-  const [datepicker, setDatepicker] = useState(4);
-  const [selectedTime, setSelectedTime] = useState('');
-
-  const [age, setAge] = React.useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  const [time, setTime] = useState(0);
+  const [city, setCity] = useState(0);
+  const [area, setArea] = useState(0);
 
   //取得qureyString
   const location = useLocation();
@@ -339,6 +368,7 @@ function Reserve() {
     sid = `/reserve/${sid}`;
   }
 
+  //拿到clinicSingle資料
   const getClinicData = async () => {
     try {
       const res = await axios.get(`http://localhost:6001/clinic/${sid}`);
@@ -352,16 +382,105 @@ function Reserve() {
   };
   const final = { ...clinicDetail };
 
-  console.log();
+  //拿到city資料
+  const getCityData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:6001/clinic/citydata`);
+      const cityData = res.data.rows;
+
+      const data = cityData.map((e) => {
+        return {
+          value: e.sid,
+          label: e.city_name,
+        };
+      });
+      setCityData(data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  //拿到area資料
+  const getAreaData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:6001/clinic/areadata`);
+      const areaData = res.data.rows;
+
+      setAreaData(areaData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   useEffect(() => {
     getClinicData();
-  }, [location]);
+    getCityData();
+    getAreaData();
+  }, []);
+
+  useEffect(() => {
+    const filterData = areaData.filter((e, i) => {
+      const { city_sid } = e;
+
+      return city_sid === city;
+    });
+
+    const data = filterData.map((e) => {
+      return {
+        value: e.sid,
+        label: e.area_name,
+        cityid: e.city_sid,
+      };
+    });
+
+    // console.log(cityData)
+    // console.log(areaData)
+    // console.log(filterArea);
+    setFilterArea(data);
+  }, [city]);
 
   const isWeekday = (date) => {
     const day = getDay(date);
     return day !== 1;
   };
+
+  const filterTimeA = () => {
+    const day = getDay(startDate);
+    const type = final[0].time;
+    console.log(day, type);
+
+    if (
+      (type === 2 && day === 2) ||
+      (type === 2 && day === 3) ||
+      (type === 2 && day === 4) ||
+      (type === 2 && day === 0) ||
+      (type === 4 && day === 6) ||
+      (type === 4 && day === 0)
+    ) {
+      const filte = timeData.filter((e) => {
+        return e.value !== 1;
+      });
+      return setFilterTime(filte);
+    } else if (
+      (type === 2 && day === 0) ||
+      (type === 3 && day === 1) ||
+      (type === 3 && day === 2) ||
+      (type === 3 && day === 3) ||
+      (type === 3 && day === 4) ||
+      (type === 3 && day === 5) ||
+      (type === 3 && day === 6)
+    ) {
+      const filte = timeData.filter((e) => {
+        return e.value !== 3;
+      });
+      return setFilterTime(filte);
+    }
+
+    setFilterTime(timeData);
+  };
+  useEffect(() => {
+    filterTimeA();
+  }, [startDate]);
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
@@ -379,6 +498,25 @@ function Reserve() {
       {value}
     </button>
   ));
+
+  const [formData, setFormData] = useState({
+    membersid: '',
+    petsid: '',
+    date: '',
+    time: '',
+    symptom: '',
+  });
+
+  const mySubmit = async (e) => {
+    e.preventDefault();
+
+    const { data } = await axios.post(
+      'http://localhost:6001/clinic/add',
+      formData
+    );
+
+    console.log(data);
+  };
 
   return (
     <ReserveBox>
@@ -408,13 +546,14 @@ function Reserve() {
           name="reservation"
           action=""
           className="reserve_form"
+          onSubmit={mySubmit}
         >
           {/* <!-- 預約時段 --> */}
           <div className="reserve-time">
             <h2 className="text_main_dark_color2">預約時間</h2>
             <div className="dayTime">
               <h3>日期時段</h3>
-              {datepicker === 4 ? (
+              {final[0].time === 4 ? (
                 <DatePicker
                   selected={startDate}
                   dateFormat="yyyy/MM/dd"
@@ -442,34 +581,19 @@ function Reserve() {
                   ]}
                 />
               )}
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <Select
-                  id="demo-select-small"
-                  value={age}
-                  onChange={handleChange}
-                  style={{
-                    borderRadius: '20px',
-                    height: '30px',
-                    border: '2px solid #dcdddd',
-                    fontFamily: 'art',
-                  }}
-                >
-                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
-                    早上
-                  </MenuItem>
-                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
-                    下午
-                  </MenuItem>
-                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
-                    晚上
-                  </MenuItem>
-                </Select>
-              </FormControl>
+              {console.log(time)}
+              <Select
+                value={time}
+                options={filterTime}
+                placeholder="請選擇時段"
+                onSelect={(value) => setTime(value)}
+              />
             </div>
           </div>
 
           {/* <!-- 會員資料 --> */}
           <div className="member-data">
+            <input type="hidden" value={1} id="member_sid" />
             <h2 className="text_main_dark_color2">飼主資料</h2>
             <div className="name">
               <label htmlFor="name">姓名</label>
@@ -485,68 +609,25 @@ function Reserve() {
             </div>
             <div className="address">
               <label htmlFor="address">地址</label>
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ margin: 0 }}
-                size="small"
-              >
-                <Select
-                  id="demo-select-small"
-                  value={age}
-                  onChange={handleChange}
-                  style={{
-                    borderRadius: '20px',
-                    height: '30px',
-                    border: '2px solid #dcdddd',
-                    fontFamily: 'art',
-                    margin: 0,
-                  }}
-                >
-                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
-                    早上
-                  </MenuItem>
-                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
-                    下午
-                  </MenuItem>
-                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
-                    晚上
-                  </MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl
-                sx={{ m: 1, minWidth: 120 }}
-                style={{ margin: 0, border: 'none' }}
-                size="small"
-              >
-                <Select
-                  id="demo-select-small"
-                  value={age}
-                  onChange={handleChange}
-                  style={{
-                    borderRadius: '20px',
-                    height: '30px',
-                    border: '2px solid #dcdddd',
-                    fontFamily: 'art',
-                    margin: 0,
-                  }}
-                >
-                  <MenuItem value={1} style={{ fontFamily: 'art' }}>
-                    早上
-                  </MenuItem>
-                  <MenuItem value={2} style={{ fontFamily: 'art' }}>
-                    下午
-                  </MenuItem>
-                  <MenuItem value={3} style={{ fontFamily: 'art' }}>
-                    晚上
-                  </MenuItem>
-                </Select>
-              </FormControl>
+              <Select
+                value={city}
+                options={cityData}
+                placeholder="請選擇縣市"
+                onSelect={(value) => setCity(value)}
+              />
+              <Select
+                value={area}
+                options={filterArea}
+                placeholder="請選擇地區"
+                onSelect={(value) => setArea(value)}
+              />
               <input type="text" name="road" id="address" />
             </div>
           </div>
 
           {/* <!-- 寵物資料 --> */}
           <div className="pet-data">
+            <input type="hidden" value={1} id="pet_sid" />
             <h2 className="text_main_dark_color2">寵物資料</h2>
             <div className="pet-variety">
               {/* <!-- 寵物種類 --> */}
@@ -613,7 +694,7 @@ function Reserve() {
               <label htmlFor="pet-symptom">不適症狀</label>
               <textarea
                 name="pet-symptom"
-                id="pet-symptom"
+                id="symptom"
                 cols="30"
                 rows="10"
               ></textarea>
@@ -644,6 +725,20 @@ function Reserve() {
               </div>
             </div>
           </div>
+          <button
+            className="bg_main_light_color1"
+            style={{
+              borderRadius: '20px',
+              padding: '10px 20px',
+              border: 'none',
+              fontFamily: 'art',
+              color: '#fff',
+              fontSize: '16px',
+              marginLeft: '200px',
+            }}
+          >
+            確認預約
+          </button>
         </form>
       </PhotographerForm>
     </ReserveBox>

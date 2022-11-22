@@ -1,4 +1,10 @@
-import { useContext, useState } from 'react';
+import {
+  useContext,
+  // useEffect,
+  // useRef,
+  // useImperativeHandle,
+  // forwardRef,
+} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
@@ -12,12 +18,55 @@ import Reserve from './Pages/Clinic/Reserve';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
+// import gsap from 'gsap';
 
 function App() {
   // const [checked, setChecked] = useState(true);
   // const [switchMode, setSwitchMode] = useState('cat');
   const { mode } = useContext(SwitchButtonContext);
   // console.log(mode);
+  // const Circle = forwardRef(({ size, delay }, ref) => {
+  //   const el = useRef();
+
+  //   useImperativeHandle(
+  //     ref,
+  //     () => {
+  //       // return our API
+  //       return {
+  //         moveTo(x, y) {
+  //           gsap.to(el.current, { x, y, delay });
+  //         },
+  //       };
+  //     },
+  //     [delay]
+  //   );
+
+  //   return <i className={`circle ${size} fa-solid fa-paw-simple`} ref={el}></i>;
+  // });
+
+  // const circleRefs = useRef([]);
+
+  // // reset on re-renders
+  // circleRefs.current = [];
+
+  // useEffect(() => {
+  //   const onMove = ({ clientX, clientY }) => {
+  //     circleRefs.current.forEach((ref) => ref.moveTo(clientX+50, clientY+50));
+  //     //    circleRefs.current.forEach((ref) =>
+  //     //    ref.moveTo(innerWidth / 2, innerHeight / 2)
+  //     // );
+  //   };
+
+  //   window.addEventListener('pointermove', onMove);
+
+  //   return () => window.removeEventListener('pointermove', onMove);
+  // }, []);
+
+  // const addCircleRef = (ref) => {
+  //   if (ref) {
+  //     circleRefs.current.push(ref);
+  //   }
+  // };
 
   return (
     <div id={mode} className="bg_bright_color" style={{ width: '100%' }}>
@@ -50,6 +99,9 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      {/* <Circle size="sm" ref={addCircleRef} delay={0} />
+      <Circle size="md" ref={addCircleRef} delay={0.1} />
+      <Circle size="lg" ref={addCircleRef} delay={0.2} /> */}
     </div>
   );
 }

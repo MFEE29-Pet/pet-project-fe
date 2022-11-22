@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 import Dropdown from './Dropdown';
 
@@ -20,9 +20,9 @@ const SelectBox = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  height: 38px;
+  height: 30px;
   box-sizing: border-box;
-  border: 1px solid #fff;
+  border: 2px solid #ccc;
   font-family: art;
   border-radius: 20px;
   background: #fff;
@@ -48,9 +48,9 @@ const ArrowDown = styled.div`
 `;
 
 const Menu = styled.div`
-  width: 240px;
+  width: 180px;
   overflow-y: scroll;
-  height: 300px;
+  height: 200px;
   display: inline-flex;
   flex-direction: column;
   border-radius: 10px;
