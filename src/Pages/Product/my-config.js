@@ -4,3 +4,5 @@ export const PRODUCT_DETAIL = `${MY_HOST}/product/detail`;
 export const INSERT_REPLY = `${MY_HOST}/product/addReply-api`;
 export const PHOTOGRAPH = `${MY_HOST}/product/photographers-json`;
 export const PHOTOGRAPH_FORM = `${MY_HOST}/product/photographersForm`;
+
+export const LOGIN_API = `${MY_HOST}/product/login-api`;

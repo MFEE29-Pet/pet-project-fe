@@ -8,6 +8,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
+import AuthContext from '../../contexts/AuthContext';
 
 const InfoDiv = styled.div`
   &::before {
@@ -94,6 +95,9 @@ function ProductDetail() {
   }, [location]);
 
   // console.log(productDetail);
+
+  const { myAuth, setMyAuth, logout } = useContext(AuthContext);
+  console.log(myAuth);
 
   const pd = productDetail.map((e, i) => {
     return { ...e };
