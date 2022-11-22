@@ -16,7 +16,7 @@ import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
 import Login from './Pages/Product/Login';
-import { CartProvider } from './Pages/Product/contexts/CartProvider';
+// import { CartProvider } from './Pages/Product/contexts/CartProvider';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -37,7 +37,7 @@ function App() {
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <AllContextProviders>
-          <CartProvider>
+          {/* <CartProvider> */}
             <Navbar />
             <i
               className={`fa-light fa-shield-cat text_main_light_color1`}
@@ -69,7 +69,7 @@ function App() {
 
               <Route path="member" element={<Member />} />
             </Routes>
-          </CartProvider>
+          {/* </CartProvider> */}
         </AllContextProviders>
         <Footer />
       </BrowserRouter>

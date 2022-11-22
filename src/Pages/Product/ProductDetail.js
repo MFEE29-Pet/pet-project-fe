@@ -9,7 +9,7 @@ import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
 import AuthContext from '../../contexts/AuthContext';
-import { AddCartContext } from './contexts/CartProvider';
+import { AddCartContext } from './contexts/CartProviderTest';
 
 const InfoDiv = styled.div`
   &::before {
@@ -67,8 +67,6 @@ function ProductDetail() {
   const [cartItem, setCartItem] = useState({
     productCart: [],
     photoCart: [],
-    totalItem: 0,
-    totalPrice: 0,
   });
 
   // 取得 queryString
