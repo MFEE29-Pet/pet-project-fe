@@ -28,17 +28,17 @@ function Cart() {
   const [creditClick, setCreditClick] = useState(false);
   const [amount, setAmount] = useState([]);
   const [totalePrice, settotalPrice] = useState([]);
-  const [test, setTest] = useState(0);
-  
+  const [newTotalPrice, setNewTotalPrice] = useState(0);
+
   const dataAmount = () => {
     console.log(jsonData);
-    const a = jsonData.map((v, i) => {
+    const newAmount = jsonData.map((v, i) => {
       return [v.amount];
     });
-    const b = jsonData.map((v, i) => v.price * v.amount);
-    settotalPrice(b)
-    setAmount(a);
-    setTest(b.reduce((a, b) => a + b))
+    const origiTotalPrice = jsonData.map((v, i) => v.price * v.amount);
+    settotalPrice(origiTotalPrice);
+    setAmount(newAmount);
+    setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
   };
   useEffect(() => {
     dataAmount();
@@ -192,7 +192,14 @@ function Cart() {
                           c[i] = +c[i] - 1;
                           console.log(amount);
 
+                          const newPrice = [...totalePrice];
+                          newPrice[i] = c[i] * v.price;
+                          console.log(newPrice);
+                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
+
                           setAmount(c);
+
+                          settotalPrice(newPrice);
                         }}
                       >
                         <i className="fa-solid fa-circle-minus"> </i>
@@ -206,7 +213,7 @@ function Cart() {
                           const newPrice = [...totalePrice];
                           newPrice[i] = c[i] * v.price;
                           console.log(newPrice);
-                          setTest(newPrice.reduce((a, b) => a + b));
+                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
                           setAmount(c);
                           settotalPrice(newPrice);
                         }}
@@ -445,7 +452,7 @@ function Cart() {
 
                   <tr>
                     <th>付款總額</th>
-                    <td style={{ color: 'red', fontSize: 'large' }}>{test}</td>
+                    <td style={{ color: 'red', fontSize: 'large' }}>{newTotalPrice}</td>
                   </tr>
                 </table>
               </div>
