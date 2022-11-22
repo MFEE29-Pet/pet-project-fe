@@ -15,7 +15,7 @@ export default function Pagination({ totalPages, page, usp }) {
 
   return totalPages > 1 ? (
     <>
-      <div className="page">
+      <div className="product_page">
         <ul>
           <li>
             <Link
