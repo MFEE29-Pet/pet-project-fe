@@ -3,6 +3,8 @@ import { useState, useContext, useEffect } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+
+//測試用假來源資料
 import jsonData from './orderTest.json';
 
 // 主題變色功能區-------------------------------------------------------------------------------------
@@ -25,27 +27,50 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
+  // 主題變色
   const { mode } = useContext(SwitchButtonContext);
+
+  // 按鈕選定維持hover顏色
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
+
+  // 頁面呈現的即時商品數量
   const [amount, setAmount] = useState([]);
+
+  // 來源資料原始商品金額小計
   const [totalPrice, setTotalPrice] = useState([]);
+
+  // 有被修改過數量的商品金額小計
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
+  // 取資料上狀態為了要刪除時使用
+  const [testData, setTestData] = useState([{}]);
+  const getData = () => {
+    setTestData(jsonData);
+  };
+
+  // 商品數量相關連動功能
   const dataAmount = () => {
     console.log(jsonData);
+
+    // 來源資料原始商品數量map
     const origiAmount = jsonData.map((v, i) => {
       return [v.amount];
     });
     setAmount(origiAmount);
 
+    // 來源資料原始小計金額map
     const origiTotalPrice = jsonData.map((v, i) => v.price * v.amount);
     setTotalPrice(origiTotalPrice);
 
+    // 所有小計加總後要結帳之總額
     setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
   };
+
+  // 一進來頁面就載入
   useEffect(() => {
     dataAmount();
+    getData();
   }, []);
 
   return (
@@ -97,7 +122,7 @@ function Cart() {
           </div>
         </EasonProgressBar>
 
-        {/* <!-- 攝影預約明細--------------------------------------------------------- --> */}
+        {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
           <div className="eason_list_title">
             <h2>攝影預約明細</h2>
@@ -151,7 +176,7 @@ function Cart() {
           </table>
         </div>
 
-        {/* <!-- 商品訂單明細--------------------------------------------------------- --> */}
+        {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
             <h2>商品訂單明細</h2>
@@ -173,9 +198,9 @@ function Cart() {
             </thead>
 
             <tbody>
-              {/* json假資料引入測試---------------------------------------- */}
+              {/* json假資料引入測試--------------------------------------------- */}
 
-              {jsonData.map((v, i) => {
+              {testData.map((v, i) => {
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
@@ -218,9 +243,9 @@ function Cart() {
                           newPrice[i] = newAmount[i] * v.price;
                           console.log(newPrice);
                           setNewTotalPrice(newPrice.reduce((a, b) => a + b));
-                          
+
                           setAmount(newAmount);
-                          
+
                           setTotalPrice(newPrice);
                         }}
                       >
@@ -237,7 +262,7 @@ function Cart() {
                 );
               })}
 
-              {/* 寫死的html假資料---------------------------------------- */}
+              {/* 寫死的html假資料----------------------------------------------- */}
               {/* <tr> */}
               {/* <td className="eason_p_name">濃郁雞白罐頭</td>
                 <td className="eason_table_price">$980</td>
@@ -391,7 +416,7 @@ function Cart() {
           </table>
         </div>
 
-        {/* <!-- 下方區域---------------------------------------------> */}
+        {/* <!-- 下方區域-------------------------------------------------------> */}
         <div className="eason_section_3">
           <div className="eason_s3_left">
             <h2>付款方式</h2>
