@@ -1,5 +1,5 @@
-import { SwitchButtonContextProvider } from './SwitchButtonContext';
+import { AuthContextProvider } from './AuthContext';
 
 export default function AllContextProviders({ children }) {
-  return <SwitchButtonContextProvider>{children}</SwitchButtonContextProvider>;
+  return <AuthContextProvider>{children}</AuthContextProvider>;
 }

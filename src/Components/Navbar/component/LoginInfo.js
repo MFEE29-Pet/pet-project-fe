@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LoginInfoBoxTop from './LoginInfoBoxTop';
 
+
 const LoginInfoBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -11,6 +12,7 @@ const LoginInfoBox = styled.div`
 `;
 
 function LoginInfo() {
+
   return (
     <LoginInfoBox>
       <LoginInfoBoxTop/>

@@ -18,6 +18,8 @@ import Reserve from './Pages/Clinic/Reserve';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
+import Login from './Pages/Clinic/Login';
+import AllContextProviders from './contexts/AllContextProviders';
 // import gsap from 'gsap';
 
 function App() {
@@ -80,24 +82,27 @@ function App() {
 
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
-        <Navbar />
-        <section style={{ height: '100px' }}></section>
-        <Routes>
-          <Route path="/" element={<Index />} />
+        <AllContextProviders>
+          <Navbar />
+          <section style={{ height: '100px' }}></section>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-          <Route path="product" element={<Product />} />
-          <Route path="product/:sid" />
+            <Route path="product" element={<Product />} />
+            <Route path="product/:sid" />
 
-          <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart />} />
 
-          <Route path="clinic" element={<Clinic />} />
-          <Route path="clinic/reserve" element={<Reserve />} />
+            <Route path="clinic" element={<Clinic />} />
+            <Route path="clinic/reserve" element={<Reserve />} />
+            <Route path="clinic/login" element={<Login />} />
 
-          <Route path="forum" element={<Forum />} />
+            <Route path="forum" element={<Forum />} />
 
-          <Route path="member" element={<Member />} />
-        </Routes>
-        <Footer />
+            <Route path="member" element={<Member />} />
+          </Routes>
+          <Footer />
+        </AllContextProviders>
       </BrowserRouter>
       {/* <Circle size="sm" ref={addCircleRef} delay={0} />
       <Circle size="md" ref={addCircleRef} delay={0.1} />
