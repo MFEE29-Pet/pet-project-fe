@@ -6,7 +6,7 @@ import FishIcon from './FishIcon';
 import BoneIcon from './BoneIcon';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
-const LittleItemBox = styled(Link)`
+const LittleItemBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,16 +29,17 @@ const LittleItemBox = styled(Link)`
     }
   }
 `;
-const TitleBox = styled.h2`
+const TitleBox = styled(Link)`
   font-family: art;
   font-size: 20px;
   width: 140px;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
-  padding-bottom: 5px;
   background-color: #fff;
   z-index: 4;
+  display: flex;
+  flex-direction: column;
 `;
 const EnTitleBox = styled.small`
   font-family: art;
@@ -48,6 +49,8 @@ const EnTitleBox = styled.small`
   cursor: pointer;
   background-color: #fff;
   z-index: 4;
+  font-weight: 500;
+  margin-top: 5px;
 `;
 const Foot = styled.div`
   width: 50px;
@@ -86,7 +89,7 @@ const List = styled.ul`
   padding: 20px;
   display: none;
 `;
-const LittleHref = styled(Link)`
+const LittleHref = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,29 +101,31 @@ const LittleHref = styled(Link)`
 
 const LI = styled(Link)`
   position: relative;
-  &:hover{
-    .icon{
-      opacity:1;
+  &:hover {
+    .icon {
+      opacity: 1;
     }
   }
 `;
 
-export const LittleItem = ({ ItemData, Title, EnTitle,to}) => {
+export const LittleItem = ({ ItemData, Title, EnTitle, to }) => {
   const { mode } = useContext(SwitchButtonContext);
   return (
-    <LittleItemBox to={to}>
-      <TitleBox className="text_main_dark_color2">{Title}</TitleBox>
-      <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
+    <LittleItemBox>
+      <TitleBox className="text_main_dark_color2" to={to}>
+        {Title}
+        <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
+      </TitleBox>
       <Foot className="foot foot_type" />
       <Shadow src={`${imgUrl}/images/shadow.png`} alt="" className="shadow" />
       <List className="list">
         {ItemData.map((e, i) => {
           const { id, name, to } = e;
           return (
-            <LittleHref key={id} to={to}>
-              <LI className="text_main_dark_color2">
+            <LittleHref key={id}>
+              <LI className="text_main_dark_color2" to={to}>
                 {name}
-                {mode === 'dog' ? <BoneIcon/> : <FishIcon />}
+                {mode === 'dog' ? <BoneIcon /> : <FishIcon />}
               </LI>
             </LittleHref>
           );
