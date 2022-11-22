@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
-import { ArrowRight, ArrowLeft } from '@material-ui/icons';
+import { ArrowRight, ArrowLeft } from '@mui/icons-material';
 
 const CarouselWrapper = styled.div`
   position: relative;

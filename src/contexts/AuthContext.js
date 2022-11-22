@@ -27,6 +27,7 @@ export const AuthContextProvider = function ({ children }) {
   }
   const [myAuth, setMyAuth] = useState(initAuth);
 
+  // 登出
   const logout = () => {
     localStorage.removeItem('auth');
     setMyAuth(unAuth);
@@ -34,7 +35,6 @@ export const AuthContextProvider = function ({ children }) {
     alert('已登出');
   };
   // 2. 登入: 成功, 失敗
-  //TODO : 登出
 
   return (
     <AuthContext.Provider value={{ myAuth, setMyAuth, logout }}>

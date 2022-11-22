@@ -9,6 +9,7 @@ import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
 import AuthContext from '../../contexts/AuthContext';
+import { AddCartContext } from './contexts/CartProvider';
 
 const InfoDiv = styled.div`
   &::before {
@@ -28,6 +29,7 @@ const ShowStars = styled.div`
 
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
+  const addItems = useContext(AddCartContext);
 
   const [loved, setLoved] = useState(false);
   const [lovedHover, setLovedHover] = useState(false);
@@ -61,6 +63,13 @@ function ProductDetail() {
   // 購物車數字
   const [cartAmount, setCartAmount] = useState(0);
   // console.log(cartAmount);
+  // 購物車項目
+  const [cartItem, setCartItem] = useState({
+    productCart: [],
+    photoCart: [],
+    totalItem: 0,
+    totalPrice: 0,
+  });
 
   // 取得 queryString
   const location = useLocation();
@@ -93,18 +102,54 @@ function ProductDetail() {
     getProductsDetail();
     setAmount(1);
   }, [location]);
-
   // console.log(productDetail);
 
   const { myAuth, setMyAuth, logout } = useContext(AuthContext);
-  console.log(myAuth);
+  // console.log(myAuth);
 
   const pd = productDetail.map((e, i) => {
     return { ...e };
   });
   const data = pd[0];
-  // console.log(data);
+  // console.log({ data, productDetail });
   // console.log(avgNum);
+  // console.log([{ ...data }]);
+
+
+  //TODO: 加入購物車
+  const handleAddCart = (e) => {
+    e.preventDefault();
+    const products = {
+      ...cartItem,
+      productCart: [
+        ...cartItem.productCart,
+        {
+          p_sid: data.p_sid,
+          p_name: data.name,
+          price: data.member_price,
+          amount: amount,
+        },
+      ],
+    };
+    localStorage.setItem('cartItem', JSON.stringify({ ...products }));
+    console.log({ products });
+    setCartItem(products);
+  };
+  // console.log(cartItem);
+
+  // const addToCart = (product) => {
+  //   const exist = cartItem.find((x) => x.id === product.id);
+  //   if (exist) {
+  //     setCartItem(
+  //       cartItem.map((x) =>
+  //         x.id == product.id ? { ...exist, quantity: exist.quantity + 1 } : x
+  //       )
+  //     );
+  //   } else {
+  //     setCartItem([...cartItem, { ...product, quantity: 1 }]);
+  //   }
+  // };
+
   const routes = [
     {
       to: '/product',
@@ -243,9 +288,7 @@ function ProductDetail() {
                 <button
                   className="cart-btn bg_main_light_color1 "
                   type="button"
-                  onClick={() => {
-                    setCartAmount(cartAmount + amount);
-                  }}
+                  onClick={handleAddCart}
                 >
                   加入購物車
                 </button>
