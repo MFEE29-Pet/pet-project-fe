@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import StarRate from './StarRate';
+import axios from 'axios';
+import { INSERT_REPLY } from '../my-config';
+import { useLocation } from 'react-router-dom';
 
 const ReplyBackground = styled.div`
   width: 100vw;
@@ -37,11 +40,59 @@ const Textarea = styled.textarea`
   resize: none;
 `;
 
-function ReplyPopup({ showDiv, setShowDiv }) {
+function ReplyPopup({ showDiv, setShowDiv, sid }) {
   const { mode } = useContext(SwitchButtonContext);
   const [starValue, setStarValue] = useState(0);
-  console.log(starValue);
-  // const [showDiv, setShowDiv] = useState(false);
+  const [pSid, setPSid] = useState(sid);
+  // console.log(pSid);
+
+  let initFields = {
+    scores: starValue,
+    comment: '',
+    p_sid: pSid || 0,
+    m_sid: 1,
+    // localStorage or session 取得
+    o_sid: 1,
+    // 考慮刪除
+  };
+  // 傳送出去的資料
+  const [fields, setFields] = useState(initFields);
+
+  // console.log(starValue);
+  console.log(fields);
+
+  // console.log(sid);
+  // const inputFields = { ...fields };
+  // console.log(inputFields.scores);
+
+  useEffect(() => {
+    setFields({ ...fields, p_sid: sid });
+  }, [showDiv]);
+
+  const handleChange = (e) => {
+    setFields({ ...fields, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!fields.comment) {
+      alert('請輸入評價');
+      return;
+    } else if (fields.scores === 0) {
+      alert('請輸入評價');
+      return;
+    }
+    await setFields({ ...fields, p_sid: sid });
+
+    const res = await axios.post(`${INSERT_REPLY}`, fields);
+    console.log(res);
+
+    setShowDiv(!showDiv);
+    // setFields(initFields);
+  };
+  // console.log(INSERT_REPLY);
+  // const fd = new FormData(form);
+
   return (
     <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}>
       <Reply
@@ -53,15 +104,6 @@ function ReplyPopup({ showDiv, setShowDiv }) {
           alignItems: 'center',
         }}
       >
-        {/* <p
-          type="button"
-          onClick={() => {
-            setShowDiv(!showDiv);
-          }}
-        >
-          X
-        </p> */}
-
         <div
           style={{
             borderRadius: '50%',
@@ -88,26 +130,40 @@ function ReplyPopup({ showDiv, setShowDiv }) {
           className="star-wrap"
           style={{ marginBottom: '20px', fontSize: '30px' }}
         >
-          <StarRate setStarValue={setStarValue} />
+          <StarRate
+            setStarValue={setStarValue}
+            setFields={setFields}
+            fields={fields}
+          />
         </div>
         <form
-          action=""
+          id="form"
+          onSubmit={handleSubmit}
           style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}
         >
+          <input type="number" name="p_sid" value={sid} readOnly hidden />
+          <input type="number" name="m_sid" defaultValue={1} hidden />
+          <input type="number" name="o_sid" defaultValue={1} hidden />
           {/* 接收星星的值 */}
-          <input type="number" defaultValue={starValue} hidden />
+          <input
+            type="number"
+            value={starValue}
+            name="scores"
+            hidden
+            readOnly
+          />
           <Textarea
-            name=""
+            name="comment"
             id=""
             cols="40"
             rows="10"
             placeholder="留下商品評價"
-            onChange={() => {}}
-          ></Textarea>
+            onChange={handleChange}
+          />
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <button
               type="button"
@@ -126,6 +182,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
             >
               取消
             </button>
+
             {/* 要改submit */}
             <button
               type="button"
@@ -137,6 +194,7 @@ function ReplyPopup({ showDiv, setShowDiv }) {
                 fontWeight: 'bold',
                 color: '#fff',
               }}
+              onClick={handleSubmit}
             >
               確定
             </button>

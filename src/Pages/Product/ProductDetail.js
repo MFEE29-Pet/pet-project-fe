@@ -1,14 +1,13 @@
 import ProductSidebar from './components/ProductSidebar';
-import { useContext, useState } from 'react';
-
+import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
-import ProductDetailContext from '../../contexts/ProductDetailContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
-import CartIcon from './components/CartIcon';
+import axios from 'axios';
+import { PRODUCT_DETAIL } from './my-config';
 
 const InfoDiv = styled.div`
   &::before {
@@ -19,16 +18,89 @@ const InfoDiv = styled.div`
   }
 `;
 
+const ShowStars = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  overflow: hidden;
+`;
+
 function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
-  const { data, amount, setAmount, setCartAmount, cartAmount } =
-    useContext(ProductDetailContext);
 
   const [loved, setLoved] = useState(false);
   const [lovedHover, setLovedHover] = useState(false);
   // console.log(data);
   const [showDiv, setShowDiv] = useState(false);
 
+  // 初始狀態
+  let initProductDetail = [
+    {
+      sid: 0,
+      name: '',
+      category: 0,
+      img: '',
+      price: 0,
+      member: 0,
+      member_price: 0,
+      specials: '',
+      info: '',
+      created_at: '',
+      inventory: 0,
+      on_sale: 1,
+    },
+  ];
+  // 商品細節資訊 state
+  const [productDetail, setProductDetail] = useState(initProductDetail);
+  // 評價平均數
+  const [avgNum, setAvgNum] = useState(0);
+  // 數量 state
+  const [amount, setAmount] = useState(1);
+
+  // 購物車數字
+  const [cartAmount, setCartAmount] = useState(0);
+  // console.log(cartAmount);
+
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let sid = +params.get('sid');
+  if (!sid) {
+    sid = '';
+  } else {
+    sid = `/${sid}`;
+  }
+  console.log({ sid });
+
+  // 取得商品資料
+  const getProductsDetail = async () => {
+    try {
+      const res = await axios.get(`${PRODUCT_DETAIL}${sid}`);
+
+      console.log(res);
+
+      const productData = res.data.rows;
+      setProductDetail(productData);
+      setAvgNum(res.data.avgScores);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  // didMount 載入資料
+  useEffect(() => {
+    getProductsDetail();
+    setAmount(1);
+  }, [location]);
+
+  // console.log(productDetail);
+
+  const pd = productDetail.map((e, i) => {
+    return { ...e };
+  });
+  const data = pd[0];
+  // console.log(data);
+  // console.log(avgNum);
   const routes = [
     {
       to: '/product',
@@ -47,7 +119,6 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
-          <CartIcon amount={amount} />
           <div className="filter-s-p">
             <div className="search-bar">
               <input type="search" name="search" id="search" />
@@ -190,14 +261,29 @@ function ProductDetail() {
             <div className="score-content">
               <div className="star-score-total">
                 <div className="score">
-                  <h1>4.8</h1>
+                  <h1>{avgNum.toFixed(1)}</h1>
                 </div>
                 <div className="stars">
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star "></i>
-                  <i className="fa-solid fa-star-half-stroke "></i>
+                  <div className="showStars" style={{ position: 'relative' }}>
+                    <div className="noneStars">
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                      <i className="fa-regular fa-star "></i>
+                    </div>
+                    <ShowStars
+                      className="showStars"
+                      avg={avgNum}
+                      style={{ width: `${(avgNum / 5) * 100}%` }}
+                    >
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                      <i className="fa-solid fa-star "></i>
+                    </ShowStars>
+                  </div>
                   <div
                     className="write-reply"
                     onClick={() => {
@@ -211,6 +297,7 @@ function ProductDetail() {
                     </p>
                   </div>
                 </div>
+
                 <div className="stars-progress">
                   <div className="progress-item">
                     <label htmlFor="stars">5</label>
@@ -300,7 +387,7 @@ function ProductDetail() {
           </div>
         </section>
       </main>
-      <ReplyPopup setShowDiv={setShowDiv} showDiv={showDiv} />
+      <ReplyPopup setShowDiv={setShowDiv} showDiv={showDiv} sid={data.sid} />
       {/* <!-- history sec --> */}
       <section className="history">
         <div className="history-side-div">

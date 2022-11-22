@@ -47,6 +47,8 @@ const Rate = ({
   isDisabled,
   onChange,
   setStarValue,
+  setFields,
+  fields,
 }) => {
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [previewValue, setPreviewValue] = useState(innerValue);
@@ -95,6 +97,8 @@ const Rate = ({
               handleOnClick(itemKey + 1);
               // 設定值給隱藏的input
               setStarValue(itemKey + 1);
+              //
+              setFields({ ...fields, scores: itemKey + 1 });
             }}
           >
             {character}

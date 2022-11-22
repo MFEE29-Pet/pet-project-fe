@@ -32,7 +32,7 @@ export const ProductDetailContextProvider = function ({ children }) {
 
   // 購物車數字
   const [cartAmount, setCartAmount] = useState(0);
-  console.log(cartAmount);
+  // console.log(cartAmount);
 
   // 取得 queryString
   const location = useLocation();
@@ -47,7 +47,7 @@ export const ProductDetailContextProvider = function ({ children }) {
   // console.log({ sid });
 
   // 取得商品資料
-  const getProducts = async () => {
+  const getProductsDetail = async () => {
     try {
       const res = await axios.get(`${PRODUCT_LIST}${sid}`);
 
@@ -62,7 +62,8 @@ export const ProductDetailContextProvider = function ({ children }) {
 
   // didMount 載入資料
   useEffect(() => {
-    getProducts();
+    getProductsDetail();
+    setAmount(1);
   }, [location]);
 
   // console.log(productDetail);

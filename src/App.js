@@ -14,7 +14,7 @@ import SwitchButtonContext from './contexts/SwitchButtonContext';
 import './style/style.scss';
 import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
-import Photographer from './Pages/Product/Photographer';
+import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
 
@@ -50,7 +50,7 @@ function App() {
 
             <Route path="product" element={<Product />} />
             <Route path="product/detail/" element={<ProductDetail />} />
-            <Route path="product/photographers/" element={<Photographer />} />
+            <Route path="product/photographers/" element={<Photographers />} />
             <Route
               path="product/photographers/form"
               element={<PhotographerForm />}
