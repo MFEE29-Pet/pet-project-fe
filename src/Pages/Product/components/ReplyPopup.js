@@ -59,7 +59,7 @@ function ReplyPopup({ showDiv, setShowDiv, sid }) {
   const [fields, setFields] = useState(initFields);
 
   // console.log(starValue);
-  console.log(fields);
+  // console.log(fields);
 
   // console.log(sid);
   // const inputFields = { ...fields };

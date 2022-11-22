@@ -70,14 +70,14 @@ function ProductDetail() {
   } else {
     sid = `/${sid}`;
   }
-  console.log({ sid });
+  // console.log({ sid });
 
   // 取得商品資料
   const getProductsDetail = async () => {
     try {
       const res = await axios.get(`${PRODUCT_DETAIL}${sid}`);
 
-      console.log(res);
+      // console.log(res);
 
       const productData = res.data.rows;
       setProductDetail(productData);
@@ -129,7 +129,7 @@ function ProductDetail() {
             </div>
             <div className="pro-loved-list">
               <Link
-                href=""
+                to="/member"
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}
