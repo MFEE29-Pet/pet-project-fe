@@ -19,6 +19,18 @@ export default function Pagination({ totalPages, page, usp }) {
         <ul>
           <li>
             <Link
+              to={`${location.pathname}${
+                cate ? `?cate=${cate}&page=${1}` : `?page=${1}`
+              }`}
+            >
+              <i
+                className="fa-solid fa-chevrons-left"
+                style={{ display: `${page === 1 ? 'none' : ''}` }}
+              ></i>
+            </Link>
+          </li>
+          <li>
+            <Link
               to={
                 nowPage > 1
                   ? `${location.pathname}${
@@ -84,6 +96,20 @@ export default function Pagination({ totalPages, page, usp }) {
               }
             >
               <i className="fa-solid fa-angle-right"></i>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`${location.pathname}${
+                cate
+                  ? `?cate=${cate}&page=${totalPages}`
+                  : `?page=${totalPages}`
+              }`}
+            >
+              <i
+                className="fa-solid fa-chevrons-right"
+                style={{ display: `${page === totalPages ? 'none' : ''}` }}
+              ></i>
             </Link>
           </li>
         </ul>
