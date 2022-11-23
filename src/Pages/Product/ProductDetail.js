@@ -10,6 +10,7 @@ import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
 // import AuthContext from '../../contexts/AuthContext';
 import CartInfoContext from './contexts/CartInfoContext';
+import IsLovedContext from './contexts/IsLovedContext';
 
 // styled components
 const InfoDiv = styled.div`
@@ -34,10 +35,11 @@ function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
   // 購物車項目
   const { cartItem, setCartItem } = useContext(CartInfoContext);
+  const { lovedList, setLovedList, delLoved, addLoved, loved, setLoved } =
+    useContext(IsLovedContext);
 
   // states
-  // 收藏狀態
-  const [loved, setLoved] = useState(false);
+  // console.log(loved);
   // 收藏連結 Hover
   const [lovedHover, setLovedHover] = useState(false);
   // 彈出視窗狀態
@@ -167,6 +169,15 @@ function ProductDetail() {
     },
   ];
 
+  const [indexNum, setIndexNum] = useState(-1);
+  // 判斷是否已收藏
+
+  useEffect(() => {
+    const index = lovedList.findIndex((e) => e.p_sid === sid) || -1;
+    setLoved(index === -1 ? false : true);
+    setIndexNum(index);
+  }, [location]);
+
   return (
     <>
       <main>
@@ -261,13 +272,21 @@ function ProductDetail() {
                     }}
                   ></i>
                 </div>
-                <div className="add-loved">
+                <div
+                  className="add-loved"
+                  onClick={() => {
+                    if (loved) {
+                      delLoved(+params.get('sid'), indexNum);
+                    } else {
+                      addLoved(+params.get('sid'));
+                      console.log(lovedList);
+                      // console.log(loved);
+                    }
+                  }}
+                >
                   <p>{loved ? '取消追蹤' : '加入追蹤'}</p>
                   <i
                     className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
-                    onClick={() => {
-                      setLoved(!loved);
-                    }}
                   ></i>
                 </div>
               </div>
