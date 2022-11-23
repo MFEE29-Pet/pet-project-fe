@@ -26,15 +26,7 @@ span {
   font-size: 18px;
 }
 
-select {
-  /* width: 150px;
-        height: 35px; */
-  border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
-  background-color: #fff;
-  padding: 5px 10px;
-}
+
 /* --------------------------------------------------------------------- */
 /* MemberChevron */
 .Web {
@@ -210,12 +202,12 @@ select {
   height: 10px;
 }
 
-.fa-caret-right {
+.right {
   color: #966134;
 }
 
-.fa-thin,
-.fa-light {
+.thin,
+.light {
   color: #966134;
   margin-right: 10px;
 }
@@ -386,6 +378,10 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+
 }
 
 .peat-name {
@@ -447,6 +443,13 @@ select {
   font-weight: 900;
 }
 
+.addPetbutton{
+font-size: 20px;
+color: #40210f;
+margin-bottom: 30px;
+}
+
+
 .peat-add {
   width: 100%;
   background-color: #fff;
@@ -496,21 +499,22 @@ select {
 }
 
 /* pee add page */
-button {
+.button {
   background-color: darkorange;
   background: 50%;
   color: #fff;
 }
 
-select {
-  /* width: 150px;
-    height: 35px; */
-  border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
-  background-color: #fff;
-  padding: 5px 10px;
+.buttonAdd{
+  width:80px;
+  height: 30px;
+  background-color: darkorange;
+   border-radius: 20px;
+   color: #fff;
+   border:darkorange;
 }
+
+
 
 #uname {
   width: 160px;
@@ -535,11 +539,11 @@ select {
 /* --------------------------------------------------------------------- */
 /* MembeArticle */
 
-.article-all .fa-thin {
+.article-all .thin {
   font-size: 30px;
 }
 
-.fa-trash-can {
+.trash {
   font-size: 20px;
 }
 .articleWrap {
@@ -580,6 +584,7 @@ select {
   align-items: center;
   margin-bottom: 20px;
   border-radius: 25px;
+  
 }
 
 .article-all {
@@ -1162,8 +1167,22 @@ select {
   background: #FaFaFa;
   display: flex;
   align-items: center;
+  overflow: hidden;
   
 }
+.enter-C select {
+  /* width: 150px;
+    height: 35px; */
+  border-radius: 20px;
+  border: none;
+  color: #a4a5a5;
+  background-color: #fff;
+  padding: 5px 10px;
+  width: 120px;
+  outline: none;
+
+}
+
 .input{
   margin-left: 15px;
 }
@@ -1225,11 +1244,7 @@ select {
   justify-content: space-around;
   align-items: center;
 }
-.enter-C {
-  display: flex;
 
-  align-items: center;
-}
 .address {
   display: flex;
   width: 250px;

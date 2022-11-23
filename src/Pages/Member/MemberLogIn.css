@@ -1,0 +1,114 @@
+@font-face {
+  font-family: big_circle;
+  src: url(../../../public/font/GenSenRounded-R.ttc);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: big_circle;
+}
+
+h2 {
+  font-weight: 900;
+  color: #40220f;
+}
+
+h1 {
+  font-weight: 900;
+  color: #40220f;
+}
+
+body {
+  background-color: #fff5de;
+}
+
+ul {
+  font-size: 15px;
+  color: #966134;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+span {
+  font-size: 14px;
+  color: #40220f;
+}
+
+.buttonLogIn {
+  width: 80px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 30px;
+  border-color: #ccc;
+  color: rgb(113, 103, 103);
+  font-size: 14px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+/* 1200  100% */
+.loginpage {
+  width: 700px;
+  margin: 0 auto;
+  padding: 40px 0px;
+  /* height: 300px; */
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logInenterA {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.logInenterB {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #fafafa;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logInenterC {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+}
+
+.logIninput {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.Revise {
+  width: 300px;
+  height: 200px;
+  background-color: #fafafa;
+  margin: 30px;
+  border-radius: 30px;
+}
+
+.text {
+  justify-content: center;
+}

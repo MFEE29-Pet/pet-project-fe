@@ -104,10 +104,10 @@ function MemberHistoryCamera() {
       </div>
       <div className="orderCameraPage">
         <i className="fa-solid fa-angle-left"></i>
-        <i className="fa-light fa-1"></i>
-        <i className="fa-light fa-2"></i>
-        <i className="fa-light fa-3"></i>
-        <i className="fa-light fa-4"></i>
+        <i className="fa-light light fa-1"></i>
+        <i className="fa-light light fa-2"></i>
+        <i className="fa-light light fa-3"></i>
+        <i className="fa-light light fa-4"></i>
         <i className="fa-solid fa-angle-right"></i>
       </div>
     </div>

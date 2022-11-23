@@ -159,7 +159,7 @@ function MemberSing() {
             </div>
             <div className="photo">
               <div className="up-photo">
-                <i className="fa-thin fa-user"></i>
+                <i className="fa-thin thin fa-user"></i>
               </div>
               <input type="button" value="上傳照片" />
             </div>

@@ -17,7 +17,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
 
         <div className="member-icon">
           <ul>
-            <i className="fa-light fa-house-user"></i>
+            <i className="fa-light light fa-house-user"></i>
             <li
               onClick={() => {
                 setPageIndex(0);
@@ -27,7 +27,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul>
-            <i className="fa-light fa-shield-dog"></i>
+            <i className="fa-light light fa-shield-dog"></i>
             <li
               onClick={() => {
                 setPageIndex(1);
@@ -37,33 +37,33 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul>
-            <i className="fa-light fa-books"></i>
+            <i className="fa-light light fa-books"></i>
             <li onClick={() => {
                 setPageIndex(2);
               }}>文章收藏</li>
           </ul>
           <ul>
-            <i className="fa-light fa-folder-bookmark"></i>
+            <i className="fa-light light fa-folder-bookmark"></i>
             <li onClick={() => {
                 setPageIndex(3);
               }}>商品收藏</li>
           </ul>
           <ul>
-            <i className="fa-thin fa-book-medical"></i>
+            <i className="fa-thin thin fa-book-medical"></i>
             <li onClick={() => {
                 setPageIndex(4);
               }}>預約掛號</li>
           </ul>
           
           <ul>
-            <i className="fa-thin fa-rectangle-history-circle-plus"></i>
+            <i className="fa-thin thin fa-rectangle-history-circle-plus"></i>
             <li onClick={() => {
                 setPageIndex(5);
               }}
             >歷史訂單（商品）</li>
           </ul>
           <ul>
-            <i className="fa-light fa-camera"></i>
+            <i className="fa-light light fa-camera"></i>
             <li onClick={() => {
                 setPageIndex(6);
               }}
@@ -71,13 +71,13 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           </ul>
           
           <ul>
-            <i className="fa-light fa-user-gear"></i>
+            <i className="fa-light light fa-user-gear"></i>
             <li onClick={() => {
                 setPageIndex(7);
               }}>修改資料</li>
           </ul>
           <ul>
-            <i className="fa-thin fa-key"></i>
+            <i className="fa-thin thin fa-key"></i>
             <li onClick={() => {
                 setPageIndex(8);
               }}>密碼修改</li>

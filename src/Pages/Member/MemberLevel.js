@@ -38,7 +38,7 @@ function MemberLevel() {
           </div>
           <div className="degree-txt">
             <div className="degreeIcon">
-              <i className="fa-solid fa-caret-right "></i>
+              <i className="fa-solid fa-caret-right right"></i>
               <span>每月第一筆訂單，不限金額，即可享免運優惠。</span>
             </div>
             <div className="degreeIcon">

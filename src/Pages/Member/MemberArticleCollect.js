@@ -28,7 +28,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
 
           <div className="article-details">
@@ -46,7 +46,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
 
           <div className="article-details">
@@ -64,7 +64,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
 
           <div className="article-details">
@@ -82,7 +82,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
 
           <div className="article-details">
@@ -100,7 +100,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
           <div className="article-details">
             <div className="article-all">
@@ -117,7 +117,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
           <div className="article-details">
             <div className="article-all">
@@ -134,7 +134,7 @@ function MemberArticleCollect() {
               <h2>花輪</h2>
               <p>2022-12-14</p>
             </div>
-            <i className="fa-thin fa-trash-can"></i>
+            <i className="fa-thin thin fa-trash-can trash"></i>
           </div>
         </div>
       </div>
