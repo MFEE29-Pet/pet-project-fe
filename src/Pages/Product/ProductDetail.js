@@ -8,9 +8,10 @@ import { Link, useLocation } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
-import AuthContext from '../../contexts/AuthContext';
-import { AddCartContext } from './contexts/CartProviderTest';
+// import AuthContext from '../../contexts/AuthContext';
+import CartInfoContext from './contexts/CartInfoContext';
 
+// styled components
 const InfoDiv = styled.div`
   &::before {
     background-color: ${(props) =>
@@ -28,15 +29,21 @@ const ShowStars = styled.div`
 `;
 
 function ProductDetail() {
+  // context
+  // 模式切換
   const { mode } = useContext(SwitchButtonContext);
-  const addItems = useContext(AddCartContext);
+  // 購物車項目
+  const { cartItem, setCartItem } = useContext(CartInfoContext);
 
+  // states
+  // 收藏狀態
   const [loved, setLoved] = useState(false);
+  // 收藏連結 Hover
   const [lovedHover, setLovedHover] = useState(false);
-  // console.log(data);
+  // 彈出視窗狀態
   const [showDiv, setShowDiv] = useState(false);
 
-  // 初始狀態
+  // 商品細節資訊初始狀態
   let initProductDetail = [
     {
       sid: 0,
@@ -59,15 +66,6 @@ function ProductDetail() {
   const [avgNum, setAvgNum] = useState(0);
   // 數量 state
   const [amount, setAmount] = useState(1);
-
-  // 購物車數字
-  const [cartAmount, setCartAmount] = useState(0);
-  // console.log(cartAmount);
-  // 購物車項目
-  const [cartItem, setCartItem] = useState({
-    productCart: [],
-    photoCart: [],
-  });
 
   // 取得 queryString
   const location = useLocation();
@@ -102,9 +100,11 @@ function ProductDetail() {
   }, [location]);
   // console.log(productDetail);
 
-  const { myAuth, setMyAuth, logout } = useContext(AuthContext);
+  // XXX 待加入登入狀態
+  // const { myAuth, setMyAuth, logout } = useContext(AuthContext);
   // console.log(myAuth);
 
+  // 取出 商品data
   const pd = productDetail.map((e, i) => {
     return { ...e };
   });
@@ -113,41 +113,49 @@ function ProductDetail() {
   // console.log(avgNum);
   // console.log([{ ...data }]);
 
-
-  //TODO: 加入購物車
-  const handleAddCart = (e) => {
-    e.preventDefault();
-    const products = {
-      ...cartItem,
-      productCart: [
-        ...cartItem.productCart,
-        {
-          p_sid: data.p_sid,
-          p_name: data.name,
-          price: data.member_price,
-          amount: amount,
-        },
-      ],
-    };
-    localStorage.setItem('cartItem', JSON.stringify({ ...products }));
-    console.log({ products });
-    setCartItem(products);
+  // DONE 加入購物車
+  const handleAddCart = async () => {
+    let index = cartItem.productCart.findIndex((e) => e.p_sid === data.p_sid);
+    // console.log(index);
+    // 非重複商品
+    if (index === -1) {
+      const products = await {
+        ...cartItem,
+        productCart: [
+          ...cartItem.productCart,
+          {
+            p_sid: data.p_sid,
+            p_name: data.name,
+            price: data.member_price,
+            amount: amount,
+          },
+        ],
+        totalItem: cartItem.totalItem + 1,
+        totalPrice: cartItem.totalPrice + data.member_price * amount,
+        totalAmount: cartItem.totalAmount + amount,
+      };
+      localStorage.setItem('cartItem', JSON.stringify({ ...products }));
+      // console.log({ products });
+      setCartItem(products);
+    } else {
+      cartItem.productCart[index] = {
+        ...cartItem.productCart[index],
+        amount: cartItem.productCart[index].amount + amount,
+      };
+      const newProductState = {
+        ...cartItem,
+        productCart: cartItem.productCart,
+        totalPrice: cartItem.totalPrice + data.member_price * amount,
+        totalAmount: cartItem.totalAmount + amount,
+      };
+      localStorage.setItem('cartItem', JSON.stringify(newProductState));
+      console.log({ newProductState });
+      setCartItem(newProductState);
+    }
   };
-  // console.log(cartItem);
+  // console.log({ cartItem });
 
-  // const addToCart = (product) => {
-  //   const exist = cartItem.find((x) => x.id === product.id);
-  //   if (exist) {
-  //     setCartItem(
-  //       cartItem.map((x) =>
-  //         x.id == product.id ? { ...exist, quantity: exist.quantity + 1 } : x
-  //       )
-  //     );
-  //   } else {
-  //     setCartItem([...cartItem, { ...product, quantity: 1 }]);
-  //   }
-  // };
-
+  // breadcrumb 連結用
   const routes = [
     {
       to: '/product',
@@ -166,14 +174,7 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
-          <div className="filter-s-p">
-            <div className="search-bar">
-              <input type="search" name="search" id="search" />
-              <i
-                className="fa-solid fa-magnifying-glass bg_main_light_color1"
-                id="pro-search"
-              ></i>
-            </div>
+          <div className="filter-s-p" style={{ justifyContent: 'flex-end' }}>
             <div className="pro-loved-list">
               <Link
                 to="/member"
@@ -189,7 +190,7 @@ function ProductDetail() {
                     lovedHover ? 'fa-solid' : 'fa-regular'
                   } fa-heart`}
                 ></i>
-                <p>我的收藏</p>
+                <p style={{ textAlign: 'end' }}>我的收藏</p>
               </Link>
             </div>
           </div>

@@ -5,18 +5,31 @@ const CartInfoContext = createContext([]);
 export default CartInfoContext;
 
 export const CartInfoContextProvider = function ({ children }) {
-  const [cartItem, setCartItem] = useState({
-    proCart: [],
+  let initCart = {
+    productCart: [],
     photoCart: [],
     totalItem: 0,
     totalPrice: 0,
-  });
-
-  const addCart = (product) =>{
-    
+    totalAmount:0,
+  };
+  if (localStorage.getItem('cartItem')) {
+    initCart = JSON.parse(localStorage.getItem('cartItem'));
+  } else {
+    initCart = {
+      productCart: [],
+      photoCart: [],
+      totalItem: 0,
+      totalPrice: 0,
+      totalAmount:0,
+    };
   }
+  const [cartItem, setCartItem] = useState(initCart);
+
+
 
   return (
-    <CartInfoContext.Provider value={{}}>{children}</CartInfoContext.Provider>
+    <CartInfoContext.Provider value={{ cartItem, setCartItem }}>
+      {children}
+    </CartInfoContext.Provider>
   );
 };
