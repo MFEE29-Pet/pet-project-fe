@@ -8,7 +8,7 @@ import PageContext from '../contexts/PageContext';
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
-  console.log({ totalPages, page });
+  // console.log({ totalPages, page });
 
   const location = useLocation();
   const { cate, nowPage } = useContext(PageContext);
@@ -46,7 +46,7 @@ export default function Pagination({ totalPages, page, usp }) {
               <i className="fa-solid fa-angle-left"></i>
             </Link>
           </li>
-          {/* TODO: 搜尋後頁數顯示異常 */}
+          {/* FIXME: 搜尋後頁數顯示異常 */}
           {Array(totalPages) &&
             Array(totalPages)
               .fill(1)
