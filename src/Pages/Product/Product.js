@@ -13,7 +13,7 @@ function Product() {
   const [trigger, setTrigger] = useState(false);
   // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
-  // TODO: 特價類型篩選
+  // DONE: 特價類型篩選
   const [salesType, setSalesType] = useState('');
 
   // 價格區間
@@ -60,7 +60,7 @@ function Product() {
   // console.log({ usp, cate });
 
   //  思考如果所有商品該如何處理 ?
-  // 目前解法: 後端設變數判斷篩選
+  // DONE 目前解法: 後端設變數判斷篩選
   if (!usp) {
     usp = '';
   } else {
@@ -89,7 +89,7 @@ function Product() {
         }${salesType ? `&salesType=${salesType}` : ``}`
       );
 
-      console.log(res);
+      // console.log(res);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
 
@@ -99,21 +99,6 @@ function Product() {
       console.log(e.message);
     }
   };
-
-  // 商品搜尋
-  // console.log(product);
-  // const handleSearch = (product, searchWord) => {
-  //   let newProducts = product ? [] : [...product];
-
-  //   if (searchWord?.length) {
-  //     newProducts = product.filter((product) => {
-  //       // includes -> String API
-  //       return product.name.includes(searchWord);
-  //     });
-  //   }
-
-  //   return newProducts;
-  // };
 
   // didMount 載入資料
   useEffect(() => {
@@ -149,17 +134,11 @@ function Product() {
       }, 1000);
     }
   }, [isLoading]);
-  // useEffect(() => {
-  //   // 搜尋字串太少不需要搜尋
-  //   if (searchWord.length < 3 && searchWord.length !== 0) return
-  //   let newProducts = [];
-  //   // 處理搜尋
-  //   newProducts = handleSearch(product, searchWord);
-  // }, [searchWord]);
 
   // console.log(product);
   // console.log(totalPages);
 
+  // 切割資料
   const rowProducts = _.chunk(product, 4);
 
   return (

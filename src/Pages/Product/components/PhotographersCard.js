@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { useLocation, useNavigate } from 'react-router-dom';
