@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ForumReply.css';
 import ButtonBar from './ButtonBar';
 import UserBar from './UserBar';
-function ForumReply() {
+
+function ForumReply({ author, time, children }) {
   return (
     <>
       <div className="forum_reply_card">

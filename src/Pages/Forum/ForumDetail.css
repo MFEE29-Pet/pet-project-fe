@@ -10,6 +10,11 @@
   justify-content: space-between;
 }
 
-.user_area{
+.forum_detail_title_area{
   display: flex;
+}
+
+.forum_article_area{
+
+  
 }

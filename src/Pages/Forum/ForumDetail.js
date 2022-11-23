@@ -1,12 +1,11 @@
+import './ForumDetail.css';
 import SearchBar from './components/SearchBar';
 import ButtonBar from './components/ButtonBar';
 import ForumDetailTitle from './components/ForumDetailTitle';
 import ForumDetailBar from './components/ForumDetailBar';
 import ForumMessage from './components/ForumMessage';
 import ForumReply from './components/ForumReply';
-import Issuing from './components/Issuing';
 import UserBar from './components/UserBar';
-import './ForumDetail.css';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/complex' },
@@ -33,16 +32,17 @@ function ForumDetail() {
             return <ButtonBar value={value} label={label} to={to} key={i} />;
           })}
         </div>
-        <div className="user_area">
+        <div className="forum_detail_title_area">
           <ForumDetailTitle />
           <UserBar />
         </div>
-        <ForumDetailBar />
+        <div className="forum_article_area">
+          <ForumDetailBar />
+        </div>
         <div>
           <ForumMessage />
         </div>
         <ForumReply />
-        <Issuing />
       </div>
     </>
   );

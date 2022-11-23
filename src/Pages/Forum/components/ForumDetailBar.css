@@ -1,26 +1,39 @@
 .forum_detail_card{
 width: 1200px;
-height: 800px;
+height: 820px;
 border-radius: 15px;
 background-color: white;
 margin: 50px auto;
 }
+
 .forum_detail_top{
   display: flex;
   align-items: center;
-  padding: 0px 120px 0px 0px;
+  margin: auto;
+  padding-right: 100px;
 }
 
 #proIcon{
   font-size: 320%;
-  margin: 80px 120px;
+  margin: 80px 0px 50px 100px;
   }
 .forum_detail_text{
     line-height: 26px;
+    margin: 80px -10px 50px 80px;
   }
 .forum_detail_pic{
   display: flex;
   justify-content: center;
   }
   
-
+.forum_btm_area{
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+.forum_btm_area{
+  width: 1000px;
+  margin: 30px auto;
+  display: flex;
+justify-content: space-between;
+}

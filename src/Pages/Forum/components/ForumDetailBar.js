@@ -1,6 +1,7 @@
-import React from 'react';
 import './ForumDetailBar.css';
-// import dogpic from '/images/person_4.jpeg';
+import React from 'react';
+import Issuing from './Issuing';
+import CollectLikeBar from './CollectLikeBar';
 
 function ForumDetailBar() {
   const dogpic = '/images/toys_1.png';
@@ -21,6 +22,10 @@ function ForumDetailBar() {
 
         <div className="forum_detail_pic">
           <img src={dogpic} />
+        </div>
+        <div className="forum_btm_area">
+          <Issuing />
+          <CollectLikeBar />
         </div>
       </div>
     </>
