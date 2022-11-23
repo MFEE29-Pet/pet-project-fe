@@ -38,6 +38,15 @@
   z-index: 1;
 }
 
+.eason_dot_1 {
+  width: 15px;
+  height: 15px;
+  border: 0.13rem solid #dcdddd;
+  border-radius: 50%;
+  margin: 8px 0;
+  background-color: #fff5de;
+  z-index: 1;
+}
 .eason_order .eason_dot {
   border: 0.13rem solid #40220f;
 }
@@ -302,7 +311,7 @@
 
 .eason_total td {
   text-align: right;
-  color: #40220f;
+  color: #727171;
   font-size: x-small;
   font-weight: 900;
 }

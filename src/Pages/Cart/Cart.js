@@ -10,18 +10,22 @@ import jsonData from './orderTest.json';
 // 主題變色功能區-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
   i {
-    color: ${(props) => (props.$mode === 'dog' ? '#dcdddd' : '#00a29a')};
+    color: ${(props) => (props.$mode === 'dog' ? '#c9bc9c' : '#50a4b2')};
   }
   &::after {
     background-color: ${(props) =>
-      props.$mode === 'dog' ? '#dcdddd' : '#00a29a'};
+      props.$mode === 'dog' ? '#c9bc9c' : '#50a4b2'};
   }
   & .eason_dot {
     border: 0.13rem solid
-      ${(props) => (props.$mode === 'dog' ? '#ccc' : '#00a29a')};
+      ${(props) => (props.$mode === 'dog' ? '#c9bc9c' : '#50a4b2')};
   }
   & a {
-    color: ${(props) => (props.$mode === 'dog' ? '#dcdddd' : '#00a29a')};
+    color: ${(props) => (props.$mode === 'dog' ? '#c9bc9c' : '#50a4b2')};
+  }
+  & .eason_dot_1 {
+    border: 0.13rem solid
+      ${(props) => (props.$mode === 'dog' ? '#40220f' : '#18334e')};
   }
 `;
 
@@ -79,20 +83,14 @@ function Cart() {
         {/* <!-- 進度條------------------------------------------------------------------------> */}
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
           <div className="eason_order">
-            <i
-              className="fa-light fa-file-pen fa-3x"
-              style={{ color: '#40220f' }}
-            ></i>
-            <div
-              className="eason_dot bg_bright_color "
-              style={{ border: '0.13rem solid #40220f' }}
-            ></div>
-            <a href="/#" style={{ color: '#40220f' }}>
+            <i className="fa-light fa-file-pen fa-3x text_main_dark_color2"></i>
+            <div className="eason_dot_1 bg_bright_color "></div>
+            <a href="/#" className="text_main_dark_color2">
               確認訂單
             </a>
           </div>
           <div className="eason_pay ">
-            <i className="fa-light fa-envelope-open-dollar fa-3x"></i>
+            <i className="fa-light fa-envelope-open-dollar fa-3x "></i>
             <div className="eason_dot bg_bright_color "></div>
             <a href="/#" className="">
               確認付款
@@ -124,8 +122,8 @@ function Cart() {
 
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
-          <div className="eason_list_title">
-            <h2>攝影預約明細</h2>
+          <div className="eason_list_title ">
+            <h2 className='text_main_dark_color2'>攝影預約明細</h2>
             <div className="eason_product_check">
               <input type="checkbox" name="" id="" />
               <p style={{ fontSize: ' smaller' }}>加入結算</p>
@@ -179,7 +177,7 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            <h2>商品訂單明細</h2>
+            <h2 className='text_main_dark_color2'>商品訂單明細</h2>
             <div className="eason_product_check">
               <input type="checkbox" name="" id="" />
               <p style={{ fontSize: 'smaller' }}>加入結算</p>
@@ -419,7 +417,7 @@ function Cart() {
         {/* <!-- 下方區域-------------------------------------------------------> */}
         <div className="eason_section_3">
           <div className="eason_s3_left">
-            <h2>付款方式</h2>
+            <h2 className='text_main_dark_color2'>付款方式</h2>
             <button
               className={
                 arrivedClick === false
@@ -457,32 +455,32 @@ function Cart() {
 
           <div className="eason_s3_right">
             <div className="eason_s3_right_top">
-              <h2>優惠代碼</h2>
+              <h2 className='text_main_dark_color2'>優惠代碼</h2>
               <input className="eason_discount_code" type="text" />
             </div>
 
             <div className="eason_s3_right_bottom">
-              <h2>結算總額</h2>
+              <h2 className='text_main_dark_color2'>結算總額</h2>
 
               <div className="eason_total">
                 <table>
                   <tr>
-                    <th>商品金額</th>
+                    <th className='text_main_dark_color2'>商品金額</th>
                     <td>$5300</td>
                   </tr>
 
                   <tr>
-                    <th>優惠折扣</th>
+                    <th className='text_main_dark_color2'>優惠折扣</th>
                     <td>10%</td>
                   </tr>
 
                   <tr>
-                    <th>運費</th>
+                    <th className='text_main_dark_color2'>運費</th>
                     <td style={{ fontWeight: '900' }}>免運</td>
                   </tr>
 
                   <tr>
-                    <th>付款總額</th>
+                    <th className='text_main_dark_color2'>付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       {newTotalPrice}
                     </td>
