@@ -172,12 +172,11 @@ function ProductDetail() {
   const [indexNum, setIndexNum] = useState(-1);
   // 判斷是否已收藏
 
-  useEffect(() => {
-    const index = lovedList.findIndex((e) => e.p_sid === sid) || -1;
-    setLoved(index === -1 ? false : true);
-    setIndexNum(index);
-  }, [location]);
-
+  // useEffect(() => {
+  //   const index = lovedList.findIndex((e) => e.p_sid === +params.get('sid'));
+  //   setIndexNum(index);
+  // }, []);
+  console.log(indexNum);
   return (
     <>
       <main>
