@@ -6,6 +6,7 @@ import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 
 //測試用假來源資料
 import jsonData from './orderTest.json';
+import photoJsonData from './photoTest.json';
 
 // 主題變色功能區-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -34,26 +35,32 @@ function Cart() {
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
 
-  // 按鈕選定維持hover顏色
+  // 付款方式按鈕選定效果
   const [arrivedClick, setArrivedClick] = useState(false);
   const [creditClick, setCreditClick] = useState(false);
 
-  // 頁面呈現的即時商品數量
+  // 加入結算勾選
+  const [photoChecked, setPhotoChecked] = useState(true);
+  const [productChecked, setProductChecked] = useState(true);
+
+  // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
 
-  // 來源資料原始商品金額小計
+  // 商品訂單明細 引入來源資料原始商品金額小計
   const [totalPrice, setTotalPrice] = useState([]);
 
-  // 有被修改過數量的商品金額小計
+  // 商品訂單明細 有被修改過數量的商品金額小計
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
-  // 取資料上狀態為了要刪除時使用
+  // 商品訂單明細 取資料上狀態為了要刪除時使用
   const [testData, setTestData] = useState([{}]);
+  const[photoTestData,setPhotoTestData]=useState([{}])
   const getData = () => {
     setTestData(jsonData);
+    setPhotoTestData(photoJsonData)
   };
 
-  // 商品數量相關連動功能
+  // 商品訂單明細 商品數量相關連動功能
   const dataAmount = () => {
     console.log(jsonData);
 
@@ -123,10 +130,23 @@ function Cart() {
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
           <div className="eason_list_title ">
-            <h2 className='text_main_dark_color2'>攝影預約明細</h2>
+            <h2 className="text_main_dark_color2">攝影預約明細</h2>
             <div className="eason_product_check">
-              <input type="checkbox" name="" id="" />
-              <p style={{ fontSize: ' smaller' }}>加入結算</p>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                checked={photoChecked ? 'checked' : ''}
+                onClick={() => {
+                  setPhotoChecked(!photoChecked);
+                }}
+              />
+              <p
+                className="text_main_dark_color2"
+                style={{ fontSize: ' smaller' }}
+              >
+                加入結算
+              </p>
             </div>
           </div>
           <table className="eason_list_table">
@@ -177,10 +197,23 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            <h2 className='text_main_dark_color2'>商品訂單明細</h2>
+            <h2 className="text_main_dark_color2">商品訂單明細</h2>
             <div className="eason_product_check">
-              <input type="checkbox" name="" id="" />
-              <p style={{ fontSize: 'smaller' }}>加入結算</p>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                checked={productChecked ? 'checked' : ''}
+                onClick={() => {
+                  setProductChecked(!productChecked);
+                }}
+              />
+              <p
+                className="text_main_dark_color2"
+                style={{ fontSize: 'smaller' }}
+              >
+                加入結算
+              </p>
             </div>
           </div>
           <table className="eason_list_table">
@@ -259,157 +292,6 @@ function Cart() {
                   </tr>
                 );
               })}
-
-              {/* 寫死的html假資料----------------------------------------------- */}
-              {/* <tr> */}
-              {/* <td className="eason_p_name">濃郁雞白罐頭</td>
-                <td className="eason_table_price">$980</td>
-                <td className="eason_table_amount">
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount - 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-minus"> </i>
-                  </span>
-                  {amount}
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount + 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </span>
-                </td>
-                <td className="eason_table_total">$1960</td>
-                <td>
-                  <span>
-                    <i className="fa-light fa-trash-can"></i>
-                  </span>
-                </td>
-              </tr>
-
-              <tr>
-                <td className="eason_table_img">
-                  <img
-                    src="./imgs/product_toy_2.png"
-                    alt=""
-                    width="65px"
-                    height="65px"
-                  />
-                </td>
-                <td className="eason_p_name">寵物絨毛玩具-牛哞</td>
-                <td className="eason_table_price">$690</td>
-
-                <td className="eason_table_amount">
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount - 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-minus"> </i>
-                  </span>
-                  {amount}
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount + 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </span>
-                </td>
-
-                <td className="eason_table_total">$690</td>
-                <td>
-                  <span>
-                    <i className="fa-light fa-trash-can"></i>
-                  </span>
-                </td>
-              </tr>
-
-              <tr>
-                <td className="eason_table_img">
-                  <img
-                    src="./imgs/product_1.png"
-                    alt=""
-                    width="65px"
-                    height="65px"
-                  />
-                </td>
-                <td className="eason_p_name">活力火雞乾糧</td>
-                <td className="eason_table_price">$980</td>
-
-                <td className="eason_table_amount">
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount - 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-minus"> </i>
-                  </span>
-                  {amount}
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount + 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </span>
-                </td>
-
-                <td className="eason_table_total">$1960</td>
-                <td>
-                  <span href="/#">
-                    <i className="fa-light fa-trash-can"></i>
-                  </span>
-                </td>
-              </tr>
-
-              <tr>
-                <td className="eason_table_img">
-                  <img
-                    src="./imgs/product_toy_4.png"
-                    alt=""
-                    width="65px"
-                    height="65px"
-                  />
-                </td>
-                <td className="eason_p_name">寵物絨毛玩具-狗勾</td>
-                <td className="eason_table_price">$690</td>
-
-                <td className="eason_table_amount">
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount - 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-minus"> </i>
-                  </span>
-                  {amount}
-                  <span
-                    className=""
-                    onClick={() => {
-                      setAmount(amount + 1);
-                    }}
-                  >
-                    <i className="fa-solid fa-circle-plus"></i>
-                  </span>
-                </td>
-
-                <td className="eason_table_total">$690</td>
-                <td>
-                  <span>
-                    <i className="fa-light fa-trash-can"></i>
-                  </span>
-                </td> */}
-              {/* </tr> */}
             </tbody>
           </table>
         </div>
@@ -417,7 +299,7 @@ function Cart() {
         {/* <!-- 下方區域-------------------------------------------------------> */}
         <div className="eason_section_3">
           <div className="eason_s3_left">
-            <h2 className='text_main_dark_color2'>付款方式</h2>
+            <h2 className="text_main_dark_color2">付款方式</h2>
             <button
               className={
                 arrivedClick === false
@@ -441,11 +323,11 @@ function Cart() {
                 creditClick === false ? 'bg_main_light_color1' : 'bg_main_color'
               }
               onClick={() => {
-                if (creditClick === true) {
-                  setCreditClick(false);
+                if (creditClick === false) {
+                  setCreditClick(true);
                   setArrivedClick(false);
                 } else {
-                  setCreditClick(true);
+                  setCreditClick(false);
                 }
               }}
             >
@@ -455,34 +337,41 @@ function Cart() {
 
           <div className="eason_s3_right">
             <div className="eason_s3_right_top">
-              <h2 className='text_main_dark_color2'>優惠代碼</h2>
+              <h2 className="text_main_dark_color2">優惠代碼</h2>
               <input className="eason_discount_code" type="text" />
             </div>
 
             <div className="eason_s3_right_bottom">
-              <h2 className='text_main_dark_color2'>結算總額</h2>
+              <h2 className="text_main_dark_color2">結算總額</h2>
 
               <div className="eason_total">
                 <table>
                   <tr>
-                    <th className='text_main_dark_color2'>商品金額</th>
-                    <td>$5300</td>
+                    <th className="text_main_dark_color2">商品金額</th>
+                    <td>
+                      ${' '}
+                      {(productChecked ? newTotalPrice : 0) +
+                        (photoChecked ? 0 : 0)}
+                    </td>
                   </tr>
 
                   <tr>
-                    <th className='text_main_dark_color2'>優惠折扣</th>
+                    <th className="text_main_dark_color2">優惠折扣</th>
                     <td>10%</td>
                   </tr>
 
                   <tr>
-                    <th className='text_main_dark_color2'>運費</th>
+                    <th className="text_main_dark_color2">運費</th>
                     <td style={{ fontWeight: '900' }}>免運</td>
                   </tr>
 
                   <tr>
-                    <th className='text_main_dark_color2'>付款總額</th>
+                    <th className="text_main_dark_color2">付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
-                      {newTotalPrice}
+                      ${' '}
+                      {((productChecked ? newTotalPrice : 0) +
+                        (photoChecked ? 0 : 0)) *
+                        0.9}
                     </td>
                   </tr>
                 </table>
