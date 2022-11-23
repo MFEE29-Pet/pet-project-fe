@@ -12,8 +12,9 @@ const selectBoxEnable = css`
 `;
 
 const selectBoxDisable = css`
-  background: #2c0101;
-  color: #00000040;
+  background: #ebebeb;
+  opacity: 0.3;
+  color: #000000;
 `;
 
 const SelectBox = styled.div`
@@ -107,9 +108,9 @@ const Select = ({
       placement="bottom-left"
       overlay={
         <Menu>
-          {options.map((option) => (
+          {options.map((option, i) => (
             <MenuItem
-              key={option.value}
+              key={i}
               role="presentation"
               $isSelected={option.value === value}
               $mode={mode}

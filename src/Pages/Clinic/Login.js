@@ -22,11 +22,11 @@ export default function Login() {
   const mySubmit = async (e) =>{
     e.preventDefault();
     const { data } = await axios.post('http://localhost:6001/clinic/login-api', formData);
-    console.log(data);
+    // console.log(data);
     if(data.success){
       localStorage.setItem('auth', JSON.stringify(data.auth) );
       alert('登入成功');
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       setMyAuth({...data.auth, authorised: true});
       navigate('/');
 

@@ -10,7 +10,7 @@ export const AuthContextProvider = function ({children}){
     const unAuth = {
         authorised: false, // 有沒有登入
         sid: 0,
-        account: '',
+        name:'',
         token: '',
     };
 
