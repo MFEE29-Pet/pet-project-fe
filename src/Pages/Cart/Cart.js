@@ -54,10 +54,12 @@ function Cart() {
 
   // 商品訂單明細 取資料上狀態為了要刪除時使用
   const [testData, setTestData] = useState([{}]);
-  const[photoTestData,setPhotoTestData]=useState([{}])
+  const [photoTestData, setPhotoTestData] = useState([{}]);
+
+  // 獲取來源資料
   const getData = () => {
     setTestData(jsonData);
-    setPhotoTestData(photoJsonData)
+    setPhotoTestData(photoJsonData);
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -78,7 +80,7 @@ function Cart() {
     setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
   };
 
-  // 一進來頁面就載入
+  // 一進來頁面就載入來源資料
   useEffect(() => {
     dataAmount();
     getData();
@@ -163,33 +165,37 @@ function Cart() {
             </thead>
 
             <tbody>
-              <tr>
-                <td className="eason_table_img">
-                  <img src="./imgs/person_2.jpeg" alt="" width="100px" />
-                </td>
-
-                <td className="eason_p_name">柏延</td>
-                <td>
-                  <input className="date" type="date" name="" id="" />
-                </td>
-                <td>
-                  <select className="dayparts" name="" id="">
-                    <option value="">上午</option>
-                    <option value="">下午</option>
-                  </select>
-                </td>
-                <td className="eason_table_price">$980</td>
-                <td className="eason_edit">
-                  <a href="/#">
-                    <i className="fa-light fa-pen-to-square"></i>
-                  </a>
-                </td>
-                <td>
-                  <span>
-                    <i className="fa-light fa-trash-can"></i>
-                  </span>
-                </td>
-              </tr>
+              {/* 預約攝影資料帶入測試---------------- */}
+              {photoTestData.map((v, i) => {
+                return (
+                  <tr key={v.id}>
+                    <td className="eason_table_img">
+                      <img src="./imgs/person_2.jpeg" alt="" width="100px" />
+                    </td>
+                    <td>{v.photographer}</td>
+                    <td>
+                      <input className="date" type="date" name="" id="" />
+                    </td>
+                    <td>
+                      <select className="dayparts" name="" id="">
+                        <option value="">上午</option>
+                        <option value="">下午</option>
+                      </select>
+                    </td>
+                    <td className="eason_table_price">{v.photo_price}</td>
+                    <td className="eason_edit">
+                      <a href="/#">
+                        <i className="fa-light fa-pen-to-square"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <span>
+                        <i className="fa-light fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
