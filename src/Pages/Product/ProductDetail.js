@@ -11,6 +11,7 @@ import { PRODUCT_DETAIL } from './my-config';
 // import AuthContext from '../../contexts/AuthContext';
 import CartInfoContext from './contexts/CartInfoContext';
 import IsLovedContext from './contexts/IsLovedContext';
+import RelatedProduct from './components/RelatedProduct';
 
 // styled components
 const InfoDiv = styled.div`
@@ -44,6 +45,8 @@ function ProductDetail() {
   const [lovedHover, setLovedHover] = useState(false);
   // 彈出視窗狀態
   const [showDiv, setShowDiv] = useState(false);
+  // 相關商品
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   // 商品細節資訊初始狀態
   let initProductDetail = [
@@ -90,6 +93,8 @@ function ProductDetail() {
       const productData = res.data.rows;
       setProductDetail(productData);
       setAvgNum(res.data.avgScores);
+      setRelatedProducts(res.data.related_p);
+      // console.log(relatedProducts);
     } catch (e) {
       console.log(e.message);
     }
@@ -128,6 +133,7 @@ function ProductDetail() {
             p_sid: data.p_sid,
             p_name: data.name,
             price: data.member_price,
+            image:data.img,
             amount: amount,
           },
         ],
@@ -477,7 +483,7 @@ function ProductDetail() {
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        <div className="bottom-pro-ls-row">
+        {/* <div className="bottom-pro-ls-row">
           <div className="arrow arrow-left">
             <i className="fa-light fa-angle-left"></i>
           </div>
@@ -524,7 +530,8 @@ function ProductDetail() {
           <div className="arrow arrow-right">
             <i className="fa-light fa-angle-right"></i>
           </div>
-        </div>
+        </div> */}
+        <RelatedProduct relatedProducts={relatedProducts} />
       </section>
 
       <div
