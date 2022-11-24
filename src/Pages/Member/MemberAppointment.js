@@ -66,7 +66,6 @@ function MemberAppointment() {
               </div>
               <div className="Hospital-A">
                 <h5>電話</h5>
-
                 <span>(02)2328-5915</span>
               </div>
             </div>

@@ -459,22 +459,23 @@ section.right {
                         font-size: $h2size;
                     }
 
-                    .write-reply {
-                        margin-left: 130px;
-                        display: flex;
+
+                }
+                .write-reply {
+                    margin-left: 130px;
+                    display: flex;
+                    cursor: pointer;
+
+                    p {
+                        margin-left: 5px;
+                        margin-bottom: 20px;
                         cursor: pointer;
-
-                        p {
-                            margin-left: 5px;
-                            margin-bottom: 20px;
-                            cursor: pointer;
-                        }
-
-                        i.fa-message-pen {
-                            color: $p_color;
-                        }
-
                     }
+
+                    i.fa-message-pen {
+                        color: $p_color;
+                    }
+
                 }
 
                 .stars-progress {
@@ -627,9 +628,7 @@ section.right {
         p {
             padding: 5px 10px;
 
-            span {
-                // color: $button-color;
-            }
+
         }
 
         .changeBtn {
@@ -757,7 +756,7 @@ section.right {
 
     }
 
-    .page {
+    .product_page {
         ul {
             display: flex;
             justify-content: space-around;
@@ -897,14 +896,19 @@ section.bottom-pro-list {
 
             .pro-line-ls-img-wrap {
                 height: 100%;
+                margin-bottom: 10px;
 
                 img {
                     height: 90%;
+                    position: relative;
+                    z-index: 1;
                 }
             }
 
             .pro-line-ls-name {
                 text-align: center;
+                position: relative;
+                z-index: 1;
             }
         }
 
@@ -917,29 +921,29 @@ section.bottom-pro-list {
 
 
 // bottom row shadow
-.bottom-pro-ls-row::before {
-    content: '';
-    width: 100%;
-    display: block;
-    position: absolute;
-    border-top: 20px solid $d-main-color ;
-    background-color: rgba(0, 0, 0, 0);
-    bottom: -15%;
-    z-index: -1;
-    // box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.82);
-}
+// .bottom-pro-ls-row::before {
+//     content: '';
+//     width: 100%;
+//     display: block;
+//     position: absolute;
+//     border-top: 20px solid $d-main-color ;
+//     background-color: rgba(0, 0, 0, 0);
+//     bottom: 32%;
+//     z-index: 1;
+//     // box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.82);
+// }
 
-.bottom-pro-ls-row::after {
-    content: '';
-    width: 100%;
-    display: block;
-    position: absolute;
-    border-radius: 50px 50px 0 0;
-    background-color: rgba(0, 0, 0, 0);
-    bottom: 0%;
-    z-index: -2;
-    box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.82);
-}
+// .bottom-pro-ls-row::after {
+//     content: '';
+//     width: 100%;
+//     display: block;
+//     position: absolute;
+//     border-radius: 50px 50px 0 0;
+//     background-color: rgba(0, 0, 0, 0);
+//     bottom: 39%;
+//     z-index: 0;
+//     box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.82);
+// }
 
 
 section.popup {
@@ -978,15 +982,15 @@ section.popup {
             }
         }
 
-        .price_input_form {
-            label::after {
-                content: '$';
-                display: inline;
-                color: $p_color;
-                font-size: $p_size;
-                margin-right: 5px;
-            }
-        }
+        // .price_input_form {
+        //     // label::after {
+        //     //     content: '$';
+        //     //     display: inline;
+        //     //     color: $p_color;
+        //     //     font-size: $p_size;
+        //     //     margin-right: 5px;
+        //     // }
+        // }
 
         .price_input_form,
         .service_sale_form {
@@ -1004,6 +1008,7 @@ section.popup {
                     border: none;
                     padding: 10px 20px;
                     width: 100px;
+                    z-index: -1;
                 }
 
                 span {
@@ -1075,9 +1080,7 @@ section.popup {
                 font-size: $p_size;
             }
 
-            label.active {
-                // outline: 2px solid $button-color;
-            }
+
 
             #sale {
                 left: 10%;
@@ -1104,6 +1107,7 @@ section.popup {
     bottom: 10%;
     right: 5%;
     cursor: pointer;
+    z-index: 999;
 
     svg {
         width: 30px;

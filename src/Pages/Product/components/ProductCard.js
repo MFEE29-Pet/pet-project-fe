@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Pagination from './Pagination';
 import styled from 'styled-components';
-import ProductDataContext from '../../../contexts/ProductDataContext';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import { Skeleton } from '@mui/material';
 
 const LIST = styled.div`
   &::before {
@@ -14,10 +14,15 @@ const LIST = styled.div`
   }
 `;
 
-function ProductCard() {
-  const { totalPages, page, rowProducts, usp } = useContext(ProductDataContext);
+function ProductCard({ rowProducts, page, totalPages, usp, isLoading }) {
   const { mode } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
+
+  function formatPrice(price) {
+    let parts = price.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
 
   return (
     <>
@@ -36,13 +41,64 @@ function ProductCard() {
                 >
                   <Link to="">
                     <div className="img-wrap bg_bright_color">
-                      <img src={`/images/test/${e2.img}`} alt="" />
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          sx={{
+                            bgcolor: `${
+                              mode === 'dog' ? '#ea551422' : '#00a29a22'
+                            }`,
+                          }}
+                          width={172}
+                          height={172}
+                        >
+                          <img src={`/images/test/${e2.img}`} alt="" />
+                        </Skeleton>
+                      ) : (
+                        <img src={`/images/test/${e2.img}`} alt="" />
+                      )}
                     </div>
                     <div className="pro-title">
-                      <p>{e2.name}</p>
-                      <p>
-                        <s>${e2.price}</s> <span>${e2.member_price}</span>
-                      </p>
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          sx={{
+                            bgcolor: `${
+                              mode === 'dog' ? '#ea551422' : '#00a29a22'
+                            }`,
+                          }}
+                          width={180}
+                          height={27}
+                          style={{ marginBottom: '3px' }}
+                        >
+                          <p>{e2.name}</p>
+                        </Skeleton>
+                      ) : (
+                        <p>{e2.name}</p>
+                      )}
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          sx={{
+                            bgcolor: `${
+                              mode === 'dog' ? '#ea551422' : '#00a29a22'
+                            }`,
+                          }}
+                          width={100}
+                          height={27}
+                          style={{ marginBottom: '3px' }}
+                        >
+                          <p>
+                            <s>${formatPrice(e2.price)}</s>{' '}
+                            <span>${formatPrice(e2.member_price)}</span>
+                          </p>
+                        </Skeleton>
+                      ) : (
+                        <p>
+                          <s>${formatPrice(e2.price)}</s>{' '}
+                          <span>${formatPrice(e2.member_price)}</span>
+                        </p>
+                      )}
                     </div>
                   </Link>
                 </div>

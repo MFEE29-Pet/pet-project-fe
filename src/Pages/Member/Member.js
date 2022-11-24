@@ -4,15 +4,22 @@ import MemberLevel from './MemberLevel.js';
 import MemberPetAdd from './MemberPetAdd';
 import MemberArticleCollect from './MemberArticleCollect';
 import MemberAppointment from './MemberAppointment';
+import MemberHistoryProduct from './MemberHistoryProduct';
+import MemberProductCollect from './MemberProductCollect';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import MemberHistoryCamera from './MemberHistoryCamera';
 import { useState } from 'react';
+
 
 function Member() {
   const components = [
     MemberLevel,
     MemberPetAdd,
     MemberArticleCollect,
+    MemberProductCollect,
     MemberAppointment,
+    MemberHistoryProduct,
+    MemberHistoryCamera,
   ];
   const [pageIndex, setPageIndex] = useState(0);
   const Nowcomponents = components[pageIndex];

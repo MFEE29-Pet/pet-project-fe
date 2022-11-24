@@ -1,21 +1,19 @@
 import { PageContextProvider } from '../Pages/Product/contexts/PageContext';
-import { ProductDataContextProvider } from './ProductDataContext';
-import { ProductDetailContextProvider } from './ProductDetailContext';
 import { StyledEngineProvider } from '@mui/material';
-import { CartInfoContextProvider } from './CartInfoContext';
+import { AuthContextProvider } from './AuthContext';
+import { CartInfoContextProvider } from '../Pages/Product/contexts/CartInfoContext';
+import { IsLovedContextProvider } from '../Pages/Product/contexts/IsLovedContext';
 
 export default function AllContextProviders({ children }) {
   return (
-    <ProductDataContextProvider>
-      <CartInfoContextProvider>
-        <StyledEngineProvider>
-          <PageContextProvider>
-            <ProductDetailContextProvider>
-              {children}
-            </ProductDetailContextProvider>
-          </PageContextProvider>
-        </StyledEngineProvider>
-      </CartInfoContextProvider>
-    </ProductDataContextProvider>
+    <StyledEngineProvider>
+      <AuthContextProvider>
+        <CartInfoContextProvider>
+          <IsLovedContextProvider>
+            <PageContextProvider>{children}</PageContextProvider>
+          </IsLovedContextProvider>
+        </CartInfoContextProvider>
+      </AuthContextProvider>
+    </StyledEngineProvider>
   );
 }

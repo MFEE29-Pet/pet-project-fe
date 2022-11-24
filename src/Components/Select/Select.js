@@ -48,9 +48,20 @@ const ArrowDown = styled.div`
 `;
 
 const Menu = styled.div`
-  width: 100%;
+  width: 240px;
+  overflow-y: scroll;
+  height: 300px;
   display: inline-flex;
   flex-direction: column;
+  border-radius: 10px;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ccc;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -66,24 +77,8 @@ const MenuItem = styled.div`
     props.$isSelected
       ? `${props.$mode === 'dog' ? '#f8b62d' : '#00a29a'}`
       : '#fff'};
-  &:first-child {
-    border-start-end-radius: 8px;
-    border-start-start-radius: 8px;
-  }
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
   &:hover {
     background: ${(props) => (props.$mode === 'dog' ? '#f8b62d' : '#00a29a')};
-    &:first-child {
-      border-start-end-radius: 8px;
-      border-start-start-radius: 8px;
-    }
-    &:last-child {
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
   }
 `;
 

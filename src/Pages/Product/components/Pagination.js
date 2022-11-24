@@ -8,15 +8,27 @@ import PageContext from '../contexts/PageContext';
 
 export default function Pagination({ totalPages, page, usp }) {
   const { mode } = useContext(SwitchButtonContext);
-  // console.log(totalPages);
+  // console.log({ totalPages, page });
 
   const location = useLocation();
   const { cate, nowPage } = useContext(PageContext);
 
   return totalPages > 1 ? (
     <>
-      <div className="page">
+      <div className="product_page">
         <ul>
+          <li>
+            <Link
+              to={`${location.pathname}${
+                cate ? `?cate=${cate}&page=${1}` : `?page=${1}`
+              }`}
+            >
+              <i
+                className="fa-solid fa-chevrons-left"
+                style={{ display: `${page === 1 ? 'none' : ''}` }}
+              ></i>
+            </Link>
+          </li>
           <li>
             <Link
               to={
@@ -34,13 +46,14 @@ export default function Pagination({ totalPages, page, usp }) {
               <i className="fa-solid fa-angle-left"></i>
             </Link>
           </li>
+          {/* FIXME: 搜尋後頁數顯示異常 */}
           {Array(totalPages) &&
             Array(totalPages)
               .fill(1)
               .map((e, i) => {
-                const p = page - 3 + i;
+                const p = page - 2 + i;
                 if (p < 1 || p > totalPages) return '';
-                if (p > nowPage + 2 || p < nowPage - 2) return '...';
+                if (p > nowPage + 2 || p <= nowPage - 2) return '...';
                 return (
                   <li key={i}>
                     <Link
@@ -83,6 +96,20 @@ export default function Pagination({ totalPages, page, usp }) {
               }
             >
               <i className="fa-solid fa-angle-right"></i>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`${location.pathname}${
+                cate
+                  ? `?cate=${cate}&page=${totalPages}`
+                  : `?page=${totalPages}`
+              }`}
+            >
+              <i
+                className="fa-solid fa-chevrons-right"
+                style={{ display: `${page === totalPages ? 'none' : ''}` }}
+              ></i>
             </Link>
           </li>
         </ul>
