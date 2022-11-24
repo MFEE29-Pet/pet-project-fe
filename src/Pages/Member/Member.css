@@ -1,0 +1,1337 @@
+@font-face {
+  font-family: big_circle;
+  src: url(../../../public/font/GenSenRounded-R.ttc);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: big_circle;
+}
+
+h2 {
+  font-weight: 900;
+  color: #40220f;
+}
+
+body {
+  background-color: #fff5de;
+}
+
+ul {
+  font-size: 15px;
+  color: #966134;
+}
+
+span {
+  font-size: 18px;
+}
+
+
+/* --------------------------------------------------------------------- */
+/* MemberChevron */
+.Web {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Web-path {
+  width: 30%;
+}
+
+.aa-tital {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aa {
+  width: 250px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 30px;
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.aa input {
+  outline: none;
+  border: none;
+  background-color: #fff;
+}
+
+.orange {
+  width: 40px;
+  height: 100%;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.order {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.orderPage {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderPage i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 2rem;
+  /* 文字置中 */
+}
+
+.orderPage .fa-light {
+  color: #40210f;
+}
+
+.fa-1 {
+  /* background-color: red; */
+  /* background: url(../image/cat.png) no-repeat center center; */
+  background-size: 30px 30px;
+}
+
+.chevron {
+  background-color: #a4a5a5;
+  border-radius: 40px;
+}
+
+.aa-page span:first-child {
+  color: darkorange;
+}
+
+.chevron {
+  height: 30px;
+  border-radius: 30px;
+  display: flex;
+  overflow: hidden;
+}
+
+.chevron-a {
+  width: 40px;
+  height: 100%;
+  background-color: rgb(80, 78, 75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chevron-b {
+  width: 40px;
+  height: 100%;
+  background-color: rgb(105, 100, 94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------- */
+/* MemberShip-page */
+
+.Web-path {
+  color: #dcdddd;
+  margin-bottom: 40px;
+}
+
+.member {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.member-shipL {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-photo {
+  width: 50px;
+  height: 50px;
+  background-color: darkblue;
+  border-radius: 50%;
+  overflow: hidden;
+  /* 超出去的切掉 */
+  margin-bottom: 15px;
+  border: 2px solid#DCDDDD;
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 自動等比例延展圖片 */
+}
+
+.member-icon {
+  margin-top: 50px;
+}
+
+.member-icon ul {
+  display: flex;
+  margin-bottom: 35px;
+}
+.member-icon ul li {
+  cursor: pointer;
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+}
+
+.right {
+  color: #966134;
+}
+
+.thin,
+.light {
+  color: #966134;
+  margin-right: 10px;
+}
+/* --------------------------------------------------------------------- */
+/* MemberLevel */
+.degreeWrap {
+  width: 100%;
+  /* height: 70%; */
+  display: flex;
+}
+
+.degree {
+  width: 33.33333%;
+  display: flex;
+  flex-direction: column;
+  /* 從上到下 */
+  align-items: center;
+}
+
+.d1 {
+  transform: perspective(200px) translateZ(-50px);
+}
+
+.d2 {
+  transform: perspective(400px) translateZ(50px);
+}
+
+.d3 {
+  transform: perspective(200px) translateZ(-50px);
+}
+
+.degreeC {
+  height: 70%;
+}
+
+.card-degree {
+  width: 80%;
+  height: 700px;
+  background-color: #fff;
+  padding-top: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.degreeImg {
+  width: 250px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 120px 15px -70px rgb(123, 122, 122);
+}
+
+.degreeImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.degree-card {
+  margin-top: 80px;
+}
+
+.degree-card h2 {
+  font-size: 20px;
+}
+
+.degree-card p {
+  font-size: 14px;
+}
+
+.degree-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  color: #966134;
+}
+
+.degreeIcon {
+  width: 354px;
+  /* flex-grow: 1; */
+  /* align-self: center; */
+}
+
+.ship-bottom {
+  width: 100%;
+  height: 30%;
+  background-color: #dcdddd;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0px;
+  justify-content: space-between;
+}
+
+.ship {
+  align-self: center;
+}
+
+.ship h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.ship h2::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: -15px;
+  width: 10px;
+  height: 1px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.ship h2::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: -14px;
+  width: 10px;
+  height: 1px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+
+  border-bottom: 1px solid rgb(11, 11, 11);
+}
+
+.ship p {
+  font-size: 10px;
+  color: #966134;
+  text-align: center;
+}
+
+.input-text {
+  display: flex;
+}
+
+.input {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.range {
+  width: 100%;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+
+.range div {
+  width: 20%;
+  height: 100%;
+  background-color: red;
+}
+
+.inputRange {
+  width: 40%;
+}
+/* --------------------------------------------------------------------- */
+/* MembePetAdd */
+
+.peat-ship {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+
+}
+
+.peat-name {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.peat {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.peat-photo {
+  width: 80px;
+  height: 80px;
+  background-color: darkblue;
+  border-radius: 50%;
+  overflow: hidden;
+  /* 超出去的切掉 */
+  border: 2px solid#DCDDDD;
+}
+
+.peat-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 自動等比例延展圖片 */
+}
+
+.peat span {
+  color: #966134;
+  margin-right: 50px;
+}
+
+.text span:nth-child(2) {
+  color: #40220f;
+}
+
+.icon {
+  color: #966134;
+  display: flex;
+  width: 10%;
+}
+
+.icon i {
+  margin-left: 20px;
+}
+
+.button {
+  cursor: pointer;
+  /* 滑鼠點擊樣式 */
+  font-size: 20px;
+  color: #40220f;
+  font-weight: 900;
+}
+
+.addPetbutton{
+font-size: 20px;
+color: #40210f;
+margin-bottom: 30px;
+}
+
+
+.peat-add {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  justify-content: space-between;
+}
+
+.up-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #dcdddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 14px;
+  color: #a4a5a5;
+}
+
+.up-photo i {
+  margin-bottom: 10px;
+  color: #a4a5a5;
+  font-size: 25px;
+}
+
+.peatPID label {
+  font-size: 14px;
+  color: #a4a5a5;
+}
+
+.peatAll {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.peatChoose {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* pee add page */
+.button {
+  background-color: darkorange;
+  background: 50%;
+  color: #fff;
+}
+
+.buttonAdd{
+  width:80px;
+  height: 30px;
+  background-color: darkorange;
+   border-radius: 20px;
+   color: #fff;
+   border:darkorange;
+}
+
+
+
+#uname {
+  width: 160px;
+  padding: 10px;
+  border-radius: 30px;
+  border: 2px solid #a4a5a5;
+  color: #a4a5a5;
+  background-color: #fff;
+}
+
+.peatAddID input::-webkit-input-placeholder {
+  color: #a4a5a5;
+}
+
+.peatAddID {
+  width: 80%;
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------- */
+/* MembeArticle */
+
+.article-all .thin {
+  font-size: 30px;
+}
+
+.trash {
+  font-size: 20px;
+}
+.articleWrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.articleInfo {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+}
+.article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding-left: 10px;
+}
+
+.article h5 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.article-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.article-details {
+  width: 95%;
+  background-color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  
+}
+
+.article-all {
+  display: flex;
+}
+
+.hashtag span {
+  margin-right: 10px;
+}
+
+.hashtag span::before {
+  content: '#';
+}
+
+.author h2 {
+  font-weight: 900;
+  font-size: 18px;
+  color: #40220f;
+}
+
+.author p {
+  font-weight: 100;
+  color: #40220f;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+}
+
+.author h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.article-delete {
+  width: 121px;
+  height: 35px;
+  border: 1px solid rgb(62, 55, 55);
+  border-radius: 30px;
+  padding: 10px;
+}
+
+/* --------------------------------------------------------------------- */
+/* MemberAppointment */
+
+.Hospital-order,
+.Hospital-info,
+.time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33.33333333%;
+}
+
+.Hospital-order {
+  justify-content: space-evenly;
+}
+
+.Hospital-info h2 {
+  width: 80%;
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+
+.Hospital-order h3 {
+  font-size: 19px;
+  color: #40220f;
+}
+.Hospital-order h3:first-child {
+  color: firebrick;
+}
+
+.Hospital-order h3:last-child {
+  color: #a4a5a5;
+}
+
+.time h2 {
+  width: 69%;
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+
+.Hospital-all {
+  padding: 20px 0;
+  margin-bottom: 15px;
+  width: 95%;
+  display: flex;
+  font-size: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.Hospital {
+  width: 100%;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+}
+
+.Hospital-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.Hospital-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.Hospital h2 {
+  font-weight: 900;
+  font-size: 18px;
+  color: #40220f;
+}
+
+.Hospital p {
+  font-weight: 100;
+  color: #40220f;
+}
+
+.Hospital-A {
+  display: flex;
+  padding: 10px 0 0;
+}
+
+.Hospital-A h5 {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.Hospital-A span {
+  font-size: 16px;
+  color: #966134;
+}
+
+/* --------------------------------------------------------------------- */
+/* MemberProductCollect */
+
+.product-title {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.product-photo {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.product-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.proudct-price {
+  display: flex;
+}
+
+.product-img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  /* background-color: rgba(130, 121, 125, 0.454); */
+  position: absolute;
+  top: 130px;
+  box-shadow: 0 30px 20px;
+}
+
+.proudct-price h5 {
+  font-size: 14px;
+  color: red;
+  margin-left: 10px;
+}
+
+.delete {
+  font-size: 15px;
+  border-radius: 30px;
+  color: #606868;
+  background-color: #fff5de;
+  border: none;
+  outline: 1px solid#606868;
+  padding: 10px 25px;
+}
+
+/* --------------------------------------------------------------------- */
+/* orderPage */
+.order {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.orderPage {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderPage i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 2rem;
+  /* 文字置中 */
+}
+
+.orderPage .fa-light {
+  color: #40210f;
+}
+
+/* --------------------------------------------------------------------- */
+/* MemberHistoryCamera */
+
+.productCamera-p {
+  width: 90px;
+  height: 100px;
+  margin-left: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.productCamera-p img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productCamera {
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 0;
+}
+
+.titleCamera {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 25px;
+  /* align-content: center; */
+}
+
+.titleCamera p {
+  width: 15%;
+  text-align: center;
+  color: #a4a5a5;
+  font-size: 14px;
+}
+
+.orderCameradetail {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderCameradetail p {
+  width: 22%;
+  text-align: center;
+}
+
+.productCamera-all {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productCamera-all p:nth-child(2) {
+  width: 100px;
+  color: #40210f;
+}
+
+.productCamera-all p:nth-child(3) {
+  width: 55px;
+  color: #a4a5a5;
+}
+
+.productCamera-all p:nth-child(4) {
+  color: #ff0e00;
+}
+
+.orderCameraWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderCamera-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderCameraPage {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderCameraPage i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 2rem;
+  /* 文字置中 */
+}
+
+.orderCameraPage .fa-light {
+  color: #40210f;
+}
+
+.orderCamera {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.pet-orderCamera {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detailCamera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailCamera p {
+  font-size: 15px;
+  margin-left: 10px;
+  color: #a4a5a5;
+}
+
+.detailCamera h1,
+.priceCamera h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.priceCamera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceCamera h4 {
+  margin-left: 10px;
+  color: #ff0e00;
+}
+
+/* --------------------------------------------------------------------- */
+/* ＭemberHistoryProduct */
+
+.product-p {
+  width: 90px;
+  height: 100px;
+}
+
+.product-p img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 0;
+}
+
+.titleProduct {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 25px;
+  padding: 0 15px;
+  /* align-content: center; */
+}
+
+.titleProduct p {
+  color: #a4a5a5;
+  font-size: 14px;
+}
+
+.product-all {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-all p:nth-child(2) {
+  width: 100px;
+  color: #40210f;
+}
+
+.product-all p:nth-child(3) {
+  width: 55px;
+  color: #a4a5a5;
+}
+
+.product-all p:nth-child(4) {
+  color: #ff0e00;
+}
+
+.orderProductWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderProduct-right {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderProductPage {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderProductPage i {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 2rem;
+  /* 文字置中 */
+}
+
+.orderProductPage .fa-light {
+  color: #40210f;
+}
+
+.fa-1 {
+  /* background-color: red; */
+  /* background: url(../image/cat.png) no-repeat center center; */
+  background-size: 30px 30px;
+}
+
+.detailProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailProduct p {
+  font-size: 15px;
+  margin-left: 10px;
+  color: #a4a5a5;
+}
+
+.detailProduct h1,
+.priceProduct h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.priceProduct {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceProduct h4 {
+  margin-left: 10px;
+  color: #ff0e00;
+}
+
+.orderProduct {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+/* --------------------------------------------------------------------- */
+/* MemberPassword */
+
+ 
+.input input{
+  border: none;
+  outline: none;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  background-color: rgb(242, 140, 31);
+  border-radius: 30px;
+  border-color: #ccc;
+  color: rgb(255, 253, 253);
+  font-size: 14px;
+  border: none;
+  margin-top: 30px;
+}
+
+
+.pagePassword {
+  width: 700px;
+  margin: 0 auto;
+  /* padding: 40px 0px; */
+  height: 350px;
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter-A {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #FaFaFa;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.enter-C{
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #FaFaFa;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
+}
+.enter-C select {
+  /* width: 150px;
+    height: 35px; */
+  border-radius: 20px;
+  border: none;
+  color: #a4a5a5;
+  background-color: #fff;
+  padding: 5px 10px;
+  width: 120px;
+  outline: none;
+
+}
+
+.input{
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.Revise {
+  width: 300px;
+  height: 200px;
+  background-color: #FaFaFa;
+  margin: 30px;
+  border-radius: 30px;
+}
+
+.text {
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------- */
+ /*MemberProfileUp */
+
+
+ .singUp-page {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+ .pageProfileUp {
+  width: 700px;
+  margin: 0 auto;
+  padding: 30px 0px;
+  /* height: 350px; */
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
+.page-left {
+  width: 70%;
+}
+.enter-A {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 80%;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.address {
+  display: flex;
+  width: 250px;
+}
+.addressText {
+  margin-left: 140px;
+  margin-bottom: 10px;
+}
+.input {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.text {
+  justify-content: center;
+}
+
+.up-photoProfile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #dcdddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a4a5a5;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.up-photoProfile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.radio {
+  width: 250px;
+}
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo input {
+  background-color: #fff;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid#989898;
+  color: #989898;
+}
+.cc {
+  width: 250px;
+  outline: 1px solid #989898;
+  height: 30px;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+
+
+
+/* --------------------------------------------------------------------- */
+ /* ForgrtPasswordsuccess . MemberSingsuccess */
+
+
+.fill{
+  width: 100%;
+  height: 100vh;
+  background-color: #989898;
+  opacity: 0.7;
+  position: absolute;
+}
+.success{
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 30px;
+  top: 40%;
+  left: 40%;
+}
+.success h1{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}

@@ -1,0 +1,20 @@
+/* 符號 */
+.forum_unCollect_button #forum_Collect{
+  color: #b5b5b6;
+  margin-left: 8px;
+}
+/* 文字 */
+.forum_unCollect_button {
+  color: #b5b5b6;
+  border: none;
+}
+/* 符號 */
+.forum_Collect_button #forum_Collect{
+  color: #c30d23;
+  margin-left: 8px;
+}
+/* 文字 */
+.forum_Collect_button {
+  color: #c30d23;
+  border: none;
+}

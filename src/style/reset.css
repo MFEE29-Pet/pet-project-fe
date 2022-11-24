@@ -132,3 +132,27 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+.circle {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+/* .circle.sm {
+    font-size: 18px;
+    color: blanchedalmond;
+}
+
+.circle.md {
+    font-size: 24px;
+    color: blanchedalmond;
+    
+}
+
+.circle.lg {
+    font-size: 30px;
+    color: blanchedalmond;
+} */

@@ -1,9 +1,11 @@
-import React from 'react';
-import Login from './Login';
-import Cart from './Cart';
+import React, { useContext } from 'react';
 import LoginInfo from './LoginInfo';
 import styled from 'styled-components';
 import ThemeChange from './ThemeChange';
+import CartIcon from '../../../Pages/Product/components/CartIcon';
+import { Link } from 'react-router-dom';
+import Login from './Login';
+import AuthContext from '../../../contexts/AuthContext';
 
 const RightBox = styled.div`
   display: flex;
@@ -11,14 +13,23 @@ const RightBox = styled.div`
   align-items: center;
   width: 30%;
 `;
+const CART = styled(Link)`
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 function Right(props) {
+  const { myAuth } = useContext(AuthContext);
   return (
     <RightBox>
-      {/* <Login /> */}
-      <LoginInfo/>
+    {/* {console.log(myAuth)} */}
+      {myAuth.authorised ? <LoginInfo /> : <Login />}
 
-      <Cart />
+      <CART to="/cart">
+        <CartIcon />
+      </CART>
       <ThemeChange />
     </RightBox>
   );
