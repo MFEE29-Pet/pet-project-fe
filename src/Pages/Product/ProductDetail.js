@@ -165,14 +165,68 @@ function ProductDetail() {
   // breadcrumb 連結用
   const routes = [
     {
-      to: '/product',
-      label: `所有商品`,
-    },
-    {
-      to: `/product?cate=${data.category}&page=1`,
-      label: `${data.cname}`,
+      sid: 0,
+      name: '',
+      category: 0,
+      img: '',
+      price: 0,
+      member: 0,
+      member_price: 0,
+      specials: '',
+      info: '',
+      created_at: '',
+      inventory: 0,
+      on_sale: 1,
     },
   ];
+  // 商品細節資訊 state
+  const [productDetail, setProductDetail] = useState(initProductDetail);
+
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  // let usp = +params.get('page') || 1;
+  // let cate = +params.get('cate');
+  let sid = +params.get('sid');
+  // let p_sid = +params.get('p_sid');
+  // console.log({ usp, cate });
+
+  //  思考如果所有商品該如何處理 ?
+  // 目前解法: 後端篩選 新增 子分類 和 母分類 路由
+  if (!sid) {
+    sid = '';
+  } else {
+    sid = `/detail/${sid}`;
+  }
+
+  // console.log({ sid });
+
+  // 取得商品資料
+  const getProducts = async () => {
+    try {
+      const res = await axios.get(`${PRODUCT_LIST}${sid}`);
+
+      // console.log(res);
+
+      const productData = res.data.rows;
+      setProductDetail(productData);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  // didMount 載入資料
+  useEffect(() => {
+    getProducts();
+  }, [location]);
+
+  // console.log(productDetail);
+
+  const pd = productDetail.map((e, i) => {
+    return { ...e };
+  });
+  const data = pd[0];
+  // console.log(data);
 
   // DONE 寫入context 保持狀態 嘗試載入頁面判斷
   // const [indexNum, setIndexNum] = useState(-1);
@@ -213,10 +267,14 @@ function ProductDetail() {
             </div>
             <div className="product-info-text">
               {/* <!-- breadcrumb --> */}
-              <Breadcrumb
-                routes={routes}
-                separator={<BreadcrumbRightArrowIcon />}
-              />
+              <nav className="nav-breadcrumb">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
+                    <a href="#">狗勾</a>
+                  </li>
+                  <li className="breadcrumb-item">飼料</li>
+                </ol>
+              </nav>
 
               <div className="product-title-wrap">
                 <h2>{data.name}</h2>
@@ -236,41 +294,9 @@ function ProductDetail() {
               <div className="product-q-loved">
                 <div className="product-quanity">
                   <p>數量</p>
-                  <i
-                    className="fa-solid fa-minus q-reduce bg_main_light_color2"
-                    onClick={() => {
-                      setAmount(amount > 1 ? amount - 1 : 1);
-                    }}
-                  ></i>
-                  <input
-                    className="q-num"
-                    value={amount}
-                    style={{
-                      background: 'rgba(0,0,0,0)',
-                      border: 'none',
-                      width: '30px',
-                      fontSize: '16px',
-                    }}
-                    type="number"
-                    id="product-amount"
-                    onChange={(e) => {
-                      if (+e.target.value < 1) {
-                        setAmount(1);
-                      } else if (+e.target.value > data.inventory) {
-                        setAmount(data.inventory);
-                      } else {
-                        setAmount(Math.floor(+e.target.value));
-                      }
-                    }}
-                  />
-                  <i
-                    className="fa-solid fa-plus q-add bg_main_light_color2"
-                    onClick={() => {
-                      setAmount(
-                        amount < +data.inventory ? amount + 1 : data.inventory
-                      );
-                    }}
-                  ></i>
+                  <i className="fa-solid fa-minus q-reduce bg_main_light_color2"></i>
+                  <p className="q-num">1</p>
+                  <i className="fa-solid fa-plus q-add bg_main_light_color2"></i>
                 </div>
                 <div
                   className="add-loved"
@@ -461,19 +487,19 @@ function ProductDetail() {
           </div>
           <div className="div-product-seen">
             <div className="product-img-wrap">
-              <Link href="">
+              <a href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </Link>
+              </a>
             </div>
             <div className="product-img-wrap">
-              <Link href="">
+              <a href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </Link>
+              </a>
             </div>
             <div className="product-img-wrap">
-              <Link href="">
+              <a href="">
                 <img src="/images/test/can1.jpg" alt="" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

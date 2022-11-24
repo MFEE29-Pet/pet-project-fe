@@ -1,32 +1,16 @@
 import React from 'react';
 import './ButtonBar.css';
+import { Link } from 'react-router-dom';
 
-function ButtonBar() {
+function ButtonBar({ label, value, to }) {
   return (
     <>
-      <div className="btn_area">
-        <button className="btn_total bg_main_light_color1" id="" onClick="">
-          綜合
+      {/* <div className="btn_area"> */}
+      <Link to={to}>
+        <button className="btn_total bg_main_light_color1" id={value}>
+          {label}
         </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          閒聊
-        </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          發問
-        </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          活動
-        </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          送養
-        </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          領養
-        </button>
-        <button className="btn_total bg_main_light_color1" onClick="">
-          其他
-        </button>
-      </div>
+      </Link>
     </>
   );
 }

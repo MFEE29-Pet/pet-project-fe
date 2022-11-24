@@ -17,10 +17,6 @@ function SearchBar() {
             id="pro_search"
           ></i>
         </div>
-
-        <div className="forum_select_bar">
-          <select id="select" />
-        </div>
       </div>
     </>
   );
