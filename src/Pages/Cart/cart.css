@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  color: #c9bc9c;
+  color: #dcdddd;
 }
 
 .eason_progress_bar::after {
@@ -25,20 +25,28 @@
   top: 59%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #c9bc9c;
   z-index: 0;
 }
 
 .eason_dot {
   width: 15px;
   height: 15px;
-  border: 0.13rem solid #c9bc9c;
+  border: 0.13rem solid #dcdddd;
   border-radius: 50%;
   margin: 8px 0;
   background-color: #fff5de;
   z-index: 1;
 }
 
+.eason_dot_1 {
+  width: 15px;
+  height: 15px;
+  border: 0.13rem solid #dcdddd;
+  border-radius: 50%;
+  margin: 8px 0;
+  background-color: #fff5de;
+  z-index: 1;
+}
 .eason_order .eason_dot {
   border: 0.13rem solid #40220f;
 }
@@ -49,7 +57,7 @@
 
 .eason_progress_bar a {
   text-decoration: none;
-  color: #c9bc9c;
+  color: #dcdddd;
   font-weight: 900;
 }
 
@@ -104,6 +112,14 @@
   vertical-align: middle;
 }
 
+.date,
+.dayparts {
+  border: 1px solid #dcdddd;
+  border-radius: 15px;
+  color: #40220f;
+  padding: 5px;
+}
+
 .eason_section_1 .p_name {
   font-weight: 900;
 }
@@ -112,98 +128,102 @@
   vertical-align: middle;
 }
 
-.eason_section_1 .list_table th:nth-child(1) {
-  width: 15%;
+.eason_section_1 .eason_list_table th:nth-child(1) {
+  width: 13%;
 }
 
-.eason_section_1 .list_table th:nth-child(2) {
-  width: 15%;
+.eason_section_1 .eason_list_table th:nth-child(2) {
+  width: 17%;
 }
 
-.eason_section_1 .list_table th:nth-child(3) {
-  width: 15%;
+.eason_section_1 .eason_list_table th:nth-child(3) {
+  width: 20%;
 }
 
-.eason_section_1 .table_price {
+.eason_section_1 .eason_table_price {
   font-weight: 900;
   color: red;
 }
 
-.fa-pen-to-square {
-  color: #c9caca;
-}
 
+/* .fa-pen-to-square {
+  color: #c9caca;
+  cursor: pointer;
+} */
+/* 
 .fa-pen-to-square:hover {
   color: #40220f;
+} */
+.eason_section_1 .eason_list_table th:nth-child(4) {
+  width: 20%;
 }
-.eason_section_1 .list_table th:nth-child(4) {
+
+.eason_section_1 .eason_list_table th:nth-child(5) {
+  width: 11%;
+}
+
+.eason_section_1 .eason_list_table th:nth-child(6) {
+  width: 12%;
+}
+
+/* .eason_section_1 .eason_list_table th:nth-child(7) {
   width: 15%;
-}
+} */
 
-.eason_section_1 .list_table th:nth-child(5) {
-  width: 15%;
-}
-
-.eason_section_1 .list_table th:nth-child(6) {
-  width: 13%;
-}
-
-.eason_section_1 .list_table th:nth-child(7) {
-  width: 15%;
-}
-
-.fa-trash-can {
+.eason_fa-trash-can {
   color: #c9caca;
+  cursor: pointer;
 }
 
-.fa-trash-can:hover {
+.eason_fa-trash-can:hover {
   color: #40220f;
 }
 
-.fa-solid {
+.eason_fa-solid {
   color: #c9bc9c;
+  cursor: pointer;
 }
 
 /* 商品訂單 CSS----------------------------------------------------------- */
-.eason_section_2 .list_title {
+.eason_section_2 .eason_list_title {
   margin-top: 20px;
   display: flex;
   align-items: center;
 }
 
-.eason_eason_section_2 .p_name {
+.eason_eason_section_2 .eason_p_name {
   font-weight: 900;
 }
 
-.section_2 .table_img img {
+.section_2 .eason_table_img img {
   vertical-align: middle;
 }
 
-.eason_section_2 .list_table th:nth-child(1) {
+.eason_section_2 .eason_list_table th:nth-child(1) {
   width: 12.5%;
 }
 
-.eason_section_2 .list_table th:nth-child(2) {
+.eason_section_2 .eason_list_table th:nth-child(2) {
   width: 20%;
 }
 
-.eason_section_2 .list_table th:nth-child(3) {
+.eason_section_2 .eason_list_table th:nth-child(3) {
   width: 15%;
 }
 
-.eason_section_2 .table_price {
+.eason_section_2 .eason_table_price {
   color: #727171;
 }
 
-.eason_section_2 .list_table th:nth-child(4) {
+.eason_section_2 .eason_list_table th:nth-child(4) {
   width: 15%;
 }
 
-.eason_section_2 .table_amount {
+.eason_section_2 .eason_table_amount {
   letter-spacing: 5px;
 }
 
-.eason_section_2 .list_table th:nth-child(5) {
+.eason_section_2 .eason_list_table th:nth-child(5) {
   width: 10%;
 }
 
@@ -212,7 +232,7 @@
   color: red;
 }
 
-.eason_section_2 .list_table th:nth-child(6) {
+.eason_section_2 .eason_list_table th:nth-child(6) {
   width: 10%;
 }
 
@@ -291,7 +311,7 @@
 
 .eason_total td {
   text-align: right;
-  color: #40220f;
+  color: #727171;
   font-size: x-small;
   font-weight: 900;
 }
