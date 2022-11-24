@@ -159,7 +159,7 @@ function Cart() {
                 <th>預約日期</th>
                 <th>預約時段</th>
                 <th>單價</th>
-                <th>編輯</th>
+                {/* <th>編輯</th> */}
                 <th>刪除</th>
               </tr>
             </thead>
@@ -183,11 +183,11 @@ function Cart() {
                       </select>
                     </td>
                     <td className="eason_table_price">{v.photo_price}</td>
-                    <td className="eason_edit">
+                    {/* <td className="eason_edit">
                       <a href="/#">
                         <i className="fa-light fa-pen-to-square"></i>
                       </a>
-                    </td>
+                    </td> */}
                     <td>
                       <span>
                         <i className="fa-light fa-trash-can"></i>

@@ -129,15 +129,15 @@
 }
 
 .eason_section_1 .eason_list_table th:nth-child(1) {
-  width: 15%;
+  width: 13%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(2) {
-  width: 15%;
+  width: 17%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(3) {
-  width: 15%;
+  width: 20%;
 }
 
 .eason_section_1 .eason_table_price {
@@ -155,20 +155,20 @@
   color: #40220f;
 }
 .eason_section_1 .eason_list_table th:nth-child(4) {
-  width: 15%;
+  width: 20%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(5) {
-  width: 15%;
+  width: 11%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(6) {
-  width: 13%;
+  width: 12%;
 }
 
-.eason_section_1 .eason_list_table th:nth-child(7) {
+/* .eason_section_1 .eason_list_table th:nth-child(7) {
   width: 15%;
-}
+} */
 
 .fa-trash-can {
   color: #c9caca;
