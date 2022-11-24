@@ -35,11 +35,11 @@ function ProductDetail() {
   const { mode } = useContext(SwitchButtonContext);
   // 購物車項目
   const { cartItem, setCartItem } = useContext(CartInfoContext);
-  const { lovedList, setLovedList, delLoved, addLoved, loved, setLoved } =
+  // 收藏項目
+  const { lovedList, delLoved, addLoved, loved, indexNum } =
     useContext(IsLovedContext);
 
   // states
-  // console.log(loved);
   // 收藏連結 Hover
   const [lovedHover, setLovedHover] = useState(false);
   // 彈出視窗狀態
@@ -111,9 +111,8 @@ function ProductDetail() {
     return { ...e };
   });
   const data = pd[0];
-  // console.log({ data, productDetail });
+
   // console.log(avgNum);
-  // console.log([{ ...data }]);
 
   // DONE 加入購物車
   const handleAddCart = async () => {
@@ -169,15 +168,10 @@ function ProductDetail() {
     },
   ];
 
-  // TODO 寫入context 保持狀態 嘗試載入頁面判斷
-  const [indexNum, setIndexNum] = useState(-1);
-  // 判斷是否已收藏
+  // DONE 寫入context 保持狀態 嘗試載入頁面判斷
+  // const [indexNum, setIndexNum] = useState(-1);
 
-  // useEffect(() => {
-  //   const index = lovedList.findIndex((e) => e.p_sid === +params.get('sid'));
-  //   setIndexNum(index);
-  // }, []);
-  console.log(indexNum);
+  // console.log(indexNum);
   return (
     <>
       <main>

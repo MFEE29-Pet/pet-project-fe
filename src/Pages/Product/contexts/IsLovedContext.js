@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ADD_LOVED, GET_LOVED, DEL_LOVED } from '../my-config';
 
 const IsLovedContext = createContext([]);
@@ -12,21 +12,22 @@ export const IsLovedContextProvider = function ({ children }) {
     p_sid: 1,
     m_sid: 0,
   };
-  // if (localStorage.getItem('loved')) {
-  //   initLoved = JSON.parse(localStorage.getItem('cartItem'));
-  // } else {
-  //   initLoved = {
-  //     p_sid: 1,
-  //     m_sid: 0,
-  //   };
-  // }
+  const navigate = useNavigate();
+
+  // 收藏列表
   const [lovedList, setLovedList] = useState([initLoved]);
   // 收藏狀態
   const [loved, setLoved] = useState(false);
-  const m_sid = JSON.parse(localStorage.getItem('auth')).sid || 0;
 
+  // 從localStorage取得 m_sid
+
+  const m_sid = localStorage.getItem('auth')
+    ? JSON.parse(localStorage.getItem('auth')).sid
+    : '未登入';
+
+  // AJAX 抓收藏列表清單
   const getLovedList = async () => {
-    if (!m_sid) {
+    if (!m_sid || '未登入') {
       console.log('未登入，無法取得收藏列表');
       return;
     }
@@ -38,42 +39,39 @@ export const IsLovedContextProvider = function ({ children }) {
     });
     // console.log(loved);
     setLovedList(loved);
-    localStorage.setItem('loved', JSON.stringify(loved));
 
+    // 加入localStorage (非必要)
+    localStorage.setItem('loved', JSON.stringify(loved));
     // console.log(list);
   };
-
-  // let initLoved = {
-  //   p_sid: 0,
-  //   m_sid: JSON.parse(localStorage.getItem('auth')).sid || 0, // 從localStorage中抓取 m_sid
-  //   isLoved: false,
-  // };
 
   // 新增收藏
   const addLoved = async (productSid) => {
     // 判斷登入
-    if (!m_sid) {
+    if (!m_sid || '未登入') {
       alert('請先登入會員');
+      navigate('/login');
       return;
     }
 
     const res = await axios.get(
       `${ADD_LOVED}?p_sid=${productSid}&m_sid=${m_sid}`
     );
-    // console.log(res.data);
+
     const newLoved = [
       ...lovedList,
       { p_sid: productSid, m_sid: m_sid, isLoved: true },
     ];
     localStorage.setItem('loved', JSON.stringify(newLoved));
     setLovedList(newLoved);
+    // 更改收藏狀態
     setLoved(true);
   };
 
   // 移除收藏
   const delLoved = async (productSid, index) => {
     // 判斷登入
-    if (!m_sid) {
+    if (!m_sid || '未登入') {
       alert('請先登入會員');
       return;
     }
@@ -86,22 +84,51 @@ export const IsLovedContextProvider = function ({ children }) {
     const newLoved = loved1.concat(loved2);
     localStorage.setItem('loved', JSON.stringify(newLoved));
     setLovedList(newLoved);
+    // 更改收藏狀態
     setLoved(false);
-    // console.log(res.data);
   };
-  // const location = useLocation();
-  // const params = new URLSearchParams(location.search);
-  // const sid = +params.get('sid') || 0;
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const sid = +params.get('sid') || 0;
   // let index = lovedList.findIndex((e) => e.p_sid === sid);
 
+  // localStorage index狀態 , 有->第幾個  無->-1
+  const [indexNum, setIndexNum] = useState(-1);
+
+  // 判斷localStorage內有無收藏, 切頁面(因應不同商品) or 更改收藏狀態時, 重新set
+  useEffect(() => {
+    let index = lovedList.findIndex((e) => e.p_sid === sid);
+    setIndexNum(index);
+    console.log(indexNum);
+  }, [location, loved]);
+
+  // 藉 indexNum 切換 loved 狀態, 使其同步set
+  useEffect(() => {
+    if (indexNum === -1) {
+      setLoved(false);
+    } else {
+      setLoved(true);
+    }
+  }, [indexNum]);
+
+  // didMount 抓資料
   useEffect(() => {
     getLovedList();
   }, []);
-  console.log(...lovedList);
+  // console.log(...lovedList);
 
   return (
     <IsLovedContext.Provider
-      value={{ lovedList, setLovedList, delLoved, addLoved, loved, setLoved }}
+      value={{
+        lovedList,
+        setLovedList,
+        delLoved,
+        addLoved,
+        loved,
+        setLoved,
+        indexNum,
+      }}
     >
       {children}
     </IsLovedContext.Provider>
