@@ -8,7 +8,12 @@ import { Link, useLocation } from 'react-router-dom';
 import ReplyPopup from './components/ReplyPopup';
 import axios from 'axios';
 import { PRODUCT_DETAIL } from './my-config';
+// import AuthContext from '../../contexts/AuthContext';
+import CartInfoContext from './contexts/CartInfoContext';
+import IsLovedContext from './contexts/IsLovedContext';
+import RelatedProduct from './components/RelatedProduct';
 
+// styled components
 const InfoDiv = styled.div`
   &::before {
     background-color: ${(props) =>
@@ -26,14 +31,24 @@ const ShowStars = styled.div`
 `;
 
 function ProductDetail() {
+  // context
+  // 模式切換
   const { mode } = useContext(SwitchButtonContext);
+  // 購物車項目
+  const { cartItem, setCartItem } = useContext(CartInfoContext);
+  // 收藏項目
+  const { lovedList, delLoved, addLoved, loved, indexNum } =
+    useContext(IsLovedContext);
 
-  const [loved, setLoved] = useState(false);
+  // states
+  // 收藏連結 Hover
   const [lovedHover, setLovedHover] = useState(false);
-  // console.log(data);
+  // 彈出視窗狀態
   const [showDiv, setShowDiv] = useState(false);
+  // 相關商品
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
-  // 初始狀態
+  // 商品細節資訊初始狀態
   let initProductDetail = [
     {
       sid: 0,
@@ -57,10 +72,6 @@ function ProductDetail() {
   // 數量 state
   const [amount, setAmount] = useState(1);
 
-  // 購物車數字
-  const [cartAmount, setCartAmount] = useState(0);
-  // console.log(cartAmount);
-
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -70,18 +81,20 @@ function ProductDetail() {
   } else {
     sid = `/${sid}`;
   }
-  console.log({ sid });
+  // console.log({ sid });
 
   // 取得商品資料
   const getProductsDetail = async () => {
     try {
       const res = await axios.get(`${PRODUCT_DETAIL}${sid}`);
 
-      console.log(res);
+      // console.log(res);
 
       const productData = res.data.rows;
       setProductDetail(productData);
       setAvgNum(res.data.avgScores);
+      setRelatedProducts(res.data.related_p);
+      // console.log(relatedProducts);
     } catch (e) {
       console.log(e.message);
     }
@@ -92,15 +105,64 @@ function ProductDetail() {
     getProductsDetail();
     setAmount(1);
   }, [location]);
-
   // console.log(productDetail);
 
+  // XXX 待加入登入狀態
+  // const { myAuth, setMyAuth, logout } = useContext(AuthContext);
+  // console.log(myAuth);
+
+  // 取出 商品data
   const pd = productDetail.map((e, i) => {
     return { ...e };
   });
   const data = pd[0];
-  // console.log(data);
+
   // console.log(avgNum);
+
+  // DONE 加入購物車
+  const handleAddCart = async () => {
+    let index = cartItem.productCart.findIndex((e) => e.p_sid === data.p_sid);
+    // console.log(index);
+    // 非重複商品
+    if (index === -1) {
+      const products = await {
+        ...cartItem,
+        productCart: [
+          ...cartItem.productCart,
+          {
+            p_sid: data.p_sid,
+            p_name: data.name,
+            price: data.member_price,
+            image:data.img,
+            amount: amount,
+          },
+        ],
+        totalItem: cartItem.totalItem + 1,
+        totalPrice: cartItem.totalPrice + data.member_price * amount,
+        totalAmount: cartItem.totalAmount + amount,
+      };
+      localStorage.setItem('cartItem', JSON.stringify({ ...products }));
+      // console.log({ products });
+      setCartItem(products);
+    } else {
+      cartItem.productCart[index] = {
+        ...cartItem.productCart[index],
+        amount: cartItem.productCart[index].amount + amount,
+      };
+      const newProductState = {
+        ...cartItem,
+        productCart: cartItem.productCart,
+        totalPrice: cartItem.totalPrice + data.member_price * amount,
+        totalAmount: cartItem.totalAmount + amount,
+      };
+      localStorage.setItem('cartItem', JSON.stringify(newProductState));
+      console.log({ newProductState });
+      setCartItem(newProductState);
+    }
+  };
+  // console.log({ cartItem });
+
+  // breadcrumb 連結用
   const routes = [
     {
       to: '/product',
@@ -112,6 +174,10 @@ function ProductDetail() {
     },
   ];
 
+  // DONE 寫入context 保持狀態 嘗試載入頁面判斷
+  // const [indexNum, setIndexNum] = useState(-1);
+
+  // console.log(indexNum);
   return (
     <>
       <main>
@@ -119,17 +185,10 @@ function ProductDetail() {
 
         <section className="right">
           {/* <!-- search-bar & pro-loved --> */}
-          <div className="filter-s-p">
-            <div className="search-bar">
-              <input type="search" name="search" id="search" />
-              <i
-                className="fa-solid fa-magnifying-glass bg_main_light_color1"
-                id="pro-search"
-              ></i>
-            </div>
+          <div className="filter-s-p" style={{ justifyContent: 'flex-end' }}>
             <div className="pro-loved-list">
               <Link
-                href=""
+                to="/member"
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}
@@ -142,7 +201,7 @@ function ProductDetail() {
                     lovedHover ? 'fa-solid' : 'fa-regular'
                   } fa-heart`}
                 ></i>
-                <p>我的收藏</p>
+                <p style={{ textAlign: 'end' }}>我的收藏</p>
               </Link>
             </div>
           </div>
@@ -213,13 +272,21 @@ function ProductDetail() {
                     }}
                   ></i>
                 </div>
-                <div className="add-loved">
+                <div
+                  className="add-loved"
+                  onClick={() => {
+                    if (loved) {
+                      delLoved(+params.get('sid'), indexNum);
+                    } else {
+                      addLoved(+params.get('sid'));
+                      console.log(lovedList);
+                      // console.log(loved);
+                    }
+                  }}
+                >
                   <p>{loved ? '取消追蹤' : '加入追蹤'}</p>
                   <i
                     className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
-                    onClick={() => {
-                      setLoved(!loved);
-                    }}
                   ></i>
                 </div>
               </div>
@@ -239,9 +306,7 @@ function ProductDetail() {
                 <button
                   className="cart-btn bg_main_light_color1 "
                   type="button"
-                  onClick={() => {
-                    setCartAmount(cartAmount + amount);
-                  }}
+                  onClick={handleAddCart}
                 >
                   加入購物車
                 </button>
@@ -418,7 +483,7 @@ function ProductDetail() {
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        <div className="bottom-pro-ls-row">
+        {/* <div className="bottom-pro-ls-row">
           <div className="arrow arrow-left">
             <i className="fa-light fa-angle-left"></i>
           </div>
@@ -465,7 +530,8 @@ function ProductDetail() {
           <div className="arrow arrow-right">
             <i className="fa-light fa-angle-right"></i>
           </div>
-        </div>
+        </div> */}
+        <RelatedProduct relatedProducts={relatedProducts} />
       </section>
 
       <div

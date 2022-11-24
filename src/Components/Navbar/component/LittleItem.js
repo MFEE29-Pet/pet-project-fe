@@ -29,16 +29,17 @@ const LittleItemBox = styled.div`
     }
   }
 `;
-const TitleBox = styled.h2`
+const TitleBox = styled(Link)`
   font-family: art;
   font-size: 20px;
   width: 140px;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
-  padding-bottom: 5px;
   background-color: #fff;
   z-index: 4;
+  display: flex;
+  flex-direction: column;
 `;
 const EnTitleBox = styled.small`
   font-family: art;
@@ -48,6 +49,8 @@ const EnTitleBox = styled.small`
   cursor: pointer;
   background-color: #fff;
   z-index: 4;
+  font-weight: 500;
+  margin-top: 5px;
 `;
 const Foot = styled.div`
   width: 50px;
@@ -98,19 +101,21 @@ const LittleHref = styled.li`
 
 const LI = styled(Link)`
   position: relative;
-  &:hover{
-    .icon{
-      opacity:1;
+  &:hover {
+    .icon {
+      opacity: 1;
     }
   }
 `;
 
-export const LittleItem = ({ ItemData, Title, EnTitle }) => {
+export const LittleItem = ({ ItemData, Title, EnTitle, to }) => {
   const { mode } = useContext(SwitchButtonContext);
   return (
     <LittleItemBox>
-      <TitleBox className="text_main_dark_color2">{Title}</TitleBox>
-      <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
+      <TitleBox className="text_main_dark_color2" to={to}>
+        {Title}
+        <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
+      </TitleBox>
       <Foot className="foot foot_type" />
       <Shadow src={`${imgUrl}/images/shadow.png`} alt="" className="shadow" />
       <List className="list">
@@ -120,7 +125,7 @@ export const LittleItem = ({ ItemData, Title, EnTitle }) => {
             <LittleHref key={id}>
               <LI className="text_main_dark_color2" to={to}>
                 {name}
-                {mode === 'dog' ? <BoneIcon/> : <FishIcon />}
+                {mode === 'dog' ? <BoneIcon /> : <FishIcon />}
               </LI>
             </LittleHref>
           );

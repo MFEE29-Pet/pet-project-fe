@@ -13,7 +13,7 @@ function Product() {
   const [trigger, setTrigger] = useState(false);
   // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
-  // TODO: 特價類型篩選
+  // DONE: 特價類型篩選
   const [salesType, setSalesType] = useState('');
 
   // 價格區間
@@ -48,6 +48,9 @@ function Product() {
   // 搜尋字串
   const [searchWord, setSearchWord] = useState('');
 
+  // 載入指示器開關
+  const [isLoading, setIsLoading] = useState(false);
+
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -57,7 +60,7 @@ function Product() {
   // console.log({ usp, cate });
 
   //  思考如果所有商品該如何處理 ?
-  // 目前解法: 後端設變數判斷篩選
+  // DONE 目前解法: 後端設變數判斷篩選
   if (!usp) {
     usp = '';
   } else {
@@ -76,6 +79,9 @@ function Product() {
 
   // 取得商品資料
   const getProducts = async () => {
+    // 開啟指示器
+    setIsLoading(true);
+
     try {
       const res = await axios.get(
         `${PRODUCT_LIST}${cate}${sortMethod}${usp}&min_price=${minPrice}&max_price=${maxPrice}${
@@ -83,7 +89,7 @@ function Product() {
         }${salesType ? `&salesType=${salesType}` : ``}`
       );
 
-      console.log(res);
+      // console.log(res);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
 
@@ -93,21 +99,6 @@ function Product() {
       console.log(e.message);
     }
   };
-
-  // 商品搜尋
-  // console.log(product);
-  // const handleSearch = (product, searchWord) => {
-  //   let newProducts = product ? [] : [...product];
-
-  //   if (searchWord?.length) {
-  //     newProducts = product.filter((product) => {
-  //       // includes -> String API
-  //       return product.name.includes(searchWord);
-  //     });
-  //   }
-
-  //   return newProducts;
-  // };
 
   // didMount 載入資料
   useEffect(() => {
@@ -134,23 +125,26 @@ function Product() {
   useEffect(() => {
     getProducts();
   }, [searchWord]);
-  // useEffect(() => {
-  //   // 搜尋字串太少不需要搜尋
-  //   if (searchWord.length < 3 && searchWord.length !== 0) return
-  //   let newProducts = [];
-  //   // 處理搜尋
-  //   newProducts = handleSearch(product, searchWord);
-  // }, [searchWord]);
+
+  // 載入指示器
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [isLoading]);
 
   // console.log(product);
   // console.log(totalPages);
 
+  // 切割資料
   const rowProducts = _.chunk(product, 4);
 
   return (
     <>
       <main>
-        <ProductSidebar />
+        <ProductSidebar isLoading={isLoading} />
         <section className="right">
           <Filter
             setTrigger={setTrigger}
@@ -162,7 +156,6 @@ function Product() {
             searchWord={searchWord}
             setSearchWord={setSearchWord}
           />
-
           <div className="product-list">
             <ProductCard
               sortMethod={sortMethod}
@@ -172,6 +165,7 @@ function Product() {
               totalPages={totalPages}
               page={page}
               usp={usp}
+              isLoading={isLoading}
             />
           </div>
         </section>

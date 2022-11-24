@@ -3,8 +3,8 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import ProductDetailContext from '../../../contexts/ProductDetailContext';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import CartInfoContext from '../contexts/CartInfoContext';
 
 const StyledBadge = styled(Badge)((props) => ({
   '& .MuiBadge-badge': {
@@ -18,11 +18,15 @@ const StyledBadge = styled(Badge)((props) => ({
 
 export default function CustomizedBadges() {
   const { mode } = useContext(SwitchButtonContext);
-  const { cartAmount } = useContext(ProductDetailContext);
+  const { cartItem } = useContext(CartInfoContext);
   // console.log(cartAmount);
   return (
     <IconButton aria-label="cart">
-      <StyledBadge badgeContent={cartAmount} mode={mode} color="secondary">
+      <StyledBadge
+        badgeContent={cartItem.totalAmount}
+        mode={mode}
+        color="secondary"
+      >
         <ShoppingCartOutlinedIcon />
       </StyledBadge>
     </IconButton>

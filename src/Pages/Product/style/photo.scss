@@ -245,7 +245,7 @@ main {
   animation: sayHi 0.3s linear infinite;
 }
 .photo_img_wrap.floatUp {
-  box-shadow: 12px 8px 12px rgb(82, 82, 82);
+  box-shadow: 12px 8px 12px rgb(82, 82, 82, 0.6);
   transition: 0.5s;
   position: relative;
   bottom: 3%;
