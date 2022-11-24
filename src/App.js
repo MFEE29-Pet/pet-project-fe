@@ -20,6 +20,8 @@ import './style/style.scss';
 import './style/reset.css';
 import Login from './Pages/Clinic/Login';
 import AllContextProviders from './contexts/AllContextProviders';
+import Check from './Pages/Clinic/Check';
+import ReservePage from './Pages/Clinic/ReservePage';
 // import gsap from 'gsap';
 
 function App() {
@@ -94,8 +96,11 @@ function App() {
             <Route path="cart" element={<Cart />} />
 
             <Route path="clinic" element={<Clinic />} />
-            <Route path="clinic/reserve" element={<Reserve />} />
-            <Route path="clinic/login" element={<Login />} />
+            <Route path='clinic/login' element={<Login/>}/>
+            <Route path="clinic" element={<ReservePage />}>
+              <Route path="reserve" element={<Reserve />} />
+              <Route path="check" element={<Check />} />
+            </Route>
 
             <Route path="forum" element={<Forum />} />
 
