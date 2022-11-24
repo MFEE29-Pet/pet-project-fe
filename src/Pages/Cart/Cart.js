@@ -63,7 +63,7 @@ function Cart() {
   const getData = () => {
     setTestData(jsonData);
     setPhotoTestData(photoJsonData);
-    setNewPhotoPrice(photoJsonData[0].photo_price)
+    setNewPhotoPrice(photoJsonData[0].photo_price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -89,6 +89,23 @@ function Cart() {
     dataAmount();
     getData();
   }, []);
+
+  // 刪除攝影資料功能
+  const removePhotoData = (item) => {
+    const remove = photoTestData.filter((v, i) => {
+      return v.photo_id !== item;
+    });
+    setPhotoTestData(remove);
+    
+  };
+
+  // 刪除商品資料功能
+  const removeProductData = (item) => {
+    const remove = testData.filter((v, i) => {
+      return v.id !== item;
+    });
+    setTestData(remove);
+  };
 
   return (
     <>
@@ -136,37 +153,43 @@ function Cart() {
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
           <div className="eason_list_title ">
-            <h2 className="text_main_dark_color2">攝影預約明細</h2>
-            <div className="eason_product_check">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                checked={photoChecked ? 'checked' : ''}
-                onClick={() => {
-                  setPhotoChecked(!photoChecked);
-                }}
-              />
-              <p
-                className="text_main_dark_color2"
-                style={{ fontSize: ' smaller' }}
-              >
-                加入結算
-              </p>
-            </div>
+            {photoTestData && photoTestData.length !== 0 && (
+              <>
+                <h2 className="text_main_dark_color2">攝影預約明細</h2>
+                <div className="eason_product_check">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    checked={photoChecked ? 'checked' : ''}
+                    onClick={() => {
+                      setPhotoChecked(!photoChecked);
+                    }}
+                  />
+                  <p
+                    className="text_main_dark_color2"
+                    style={{ fontSize: ' smaller' }}
+                  >
+                    加入結算
+                  </p>
+                </div>
+              </>
+            )}
           </div>
           <table className="eason_list_table">
-            <thead>
-              <tr>
-                <th>頭像</th>
-                <th>攝影師</th>
-                <th>預約日期</th>
-                <th>預約時段</th>
-                <th>單價</th>
-                {/* <th>編輯</th> */}
-                <th>刪除</th>
-              </tr>
-            </thead>
+            {photoTestData && photoTestData.length !== 0 && (
+              <thead>
+                <tr>
+                  <th>頭像</th>
+                  <th>攝影師</th>
+                  <th>預約日期</th>
+                  <th>預約時段</th>
+                  <th>單價</th>
+                  {/* <th>編輯</th> */}
+                  <th>刪除</th>
+                </tr>
+              </thead>
+            )}
 
             <tbody>
               {/* 預約攝影資料帶入測試---------------- */}
@@ -193,7 +216,11 @@ function Cart() {
                       </a>
                     </td> */}
                     <td>
-                      <span>
+                      <span
+                        onClick={() => {
+                          removePhotoData(v.photo_id);
+                        }}
+                      >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
                       </span>
                     </td>
@@ -207,36 +234,42 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            <h2 className="text_main_dark_color2">商品訂單明細</h2>
-            <div className="eason_product_check">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                checked={productChecked ? 'checked' : ''}
-                onClick={() => {
-                  setProductChecked(!productChecked);
-                }}
-              />
-              <p
-                className="text_main_dark_color2"
-                style={{ fontSize: 'smaller' }}
-              >
-                加入結算
-              </p>
-            </div>
+            {testData && testData.length !== 0 && (
+              <>
+                <h2 className="text_main_dark_color2">商品訂單明細</h2>
+                <div className="eason_product_check">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    checked={productChecked ? 'checked' : ''}
+                    onClick={() => {
+                      setProductChecked(!productChecked);
+                    }}
+                  />
+                  <p
+                    className="text_main_dark_color2"
+                    style={{ fontSize: 'smaller' }}
+                  >
+                    加入結算
+                  </p>
+                </div>
+              </>
+            )}
           </div>
           <table className="eason_list_table">
-            <thead>
-              <tr>
-                <th>商品圖</th>
-                <th>商品名</th>
-                <th>單價</th>
-                <th>數量</th>
-                <th>小計</th>
-                <th>刪除</th>
-              </tr>
-            </thead>
+            {testData && testData.length !== 0 && (
+              <thead>
+                <tr>
+                  <th>商品圖</th>
+                  <th>商品名</th>
+                  <th>單價</th>
+                  <th>數量</th>
+                  <th>小計</th>
+                  <th>刪除</th>
+                </tr>
+              </thead>
+            )}
 
             <tbody>
               {/* json假資料引入測試--------------------------------------------- */}
@@ -297,7 +330,11 @@ function Cart() {
                     </td>
                     <td className="eason_table_total">{v.price * amount[i]}</td>
                     <td>
-                      <span>
+                      <span
+                        onClick={() => {
+                          removeProductData(v.id);
+                        }}
+                      >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
                       </span>
                     </td>
