@@ -227,10 +227,13 @@ const MyCarousel = ({
       {hasControlArrow && (
         <ControlButtons>
           <ArrowWrapper style={{ alignItems: 'center' }} $mode={mode}>
-            <ArrowLeft onClick={handleClickPrev} />
+            <ArrowLeft onClick={handleClickPrev} style={{ fontSize: '50px' }} />
           </ArrowWrapper>
           <ArrowWrapper style={{ alignItems: 'center' }} $mode={mode}>
-            <ArrowRight onClick={handleClickNext} />
+            <ArrowRight
+              onClick={handleClickNext}
+              style={{ fontSize: '50px' }}
+            />
           </ArrowWrapper>
         </ControlButtons>
       )}
