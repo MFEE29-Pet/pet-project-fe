@@ -42,7 +42,7 @@ function MemberSing() {
     newUser.address = address;
     newUser.birthday = d;
     console.log(newUser);
-    const {data} = await axios.post('http://localhost:6002/member/add',newUser)
+    const {data} = await axios.post('http://localhost:6001/member/add',newUser)
     console.log(data)
   };
   return (
@@ -136,7 +136,7 @@ function MemberSing() {
                       <option value="新北市">新北市</option>
                       <option value="桃園市">桃園市</option>
                       <option value="台中市">台中市</option>
-                      <optio value="">台南市</optio>
+                      <option value="">台南市</option>
                       <option value="">高雄市</option>
                     </select>
                   </div>

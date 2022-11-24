@@ -18,7 +18,7 @@ function MemberLogIn() {
   };
   const login = async () => {
     const { data } = await axios.post(
-      'http://localhost:6002/member/login-api',
+      'http://localhost:6001/member/login-api',
       user
     );
     console.log(data);
