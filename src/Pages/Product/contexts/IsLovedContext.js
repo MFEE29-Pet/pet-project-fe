@@ -27,7 +27,7 @@ export const IsLovedContextProvider = function ({ children }) {
 
   // AJAX 抓收藏列表清單
   const getLovedList = async () => {
-    if (!m_sid || '未登入') {
+    if (m_sid === '未登入') {
       console.log('未登入，無法取得收藏列表');
       return;
     }
@@ -48,7 +48,7 @@ export const IsLovedContextProvider = function ({ children }) {
   // 新增收藏
   const addLoved = async (productSid) => {
     // 判斷登入
-    if (!m_sid || '未登入') {
+    if (m_sid === '未登入') {
       alert('請先登入會員');
       navigate('/login');
       return;
@@ -71,7 +71,7 @@ export const IsLovedContextProvider = function ({ children }) {
   // 移除收藏
   const delLoved = async (productSid, index) => {
     // 判斷登入
-    if (!m_sid || '未登入') {
+    if (m_sid === '未登入') {
       alert('請先登入會員');
       return;
     }
