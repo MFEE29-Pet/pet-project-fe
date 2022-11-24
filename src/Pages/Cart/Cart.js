@@ -43,6 +43,9 @@ function Cart() {
   const [photoChecked, setPhotoChecked] = useState(true);
   const [productChecked, setProductChecked] = useState(true);
 
+  // 結帳用預約攝影價格
+  const [newPhotoPrice, setNewPhotoPrice] = useState(0);
+
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
 
@@ -60,6 +63,7 @@ function Cart() {
   const getData = () => {
     setTestData(jsonData);
     setPhotoTestData(photoJsonData);
+    setNewPhotoPrice(photoJsonData[0].photo_price)
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -268,7 +272,9 @@ function Cart() {
                           setTotalPrice(newPrice);
                         }}
                       >
-                        <i className="eason_fa-solid fa-solid fa-circle-minus"> </i>
+                        <i className="eason_fa-solid fa-solid fa-circle-minus">
+                          {' '}
+                        </i>
                       </span>
                       {amount[i]}
                       <span
@@ -357,7 +363,7 @@ function Cart() {
                     <td>
                       ${' '}
                       {(productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? 0 : 0)}
+                        (photoChecked ? newPhotoPrice : 0)}
                     </td>
                   </tr>
 
@@ -376,7 +382,7 @@ function Cart() {
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       ${' '}
                       {((productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? 0 : 0)) *
+                        (photoChecked ? newPhotoPrice : 0)) *
                         0.9}
                     </td>
                   </tr>
