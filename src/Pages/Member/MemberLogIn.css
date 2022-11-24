@@ -47,14 +47,15 @@ span {
   color: rgb(113, 103, 103);
   font-size: 14px;
   border: none;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
 }
 
 /* 1200  100% */
 .loginpage {
   width: 700px;
-  margin: 0 auto;
-  padding: 40px 0px;
+  height: 350px;
+  margin: 0 auto 50px;
+  padding: 40px 0px 10px;
   /* height: 300px; */
   background-color: #ffff;
   border-radius: 25px;
@@ -99,6 +100,7 @@ span {
 
 .s1 {
   color: darkorange;
+  cursor: pointer;
 }
 
 .Revise {

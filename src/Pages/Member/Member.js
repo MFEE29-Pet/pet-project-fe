@@ -12,7 +12,6 @@ import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import MemberHistoryCamera from './MemberHistoryCamera';
 import { useState } from 'react';
 
-
 function Member() {
   const components = [
     MemberLevel,

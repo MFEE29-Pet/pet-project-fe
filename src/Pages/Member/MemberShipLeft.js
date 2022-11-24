@@ -7,7 +7,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           <h2>首頁會員中心會員首頁</h2>
         </div> */}
       {/* <div className="member"> */}
-      <div className="member-shipL">
+      <div className='member-shipL'>
         <div className="member-ship">
           <div className="member-photo">
             <img src="../image/person_1.jpg" alt="" />
@@ -38,49 +38,75 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           </ul>
           <ul>
             <i className="fa-light light fa-books"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(2);
-              }}>文章收藏</li>
+              }}
+            >
+              文章收藏
+            </li>
           </ul>
           <ul>
             <i className="fa-light light fa-folder-bookmark"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(3);
-              }}>商品收藏</li>
+              }}
+            >
+              商品收藏
+            </li>
           </ul>
           <ul>
             <i className="fa-thin thin fa-book-medical"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(4);
-              }}>預約掛號</li>
+              }}
+            >
+              預約掛號
+            </li>
           </ul>
-          
+
           <ul>
             <i className="fa-thin thin fa-rectangle-history-circle-plus"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(5);
               }}
-            >歷史訂單（商品）</li>
+            >
+              歷史訂單（商品）
+            </li>
           </ul>
           <ul>
             <i className="fa-light light fa-camera"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(6);
               }}
-            >歷史訂單（攝影）</li>
+            >
+              歷史訂單（攝影）
+            </li>
           </ul>
-          
+
           <ul>
             <i className="fa-light light fa-user-gear"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(7);
-              }}>修改資料</li>
+              }}
+            >
+              修改資料
+            </li>
           </ul>
           <ul>
             <i className="fa-thin thin fa-key"></i>
-            <li onClick={() => {
+            <li
+              onClick={() => {
                 setPageIndex(8);
-              }}>密碼修改</li>
+              }}
+            >
+              密碼修改
+            </li>
           </ul>
         </div>
       </div>

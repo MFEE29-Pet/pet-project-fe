@@ -8,6 +8,7 @@ import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
+import { MemberContextProvider } from './contexts/MemberContext'; 
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import SwitchButtonContext from './contexts/SwitchButtonContext';
@@ -32,25 +33,27 @@ function App() {
 
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
-        <Navbar />
-        <section style={{ height: '100px' }}></section>
-        <Routes>
-          <Route path="/" element={<Index />} />
+        <MemberContextProvider>
+          <Navbar />
+          <section style={{ height: '100px' }}></section>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-          <Route path="product" element={<Product />} />
-          <Route path="product/:sid" />
+            <Route path="product" element={<Product />} />
+            <Route path="product/:sid" />
 
-          <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart />} />
 
-          <Route path="clinic" element={<Clinic />} />
+            <Route path="clinic" element={<Clinic />} />
 
-          <Route path="forum" element={<Forum />} />
+            <Route path="forum" element={<Forum />} />
 
-          <Route path="member" element={<Member />} />
-          <Route path="member/memberShipAdd" element={<MemberSing />} />
-          <Route path="member/memberLogIn" element={<MemberLogIn />} />
-        </Routes>
-        <Footer />
+            <Route path="member" element={<Member />} />
+            <Route path="member/memberShipAdd" element={<MemberSing />} />
+            <Route path="member/memberLogIn" element={<MemberLogIn />} />
+          </Routes>
+          <Footer />
+        </MemberContextProvider>
       </BrowserRouter>
     </div>
   );
