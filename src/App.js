@@ -18,13 +18,55 @@ import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
 import Login from './Pages/Product/Login';
-// import { CartProvider } from './Pages/Product/contexts/CartProvider';
+
 
 function App() {
   // const [checked, setChecked] = useState(true);
   // const [switchMode, setSwitchMode] = useState('cat');
   const { mode } = useContext(SwitchButtonContext);
   // console.log(mode);
+  // const Circle = forwardRef(({ size, delay }, ref) => {
+  //   const el = useRef();
+
+  //   useImperativeHandle(
+  //     ref,
+  //     () => {
+  //       // return our API
+  //       return {
+  //         moveTo(x, y) {
+  //           gsap.to(el.current, { x, y, delay });
+  //         },
+  //       };
+  //     },
+  //     [delay]
+  //   );
+
+  //   return <i className={`circle ${size} fa-solid fa-paw-simple`} ref={el}></i>;
+  // });
+
+  // const circleRefs = useRef([]);
+
+  // // reset on re-renders
+  // circleRefs.current = [];
+
+  // useEffect(() => {
+  //   const onMove = ({ clientX, clientY }) => {
+  //     circleRefs.current.forEach((ref) => ref.moveTo(clientX+50, clientY+50));
+  //     //    circleRefs.current.forEach((ref) =>
+  //     //    ref.moveTo(innerWidth / 2, innerHeight / 2)
+  //     // );
+  //   };
+
+  //   window.addEventListener('pointermove', onMove);
+
+  //   return () => window.removeEventListener('pointermove', onMove);
+  // }, []);
+
+  // const addCircleRef = (ref) => {
+  //   if (ref) {
+  //     circleRefs.current.push(ref);
+  //   }
+  // };
 
   return (
     <div id={mode} className="bg_bright_color" style={{ width: '100%' }}>
@@ -65,8 +107,9 @@ function App() {
 
               <Route path="cart" element={<Cart />} />
 
-          <Route path="clinic" element={<Clinic />} />
-          <Route path="clinic/reserve" element={<Reserve />} />
+            <Route path="clinic" element={<Clinic />} />
+            <Route path="clinic/reserve" element={<Reserve />} />
+            <Route path="clinic/login" element={<Login />} />
 
               <Route path="forum" element={<Forum />} />
 
@@ -76,6 +119,9 @@ function App() {
         </AllContextProviders>
         <Footer />
       </BrowserRouter>
+      {/* <Circle size="sm" ref={addCircleRef} delay={0} />
+      <Circle size="md" ref={addCircleRef} delay={0.1} />
+      <Circle size="lg" ref={addCircleRef} delay={0.2} /> */}
     </div>
   );
 }

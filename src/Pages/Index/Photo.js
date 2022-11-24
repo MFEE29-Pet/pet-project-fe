@@ -46,7 +46,7 @@ function Photo() {
       });
 
       t1.to(Photo_BBB, { x: '-66%' });
-    }, Photo_AAA);
+    }, Photo_AAA);    
 
     return () => {
       ctx.revert();

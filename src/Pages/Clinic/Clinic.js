@@ -17,7 +17,7 @@ const BreadcrumbBox = styled.div`
   width: 1200px;
   display: flex;
   justify-content: flex-start;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 `;
 
 const ClinicBoxContainer = styled.div`
@@ -42,12 +42,16 @@ const Clinicroutes = [
   },
   {
     to: '/clinic',
-    label: '醫療診所',
+    label: '地圖診所',
   },
 ];
 
 function Clinic() {
   const [dataFromSelect, setDataFromSelect] = useState([]);
+  const [location, setLocation] = useState({
+    lat: '25.033671',
+    lng: '121.564427',
+  });
   return (
     <ClinicBox>
       <BreadcrumbBox>
@@ -58,10 +62,14 @@ function Clinic() {
       </BreadcrumbBox>
       <ClinicBoxContainer>
         <ListBox>
-          <ClinicSelect setDataFromSelect={setDataFromSelect} />
+          <ClinicSelect
+            setDataFromSelect={setDataFromSelect}
+            setLocation={setLocation}
+          />
           {/* {console.log(dataFromSelect)} */}
+          {/* {console.log(location)} */}
         </ListBox>
-        <ClinicMap dataFromSelect={dataFromSelect} />
+        <ClinicMap dataFromSelect={dataFromSelect} location={location} />
       </ClinicBoxContainer>
     </ClinicBox>
   );

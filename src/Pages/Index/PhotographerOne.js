@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useLayoutEffect, useRef } from 'react';
 import { imgUrl } from '../../config';
 import img from '../../images/person_2_uncolor.jpg';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import gsap from 'gsap';
 
 const PhotographerBox = styled.div`
   width: 1200px;
@@ -25,13 +26,18 @@ const PhotographerBox = styled.div`
   .photo {
     width: 560px;
     height: 370px;
+    position: relative;
     position: absolute;
     top: 0px;
     right: 200px;
     z-index: 1;
     overflow: hidden;
     img {
+      position: absolute;
+      top: 0;
+      right: 0;
       width: 100%;
+      overflow: hidden;
     }
   }
   .people_text {
@@ -60,13 +66,88 @@ const People = styled.div`
 
 function PhotographerOne() {
   const { mode } = useContext(SwitchButtonContext);
+  const photo = useRef();
+  useLayoutEffect(() => {
+    const Photo = photo.current;
+
+    const ctx = gsap.context(() => {
+      const t1 = gsap.timeline({
+        repeat: -1,
+        opacity: 1,
+        defaults: {
+          duration: 4,
+          ease: 'none',
+        },
+      });
+      t1.to('.aaa', { opacity: 0 })
+        .to('.bbb', { opacity: 0 })
+        .to('.ccc', { opacity: 0 })
+        .to('.ddd', { opacity: 0 })
+        .to('.eee', { opacity: 0 });
+    }, Photo);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
   return (
     <PhotographerBox>
       <People className="people" $mode={mode}></People>
-      <div className="photo">
+      <div className="photo" ref={photo}>
         <img
-          src={`${imgUrl}/images/pexels-vladimir-kudinov-36372.jpg`}
+          className="aaa"
+          src={`${imgUrl}/images/YenStyle_1.jpg`}
           alt=""
+          style={{
+            zIndex: 5,
+            width: '100%',
+            top: '-30px',
+          }}
+        />
+        <img
+          className="bbb"
+          src={`${imgUrl}/images/YenStyle_2.jpg`}
+          alt=""
+          style={{
+            zIndex: 4,
+            width: '100%',
+            top:'-200px'
+          }}
+        />
+        <img
+          className="ccc"
+          src={`${imgUrl}/images/YenStyle_3.jpg`}
+          alt=""
+          style={{
+            zIndex: 3,
+            width: '100%',
+            top:'-300px'
+          }}
+        />
+        <img
+          className="ddd"
+          src={`${imgUrl}/images/YenStyle_4.jpg`}
+          alt=""
+          style={{
+            zIndex: 2,
+            width: '100%',
+            top:'-300px'
+          }}
+        />
+        <img
+          className="eee"
+          src={`${imgUrl}/images/YenStyle_5.jpg`}
+          alt=""
+          style={{
+            zIndex: 1,
+            width: '100%',
+            top:'-100px'
+          }}
+        />
+        <img
+          src={`${imgUrl}/images/YenStyle_1.jpg`}
+          alt=""
+          style={{ width: '100%',top: '-30px'}}
         />
       </div>
       <div className="people_text bg_bright_color">

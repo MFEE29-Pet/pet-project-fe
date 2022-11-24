@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 import Dropdown from './Dropdown';
 
@@ -12,17 +12,18 @@ const selectBoxEnable = css`
 `;
 
 const selectBoxDisable = css`
-  background: #2c0101;
-  color: #00000040;
+  background: #ebebeb;
+  opacity: 0.3;
+  color: #000000;
 `;
 
 const SelectBox = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  height: 38px;
+  height: 30px;
   box-sizing: border-box;
-  border: 1px solid #fff;
+  border: 2px solid #ccc;
   font-family: art;
   border-radius: 20px;
   background: #fff;
@@ -48,9 +49,9 @@ const ArrowDown = styled.div`
 `;
 
 const Menu = styled.div`
-  width: 240px;
+  width: 180px;
   overflow-y: scroll;
-  height: 300px;
+  height: 200px;
   display: inline-flex;
   flex-direction: column;
   border-radius: 10px;
@@ -107,9 +108,9 @@ const Select = ({
       placement="bottom-left"
       overlay={
         <Menu>
-          {options.map((option) => (
+          {options.map((option, i) => (
             <MenuItem
-              key={option.value}
+              key={i}
               role="presentation"
               $isSelected={option.value === value}
               $mode={mode}
