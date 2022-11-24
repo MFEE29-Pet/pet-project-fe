@@ -1,3 +1,10 @@
+// test
+// localStorage.getItem('cartItem')
+// '{"productCart":[{"p_sid":31,"p_name":"貓玩具-咖波三層球塔","price":439,"image":"cat2-toy2.jpg","amount":10}],"photoCart":[],"totalItem":1,"totalPrice":4390,"totalAmount":10}'
+// JSON.parse(localStorage.getItem('cartItem'))
+// {productCart: Array(1), photoCart: Array(0), totalItem: 1, totalPrice: 4390, totalAmount: 10}
+
+
 // 來源引用區-------------------------------------------------------------------------------------
 import { useState, useContext, useEffect } from 'react';
 import './cart.css';
