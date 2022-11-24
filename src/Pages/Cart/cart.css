@@ -146,14 +146,14 @@
 }
 
 
-.fa-pen-to-square {
+/* .fa-pen-to-square {
   color: #c9caca;
   cursor: pointer;
-}
-
+} */
+/* 
 .fa-pen-to-square:hover {
   color: #40220f;
-}
+} */
 .eason_section_1 .eason_list_table th:nth-child(4) {
   width: 20%;
 }
@@ -170,16 +170,16 @@
   width: 15%;
 } */
 
-.fa-trash-can {
+.eason_fa-trash-can {
   color: #c9caca;
   cursor: pointer;
 }
 
-.fa-trash-can:hover {
+.eason_fa-trash-can:hover {
   color: #40220f;
 }
 
-.fa-solid {
+.eason_fa-solid {
   color: #c9bc9c;
   cursor: pointer;
 }

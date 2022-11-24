@@ -190,7 +190,7 @@ function Cart() {
                     </td> */}
                     <td>
                       <span>
-                        <i className="fa-light fa-trash-can"></i>
+                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
                       </span>
                     </td>
                   </tr>
@@ -268,7 +268,7 @@ function Cart() {
                           setTotalPrice(newPrice);
                         }}
                       >
-                        <i className="fa-solid fa-circle-minus"> </i>
+                        <i className="eason_fa-solid fa-solid fa-circle-minus"> </i>
                       </span>
                       {amount[i]}
                       <span
@@ -286,13 +286,13 @@ function Cart() {
                           setTotalPrice(newPrice);
                         }}
                       >
-                        <i className="fa-solid fa-circle-plus"></i>
+                        <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
                       </span>
                     </td>
                     <td className="eason_table_total">{v.price * amount[i]}</td>
                     <td>
                       <span>
-                        <i className="fa-light fa-trash-can"></i>
+                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
                       </span>
                     </td>
                   </tr>
