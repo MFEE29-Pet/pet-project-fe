@@ -9,6 +9,7 @@ const FOOTER = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
 `;
 const FOOTERBOX = styled.div`
   width: 1400px;
@@ -19,7 +20,7 @@ const FOOTERBOX = styled.div`
 function Footer() {
   return (
     <>
-      <FOOTER className='bg_main_dark_color2'>
+      <FOOTER>
         <FOOTERBOX>
           <FooterLeft />
           <FooterRight />

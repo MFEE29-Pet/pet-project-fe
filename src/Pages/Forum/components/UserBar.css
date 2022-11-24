@@ -1,0 +1,23 @@
+.forum_user_wrap{
+/* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.forum_user_pic{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: orange;
+  margin-top: 50px;
+
+}
+
+.forum_user_name{
+  margin-top: 10px;
+  /* width: 100%; */
+  /* text-align: center; */
+}

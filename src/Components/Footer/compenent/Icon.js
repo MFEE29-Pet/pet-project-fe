@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 const UL = styled.ul`
   width: 100%;
@@ -16,66 +17,73 @@ const UL = styled.ul`
     left: 50%;
     transform: translate(-50%, -50%);
     transition: all 265ms ease-out;
+    color: #fff;
   }
   div {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
+  }
+`;
+
+const LI = styled.li``;
+
+const IconBox = styled.div`
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  &::before {
+    transform: scale(1);
+    content: '';
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: block;
+    transition: all 265ms ease-out;
+    background-color: ${(props) => (props.$mode === 'dog' ? '#40220f' : '#18334e')};
+  }
+  &:hover {
     &::before {
-      transform: scale(1);
-      content: '';
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: block;
-      background: #fff;
-      transition: all 265ms ease-out;
+      transform: scale(0);
+      transition: all 265ms ease-in;
     }
-    &:hover {
-      &::before {
-        transform: scale(0);
-        transition: all 265ms ease-in;
-      }
-      i {
-        color: #fff;
-        background: transparent;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(2);
-        transition: all 265ms ease-out;
-      }
+    i {
+      color: ${(props) => (props.$mode === 'dog' ? '#40220f' : '#18334e')};
+      background: transparent;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      transition: all 265ms ease-out;
     }
   }
 `;
 
 function Icon() {
+  const { mode } = useContext(SwitchButtonContext);
   return (
     <UL>
-      <li>
-        <div>
-          <i className="fa-brands fa-whatsapp text_hover_main_dark_color2"></i>
-        </div>
-      </li>
-      <li >
-        <div>
-          <i className="fa-brands fa-instagram text_hover_main_dark_color2"></i>
-        </div>
-      </li>
-      <li>
-        <div>
-          <i className="fa-brands fa-twitter text_hover_main_dark_color2"></i>
-        </div>
-      </li>
-      <li>
-        <div>
-          <i className="fa-brands fa-facebook-f text_hover_main_dark_color2"></i>
-        </div>
-      </li>
-      <li>
-        <div>
-          <i className="fa-brands fa-linkedin-in text_hover_main_dark_color2"></i>
-        </div>
-      </li>
+      <LI>
+        <IconBox $mode={mode}>
+          <i className="fa-brands fa-whatsapp"></i>
+        </IconBox>
+      </LI>
+      <LI>
+        <IconBox $mode={mode}>
+          <i className="fa-brands fa-instagram"></i>
+        </IconBox>
+      </LI>
+      <LI>
+        <IconBox $mode={mode}>
+          <i className="fa-brands fa-twitter"></i>
+        </IconBox>
+      </LI>
+      <LI>
+        <IconBox $mode={mode}>
+          <i className="fa-brands fa-facebook-f"></i>
+        </IconBox>
+      </LI>
+      <LI>
+        <IconBox $mode={mode}>
+          <i className="fa-brands fa-linkedin-in"></i>
+        </IconBox>
+      </LI>
     </UL>
   );
 }

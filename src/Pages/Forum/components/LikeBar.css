@@ -1,0 +1,30 @@
+.forum_collect_bar{
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+/* 符號 */
+.forum_unlike_button #forum_like{
+  color: #b5b5b6;
+  margin-left: 8px;
+
+}
+/* 文字 */
+.forum_unlike_button {
+  color: #b5b5b6;
+  border: none;
+
+}
+/* 符號 */
+.forum_like_button #forum_like{
+  color: #036eb8;
+  margin-left: 8px;
+
+}
+/* 文字 */
+.forum_like_button {
+  color: #036eb8;
+  border: none;
+
+}

@@ -1,5 +1,12 @@
+import About from "./About";
+import Photo from "./Photo";
+
+
 function Index() {
-  return <></>;
+  return <>
+    <About/>
+    <Photo/>
+  </>;
 }
 
 export default Index;
