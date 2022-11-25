@@ -93,6 +93,8 @@ function ReservePage() {
       code: '',
     },
   ]);
+  const [memberId, setMemberId] = useState(0);
+  const [petId, setPetId] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   const [time, setTime] = useState(0);
   const [memberName, setMemberName] = useState('');
@@ -125,6 +127,7 @@ function ReservePage() {
   const getClinicData = async () => {
     try {
       const res = await axios.get(`http://localhost:6001/clinic/${sid}`);
+      console.log(res);
 
       const clinicData = res.data.rows;
 
@@ -162,6 +165,10 @@ function ReservePage() {
         </div>
         <Outlet
           context={[
+            memberId,
+            setMemberId,
+            petId,
+            setPetId,
             clinicDetail,
             setClinicDetail,
             startDate,

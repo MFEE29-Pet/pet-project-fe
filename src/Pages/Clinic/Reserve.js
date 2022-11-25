@@ -232,10 +232,11 @@ const ReserveForm = styled.div`
 `;
 
 function Reserve() {
-  // const [clinicDetail, setClinicDetail] = useOutletContext();
-  // const [startDate, setStartDate] = useOutletContext();
-  // const {a,b} = useOutletContext();
   const [
+    memberId,
+    setMemberId,
+    petId,
+    setPetId,
     clinicDetail,
     setClinicDetail,
     startDate,
@@ -326,7 +327,6 @@ function Reserve() {
   const [isFilePicked, setIsFilePicked] = useState(false);
   //預覽圖片
 
-
   //取出localStorage memberID
 
   const memberID = JSON.parse(localStorage.getItem('auth'));
@@ -347,6 +347,7 @@ function Reserve() {
 
       setMemberData(memberData);
       console.log(memberData.area_sid);
+      setMemberId(memberData.sid)
       setMemberName(memberData.name);
       setMemberEmail(memberData.email);
       setMemberMobile(memberData.mobile);
@@ -379,6 +380,7 @@ function Reserve() {
 
       // console.log(petData);
       setPetData(petData);
+      setPetId(petData.sid)
       setPetName(petData.pet_name);
       setVariety(petData.Kind_of_pet);
       setGender(petData.pet_gender);
@@ -551,22 +553,7 @@ function Reserve() {
     hiddenFileInput.current.click();
   };
 
-  // //傳送表單
-  // const handleSubmission = async (e) => {
-  //   e.preventDefault();
 
-  //   const fd = new FormData();
-
-  //   fd.append('clinic_sid', clinic_sid);
-  //   fd.append('avator', selectedFile);
-  //   fd.append('member_sid', memberData.sid);
-  //   fd.append('pet_sid', petData.sid);
-  //   fd.append('symptom', textArea);
-  //   fd.append('date', date);
-  //   fd.append('time', time);
-
-  //   const { data } = await axios.post();
-  // };
   // const date = dayjs(startDate).format('YYYY/MM/DD');
 
   return (
@@ -622,7 +609,7 @@ function Reserve() {
 
         {/* <!-- 會員資料 --> */}
         <div className="member-data">
-          <input type="hidden" value={1} id="member_sid" />
+          <input type="hidden" value={memberId}/>
           <h2 className="text_main_dark_color2">飼主資料</h2>
           <div className="name">
             <label htmlFor="name">姓名</label>
@@ -681,7 +668,7 @@ function Reserve() {
 
         {/* <!-- 寵物資料 --> */}
         <div className="pet-data">
-          <input type="hidden" value={1} id="pet_sid" />
+          <input type="hidden" value={petId} />
           <h2 className="text_main_dark_color2">寵物資料</h2>
           <div className="pet-variety">
             {/* <!-- 寵物種類 --> */}

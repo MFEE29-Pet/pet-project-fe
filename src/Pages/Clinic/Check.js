@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext,useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
 const CheckForm = styled.div`
   font-family: art;
@@ -13,7 +14,7 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         font-family: art;
@@ -33,7 +34,7 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
     }
   }
@@ -53,11 +54,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .email {
@@ -66,11 +68,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .mobile {
@@ -79,11 +82,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .address {
@@ -95,11 +99,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
   }
@@ -120,11 +125,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-name {
@@ -133,11 +139,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-age {
@@ -146,11 +153,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-gender {
@@ -159,11 +167,12 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         margin-left: 30px;
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-control {
@@ -172,10 +181,11 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-pid {
@@ -184,10 +194,11 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-symptom {
@@ -197,10 +208,11 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       h3 {
         font-weight: 500;
+        color: #727171;
       }
     }
     .pet-image {
@@ -210,7 +222,7 @@ const CheckForm = styled.div`
         font-weight: bold;
         margin: 0 80px 0 30px;
         font-family: art;
-        color: #727171;
+        color: #dcdddd;
       }
       .img-file-wrap {
         width: 150px;
@@ -238,7 +250,13 @@ const CheckForm = styled.div`
 `;
 
 function Check() {
+
+    const navigate = useNavigate()
   const [
+    memberId,
+    setMemberId,
+    petId,
+    setPetId,
     clinicDetail,
     setClinicDetail,
     startDate,
@@ -275,12 +293,14 @@ function Check() {
     setPreview,
   ] = useOutletContext();
 
-  // const final = { ...clinicDetail };
-  // console.log({ clinicDetail, startDate, time, memberName });
+  const final = { ...clinicDetail };
+  // console.log(final);
+  const clinicId = final[0].sid;
   const date = dayjs(startDate).format('YYYY/MM/DD');
 
+  console.log({ memberId, petId, textArea, date, time, clinicId });
+
   let datatime = '';
-  
 
   if (time === 1) {
     datatime = '早診';
@@ -290,6 +310,26 @@ function Check() {
     datatime = '晚診';
   }
 
+  // //傳送表單
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+
+    const fd = new FormData();
+
+    fd.append('clinic_sid', clinicId);
+    fd.append('member_sid', memberId);
+    fd.append('pet_sid', petId);
+    fd.append('symptom', textArea);
+    fd.append('date', date);
+    fd.append('time', time);
+
+    const { data } = await axios.post('http://localhost:6001/clinic/add',fd);
+    if (data.success === true) {
+      navigate('/')
+    }
+
+    console.log(data);
+  };
 
   return (
     <CheckForm>
@@ -393,7 +433,7 @@ function Check() {
             }}
           >
             <i
-              class="fa-light fa-arrow-rotate-left"
+              className="fa-light fa-arrow-rotate-left"
               style={{
                 fontSize: '20px',
                 textAlign: 'center',
@@ -416,6 +456,7 @@ function Check() {
               fontSize: '16px',
               width: '150px',
             }}
+            onClick={handleSubmission}
           >
             確認送出
           </button>

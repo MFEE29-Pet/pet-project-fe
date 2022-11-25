@@ -22,6 +22,8 @@ import Login from './Pages/Clinic/Login';
 import AllContextProviders from './contexts/AllContextProviders';
 import Check from './Pages/Clinic/Check';
 import ReservePage from './Pages/Clinic/ReservePage';
+import Pay from './Pages/Clinic/Pay';
+import PayResult from './Pages/Clinic/PayResult';
 // import gsap from 'gsap';
 
 function App() {
@@ -96,7 +98,9 @@ function App() {
             <Route path="cart" element={<Cart />} />
 
             <Route path="clinic" element={<Clinic />} />
-            <Route path='clinic/login' element={<Login/>}/>
+            <Route path="clinic/login" element={<Login />} />
+            <Route path="clinic/pay" element={<Pay />} />
+            <Route path="clinic/payresult" element={<PayResult />} />
             <Route path="clinic" element={<ReservePage />}>
               <Route path="reserve" element={<Reserve />} />
               <Route path="check" element={<Check />} />
