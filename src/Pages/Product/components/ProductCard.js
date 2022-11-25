@@ -59,7 +59,7 @@ function ProductCard({
                   }}
                 >
                   <Link to="">
-                    <div className="img-wrap bg_bright_color">
+                    <div className="img-wrap">
                       {isLoading ? (
                         <Skeleton
                           variant="rectangular"

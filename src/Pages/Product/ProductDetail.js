@@ -94,7 +94,8 @@ function ProductDetail() {
       const productData = res.data.rows;
       setProductDetail(productData);
       setAvgNum(res.data.avgScores);
-      setRelatedProducts(res.data.related_p);
+      // FIXME sql 商品sid超過125 抓不到 ???
+      setRelatedProducts(res.data ? res.data.related_p : []);
       // console.log(res.data.related_p);
     } catch (e) {
       console.log(e.message);
