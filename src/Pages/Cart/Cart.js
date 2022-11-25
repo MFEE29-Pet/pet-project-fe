@@ -207,15 +207,17 @@ function Cart() {
                       <img src="./imgs/person_2.jpeg" alt="" width="100px" />
                     </td>
                     <td>{v.photographer}</td>
-                    <td>
+                    {/* <td>
                       <input className="date" type="date" name="" id="" />
-                    </td>
-                    <td>
+                    </td> */}
+                    <td>{v.date}</td>
+                    <td>{v.dayparts}</td>
+                    {/* <td>
                       <select className="dayparts" name="" id="">
                         <option value="">上午</option>
                         <option value="">下午</option>
                       </select>
-                    </td>
+                    </td> */}
                     <td className="eason_table_price">{v.photo_price}</td>
                     {/* <td className="eason_edit">
                       <a href="/#">
