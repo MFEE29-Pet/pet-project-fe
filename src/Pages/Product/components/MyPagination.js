@@ -41,7 +41,7 @@ export default function MyPagination({ totalPages, page, setPage }) {
   const classes = useStyles();
   return (
     <>
-      <ThemeProvider>
+
         <Pagination
           count={totalPages}
           theme={theme}
@@ -82,7 +82,7 @@ export default function MyPagination({ totalPages, page, setPage }) {
             }
           }}
         />
-      </ThemeProvider>
+
     </>
   );
 }
