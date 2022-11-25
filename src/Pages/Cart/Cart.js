@@ -67,7 +67,11 @@ function Cart() {
 
   // 獲取來源資料
   const getData = () => {
-    setTestData(jsonData);
+    const myCart =  localStorage.getItem('cartItem'); 
+    const myProduct = JSON.parse(myCart).productCart;
+
+    console.log(myCart.productCart);
+    setTestData(myProduct);
     setPhotoTestData(photoJsonData);
     setNewPhotoPrice(photoJsonData[0].photo_price);
   };
@@ -292,7 +296,8 @@ function Cart() {
                         height="65px"
                       />
                     </td>
-                    <td className="eason_p_name">{v.productName}</td>
+                    {/* <td className="eason_p_name">{v.productName}</td> */}
+                    <td className="eason_p_name">{v.p_name}</td>
                     <td className="eason_table_price">{v.price}</td>
                     <td className="eason_table_amount">
                       <span
@@ -394,7 +399,7 @@ function Cart() {
           <div className="eason_s3_right">
             <div className="eason_s3_right_top">
               <h2 className="text_main_dark_color2">優惠代碼</h2>
-              <div className='discountArea'>
+              <div className="discountArea">
                 <input className="eason_discount_code" type="text" />
                 <i className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "></i>
               </div>
