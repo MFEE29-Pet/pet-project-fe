@@ -280,7 +280,7 @@ function ProductDetail() {
                       delLoved(+params.get('sid'), indexNum);
                     } else {
                       addLoved(+params.get('sid'));
-                      console.log(lovedList);
+                      // console.log(lovedList);
                       // console.log(loved);
                     }
                   }}

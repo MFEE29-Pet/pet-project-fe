@@ -28,7 +28,7 @@ export const IsLovedContextProvider = function ({ children }) {
   // AJAX 抓收藏列表清單
   const getLovedList = async () => {
     if (m_sid === '未登入') {
-      console.log('未登入，無法取得收藏列表');
+      // console.log('未登入，無法取得收藏列表');
       return;
     }
     const res = await axios.get(`${GET_LOVED}?m_sid=${m_sid}`);
@@ -100,7 +100,7 @@ export const IsLovedContextProvider = function ({ children }) {
   useEffect(() => {
     let index = lovedList.findIndex((e) => e.p_sid === sid);
     setIndexNum(index);
-    console.log(indexNum);
+    // console.log(indexNum);
   }, [location, loved]);
 
   // 藉 indexNum 切換 loved 狀態, 使其同步set

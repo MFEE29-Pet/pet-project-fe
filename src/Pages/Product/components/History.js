@@ -23,7 +23,7 @@ function History(props) {
     if (p_sid && oldHistory.includes(p_sid) === false) {
       const newHistory = [...oldHistory, p_sid];
       // setHistoryItem()
-      console.log(newHistory);
+      // console.log(newHistory);
       if (newHistory.length > 3) {
         localStorage.setItem('history', newHistory.slice(1, 4));
       } else {
@@ -46,7 +46,7 @@ function History(props) {
       result.push(res.data.history_p);
     }
     setHistory(result);
-    console.log(history);
+    // console.log(history);
   };
 
   useEffect(() => {
