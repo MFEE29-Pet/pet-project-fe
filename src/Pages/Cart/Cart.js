@@ -126,6 +126,7 @@ function Cart() {
       return v.photo_id !== item;
     });
     setPhotoTestData(remove);
+    setNewPhotoPrice(0)
   };
 
   // 刪除商品資料功能
@@ -134,6 +135,7 @@ function Cart() {
       return v.p_sid !== item;
     });
     setTestData(remove);
+    setNewTotalPrice()
   };
 
   return (
