@@ -41,7 +41,7 @@ export const IsLovedContextProvider = function ({ children }) {
     setLovedList(loved);
 
     // 加入localStorage (非必要)
-    localStorage.setItem('loved', JSON.stringify(loved));
+    // localStorage.setItem('loved', JSON.stringify(loved));
     // console.log(list);
   };
 
@@ -62,7 +62,7 @@ export const IsLovedContextProvider = function ({ children }) {
       ...lovedList,
       { p_sid: productSid, m_sid: m_sid, isLoved: true },
     ];
-    localStorage.setItem('loved', JSON.stringify(newLoved));
+    // localStorage.setItem('loved', JSON.stringify(newLoved));
     setLovedList(newLoved);
     // 更改收藏狀態
     setLoved(true);
@@ -79,10 +79,10 @@ export const IsLovedContextProvider = function ({ children }) {
     const res = await axios.get(
       `${DEL_LOVED}?p_sid=${productSid}&m_sid=${m_sid}`
     );
-    const loved1 = JSON.parse(localStorage.getItem('loved')).slice(0, index);
-    const loved2 = JSON.parse(localStorage.getItem('loved')).slice(index + 1);
+    const loved1 = lovedList.slice(0, index);
+    const loved2 = lovedList.slice(index + 1);
     const newLoved = loved1.concat(loved2);
-    localStorage.setItem('loved', JSON.stringify(newLoved));
+    // localStorage.setItem('loved', JSON.stringify(newLoved));
     setLovedList(newLoved);
     // 更改收藏狀態
     setLoved(false);
