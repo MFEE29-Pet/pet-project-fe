@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 
 //測試用假來源資料
-import jsonData from './orderTest.json';
+// import jsonData from './orderTest.json';
 import photoJsonData from './photoTest.json';
 
 // 主題變色功能區-------------------------------------------------------------------------------------
@@ -65,29 +65,32 @@ function Cart() {
   const [testData, setTestData] = useState([{}]);
   const [photoTestData, setPhotoTestData] = useState([{}]);
 
+  // 真實串接資料來源
+  const myCart = localStorage.getItem('cartItem');
+  const myProduct = JSON.parse(myCart).productCart;
+  console.log(myCart.productCart);
+
   // 獲取來源資料
   const getData = () => {
-    const myCart =  localStorage.getItem('cartItem'); 
-    const myProduct = JSON.parse(myCart).productCart;
-
-    console.log(myCart.productCart);
     setTestData(myProduct);
+    // setTestData(jsonData);
+
     setPhotoTestData(photoJsonData);
     setNewPhotoPrice(photoJsonData[0].photo_price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
   const dataAmount = () => {
-    console.log(jsonData);
+    console.log(myProduct);
 
     // 來源資料原始商品數量map
-    const origiAmount = jsonData.map((v, i) => {
+    const origiAmount = myProduct.map((v, i) => {
       return [v.amount];
     });
     setAmount(origiAmount);
 
     // 來源資料原始小計金額map
-    const origiTotalPrice = jsonData.map((v, i) => v.price * v.amount);
+    const origiTotalPrice = myProduct.map((v, i) => v.price * v.amount);
     setTotalPrice(origiTotalPrice);
 
     // 所有小計加總後要結帳之總額
@@ -433,9 +436,9 @@ function Cart() {
                     <th className="text_main_dark_color2">付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       ${' '}
-                      {((productChecked ? newTotalPrice : 0) +
+                      {Math.ceil(((productChecked ? newTotalPrice : 0) +
                         (photoChecked ? newPhotoPrice : 0)) *
-                        0.9}
+                        0.9)}
                     </td>
                   </tr>
                 </table>
