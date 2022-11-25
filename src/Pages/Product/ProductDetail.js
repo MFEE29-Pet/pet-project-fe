@@ -12,6 +12,7 @@ import { PRODUCT_DETAIL } from './my-config';
 import CartInfoContext from './contexts/CartInfoContext';
 import IsLovedContext from './contexts/IsLovedContext';
 import RelatedProduct from './components/RelatedProduct';
+import History from './components/History';
 
 // styled components
 const InfoDiv = styled.div`
@@ -94,7 +95,7 @@ function ProductDetail() {
       setProductDetail(productData);
       setAvgNum(res.data.avgScores);
       setRelatedProducts(res.data.related_p);
-      // console.log(relatedProducts);
+      // console.log(res.data.related_p);
     } catch (e) {
       console.log(e.message);
     }
@@ -133,7 +134,7 @@ function ProductDetail() {
             p_sid: data.p_sid,
             p_name: data.name,
             price: data.member_price,
-            image:data.img,
+            image: data.img,
             amount: amount,
           },
         ],
@@ -454,7 +455,8 @@ function ProductDetail() {
       </main>
       <ReplyPopup setShowDiv={setShowDiv} showDiv={showDiv} sid={data.sid} />
       {/* <!-- history sec --> */}
-      <section className="history">
+      <History />
+      {/* <section className="history">
         <div className="history-side-div">
           <div className="div-title-seen">
             <h2>最近看過</h2>
@@ -477,63 +479,16 @@ function ProductDetail() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
+      {/* 相關商品 */}
       <section className="bottom-pro-list">
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        {/* <div className="bottom-pro-ls-row">
-          <div className="arrow arrow-left">
-            <i className="fa-light fa-angle-left"></i>
-          </div>
-          <div className="bottom-pro-line-card">
-            <div className="pro-line-ls-img-wrap">
-              <img src="/images/test/can1.jpg" alt="" />
-            </div>
-            <div className="pro-line-ls-name">
-              <p>寵物商品</p>
-            </div>
-          </div>
-          <div className="bottom-pro-line-card">
-            <div className="pro-line-ls-img-wrap">
-              <img src="/images/test/can3.jpg" alt="" />
-            </div>
-            <div className="pro-line-ls-name">
-              <p>寵物商品</p>
-            </div>
-          </div>
-          <div className="bottom-pro-line-card">
-            <div className="pro-line-ls-img-wrap">
-              <img src="/images/test/can1.jpg" alt="" />
-            </div>
-            <div className="pro-line-ls-name">
-              <p>寵物商品</p>
-            </div>
-          </div>
-          <div className="bottom-pro-line-card">
-            <div className="pro-line-ls-img-wrap">
-              <img src="/images/test/can4.jpg" alt="" />
-            </div>
-            <div className="pro-line-ls-name">
-              <p>寵物商品</p>
-            </div>
-          </div>
-          <div className="bottom-pro-line-card">
-            <div className="pro-line-ls-img-wrap">
-              <img src="/images/test/cat1-can7.jpg" alt="" />
-            </div>
-            <div className="pro-line-ls-name">
-              <p>寵物商品</p>
-            </div>
-          </div>
-          <div className="arrow arrow-right">
-            <i className="fa-light fa-angle-right"></i>
-          </div>
-        </div> */}
         <RelatedProduct relatedProducts={relatedProducts} />
       </section>
-
+      {/* Go To Top */}
       <div
         className="go-to-top"
         onClick={() => {
