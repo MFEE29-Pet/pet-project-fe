@@ -164,7 +164,7 @@ function Product() {
               rowProducts={rowProducts}
               totalPages={totalPages}
               page={page}
-              usp={usp}
+              setPage={setPage}
               isLoading={isLoading}
             />
           </div>

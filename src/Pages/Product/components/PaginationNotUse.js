@@ -15,8 +15,8 @@ export default function Pagination({ totalPages, page, usp }) {
 
   return totalPages > 1 ? (
     <>
-      <div className="product_page">
-        <ul>
+      <div className="product_page" style={{ width: '100%' }}>
+        <ul style={{ width: '100%' }}>
           <li>
             <Link
               to={`${location.pathname}${
@@ -51,9 +51,9 @@ export default function Pagination({ totalPages, page, usp }) {
             Array(totalPages)
               .fill(1)
               .map((e, i) => {
-                const p = page - 2 + i;
+                const p = page - 2 + i - 1;
                 if (p < 1 || p > totalPages) return '';
-                if (p > nowPage + 2 || p <= nowPage - 2) return '...';
+                if (p > nowPage + 2 || p < nowPage - 2) return '...';
                 return (
                   <li key={i}>
                     <Link
