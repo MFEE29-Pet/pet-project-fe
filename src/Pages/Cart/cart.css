@@ -145,7 +145,6 @@
   color: red;
 }
 
-
 /* .fa-pen-to-square {
   color: #c9caca;
   cursor: pointer;
@@ -265,16 +264,39 @@
   flex-direction: column;
 }
 
-.eason_discount_code {
-  background-color: #fff;
+.discountArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
   border-radius: 12px;
+  overflow: hidden;
   width: 260px;
   height: 25px;
+}
+
+.eason_discount_code {
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  border-radius: 12px;
   border: none;
 }
 
 .eason_discount_code:focus {
   outline: none;
+}
+
+.eason_fa-magnifying-glass {
+  color: #fff;
+  display: flex;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  padding: 3px 10px;
+  font-weight: 900;
+  height: 25px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .eason_s3_right_top {

@@ -4,7 +4,6 @@
 // JSON.parse(localStorage.getItem('cartItem'))
 // {productCart: Array(1), photoCart: Array(0), totalItem: 1, totalPrice: 4390, totalAmount: 10}
 
-
 // 來源引用區-------------------------------------------------------------------------------------
 import { useState, useContext, useEffect } from 'react';
 import './cart.css';
@@ -103,7 +102,6 @@ function Cart() {
       return v.photo_id !== item;
     });
     setPhotoTestData(remove);
-    
   };
 
   // 刪除商品資料功能
@@ -396,7 +394,10 @@ function Cart() {
           <div className="eason_s3_right">
             <div className="eason_s3_right_top">
               <h2 className="text_main_dark_color2">優惠代碼</h2>
-              <input className="eason_discount_code" type="text" />
+              <div className='discountArea'>
+                <input className="eason_discount_code" type="text" />
+                <i className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "></i>
+              </div>
             </div>
 
             <div className="eason_s3_right_bottom">
