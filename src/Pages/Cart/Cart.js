@@ -69,23 +69,13 @@ function Cart() {
   const myCart = localStorage.getItem('cartItem');
   const myProduct = JSON.parse(myCart).productCart;
   console.log(myCart.productCart);
-  //   localStorage抓出來的資料格式
-  //   {productCart: [{p_sid: 48, p_name: "貓玩具-滾筒轉盤玩具", price: 1680, image: "cat2-toy1.jpg", amount: 2},…],…}
-  // photoCart
-  // :
-  // []
-  // productCart
-  // :
+  // localStorage抓出來的資料格式
+  // photoCart:[]
+  // productCart:
   // [{p_sid: 48, p_name: "貓玩具-滾筒轉盤玩具", price: 1680, image: "cat2-toy1.jpg", amount: 2},…]
-  // totalAmount
-  // :
-  // 3
-  // totalItem
-  // :
-  // 2
-  // totalPrice
-  // :
-  // 4859
+  // totalAmount:3
+  // totalItem:2
+  // totalPrice:4859
 
   // 獲取來源資料
   const getData = () => {
@@ -325,16 +315,16 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          let newAmount = [...amount];
-                          newAmount[i] = +newAmount[i] - 1;
+                          const decreaseAmount = [...amount];
+                          decreaseAmount[i] = +decreaseAmount[i] - 1;
                           console.log(amount);
 
                           const newPrice = [...totalPrice];
-                          newPrice[i] = newAmount[i] * v.price;
+                          newPrice[i] = decreaseAmount[i] * v.price;
                           console.log(newPrice);
                           setNewTotalPrice(newPrice.reduce((a, b) => a + b));
 
-                          setAmount(newAmount);
+                          setAmount(decreaseAmount);
 
                           setTotalPrice(newPrice);
                         }}
@@ -347,7 +337,7 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          let newAmount = [...amount];
+                          const newAmount = [...amount];
                           newAmount[i] = +newAmount[i] + 1;
                           const newPrice = [...totalPrice];
                           newPrice[i] = newAmount[i] * v.price;
