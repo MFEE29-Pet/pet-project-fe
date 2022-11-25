@@ -69,6 +69,23 @@ function Cart() {
   const myCart = localStorage.getItem('cartItem');
   const myProduct = JSON.parse(myCart).productCart;
   console.log(myCart.productCart);
+  //   localStorage抓出來的資料格式
+  //   {productCart: [{p_sid: 48, p_name: "貓玩具-滾筒轉盤玩具", price: 1680, image: "cat2-toy1.jpg", amount: 2},…],…}
+  // photoCart
+  // :
+  // []
+  // productCart
+  // :
+  // [{p_sid: 48, p_name: "貓玩具-滾筒轉盤玩具", price: 1680, image: "cat2-toy1.jpg", amount: 2},…]
+  // totalAmount
+  // :
+  // 3
+  // totalItem
+  // :
+  // 2
+  // totalPrice
+  // :
+  // 4859
 
   // 獲取來源資料
   const getData = () => {
@@ -114,7 +131,7 @@ function Cart() {
   // 刪除商品資料功能
   const removeProductData = (item) => {
     const remove = testData.filter((v, i) => {
-      return v.id !== item;
+      return v.p_sid !== item;
     });
     setTestData(remove);
   };
@@ -287,10 +304,10 @@ function Cart() {
 
             <tbody>
               {/* json假資料引入測試--------------------------------------------- */}
-
+              {/* 真實串接資料引入測試 -------------------------------------------*/}
               {testData.map((v, i) => {
                 return (
-                  <tr key={v.id}>
+                  <tr key={v.p_sid}>
                     <td className="eason_table_img">
                       <img
                         src="./imgs/product_3.png"
@@ -347,7 +364,7 @@ function Cart() {
                     <td>
                       <span
                         onClick={() => {
-                          removeProductData(v.id);
+                          removeProductData(v.p_sid);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
@@ -436,9 +453,11 @@ function Cart() {
                     <th className="text_main_dark_color2">付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       ${' '}
-                      {Math.ceil(((productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? newPhotoPrice : 0)) *
-                        0.9)}
+                      {Math.ceil(
+                        ((productChecked ? newTotalPrice : 0) +
+                          (photoChecked ? newPhotoPrice : 0)) *
+                          0.9
+                      )}
                     </td>
                   </tr>
                 </table>
