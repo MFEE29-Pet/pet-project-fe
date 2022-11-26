@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import IsLovedContext from '../contexts/IsLovedContext';
 
 const PROLINE = styled.div`
   border-radius: 10px;
@@ -62,9 +63,18 @@ const LINK = styled(Link)`
 
 function ProductLine({ product }) {
   const { mode } = useContext(SwitchButtonContext);
+  const {
+    lovedList,
+    delLoved,
+    addLoved,
+    loved,
+    indexNum,
+    isLovedNum,
+    setIsLovedNum,
+    handleClickForLine,
+  } = useContext(IsLovedContext);
   const [showInfo, setShowInfo] = useState(0);
   const navigate = useNavigate();
-
   // setProductToLine
 
   return (
@@ -91,11 +101,29 @@ function ProductLine({ product }) {
             <div className="line_title_wrap" style={{ margin: '5px 10px' }}>
               <H1
                 $mode={mode}
-                style={{ fontSize: '16px', cursor: 'pointer' }}
+                style={{
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  display: 'inline',
+                }}
                 onClick={() => navigate(`detail/?sid=${e.sid}`)}
               >
                 {e.name}
               </H1>
+              <i
+                className={`${
+                  isLovedNum.indexOf(e.sid) !== -1 ? 'fa-solid' : 'fa-regular'
+                } fa-heart`}
+                style={{ marginLeft: '5px', color: 'red', cursor: 'pointer' }}
+                onClick={() => handleClickForLine(e.sid)}
+              ></i>
+              {/* <button
+                onClick={() => {
+                  console.log(typeof [isLovedNum]);
+                }}
+              >
+                案
+              </button> */}
               <SHOW
                 $mode={mode}
                 onClick={() => {
@@ -122,6 +150,7 @@ function ProductLine({ product }) {
                 {e.info}
               </INFO>
             </div>
+
             <LINK
               $mode={mode}
               to={`detail/?sid=${e.sid}`}
