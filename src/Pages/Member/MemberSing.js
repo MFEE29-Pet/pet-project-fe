@@ -2,6 +2,35 @@ import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import './MemberSing.css';
 import axios from 'axios';
+import styled from 'styled-components';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+
+const JoinPage = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const BreadcrumbBox = styled.div`
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+`;
+
+const Memberroutes = [
+  {
+    to: '/',
+    label: '首頁',
+  },
+  {
+    to: '/member/memberShipAdd',
+    label: '會員註冊',
+  },
+];
+
 function MemberSing() {
   const [user, setUser] = useState({
     account: '',
@@ -27,7 +56,7 @@ function MemberSing() {
   const postUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const addUser = async() => {
+  const addUser = async () => {
     const newUser = { ...user };
     let newMonth = month;
     let newDay = day;
@@ -42,21 +71,30 @@ function MemberSing() {
     newUser.address = address;
     newUser.birthday = d;
     console.log(newUser);
-    const {data} = await axios.post('http://localhost:6001/member/add',newUser)
-    console.log(data)
+    const { data } = await axios.post(
+      'http://localhost:6001/member/add',
+      newUser
+    );
+    console.log(data);
   };
   return (
-    <>
+    <JoinPage>
       {/* <div className="fill"></div>
       <div className="success">
         <h1>註冊成功</h1>
       </div> */}
+      <BreadcrumbBox>
+        <Breadcrumb
+          routes={Memberroutes}
+          separator={<BreadcrumbRightArrowIcon />}
+        />
+      </BreadcrumbBox>
       <div className="member-page">
         <div className="singUp-page">
           <div className="page">
             <div className="page-left">
               <div className="enter-A">
-                <h2>使用者帳號</h2>
+                <h2 className="text_main_dark_color2">使用者帳號</h2>
                 <input
                   type="text"
                   className="cc"
@@ -68,7 +106,7 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>設定密碼</h2>
+                <h2 className="text_main_dark_color2">設定密碼</h2>
                 <input
                   type="text"
                   className="cc"
@@ -80,11 +118,11 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>確認密碼</h2>
+                <h2 className="text_main_dark_color2">確認密碼</h2>
                 <input type="text" className="cc" />
               </div>
               <div className="enter-A">
-                <h2>姓名</h2>
+                <h2 className="text_main_dark_color2">姓名</h2>
                 <input
                   type="text"
                   className="cc"
@@ -96,7 +134,7 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>信箱</h2>
+                <h2 className="text_main_dark_color2">信箱</h2>
                 <input
                   type="text"
                   className="cc"
@@ -108,7 +146,7 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>手機</h2>
+                <h2 className="text_main_dark_color2">手機</h2>
                 <input
                   type="text"
                   className="cc"
@@ -120,7 +158,7 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>地址</h2>
+                <h2 className="text_main_dark_color2">地址</h2>
                 <div className="address">
                   <div className="enter-C">
                     <select
@@ -141,24 +179,22 @@ function MemberSing() {
                     </select>
                   </div>
                   <div className="enter-C">
-                    <div className="input-Choose">
-                      <select
-                        name=""
-                        id=""
-                        value={area}
-                        onChange={(e) => {
-                          setArea(e.target.value);
-                        }}
-                      >
-                        <option value="">行政區</option>
-                        <option value="台北市">台北市</option>
-                        <option value="新北市">新北市</option>
-                        <option value="">桃園市</option>
-                        <option value="">台中市</option>
-                        <optio value="">台南市</optio>
-                        <option value="">高雄市</option>
-                      </select>
-                    </div>
+                    <select
+                      name=""
+                      id=""
+                      value={area}
+                      onChange={(e) => {
+                        setArea(e.target.value);
+                      }}
+                    >
+                      <option value="">行政區</option>
+                      <option value="台北市">台北市</option>
+                      <option value="新北市">新北市</option>
+                      <option value="">桃園市</option>
+                      <option value="">台中市</option>
+                      <option value="">台南市</option>
+                      <option value="">高雄市</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -173,7 +209,7 @@ function MemberSing() {
                 />
               </div>
               <div className="enter-A">
-                <h2>性別</h2>
+                <h2 className="text_main_dark_color2">性別</h2>
                 <div className="radio">
                   {genderWrap.map((v, i) => {
                     return (
@@ -186,7 +222,7 @@ function MemberSing() {
                             setGender(e.target.value);
                           }}
                         />
-                        <label for="">{v}</label>
+                        <label htmlFor="">{v}</label>
                       </span>
                     );
                   })}
@@ -199,9 +235,9 @@ function MemberSing() {
                 </div>
               </div>
               <div className="enter-A">
-                <h2>生日</h2>
+                <h2 className="text_main_dark_color2">生日</h2>
                 <div className="address">
-                  <div className="enter-C">
+                  <div className="enter-D">
                     <select
                       name=""
                       id=""
@@ -223,8 +259,7 @@ function MemberSing() {
                         })}
                     </select>
                   </div>
-                  <div className="enter-C">
-                    <div className="input-Choose">
+                  <div className="enter-D">
                       <select
                         name=""
                         id=""
@@ -244,10 +279,8 @@ function MemberSing() {
                             );
                           })}
                       </select>
-                    </div>
                   </div>
-                  <div className="enter-C">
-                    <div className="input-Choose">
+                  <div className="enter-D">
                       <select
                         name=""
                         id=""
@@ -267,12 +300,12 @@ function MemberSing() {
                             );
                           })}
                       </select>
-                    </div>
+
                   </div>
                 </div>
               </div>
               <div className="button-A">
-                <button className="button" onClick={addUser}>
+                <button className="button bg_main_light_color1" onClick={addUser}>
                   註冊
                 </button>
               </div>
@@ -286,7 +319,7 @@ function MemberSing() {
           </div>
         </div>
       </div>
-    </>
+    </JoinPage>
   );
 }
 

@@ -9,7 +9,6 @@ import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
-import { MemberContextProvider } from './contexts/MemberContext';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Reserve from './Pages/Clinic/Reserve';
@@ -20,7 +19,15 @@ import ProductDetail from './Pages/Product/ProductDetail';
 import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
-import Login from './Pages/Product/Login';
+import MemberLevel from './Pages/Member/MemberLevel';
+import MemberPetAdd from './Pages/Member/MemberPetAdd';
+import MemberArticleCollect from './Pages/Member/MemberArticleCollect';
+import MemberAppointment from './Pages/Member/MemberAppointment';
+import MemberProductCollect from './Pages/Member/MemberProductCollect';
+import MemberHistoryProduct from './Pages/Member/MemberHistoryProduct';
+import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
+import MemberProfileUp from './Pages/Member/MemberProfileUp';
+import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -102,18 +109,33 @@ function App() {
               path="product/photographers/form"
               element={<PhotographerForm />}
             />
-            <Route path="login" element={<Login />} />
-
             <Route path="cart" element={<Cart />} />
-
             <Route path="clinic" element={<Clinic />} />
             <Route path="clinic/reserve" element={<Reserve />} />
-            <Route path="clinic/login" element={<Login />} />
 
             <Route path="forum" element={<ForumList />} />
             <Route path="forum/detail" element={<ForumDetail />} />
 
-            <Route path="member" element={<Member />} />
+            <Route path="member" element={<Member />}>
+              <Route path="memberCenter" element={<MemberLevel />} />
+              <Route path="memberPet" element={<MemberPetAdd/>} />
+              <Route path="memberArticle" element={<MemberArticleCollect/>} />
+              <Route
+                path="memberProductCollect"
+                element={<MemberProductCollect/>}
+              />
+              <Route path="memberClinic" element={<MemberAppointment/>} />
+              <Route
+                path="memberProductHistory"
+                element={<MemberHistoryProduct/>}
+              />
+              <Route path="memberPhotoHistory" element={<MemberHistoryCamera/>} />
+              <Route path="memberDataRevise" element={<MemberProfileUp/>} />
+              <Route
+                path="memberPasswordRevise"
+                element={<MemberForgrtPassword/>}
+              />
+            </Route>
             <Route path="member/memberShipAdd" element={<MemberSing />} />
             <Route path="member/memberLogIn" element={<MemberLogIn />} />
           </Routes>

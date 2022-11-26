@@ -53,8 +53,8 @@ select {
   height: 30px;
   margin-right: 15px;
   border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
+  border: 1px solid #727171;
+  color: #727171;
   background-color: #fff;
   padding: 5px 10px;
 }
@@ -83,9 +83,8 @@ span {
 }
 
 .button {
-  width: 80px;
+  width: 100px;
   height: 40px;
-  background-color: rgb(242, 140, 31);
   border-radius: 30px;
   border-color: #ccc;
   color: rgb(255, 253, 253);
@@ -97,10 +96,9 @@ span {
 
 /* 1200  100% */
 .page {
-  width: 700px;
+  width: 800px;
   margin: 0 auto;
-  padding: 30px 0px;
-  /* height: 350px; */
+  padding: 50px 0px;
   background-color: #ffff;
   border-radius: 25px;
   display: flex;
@@ -113,14 +111,14 @@ span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  width: 80%;
+  margin-bottom: 40px;
+  width: 70%;
 }
 
 .enter-B {
   width: 250px;
   height: 30px;
-  border: 1px solid #989898;
+  border: 1px solid #727171;
   border-radius: 30px;
   display: flex;
   justify-content: space-around;
@@ -128,12 +126,19 @@ span {
 }
 .enter-C {
   display: flex;
-
   align-items: center;
+  width: 120px;
+}
+
+.enter-D{
+  display: flex;
+  align-items: center;
+  width: 88px;
 }
 .address {
   display: flex;
   width: 250px;
+  justify-content: space-between;
 }
 .addressText {
   margin-left: 140px;
@@ -159,16 +164,18 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #a4a5a5;
+  color: #727171;
   margin-bottom: 20px;
 }
 .up-photo i {
   margin: 0;
-  color: #a4a5a5;
+  color: #727171;
   font-size: 40px;
 }
 .radio {
   width: 250px;
+  display: flex;
+  justify-content: space-between;
 }
 .photo {
   display: flex;
@@ -180,12 +187,12 @@ span {
   width: 80px;
   height: 30px;
   border-radius: 30px;
-  border: 1px solid#989898;
-  color: #989898;
+  border: 1px solid#727171;
+  color: #727171;
 }
 .cc {
   width: 250px;
-  outline: 1px solid #989898;
+  outline: 1px solid #727171;
   height: 30px;
   border-radius: 30px;
   padding-left: 10px;

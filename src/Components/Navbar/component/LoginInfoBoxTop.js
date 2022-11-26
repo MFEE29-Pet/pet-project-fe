@@ -48,7 +48,7 @@ function LoginInfoBoxTop() {
 
   return (
     <LoginInfoTop>
-      <MemberBox to="/member">
+      <MemberBox to="member/memberCenter">
         <H2 className="text_main_dark_color2">{myAuth.name}</H2>
         <PHOTO className="border_big_main_light_color1">
           <IMG src={`${imgUrl}/images/test.webp`} alt="" />

@@ -1,11 +1,11 @@
-@font-face {
+/* @font-face {
   font-family: big_circle;
   src: url(../../../public/font/GenSenRounded-R.ttc);
-}
+} */
 
 * {
   box-sizing: border-box;
-  font-family: big_circle;
+  font-family: art;
 }
 
 h2 {
@@ -160,6 +160,12 @@ span {
   margin: 0 auto;
 }
 
+.member-ship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .member-shipL {
   width: 20%;
   display: flex;
@@ -168,8 +174,8 @@ span {
 }
 
 .member-photo {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: darkblue;
   border-radius: 50%;
   overflow: hidden;
@@ -191,8 +197,10 @@ span {
 
 .member-icon ul {
   display: flex;
+  justify-content: space-around;
   margin-bottom: 35px;
 }
+
 .member-icon ul li {
   cursor: pointer;
 }
@@ -206,11 +214,6 @@ span {
   color: #966134;
 }
 
-.thin,
-.light {
-  color: #966134;
-  margin-right: 10px;
-}
 /* --------------------------------------------------------------------- */
 /* MemberLevel */
 .degreeWrap {
@@ -240,16 +243,18 @@ span {
 }
 
 .degreeC {
-  height: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-degree {
-  width: 80%;
-  height: 700px;
+  width: 100%;
   background-color: #fff;
-  padding-top: 30px;
+  padding-top: 80px;
   border-radius: 15px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .degreeImg {
@@ -268,6 +273,9 @@ span {
 
 .degree-card {
   margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .degree-card h2 {
@@ -281,29 +289,33 @@ span {
 .degree-txt {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  margin: 50px 0px;
   color: #966134;
+  align-self: center;
 }
 
-.degreeIcon {
-  width: 354px;
-  /* flex-grow: 1; */
-  /* align-self: center; */
+.degreeIcon{
+  margin: 5px 0px;
 }
+
+
 
 .ship-bottom {
   width: 100%;
-  height: 30%;
-  background-color: #dcdddd;
+  height: 200px;
+  background-color: #c9caca;
   display: flex;
   flex-direction: column;
   padding: 30px 0px;
   justify-content: space-between;
+  align-items: center;
+  
 }
 
 .ship {
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ship h2 {
@@ -313,7 +325,7 @@ span {
   margin-bottom: 5px;
 }
 
-.ship h2::before {
+/* .ship h2::before {
   content: '';
   position: absolute;
   top: 8px;
@@ -331,9 +343,8 @@ span {
   width: 10px;
   height: 1px;
   border-bottom: 1px solid rgb(0, 0, 0);
-
   border-bottom: 1px solid rgb(11, 11, 11);
-}
+} */
 
 .ship p {
   font-size: 10px;
@@ -343,6 +354,8 @@ span {
 
 .input-text {
   display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
 }
 
 .input {
@@ -370,6 +383,7 @@ span {
 .inputRange {
   width: 40%;
 }
+
 /* --------------------------------------------------------------------- */
 /* MembePetAdd */
 
@@ -443,10 +457,10 @@ span {
   font-weight: 900;
 }
 
-.addPetbutton{
-font-size: 20px;
-color: #40210f;
-margin-bottom: 30px;
+.addPetbutton {
+  font-size: 20px;
+  color: #40210f;
+  margin-bottom: 30px;
 }
 
 
@@ -505,13 +519,13 @@ margin-bottom: 30px;
   color: #fff;
 }
 
-.buttonAdd{
-  width:80px;
+.buttonAdd {
+  width: 80px;
   height: 30px;
   background-color: darkorange;
-   border-radius: 20px;
-   color: #fff;
-   border:darkorange;
+  border-radius: 20px;
+  color: #fff;
+  border: darkorange;
 }
 
 
@@ -546,16 +560,19 @@ margin-bottom: 30px;
 .trash {
   font-size: 20px;
 }
+
 .articleWrap {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
 }
+
 .articleInfo {
   width: 100%;
   height: 100vh;
   overflow: auto;
 }
+
 .article {
   width: 100%;
   display: flex;
@@ -584,7 +601,7 @@ margin-bottom: 30px;
   align-items: center;
   margin-bottom: 20px;
   border-radius: 25px;
-  
+
 }
 
 .article-all {
@@ -656,6 +673,7 @@ margin-bottom: 30px;
   font-size: 19px;
   color: #40220f;
 }
+
 .Hospital-order h3:first-child {
   color: firebrick;
 }
@@ -681,7 +699,7 @@ margin-bottom: 30px;
 }
 
 .Hospital {
-  width: 100%;
+  width: 80%;
   height: 110vh;
   display: flex;
   flex-direction: column;
@@ -720,6 +738,7 @@ margin-bottom: 30px;
   margin-right: 10px;
   font-size: 16px;
 }
+
 .Hospital-A span {
   font-size: 16px;
   color: #966134;
@@ -906,7 +925,7 @@ margin-bottom: 30px;
 }
 
 .orderCamera-right {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -1038,7 +1057,7 @@ margin-bottom: 30px;
 }
 
 .orderProduct-right {
-  width: 100%;
+  width: 80%;
   height: 100vh;
   overflow: auto;
   display: flex;
@@ -1109,8 +1128,8 @@ margin-bottom: 30px;
 /* --------------------------------------------------------------------- */
 /* MemberPassword */
 
- 
-.input input{
+
+.input input {
   border: none;
   outline: none;
 }
@@ -1159,23 +1178,24 @@ margin-bottom: 30px;
   justify-content: space-around;
   align-items: center;
 }
-.enter-C{
+
+.enter-C {
   width: 250px;
   height: 30px;
   border: 1px solid #989898;
   border-radius: 30px;
-  background: #FaFaFa;
   display: flex;
   align-items: center;
   overflow: hidden;
-  
+
 }
+
 .enter-C select {
   /* width: 150px;
     height: 35px; */
   border-radius: 20px;
   border: none;
-  color: #a4a5a5;
+  color: #727171;
   background-color: #fff;
   padding: 5px 10px;
   width: 120px;
@@ -1183,7 +1203,7 @@ margin-bottom: 30px;
 
 }
 
-.input{
+.input {
   margin-left: 15px;
 }
 
@@ -1204,17 +1224,17 @@ margin-bottom: 30px;
 }
 
 /* --------------------------------------------------------------------- */
- /*MemberProfileUp */
+/*MemberProfileUp */
 
 
- .singUp-page {
+.singUp-page {
   width: 1200px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 }
 
- .pageProfileUp {
+.pageProfileUp {
   width: 700px;
   margin: 0 auto;
   padding: 30px 0px;
@@ -1224,9 +1244,11 @@ margin-bottom: 30px;
   display: flex;
   justify-content: center;
 }
+
 .page-left {
   width: 70%;
 }
+
 .enter-A {
   display: flex;
   justify-content: space-between;
@@ -1249,10 +1271,12 @@ margin-bottom: 30px;
   display: flex;
   width: 250px;
 }
+
 .addressText {
   margin-left: 140px;
   margin-bottom: 10px;
 }
+
 .input {
   margin-left: 15px;
 }
@@ -1277,19 +1301,23 @@ margin-bottom: 30px;
   margin-bottom: 20px;
   overflow: hidden;
 }
+
 .up-photoProfile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .radio {
   width: 250px;
 }
+
 .photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .photo input {
   background-color: #fff;
   width: 80px;
@@ -1298,6 +1326,7 @@ margin-bottom: 30px;
   border: 1px solid#989898;
   color: #989898;
 }
+
 .cc {
   width: 250px;
   outline: 1px solid #989898;
@@ -1309,17 +1338,18 @@ margin-bottom: 30px;
 
 
 /* --------------------------------------------------------------------- */
- /* ForgrtPasswordsuccess . MemberSingsuccess */
+/* ForgrtPasswordsuccess . MemberSingsuccess */
 
 
-.fill{
+.fill {
   width: 100%;
   height: 100vh;
   background-color: #989898;
   opacity: 0.7;
   position: absolute;
 }
-.success{
+
+.success {
   width: 400px;
   height: 200px;
   background-color: #fff;
@@ -1328,7 +1358,8 @@ margin-bottom: 30px;
   top: 40%;
   left: 40%;
 }
-.success h1{
+
+.success h1 {
   height: 100%;
   display: flex;
   justify-content: center;
