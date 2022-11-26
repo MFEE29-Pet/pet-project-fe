@@ -2,7 +2,7 @@ import ProductSidebar from './components/ProductSidebar';
 import Filter from './components/Filter';
 import './style/style.scss';
 import ProductCard from './components/ProductCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Popup from './components/Popup';
 import { PRODUCT_LIST } from './my-config';
 import { useLocation } from 'react-router-dom';
@@ -10,6 +10,8 @@ import axios from 'axios';
 import _ from 'lodash';
 import MyPagination from './components/MyPagination';
 import styled from 'styled-components';
+import ProductLine from './components/ProductLine';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 
 const PAGE = styled.div`
   ul {
@@ -25,6 +27,7 @@ const PAGE = styled.div`
 `;
 
 function Product() {
+  const { productShow } = useContext(SwitchButtonContext);
   const [trigger, setTrigger] = useState(false);
   // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
@@ -174,16 +177,20 @@ function Product() {
             setSearchWord={setSearchWord}
           />
           <div className="product-list">
-            <ProductCard
-              sortMethod={sortMethod}
-              minPrice={minPrice}
-              maxPrice={maxPrice}
-              rowProducts={rowProducts}
-              totalPages={totalPages}
-              page={page}
-              setPage={setPage}
-              isLoading={isLoading}
-            />
+            {productShow === 'card' ? (
+              <ProductCard
+                sortMethod={sortMethod}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                rowProducts={rowProducts}
+                totalPages={totalPages}
+                page={page}
+                setPage={setPage}
+                isLoading={isLoading}
+              />
+            ) : (
+              <ProductLine product={product} />
+            )}
           </div>
           <PAGE
             className="product_pagination"

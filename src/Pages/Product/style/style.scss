@@ -182,6 +182,18 @@ section.right {
                 margin: 0 5px;
             }
         }
+        .filter_and_show {
+            .productShowButton {
+                width: 50px;
+                margin-top: 5px;
+                border-radius: 10px;
+                background-color: rgb(227, 227, 227);
+                
+                i {
+                    margin: 5px 5px 5px 5px;
+                }
+            }
+        }
     }
 
     // pro detail shadow
@@ -400,9 +412,8 @@ section.right {
                 // }
             }
         }
-
-
     }
+
 
 
     .score-div {

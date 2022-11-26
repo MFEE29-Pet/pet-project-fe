@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import PageContext from '../contexts/PageContext';
 
 function Filter({
@@ -12,6 +13,7 @@ function Filter({
   page,
 }) {
   const { nowPage, location, cate } = useContext(PageContext);
+  const { mode, productShow, setProductShow } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,14 +37,54 @@ function Filter({
               id="pro-search"
             ></i>
           </div>
-          <div
-            className="price-filter"
-            onClick={() => {
-              setTrigger(!trigger);
-            }}
-          >
-            <i className="fa-solid fa-filter"></i>
-            <p>篩選</p>
+          <div className="filter_and_show">
+            <div
+              className="price-filter"
+              onClick={() => {
+                setTrigger(!trigger);
+              }}
+            >
+              <i className="fa-solid fa-filter"></i>
+              <p>篩選</p>
+            </div>
+            <div
+              className="productShowButton"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                className="showCard"
+                style={{
+                  backgroundColor: `${productShow === 'card' ? '#ccc' : ''}`,
+                  borderRadius: '10px 0 0 10px',
+                  width: '100%',
+                }}
+              >
+                <i
+                  onClick={() => setProductShow('card')}
+                  className={`fa-solid fa-grid productShow text_main_light_color1 ${
+                    productShow === 'card' ? 'active' : ''
+                  }`}
+                ></i>
+              </div>
+              <div
+                className="showLine"
+                style={{
+                  backgroundColor: `${productShow === 'line' ? '#ccc' : ''}`,
+                  borderRadius: '0 10px 10px 0',
+                  width: '100%',
+                }}
+              >
+                <i
+                  onClick={() => setProductShow('line')}
+                  className={`fa-solid fa-square-list productShow text_main_light_color1  ${
+                    productShow === 'line' ? 'active' : ''
+                  }`}
+                ></i>
+              </div>
+            </div>
           </div>
         </div>
 
