@@ -110,7 +110,7 @@ function Cart() {
     getData();
   }, []);
 
-  // 刪除攝影資料功能
+  // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
     const remove = photoTestData.filter((v, i) => {
       return v.photo_id !== item;
@@ -119,13 +119,13 @@ function Cart() {
     setNewPhotoPrice(0)
   };
 
-  // 刪除商品資料功能
+  // 刪除商品資料並剔除總金額功能
   const removeProductData = (item) => {
     const remove = testData.filter((v, i) => {
       return v.p_sid !== item;
     });
     setTestData(remove);
-    setNewTotalPrice()
+    // setNewTotalPrice()
   };
 
   return (
@@ -319,14 +319,14 @@ function Cart() {
                           decreaseAmount[i] = +decreaseAmount[i] - 1;
                           console.log(amount);
 
-                          const newPrice = [...totalPrice];
-                          newPrice[i] = decreaseAmount[i] * v.price;
-                          console.log(newPrice);
-                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
+                          const decreasePrice = [...totalPrice];
+                          decreasePrice[i] = decreaseAmount[i] * v.price;
+                          console.log(decreasePrice);
+                          setNewTotalPrice(decreasePrice.reduce((a, b) => a + b));
 
                           setAmount(decreaseAmount);
 
-                          setTotalPrice(newPrice);
+                          setTotalPrice(decreasePrice);
                         }}
                       >
                         <i className="eason_fa-solid fa-solid fa-circle-minus">
