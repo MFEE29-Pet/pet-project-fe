@@ -1,9 +1,3 @@
-// test
-// localStorage.getItem('cartItem')
-// '{"productCart":[{"p_sid":31,"p_name":"貓玩具-咖波三層球塔","price":439,"image":"cat2-toy2.jpg","amount":10}],"photoCart":[],"totalItem":1,"totalPrice":4390,"totalAmount":10}'
-// JSON.parse(localStorage.getItem('cartItem'))
-// {productCart: Array(1), photoCart: Array(0), totalItem: 1, totalPrice: 4390, totalAmount: 10}
-
 // 來源引用區-------------------------------------------------------------------------------------
 import { useState, useContext, useEffect } from 'react';
 import './cart.css';
@@ -116,16 +110,15 @@ function Cart() {
       return v.photo_id !== item;
     });
     setPhotoTestData(remove);
-    setNewPhotoPrice(0)
+    setNewPhotoPrice(0);
   };
 
-  // 刪除商品資料並剔除總金額功能
+  // 刪除商品資料功能
   const removeProductData = (item) => {
     const remove = testData.filter((v, i) => {
       return v.p_sid !== item;
     });
     setTestData(remove);
-    // setNewTotalPrice()
   };
 
   return (
@@ -206,14 +199,13 @@ function Cart() {
                   <th>預約日期</th>
                   <th>預約時段</th>
                   <th>單價</th>
-                  {/* <th>編輯</th> */}
                   <th>刪除</th>
                 </tr>
               </thead>
             )}
 
             <tbody>
-              {/* 預約攝影資料帶入測試---------------- */}
+              {/* 預約攝影資料引入------------------------------------------------------------------- */}
               {photoTestData.map((v, i) => {
                 return (
                   <tr key={v.id}>
@@ -221,23 +213,9 @@ function Cart() {
                       <img src="./imgs/person_2.jpeg" alt="" width="100px" />
                     </td>
                     <td>{v.photographer}</td>
-                    {/* <td>
-                      <input className="date" type="date" name="" id="" />
-                    </td> */}
                     <td>{v.date}</td>
                     <td>{v.dayparts}</td>
-                    {/* <td>
-                      <select className="dayparts" name="" id="">
-                        <option value="">上午</option>
-                        <option value="">下午</option>
-                      </select>
-                    </td> */}
                     <td className="eason_table_price">{v.photo_price}</td>
-                    {/* <td className="eason_edit">
-                      <a href="/#">
-                        <i className="fa-light fa-pen-to-square"></i>
-                      </a>
-                    </td> */}
                     <td>
                       <span
                         onClick={() => {
@@ -295,8 +273,7 @@ function Cart() {
             )}
 
             <tbody>
-              {/* json假資料引入測試--------------------------------------------- */}
-              {/* 真實串接資料引入測試 -------------------------------------------*/}
+              {/* 商品資料引入 --------------------------------------------------------------------*/}
               {testData.map((v, i) => {
                 return (
                   <tr key={v.p_sid}>
@@ -308,7 +285,6 @@ function Cart() {
                         height="65px"
                       />
                     </td>
-                    {/* <td className="eason_p_name">{v.productName}</td> */}
                     <td className="eason_p_name">{v.p_name}</td>
                     <td className="eason_table_price">{v.price}</td>
                     <td className="eason_table_amount">
@@ -322,7 +298,9 @@ function Cart() {
                           const decreasePrice = [...totalPrice];
                           decreasePrice[i] = decreaseAmount[i] * v.price;
                           console.log(decreasePrice);
-                          setNewTotalPrice(decreasePrice.reduce((a, b) => a + b));
+                          setNewTotalPrice(
+                            decreasePrice.reduce((a, b) => a + b)
+                          );
 
                           setAmount(decreaseAmount);
 
@@ -342,11 +320,11 @@ function Cart() {
                           const newPrice = [...totalPrice];
                           newPrice[i] = newAmount[i] * v.price;
                           console.log(newPrice);
-                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
 
                           setAmount(newAmount);
-
                           setTotalPrice(newPrice);
+
+                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
                         }}
                       >
                         <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
@@ -356,7 +334,10 @@ function Cart() {
                     <td>
                       <span
                         onClick={() => {
+                          setNewTotalPrice(newTotalPrice - v.price * amount[i]);
                           removeProductData(v.p_sid);
+
+                          amount.splice(i, 1);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
@@ -369,7 +350,7 @@ function Cart() {
           </table>
         </div>
 
-        {/* <!-- 下方區域-------------------------------------------------------> */}
+        {/* <!-- 下方區域------------------------------------------------------------------------> */}
         <div className="eason_section_3">
           <div className="eason_s3_left">
             <h2 className="text_main_dark_color2">付款方式</h2>
