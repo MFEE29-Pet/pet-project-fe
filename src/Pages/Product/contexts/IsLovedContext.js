@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { ADD_LOVED, GET_LOVED, DEL_LOVED } from '../my-config';
 
 const IsLovedContext = createContext([]);
@@ -14,10 +15,15 @@ export const IsLovedContextProvider = function ({ children }) {
   };
   const navigate = useNavigate();
 
+  // 切換顯示重抓收藏 (為了解決line顯示)
+  const { productShow } = useContext(SwitchButtonContext);
+
   // 收藏列表
   const [lovedList, setLovedList] = useState([initLoved]);
   // 收藏狀態
   const [loved, setLoved] = useState(false);
+  // 收藏號碼
+  const [isLovedNum, setIsLovedNum] = useState([]);
 
   // 從localStorage取得 m_sid
 
@@ -37,8 +43,13 @@ export const IsLovedContextProvider = function ({ children }) {
     const loved = list.map((e, i) => {
       return { p_sid: e.p_sid, m_sid: e.m_sid, isLoved: true };
     });
-    // console.log(loved);
     setLovedList(loved);
+    let lovedNum = [];
+    for (let i = 0; i < lovedList.length; i++) {
+      lovedNum.push(lovedList[i].p_sid);
+    }
+    // console.log(a);
+    setIsLovedNum(lovedNum);
 
     // 加入localStorage (非必要)
     // localStorage.setItem('loved', JSON.stringify(loved));
@@ -88,6 +99,22 @@ export const IsLovedContextProvider = function ({ children }) {
     setLoved(false);
   };
 
+  // 以line方式顯示商品列表時，使用
+  const handleClickForLine = async (sid) => {
+    const index = isLovedNum.indexOf(sid);
+    if (index === -1) {
+      addLoved(sid);
+      setIsLovedNum([...isLovedNum, sid]);
+    } else {
+      delLoved(sid, index);
+      const loved1 = isLovedNum.slice(0, index);
+      const loved2 = isLovedNum.slice(index + 1);
+      const newLovedNum = loved1.concat(loved2);
+      setIsLovedNum(newLovedNum);
+      // console.log(newLovedNum);
+    }
+  };
+  // console.log(isLovedNum);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const sid = +params.get('sid') || 0;
@@ -101,7 +128,7 @@ export const IsLovedContextProvider = function ({ children }) {
     let index = lovedList.findIndex((e) => e.p_sid === sid);
     setIndexNum(index);
     // console.log(indexNum);
-  }, [location, loved]);
+  }, [location, loved, isLovedNum]);
 
   // 藉 indexNum 切換 loved 狀態, 使其同步set
   useEffect(() => {
@@ -116,6 +143,10 @@ export const IsLovedContextProvider = function ({ children }) {
   useEffect(() => {
     getLovedList();
   }, []);
+
+  useEffect(() => {
+    getLovedList();
+  }, [loved, productShow]);
   // console.log(...lovedList);
 
   return (
@@ -128,6 +159,9 @@ export const IsLovedContextProvider = function ({ children }) {
         loved,
         setLoved,
         indexNum,
+        isLovedNum,
+        setIsLovedNum,
+        handleClickForLine,
       }}
     >
       {children}
