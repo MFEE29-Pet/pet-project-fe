@@ -10,7 +10,7 @@ export const CartInfoContextProvider = function ({ children }) {
     photoCart: [],
     totalItem: 0,
     totalPrice: 0,
-    totalAmount:0,
+    totalAmount: 0,
   };
   if (localStorage.getItem('cartItem')) {
     initCart = JSON.parse(localStorage.getItem('cartItem'));
@@ -20,12 +20,10 @@ export const CartInfoContextProvider = function ({ children }) {
       photoCart: [],
       totalItem: 0,
       totalPrice: 0,
-      totalAmount:0,
+      totalAmount: 0,
     };
   }
   const [cartItem, setCartItem] = useState(initCart);
-
-
 
   return (
     <CartInfoContext.Provider value={{ cartItem, setCartItem }}>
