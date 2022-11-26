@@ -21,7 +21,7 @@ export const IsLovedContextProvider = function ({ children }) {
 
   // 從localStorage取得 m_sid
 
-  const m_sid = JSON.parse(localStorage.getItem('auth')).sid ? JSON.parse(localStorage.getItem('auth')).sid : '未登入';
+  const m_sid = JSON.parse(localStorage.getItem('auth')) ? JSON.parse(localStorage.getItem('auth')).sid : '未登入';
   // console.log(m_sid);
 
   // AJAX 抓收藏列表清單

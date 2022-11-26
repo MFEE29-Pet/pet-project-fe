@@ -301,7 +301,6 @@ function Cart() {
                           setNewTotalPrice(
                             decreasePrice.reduce((a, b) => a + b)
                           );
-
                           setAmount(decreaseAmount);
 
                           setTotalPrice(decreasePrice);
@@ -338,6 +337,8 @@ function Cart() {
                           removeProductData(v.p_sid);
 
                           amount.splice(i, 1);
+
+                          localStorage.setItem('cartItem');
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
