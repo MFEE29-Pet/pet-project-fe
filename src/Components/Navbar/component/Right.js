@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Login from './Login';
 import LoginInfo from './LoginInfo';
 import styled from 'styled-components';
 import ThemeChange from './ThemeChange';
+import AuthContext from '../../../contexts/AuthContext';
 import CartIcon from '../../../Pages/Product/components/CartIcon';
 import { Link } from 'react-router-dom';
 
@@ -19,9 +21,11 @@ const CART = styled(Link)`
 `;
 
 function Right(props) {
+  const { myAuth } = useContext(AuthContext);
   return (
     <RightBox>
-      <LoginInfo />
+      {/* {console.log(myAuth)} */}
+      {myAuth.authorised ? <LoginInfo /> : <Login />}
 
       <CART to="/cart">
         <CartIcon />

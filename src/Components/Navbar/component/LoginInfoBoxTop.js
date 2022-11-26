@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { imgUrl } from '../../../config/index';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../contexts/AuthContext';
 
 const LoginInfoTop = styled.div`
   display: flex;
@@ -39,18 +40,26 @@ const MemberBox = styled(Link)`
   align-items: center;
 `;
 
-const Logout = styled(Link)``;
+const Logout = styled.div``;
 
 function LoginInfoBoxTop() {
+  const { logout,myAuth } = useContext(AuthContext);
+
+
   return (
     <LoginInfoTop>
       <MemberBox to="/member">
-        <H2 className="text_main_dark_color2">甜甜圈</H2>
+        <H2 className="text_main_dark_color2">{myAuth.name}</H2>
         <PHOTO className="border_big_main_light_color1">
           <IMG src={`${imgUrl}/images/test.webp`} alt="" />
         </PHOTO>
       </MemberBox>
-      <Logout to='/'>
+      <Logout
+        onClick={(e) => {
+          e.preventDefault();
+          logout();
+        }}
+      >
         <H3 className="text_main_dark_color2">登出</H3>
       </Logout>
     </LoginInfoTop>
