@@ -1,7 +1,36 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+
+const P = styled.p`
+  color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
+`;
+const H1 = styled.h1`
+  color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
+  font-size: 20px;
+`;
+const LI = styled.li`
+  border-left: 1px solid
+    ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
+`;
+const I = styled.i`
+  color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
+  font-size: 20px;
+`;
+const DIV = styled.div`
+  position: relative;
+`;
+const Border = styled.div`
+  width: 100px;
+  height: 2px;
+  border-top: 2px solid
+    ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+`;
 
 function ProductSidebar() {
   const [cates, setCates] = useState([]);
@@ -50,14 +79,15 @@ function ProductSidebar() {
 
   return (
     <section className="side-bar">
-      <div className="side-title">
-        {/* <i className="fa-solid fa-list"></i> */}
-        <h1>分類</h1>
-      </div>
-      <ul className="categories">
+      <DIV className="side-title" $mode={mode}>
+        <Border $mode={mode}></Border>
+        <I $mode={mode} className="fa-solid fa-list"></I>
+        <H1 $mode={mode}>分類</H1>
+      </DIV>
+      <ul className="categories" style={{ fontWeight: 'bold' }}>
         <li>
           <Link to="/product">
-            <p>所有商品</p>
+            <P $mode={mode}>所有商品</P>
           </Link>
         </li>
         {/* 短路求值 */}
@@ -66,26 +96,26 @@ function ProductSidebar() {
             return (
               <li key={e.sid}>
                 <Link to={`/product?cate=${e.sid}&page=1`}>
-                  <p>{e.name}</p>
+                  <P $mode={mode}>{e.name}</P>
                 </Link>
                 <ul>
                   {e.child.map((e2, i2) => {
                     return (
-                      <li key={e2.sid}>
+                      <LI key={e2.sid} $mode={mode}>
                         <Link to={`/product?cate=${e2.sid}&page=1`}>
-                          <p>{e2.name}</p>
+                          <P $mode={mode}>{e2.name}</P>
                         </Link>
                         <i
                           className={`fa-duotone ${
                             mode === 'dog' ? 'fa-bone' : 'fa-fish'
                           } text_main_light_color1`}
                         ></i>
-                      </li>
+                      </LI>
                     );
                   })}
                   <li key={99}>
                     <Link to={`/product/photographers`}>
-                      <p>攝影服務</p>
+                      <P $mode={mode}>攝影服務</P>
                     </Link>
                     <i
                       className={`fa-duotone ${

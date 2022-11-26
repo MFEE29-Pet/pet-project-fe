@@ -54,15 +54,15 @@ main {
 
         i,
         h1 {
-            color: $p_color;
+            // color: $p_color;
             margin: 5px;
         }
     }
 
     ul.categories {
-        p {
-            color: $p_color2;
-        }
+        // p {
+        //     color: $p_color2;
+        // }
 
         >li:nth-child(1) {
             margin: 10px;
@@ -102,7 +102,7 @@ main {
 
                 li {
                     display: flex;
-                    border-left: 1px solid $p_color2;
+                    // border-left: 1px solid $p_color2;
                     padding: 1px 5px;
                     margin: 0 5px 10px 15px;
 
@@ -112,9 +112,9 @@ main {
                         opacity: 0;
                     }
 
-                    p {
-                        color: $p_color2;
-                    }
+                    // p {
+                    //     color: $p_color2;
+                    // }
 
 
                 }
