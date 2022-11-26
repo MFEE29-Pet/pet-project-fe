@@ -14,26 +14,7 @@ const LIST = styled.div`
   }
 `;
 
-const PAGE = styled.div`
-  ul {
-    li {
-      button {
-        font-size: 16px;
-        svg {
-          font-size: 24px;
-        }
-      }
-    }
-  }
-`;
-
-function ProductCard({
-  rowProducts,
-  page,
-  totalPages,
-  isLoading,
-  setPage,
-}) {
+function ProductCard({ rowProducts, page, totalPages, isLoading, setPage }) {
   const { mode } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
 
@@ -126,18 +107,6 @@ function ProductCard({
           </LIST>
         );
       })}
-      {/* <Pagination totalPages={totalPages} page={page} usp={usp} /> */}
-
-      <PAGE
-        className="product_pagination"
-        style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}
-      >
-        <MyPagination
-          totalPages={totalPages}
-          page={page}
-          setPage={setPage}
-        />
-      </PAGE>
     </>
   );
 }

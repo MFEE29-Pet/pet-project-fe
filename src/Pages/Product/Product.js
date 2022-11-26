@@ -8,6 +8,21 @@ import { PRODUCT_LIST } from './my-config';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
+import MyPagination from './components/MyPagination';
+import styled from 'styled-components';
+
+const PAGE = styled.div`
+  ul {
+    li {
+      button {
+        font-size: 16px;
+        svg {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+`;
 
 function Product() {
   const [trigger, setTrigger] = useState(false);
@@ -126,6 +141,11 @@ function Product() {
     getProducts();
   }, [searchWord]);
 
+  // 篩選過後 page回到 1
+  useEffect(() => {
+    setPage(1);
+  }, [searchWord, salesType, minPrice, maxPrice, sortMethod]);
+
   // 載入指示器
   useEffect(() => {
     if (isLoading) {
@@ -134,9 +154,6 @@ function Product() {
       }, 1000);
     }
   }, [isLoading]);
-
-  // console.log(product);
-  // console.log(totalPages);
 
   // 切割資料
   const rowProducts = _.chunk(product, 4);
@@ -168,6 +185,20 @@ function Product() {
               isLoading={isLoading}
             />
           </div>
+          <PAGE
+            className="product_pagination"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '50px',
+            }}
+          >
+            <MyPagination
+              totalPages={totalPages}
+              page={page}
+              setPage={setPage}
+            />
+          </PAGE>
         </section>
       </main>
       <Popup
