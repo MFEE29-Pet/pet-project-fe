@@ -15,6 +15,9 @@ import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
 import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
+import PhotoReservePage from './Pages/Product/PhotoReservePage';
+import PhotoReserve from './Pages/Product/PhotoReserve';
+import PhotoCheck from './Pages/Product/PhotoCheck';
 import AllContextProviders from './contexts/AllContextProviders';
 import LoginPro from './Pages/Product/Login';
 import Login from './Pages/Clinic/Login';
@@ -96,6 +99,12 @@ function App() {
               path="product/photographers/form"
               element={<PhotographerForm />}
             />
+
+            <Route path="product/photographers/" element={<PhotoReservePage />}>
+              <Route path="reserve" element={<PhotoReserve />} />
+              <Route path="check" element={<PhotoCheck />} />
+            </Route>
+
             <Route path="login" element={<Login />} />
 
             <Route path="cart" element={<Cart />} />
