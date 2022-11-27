@@ -26,7 +26,7 @@ function Right(props) {
     <RightBox>
     {/* {console.log(myAuth)} */}
       {myAuth.authorized ? <LoginInfo /> : <Login />}
-      {console.log(myAuth.authorised)}
+      
 
       <CART to="/cart">
         <CartIcon />

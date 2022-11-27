@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({});
@@ -26,6 +26,8 @@ export const AuthContextProvider = function ({ children }) {
     }
   }
   const [myAuth, setMyAuth] = useState(initAuth);
+
+
 
   // 登出
   const logout = () => {
