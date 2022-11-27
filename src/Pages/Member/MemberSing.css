@@ -51,7 +51,6 @@ ul {
 select {
   width: 100px;
   height: 30px;
-  margin-right: 15px;
   border-radius: 20px;
   border: 1px solid #727171;
   color: #727171;
@@ -127,23 +126,19 @@ span {
 .enter-C {
   display: flex;
   align-items: center;
-  width: 120px;
 }
 
 .enter-D{
   display: flex;
   align-items: center;
-  width: 88px;
+  width: 75px;
 }
 .address {
   display: flex;
   width: 250px;
   justify-content: space-between;
 }
-.addressText {
-  margin-left: 140px;
-  margin-bottom: 10px;
-}
+
 .input {
   margin-left: 15px;
 }
@@ -183,12 +178,7 @@ span {
   align-items: center;
 }
 .photo input {
-  background-color: #fff;
-  width: 80px;
-  height: 30px;
-  border-radius: 30px;
-  border: 1px solid#727171;
-  color: #727171;
+
 }
 .cc {
   width: 250px;

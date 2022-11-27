@@ -51,7 +51,7 @@ function Member() {
   // const Nowcomponents = components[pageIndex];
   return (
     <>
-      <div className="member" style={{display:'flex',flexDirection:'column'}}>
+      <div className="member" style={{display:'flex',flexDirection:'column',justifyContent:'flex-start',height:'1000px'}}>
         <BreadcrumbBox>
           <Breadcrumb
             routes={Memberroutes}

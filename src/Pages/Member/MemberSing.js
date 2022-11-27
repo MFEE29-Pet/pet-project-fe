@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import './MemberSing.css';
 import axios from 'axios';
@@ -37,21 +37,128 @@ function MemberSing() {
     password: '',
     name: '',
     email: '',
-    mobile: 0,
+    mobile: '',
     city: '',
     area: '',
     address: '',
     gender: '',
     birthday: '',
+    avatar: '',
   });
   const genderWrap = ['生理男', '生理女', '其他'];
   const [gender, setGender] = useState('');
   const [year, setYear] = useState(0);
   const [month, setMonth] = useState(0);
   const [day, setDay] = useState(0);
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(0);
   const [area, setArea] = useState('');
   const [address, setAddress] = useState('');
+
+  const [cityData, setCityData] = useState([
+    {
+      sid: '',
+      city_name: '',
+    },
+  ]);
+
+  const [areaData, setAreaData] = useState([
+    {
+      sid: '',
+      city_name: '',
+      city_sid: '',
+    },
+  ]);
+
+  const [filterAreaData, setFilterAreaData] = useState([
+    {
+      sid: '',
+      name: '',
+      city_sid: '',
+    },
+  ]);
+  //圖片上傳
+  //選擇檔案
+  const [selectedFile, setSelectedFile] = useState(null);
+  // console.log(selectedFile);
+  //是否有檔案被選到
+  const [isFilePicked, setIsFilePicked] = useState(null);
+  //預覽圖片
+  const [preview, setPreview] = useState('');
+
+  //拿到縣市資料
+  const getCityData = async () => {
+    try {
+      const res = await axios(`http://localhost:6001/member/citydata`);
+
+      const citydata = res.data.rows;
+
+      setCityData(citydata);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const getAreaData = async () => {
+    try {
+      const res = await axios(`http://localhost:6001/member/areadata`);
+
+      const areadata = res.data.rows;
+
+      setAreaData(areadata);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+  // console.log(cityData);
+  // console.log(areaData);
+
+  useEffect(() => {
+    getCityData();
+    getAreaData();
+  }, []);
+
+  useEffect(() => {
+    // console.log(areaData);
+    const filterData = areaData.filter((e, i) => {
+      const { city_sid } = e;
+      return city_sid == city;
+    });
+    setFilterAreaData(filterData);
+  }, [city]);
+
+  //當選擇檔案更動時建立預覽圖
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview('');
+      return;
+    }
+    const objectUrl = URL.createObjectURL(selectedFile);
+
+    console.log(objectUrl);
+
+    setPreview(objectUrl);
+
+    //當元件unmounted時清除記憶體
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const changeHandler = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setIsFilePicked(true);
+      setSelectedFile(file);
+    } else {
+      setIsFilePicked(false);
+      setSelectedFile(null);
+    }
+  };
+  //上傳圖片Button
+  const hiddenFileInput = useRef(null);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
 
   const postUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -63,18 +170,24 @@ function MemberSing() {
     newMonth = newMonth.split('月')[0];
     newDay = newDay.split('日')[0];
     const d = dayjs(Date.parse(`${year}-${newMonth}-${newDay}`)).format(
-      'YYYY-MM-DD'
+      'YYYY/MM/DD'
     );
-    newUser.gender = gender;
-    newUser.city = city;
-    newUser.area = area;
-    newUser.address = address;
-    newUser.birthday = d;
-    console.log(newUser);
-    const { data } = await axios.post(
-      'http://localhost:6001/member/add',
-      newUser
-    );
+
+    const fd = new FormData();
+
+    fd.append('account', user.account);
+    fd.append('password', user.password);
+    fd.append('name', user.name);
+    fd.append('mail', user.email);
+    fd.append('mobile', user.mobile);
+    fd.append('city', user.city);
+    fd.append('area', user.area);
+    fd.append('address',user.address)
+    fd.append('date', d);
+    fd.append('member_photo', selectedFile);
+
+    console.log(fd);
+    const { data } = await axios.post('http://localhost:6001/member/add', fd);
     console.log(data);
   };
   return (
@@ -157,57 +270,81 @@ function MemberSing() {
                   }}
                 />
               </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">地址</h2>
-                <div className="address">
-                  <div className="enter-C">
-                    <select
-                      name=""
-                      id=""
-                      value={city}
-                      onChange={(e) => {
-                        setCity(e.target.value);
-                      }}
-                    >
-                      <option value="">縣/市</option>
-                      <option value="台北市">台北市</option>
-                      <option value="新北市">新北市</option>
-                      <option value="桃園市">桃園市</option>
-                      <option value="台中市">台中市</option>
-                      <option value="">台南市</option>
-                      <option value="">高雄市</option>
-                    </select>
+              <div className="enter-A" style={{ display: 'flex' }}>
+                <div
+                  className="text_main_dark_color2"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                    height: '60px',
+                    fontWeight: '700',
+                  }}
+                >
+                  地址
+                </div>
+
+                <div
+                  className="address"
+                  style={{ display: 'flex', flexDirection: 'column' }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <div className="enter-C">
+                      <select
+                        name=""
+                        id=""
+                        value={city}
+                        onChange={(e) => {
+                          setCity(e.target.value);
+                        }}
+                      >
+                        {cityData.map((e, i) => {
+                          const { sid, city_name } = e;
+                          return (
+                            <option value={sid} key={i}>
+                              {city_name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    <div className="enter-C">
+                      <select
+                        name=""
+                        id=""
+                        value={area}
+                        onChange={(e) => {
+                          setArea(e.target.value);
+                        }}
+                      >
+                        {filterAreaData.map((e, i) => {
+                          const { area_name, sid } = e;
+                          return (
+                            <option value={sid} key={i}>
+                              {area_name}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
                   </div>
-                  <div className="enter-C">
-                    <select
-                      name=""
-                      id=""
-                      value={area}
-                      onChange={(e) => {
-                        setArea(e.target.value);
-                      }}
-                    >
-                      <option value="">行政區</option>
-                      <option value="台北市">台北市</option>
-                      <option value="新北市">新北市</option>
-                      <option value="">桃園市</option>
-                      <option value="">台中市</option>
-                      <option value="">台南市</option>
-                      <option value="">高雄市</option>
-                    </select>
-                  </div>
+                  <input
+                    type="text"
+                    className="cc addressText"
+                    value={address}
+                    onChange={(e) => {
+                      setAddress(e.target.value);
+                    }}
+                  />
                 </div>
               </div>
-              <div className="enter-A">
-                <input
-                  type="text"
-                  className="cc addressText"
-                  value={address}
-                  onChange={(e) => {
-                    setAddress(e.target.value);
-                  }}
-                />
-              </div>
+
               <div className="enter-A">
                 <h2 className="text_main_dark_color2">性別</h2>
                 <div className="radio">
@@ -260,61 +397,84 @@ function MemberSing() {
                     </select>
                   </div>
                   <div className="enter-D">
-                      <select
-                        name=""
-                        id=""
-                        value={month}
-                        onChange={(e) => {
-                          setMonth(e.target.value);
-                        }}
-                      >
-                        <option>月</option>
-                        {Array(12)
-                          .fill(1 + '月')
-                          .map((v, i) => {
-                            return (
-                              <option value={`${i + 1}月`} key={i}>{`${
-                                i + 1
-                              }月`}</option>
-                            );
-                          })}
-                      </select>
+                    <select
+                      name=""
+                      id=""
+                      value={month}
+                      onChange={(e) => {
+                        setMonth(e.target.value);
+                      }}
+                    >
+                      <option>月</option>
+                      {Array(12)
+                        .fill(1 + '月')
+                        .map((v, i) => {
+                          return (
+                            <option value={`${i + 1}月`} key={i}>{`${
+                              i + 1
+                            }月`}</option>
+                          );
+                        })}
+                    </select>
                   </div>
                   <div className="enter-D">
-                      <select
-                        name=""
-                        id=""
-                        value={day}
-                        onChange={(e) => {
-                          setDay(e.target.value);
-                        }}
-                      >
-                        <option>日</option>
-                        {Array(31)
-                          .fill(1 + '日')
-                          .map((v, i) => {
-                            return (
-                              <option value={`${i + 1}日`} key={i}>{`${
-                                i + 1
-                              }日`}</option>
-                            );
-                          })}
-                      </select>
-
+                    <select
+                      name=""
+                      id=""
+                      value={day}
+                      onChange={(e) => {
+                        setDay(e.target.value);
+                      }}
+                    >
+                      <option>日</option>
+                      {Array(31)
+                        .fill(1 + '日')
+                        .map((v, i) => {
+                          return (
+                            <option value={`${i + 1}日`} key={i}>{`${
+                              i + 1
+                            }日`}</option>
+                          );
+                        })}
+                    </select>
                   </div>
                 </div>
               </div>
               <div className="button-A">
-                <button className="button bg_main_light_color1" onClick={addUser}>
+                <button
+                  className="button bg_main_light_color1"
+                  onClick={addUser}
+                >
                   註冊
                 </button>
               </div>
             </div>
             <div className="photo">
-              <div className="up-photo">
-                <i className="fa-thin thin fa-user"></i>
+              <div className="up-photo" style={{ overflow: 'hidden' }}>
+                {isFilePicked ? (
+                  <img src={preview} alt="" style={{ width: '100%' }} />
+                ) : (
+                  <i className="fa-thin thin fa-user"></i>
+                )}
               </div>
-              <input type="button" value="上傳照片" />
+              <div
+                style={{
+                  border: '1px solid #727171',
+                  borderRadius: '15px',
+                  padding: '5px 10px',
+                  color: '#727171',
+                  cursor: 'pointer',
+                }}
+                onClick={handleClick}
+              >
+                上傳照片
+              </div>
+              <input
+                type="file"
+                onChange={changeHandler}
+                ref={hiddenFileInput}
+                style={{ display: 'none' }}
+              />
             </div>
           </div>
         </div>

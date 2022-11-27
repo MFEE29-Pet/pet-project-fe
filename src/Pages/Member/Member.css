@@ -205,10 +205,6 @@ span {
   cursor: pointer;
 }
 
-.icon {
-  width: 10px;
-  height: 10px;
-}
 
 .right {
   color: #966134;
@@ -294,7 +290,7 @@ span {
   align-self: center;
 }
 
-.degreeIcon{
+.degreeIcon {
   margin: 5px 0px;
 }
 
@@ -309,7 +305,7 @@ span {
   padding: 30px 0px;
   justify-content: space-between;
   align-items: center;
-  
+
 }
 
 .ship {
@@ -324,27 +320,6 @@ span {
   font-size: 20px;
   margin-bottom: 5px;
 }
-
-/* .ship h2::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: -15px;
-  width: 10px;
-  height: 1px;
-  border-bottom: 1px solid rgb(0, 0, 0);
-}
-
-.ship h2::after {
-  content: '';
-  position: absolute;
-  top: 7px;
-  right: -14px;
-  width: 10px;
-  height: 1px;
-  border-bottom: 1px solid rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(11, 11, 11);
-} */
 
 .ship p {
   font-size: 10px;
@@ -388,14 +363,19 @@ span {
 /* MembePetAdd */
 
 .peat-ship {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
   flex-direction: column;
   overflow: auto;
+}
 
+.pet_icon {
+  width: 8%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .peat-name {
@@ -441,8 +421,6 @@ span {
 
 .icon {
   color: #966134;
-  display: flex;
-  width: 10%;
 }
 
 .icon i {
@@ -459,8 +437,7 @@ span {
 
 .addPetbutton {
   font-size: 20px;
-  color: #40210f;
-  margin-bottom: 30px;
+  cursor: pointer;
 }
 
 
@@ -564,7 +541,7 @@ span {
 .articleWrap {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 }
 
 .articleInfo {
@@ -577,7 +554,6 @@ span {
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   padding-left: 10px;
 }
 
@@ -593,7 +569,6 @@ span {
 }
 
 .article-details {
-  width: 95%;
   background-color: #fff;
   padding: 40px 20px;
   display: flex;
@@ -606,6 +581,7 @@ span {
 
 .article-all {
   display: flex;
+  width: 40%;
 }
 
 .hashtag span {
@@ -649,25 +625,34 @@ span {
 /* --------------------------------------------------------------------- */
 /* MemberAppointment */
 
-.Hospital-order,
-.Hospital-info,
 .time {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 33.33333333%;
+  align-items: flex-start;
+  width: 20%;
+}
+
+.Hospital-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
 }
 
 .Hospital-order {
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
 }
 
-.Hospital-info h2 {
-  width: 80%;
-  align-self: flex-end;
-  margin-bottom: 10px;
+
+.Hospital-order {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
+
 
 .Hospital-order h3 {
   font-size: 19px;
@@ -676,31 +661,29 @@ span {
 
 .Hospital-order h3:first-child {
   color: firebrick;
+  font-weight: 500;
 }
 
 .Hospital-order h3:last-child {
   color: #a4a5a5;
+  font-weight: 500;
+
 }
 
-.time h2 {
-  width: 69%;
-  align-self: flex-end;
-  margin-bottom: 10px;
-}
 
 .Hospital-all {
   padding: 20px 0;
   margin-bottom: 15px;
-  width: 95%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
   font-size: 30px;
   background-color: #fff;
   border-radius: 20px;
 }
 
 .Hospital {
-  width: 80%;
-  height: 110vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -708,9 +691,7 @@ span {
 }
 
 .Hospital-title {
-  display: flex;
   justify-content: space-between;
-  padding: 20px;
 }
 
 .Hospital-details {
@@ -748,7 +729,7 @@ span {
 /* MemberProductCollect */
 
 .product-title {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -777,6 +758,7 @@ span {
 
 .proudct-price {
   display: flex;
+  align-items: center;
 }
 
 .product-img {
@@ -847,77 +829,6 @@ span {
 /* --------------------------------------------------------------------- */
 /* MemberHistoryCamera */
 
-.productCamera-p {
-  width: 90px;
-  height: 100px;
-  margin-left: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.productCamera-p img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.productCamera {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 100%;
-  background-color: #fff;
-  padding: 30px 0;
-}
-
-.titleCamera {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto 25px;
-  /* align-content: center; */
-}
-
-.titleCamera p {
-  width: 15%;
-  text-align: center;
-  color: #a4a5a5;
-  font-size: 14px;
-}
-
-.orderCameradetail {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.orderCameradetail p {
-  width: 22%;
-  text-align: center;
-}
-
-.productCamera-all {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.productCamera-all p:nth-child(2) {
-  width: 100px;
-  color: #40210f;
-}
-
-.productCamera-all p:nth-child(3) {
-  width: 55px;
-  color: #a4a5a5;
-}
-
-.productCamera-all p:nth-child(4) {
-  color: #ff0e00;
-}
 
 .orderCameraWrap {
   display: flex;
@@ -925,131 +836,34 @@ span {
 }
 
 .orderCamera-right {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.orderCameraPage {
-  width: 60%;
-  margin: 20px auto;
+.detailCamera {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  width: 40%;
 }
 
-.orderCameraPage i {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 2rem;
-  /* 文字置中 */
-}
-
-.orderCameraPage .fa-light {
-  color: #40210f;
+.priceCamera {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  width: 40%;
 }
 
 .orderCamera {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.pet-orderCamera {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.detailCamera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detailCamera p {
-  font-size: 15px;
-  margin-left: 10px;
-  color: #a4a5a5;
-}
-
-.detailCamera h1,
-.priceCamera h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.priceCamera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.priceCamera h4 {
-  margin-left: 10px;
-  color: #ff0e00;
-}
 
 /* --------------------------------------------------------------------- */
 /* ＭemberHistoryProduct */
-
-.product-p {
-  width: 90px;
-  height: 100px;
-}
-
-.product-p img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 100%;
-  background-color: #fff;
-  padding: 30px 0;
-}
-
-.titleProduct {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto 25px;
-  padding: 0 15px;
-  /* align-content: center; */
-}
-
-.titleProduct p {
-  color: #a4a5a5;
-  font-size: 14px;
-}
-
-.product-all {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.product-all p:nth-child(2) {
-  width: 100px;
-  color: #40210f;
-}
-
-.product-all p:nth-child(3) {
-  width: 55px;
-  color: #a4a5a5;
-}
-
-.product-all p:nth-child(4) {
-  color: #ff0e00;
-}
 
 .orderProductWrap {
   display: flex;
@@ -1057,73 +871,30 @@ span {
 }
 
 .orderProduct-right {
-  width: 80%;
-  height: 100vh;
-  overflow: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.orderProductPage {
-  width: 60%;
-  margin: 20px auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.orderProductPage i {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 2rem;
-  /* 文字置中 */
-}
-
-.orderProductPage .fa-light {
-  color: #40210f;
-}
-
-.fa-1 {
-  /* background-color: red; */
-  /* background: url(../image/cat.png) no-repeat center center; */
-  background-size: 30px 30px;
-}
-
-.detailProduct {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detailProduct p {
-  font-size: 15px;
-  margin-left: 10px;
-  color: #a4a5a5;
-}
-
-.detailProduct h1,
-.priceProduct h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.priceProduct {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.priceProduct h4 {
-  margin-left: 10px;
-  color: #ff0e00;
 }
 
 .orderProduct {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 10px;
+  margin-bottom: 10px;
 }
+
+.detailProduct {
+  display: flex;
+  align-items: flex-end;
+  width: 40%;
+}
+
+.priceProduct {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 40%;
+}
+
 
 /* --------------------------------------------------------------------- */
 /* MemberPassword */
@@ -1179,28 +950,26 @@ span {
   align-items: center;
 }
 
-.enter-C {
-  width: 250px;
+
+
+.enter-L select {
+  width: 100%;
   height: 30px;
-  border: 1px solid #989898;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-
-}
-
-.enter-C select {
-  /* width: 150px;
-    height: 35px; */
   border-radius: 20px;
-  border: none;
   color: #727171;
   background-color: #fff;
   padding: 5px 10px;
-  width: 120px;
   outline: none;
+}
 
+.enter-M select {
+  width: 100%;
+  height: 30px;
+  border-radius: 20px;
+  color: #727171;
+  background-color: #fff;
+  padding: 5px 10px;
+  outline: none;
 }
 
 .input {
@@ -1219,8 +988,10 @@ span {
   border-radius: 30px;
 }
 
-.text {
-  justify-content: center;
+.pet_text {
+  justify-content: space-between;
+  width: 70%;
+  display: flex;
 }
 
 /* --------------------------------------------------------------------- */
@@ -1235,7 +1006,7 @@ span {
 }
 
 .pageProfileUp {
-  width: 700px;
+  width: 100%;
   margin: 0 auto;
   padding: 30px 0px;
   /* height: 350px; */
@@ -1249,12 +1020,23 @@ span {
   width: 70%;
 }
 
-.enter-A {
+.enter-L {
+  width: 32%;
   display: flex;
+  justify-content: center;
+}
+.enter-M {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.enter-P {
+  display: flex;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  width: 80%;
+  width: 65%;
 }
 
 .enter-B {
@@ -1267,15 +1049,14 @@ span {
   align-items: center;
 }
 
-.address {
+.addressA {
   display: flex;
+  flex-direction: column;
+  margin-top: 50px;
   width: 250px;
 }
 
-.addressText {
-  margin-left: 140px;
-  margin-bottom: 10px;
-}
+
 
 .input {
   margin-left: 15px;
@@ -1286,7 +1067,8 @@ span {
 }
 
 .text {
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .up-photoProfile {
@@ -1310,6 +1092,8 @@ span {
 
 .radio {
   width: 250px;
+  display: flex;
+  align-items: center;
 }
 
 .photo {
@@ -1319,20 +1103,27 @@ span {
 }
 
 .photo input {
-  background-color: #fff;
+  /* background-color: #fff;
   width: 80px;
   height: 30px;
   border-radius: 30px;
   border: 1px solid#989898;
-  color: #989898;
+  color: #989898; */
 }
 
-.cc {
+.dd {
   width: 250px;
   outline: 1px solid #989898;
   height: 30px;
   border-radius: 30px;
   padding-left: 10px;
+}
+
+.member_date {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
