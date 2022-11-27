@@ -154,7 +154,7 @@ function ProductDetail() {
           <div className="filter-s-p" style={{ justifyContent: 'flex-end' }}>
             <div className="pro-loved-list">
               <Link
-                to="/member"
+                to="/member/memberProductCollect"
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}
@@ -250,7 +250,7 @@ function ProductDetail() {
                     }
                   }}
                 >
-                  <p>{loved ? '取消追蹤' : '加入追蹤'}</p>
+                  <p>{loved ? '取消收藏' : '加入收藏'}</p>
                   <i
                     className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
                   ></i>
