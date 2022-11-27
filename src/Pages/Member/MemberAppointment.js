@@ -46,7 +46,7 @@ function MemberAppointment() {
           掛號預約紀錄
         </h2>
         {clinicData.map((e, i) => {
-          const { address, code, mobile, clinic_name, date, finish } = e;
+          const { address, code, mobile, clinic_name, date, finish, sid } = e;
           return (
             <div className="Hospital-all" key={i}>
               <div className="Hospital-order">
@@ -57,7 +57,14 @@ function MemberAppointment() {
                 ) : (
                   <>
                     <h3>進行中</h3>
-                    <h3>取消預約</h3>
+                    <h3
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        console.log(sid);
+                      }}
+                    >
+                      取消預約
+                    </h3>
                   </>
                 )}
               </div>
