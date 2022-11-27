@@ -205,10 +205,11 @@ span {
   cursor: pointer;
 }
 
-
+/* //TODO 覆蓋他人css */
+/* 
 .right {
   color: #966134;
-}
+} */
 
 /* --------------------------------------------------------------------- */
 /* MemberLevel */
@@ -1025,6 +1026,7 @@ span {
   display: flex;
   justify-content: center;
 }
+
 .enter-M {
   width: 45%;
   display: flex;

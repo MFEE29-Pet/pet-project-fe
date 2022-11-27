@@ -27,11 +27,13 @@ ul {
   color: #966134;
 }
 
+/* //TODO 覆蓋到他人css */
+/* 
 input {
   border: none;
   outline: none;
   background-color: transparent;
-}
+} */
 
 span {
   font-size: 14px;

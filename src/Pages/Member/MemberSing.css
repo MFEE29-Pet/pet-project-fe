@@ -2,6 +2,7 @@
   font-family: big_circle;
   src: url(../../../public/font/GenSenRounded-R.ttc);
 }
+
 .fill {
   width: 100%;
   height: 100vh;
@@ -9,6 +10,7 @@
   opacity: 0.7;
   position: absolute;
 }
+
 .success {
   width: 400px;
   height: 200px;
@@ -18,6 +20,7 @@
   top: 40%;
   left: 40%;
 }
+
 .success h1 {
   height: 100%;
   display: flex;
@@ -39,10 +42,12 @@ h2 {
 body {
   background-color: #fff5de;
 }
+
 option {
   border: none;
   outline: none;
 }
+
 ul {
   font-size: 15px;
   color: #966134;
@@ -71,10 +76,12 @@ select {
   margin-bottom: 40px;
 }
 
-input {
+
+/* //TODO 覆蓋到他人css */
+/* input {
   border: none;
   outline: none;
-}
+} */
 
 span {
   font-size: 14px;
@@ -103,9 +110,11 @@ span {
   display: flex;
   justify-content: center;
 }
+
 .page-left {
   width: 70%;
 }
+
 .enter-A {
   display: flex;
   justify-content: space-between;
@@ -123,16 +132,18 @@ span {
   justify-content: space-around;
   align-items: center;
 }
+
 .enter-C {
   display: flex;
   align-items: center;
 }
 
-.enter-D{
+.enter-D {
   display: flex;
   align-items: center;
   width: 75px;
 }
+
 .address {
   display: flex;
   width: 250px;
@@ -162,24 +173,27 @@ span {
   color: #727171;
   margin-bottom: 20px;
 }
+
 .up-photo i {
   margin: 0;
   color: #727171;
   font-size: 40px;
 }
+
 .radio {
   width: 250px;
   display: flex;
   justify-content: space-between;
 }
+
 .photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.photo input {
 
-}
+.photo input {}
+
 .cc {
   width: 250px;
   outline: 1px solid #727171;

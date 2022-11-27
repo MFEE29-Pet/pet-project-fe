@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 const LABEL = styled.label`
   &::after {
@@ -25,6 +26,8 @@ function Popup({
   const [active, setActive] = useState('');
   const [btnActive, setBtnActive] = useState(0);
   const [checked, setChecked] = useState(false);
+
+  const { mode } = useContext(SwitchButtonContext);
 
   // 取得 queryString
   const location = useLocation();

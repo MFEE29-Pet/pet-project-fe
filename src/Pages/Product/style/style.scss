@@ -142,6 +142,7 @@ section.right {
             border: none;
             border-radius: 10px 0px 0px 10px;
             width: 300px;
+            background-color: #fff;
         }
 
         #pro-search {
@@ -658,6 +659,10 @@ section.right {
 
             .pre-page {
                 border-radius: 20px 0 0 20px;
+
+                &:hover {
+                    background-color: rgb(163, 163, 163);
+                }
             }
 
             .next-page {
@@ -1052,6 +1057,7 @@ section.popup {
                     padding: 10px 20px;
                     width: 100px;
                     z-index: -1;
+                    outline: none;
                 }
 
                 span {
