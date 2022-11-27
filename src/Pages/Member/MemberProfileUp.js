@@ -33,17 +33,40 @@ function MemberProfileUp() {
                 type="text"
                 className="dd"
                 value="艾蜜莉"
-                style={{ width: '100px' }}
+                style={{
+                  width: '100px',
+                  border: '1px solid #727171',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
               />
             </div>
           </div>
           <div className="enter-P">
             <h2 style={{ fontSize: '18px', color: '#727171' }}>信箱</h2>
-            <input type="text" className="dd" value="emily2022@testmail.com" />
+            <input
+              type="text"
+              className="dd"
+              value="emily2022@testmail.com"
+              style={{
+                border: '1px solid #727171',
+                outline: 'none',
+                backgroundColor: 'transparent',
+              }}
+            />
           </div>
           <div className="enter-P">
             <h2 style={{ fontSize: '18px', color: '#727171' }}>手機</h2>
-            <input type="text" className="dd" value="0912345678" />
+            <input
+              type="text"
+              className="dd"
+              value="0912345678"
+              style={{
+                border: '1px solid #727171',
+                outline: 'none',
+                backgroundColor: 'transparent',
+              }}
+            />
           </div>
           <div className="enter-P">
             <h2
@@ -56,7 +79,13 @@ function MemberProfileUp() {
               地址
             </h2>
             <div className="addressA">
-              <div style={{ display: 'flex', justifyContent: 'space-between',marginBottom:'20px'}}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginBottom: '20px',
+                }}
+              >
                 <div className="enter-M">
                   <select name="" id="">
                     <option value="">台北市</option>
@@ -79,18 +108,33 @@ function MemberProfileUp() {
                   </select>
                 </div>
               </div>
-              <input type="text" className="dd" value="復興南路一段390號" />
+              <input
+                type="text"
+                className="dd"
+                value="復興南路一段390號"
+                style={{
+                  border: '1px solid #727171',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
+              />
             </div>
           </div>
-          <div className="enter-P" style={{marginTop:'50px'}}>
+          <div className="enter-P" style={{ marginTop: '50px' }}>
             <h2 style={{ fontSize: '18px', color: '#727171' }}>性別</h2>
             <div className="radio">
-              <input style={{margin:'0px'}} type="radio" />
-              <label htmlFor="" style={{color:'#727171',fontSize:'18px'}}>生理男</label>
-              <input style={{margin:'0px'}} type="radio" />
-              <label htmlFor="" style={{color:'#727171',fontSize:'18px'}}>生理女</label>
-              <input style={{margin:'0px'}} type="radio" />
-              <label htmlFor="" style={{color:'#727171',fontSize:'18px'}}>其他</label>
+              <input style={{ margin: '0px' }} type="radio" />
+              <label htmlFor="" style={{ color: '#727171', fontSize: '18px' }}>
+                生理男
+              </label>
+              <input style={{ margin: '0px' }} type="radio" />
+              <label htmlFor="" style={{ color: '#727171', fontSize: '18px' }}>
+                生理女
+              </label>
+              <input style={{ margin: '0px' }} type="radio" />
+              <label htmlFor="" style={{ color: '#727171', fontSize: '18px' }}>
+                其他
+              </label>
             </div>
           </div>
           <div className="enter-P">
@@ -156,7 +200,12 @@ function MemberProfileUp() {
             </div>
           </div>
           <div className="">
-            <button className="button bg_main_light_color1" style={{marginLeft:'189px'}}>儲存</button>
+            <button
+              className="button bg_main_light_color1"
+              style={{ marginLeft: '189px' }}
+            >
+              儲存
+            </button>
           </div>
         </div>
         <div className="photo">

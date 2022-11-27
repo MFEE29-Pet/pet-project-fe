@@ -222,6 +222,11 @@ function MemberSing() {
                   onChange={(e) => {
                     postUser(e);
                   }}
+                  style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}
                 />
               </div>
               <div className="enter-A">
@@ -234,11 +239,20 @@ function MemberSing() {
                   onChange={(e) => {
                     postUser(e);
                   }}
+                  style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}
                 />
               </div>
               <div className="enter-A">
                 <h2 className="text_main_dark_color2">確認密碼</h2>
-                <input type="text" className="cc" />
+                <input type="text" className="cc" style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}/>
               </div>
               <div className="enter-A">
                 <h2 className="text_main_dark_color2">姓名</h2>
@@ -249,6 +263,11 @@ function MemberSing() {
                   value={user.name}
                   onChange={(e) => {
                     postUser(e);
+                  }}
+                  style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
                   }}
                 />
               </div>
@@ -262,6 +281,11 @@ function MemberSing() {
                   onChange={(e) => {
                     postUser(e);
                   }}
+                  style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}
                 />
               </div>
               <div className="enter-A">
@@ -273,6 +297,11 @@ function MemberSing() {
                   value={user.mobile}
                   onChange={(e) => {
                     postUser(e);
+                  }}
+                  style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
                   }}
                 />
               </div>
@@ -286,6 +315,7 @@ function MemberSing() {
                     height: '60px',
                     fontWeight: '700',
                   }}
+                  
                 >
                   地址
                 </div>
@@ -347,6 +377,11 @@ function MemberSing() {
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
+                    style={{
+                    border: '1px solid #727171',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}
                   />
                 </div>
               </div>
