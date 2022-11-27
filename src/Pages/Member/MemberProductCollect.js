@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductLovedCards from './components/ProductLovedCards';
 
 function MemberProductCollect() {
   return (
@@ -24,9 +25,10 @@ function MemberProductCollect() {
 
             <button className="delete">刪除選中收藏</button>
           </div>
+
           <div className="product-page">
-            <div className="product-photo">
-              <div className="line"></div>
+            <ProductLovedCards />
+            {/* <div className="product-photo">
               <div className="product-name">
                 <div className="product-img">
                   <img src="../image/product_3.png" alt="" />
@@ -36,8 +38,16 @@ function MemberProductCollect() {
                   <span>寵物商品</span>
                 </div>
                 <div className="proudct-price">
-                  <p style={{fontSize:'16px',color:'#c9caca',textDecoration:'line-through'}}>$1,280</p>
-                  <h5 style={{fontSize:'20px'}}>$980</h5>
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      color: '#c9caca',
+                      textDecoration: 'line-through',
+                    }}
+                  >
+                    $1,280
+                  </p>
+                  <h5 style={{ fontSize: '20px' }}>$980</h5>
                 </div>
               </div>
               <div className="product-name">
@@ -49,8 +59,16 @@ function MemberProductCollect() {
                   <span>寵物商品</span>
                 </div>
                 <div className="proudct-price">
-                  <p style={{fontSize:'16px',color:'#c9caca',textDecoration:'line-through'}}>$1,280</p>
-                  <h5 style={{fontSize:'20px'}}>$980</h5>
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      color: '#c9caca',
+                      textDecoration: 'line-through',
+                    }}
+                  >
+                    $1,280
+                  </p>
+                  <h5 style={{ fontSize: '20px' }}>$980</h5>
                 </div>
               </div>
               <div className="product-name">
@@ -62,8 +80,16 @@ function MemberProductCollect() {
                   <span>寵物商品</span>
                 </div>
                 <div className="proudct-price">
-                  <p style={{fontSize:'16px',color:'#c9caca',textDecoration:'line-through'}}>$1,280</p>
-                  <h5 style={{fontSize:'20px'}}>$980</h5>
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      color: '#c9caca',
+                      textDecoration: 'line-through',
+                    }}
+                  >
+                    $1,280
+                  </p>
+                  <h5 style={{ fontSize: '20px' }}>$980</h5>
                 </div>
               </div>
             </div>
@@ -74,7 +100,7 @@ function MemberProductCollect() {
               <i className="fa-light light fa-3"></i>
               <i className="fa-light light fa-4"></i>
               <i className="fa-solid fa-angle-right"></i>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
