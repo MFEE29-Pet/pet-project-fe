@@ -5,7 +5,7 @@ function SelectBar() {
   return (
     <>
       <div className="forum_select_bar">
-        <select id="select" />
+        <select id="Forum_select" />
       </div>
     </>
   );
