@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import IsLovedContext from '../contexts/IsLovedContext';
+import { Skeleton } from '@mui/material';
 
 const PROLINE = styled.div`
   border-radius: 10px;
@@ -61,7 +62,7 @@ const LINK = styled(Link)`
   }
 `;
 
-function ProductLine({ product }) {
+function ProductLine({ product, isLoading }) {
   const { mode } = useContext(SwitchButtonContext);
   const {
     lovedList,
@@ -92,24 +93,67 @@ function ProductLine({ product }) {
             }}
           >
             <IMG_WRAP>
-              <img
-                src={`/images/test/${e.img}`}
-                alt=""
-                style={{ height: '100%' }}
-              />
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  sx={{
+                    bgcolor: `${mode === 'dog' ? '#ea551422' : '#00a29a22'}`,
+                  }}
+                  width={150}
+                  height={150}
+                >
+                  <img
+                    src={`/images/test/${e.img}`}
+                    alt=""
+                    style={{ height: '100%' }}
+                  />
+                </Skeleton>
+              ) : (
+                <img
+                  src={`/images/test/${e.img}`}
+                  alt=""
+                  style={{ height: '100%' }}
+                />
+              )}
             </IMG_WRAP>
             <div className="line_title_wrap" style={{ margin: '5px 10px' }}>
-              <H1
-                $mode={mode}
-                style={{
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  display: 'inline',
-                }}
-                onClick={() => navigate(`detail/?sid=${e.sid}`)}
-              >
-                {e.name}
-              </H1>
+              {/* {isLoading ? () : ()} */}
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  sx={{
+                    bgcolor: `${mode === 'dog' ? '#ea551422' : '#00a29a22'}`,
+                  }}
+                  width={100}
+                  height={20}
+                  style={{ marginBottom: '3px', display: 'inline' }}
+                >
+                  <H1
+                    $mode={mode}
+                    style={{
+                      fontSize: '16px',
+                      cursor: 'pointer',
+                      display: 'inline',
+                    }}
+                    onClick={() => navigate(`detail/?sid=${e.sid}`)}
+                  >
+                    {e.name}
+                  </H1>
+                </Skeleton>
+              ) : (
+                <H1
+                  $mode={mode}
+                  style={{
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    display: 'inline',
+                  }}
+                  onClick={() => navigate(`detail/?sid=${e.sid}`)}
+                >
+                  {e.name}
+                </H1>
+              )}
+
               <i
                 className={`${
                   isLovedNum.indexOf(e.sid) !== -1 ? 'fa-solid' : 'fa-regular'
@@ -136,19 +180,45 @@ function ProductLine({ product }) {
               >
                 <p>{showInfo === e.sid ? '隱藏' : '顯示更多'}</p>
               </SHOW>
-              <INFO
-                showInfo={showInfo}
-                sid={e.sid}
-                onClick={() => {
-                  if (showInfo === e.sid) {
-                    setShowInfo(0);
-                  } else {
-                    setShowInfo(e.sid);
-                  }
-                }}
-              >
-                {e.info}
-              </INFO>
+              {isLoading ? (
+                <Skeleton
+                  variant="rectangular"
+                  sx={{
+                    bgcolor: `${mode === 'dog' ? '#ea551422' : '#00a29a22'}`,
+                  }}
+                  width={220}
+                  height={27}
+                  style={{ marginBottom: '3px' }}
+                >
+                  <INFO
+                    showInfo={showInfo}
+                    sid={e.sid}
+                    onClick={() => {
+                      if (showInfo === e.sid) {
+                        setShowInfo(0);
+                      } else {
+                        setShowInfo(e.sid);
+                      }
+                    }}
+                  >
+                    {e.info}
+                  </INFO>
+                </Skeleton>
+              ) : (
+                <INFO
+                  showInfo={showInfo}
+                  sid={e.sid}
+                  onClick={() => {
+                    if (showInfo === e.sid) {
+                      setShowInfo(0);
+                    } else {
+                      setShowInfo(e.sid);
+                    }
+                  }}
+                >
+                  {e.info}
+                </INFO>
+              )}
             </div>
 
             <LINK
