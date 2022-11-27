@@ -12,6 +12,7 @@ import MyPagination from './components/MyPagination';
 import styled from 'styled-components';
 import ProductLine from './components/ProductLine';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import GoToTop from './components/GoToTop';
 
 const PAGE = styled.div`
   ul {
@@ -189,7 +190,7 @@ function Product() {
                 isLoading={isLoading}
               />
             ) : (
-              <ProductLine product={product} />
+              <ProductLine product={product} isLoading={isLoading} />
             )}
           </div>
           <PAGE
@@ -218,6 +219,7 @@ function Product() {
         setSalesType={setSalesType}
         salesType={salesType}
       />
+      <GoToTop />
     </>
   );
 }
