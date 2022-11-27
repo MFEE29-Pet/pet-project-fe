@@ -2,14 +2,33 @@ import ProductSidebar from './components/ProductSidebar';
 import Filter from './components/Filter';
 import './style/style.scss';
 import ProductCard from './components/ProductCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Popup from './components/Popup';
 import { PRODUCT_LIST } from './my-config';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
+import MyPagination from './components/MyPagination';
+import styled from 'styled-components';
+import ProductLine from './components/ProductLine';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import GoToTop from './components/GoToTop';
+
+const PAGE = styled.div`
+  ul {
+    li {
+      button {
+        font-size: 16px;
+        svg {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+`;
 
 function Product() {
+  const { productShow } = useContext(SwitchButtonContext);
   const [trigger, setTrigger] = useState(false);
   // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
@@ -126,6 +145,11 @@ function Product() {
     getProducts();
   }, [searchWord]);
 
+  // 篩選過後 page回到 1
+  useEffect(() => {
+    setPage(1);
+  }, [searchWord, salesType, minPrice, maxPrice, sortMethod]);
+
   // 載入指示器
   useEffect(() => {
     if (isLoading) {
@@ -134,9 +158,6 @@ function Product() {
       }, 1000);
     }
   }, [isLoading]);
-
-  // console.log(product);
-  // console.log(totalPages);
 
   // 切割資料
   const rowProducts = _.chunk(product, 4);
@@ -157,17 +178,35 @@ function Product() {
             setSearchWord={setSearchWord}
           />
           <div className="product-list">
-            <ProductCard
-              sortMethod={sortMethod}
-              minPrice={minPrice}
-              maxPrice={maxPrice}
-              rowProducts={rowProducts}
+            {productShow === 'card' ? (
+              <ProductCard
+                sortMethod={sortMethod}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                rowProducts={rowProducts}
+                totalPages={totalPages}
+                page={page}
+                setPage={setPage}
+                isLoading={isLoading}
+              />
+            ) : (
+              <ProductLine product={product} isLoading={isLoading} />
+            )}
+          </div>
+          <PAGE
+            className="product_pagination"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '50px',
+            }}
+          >
+            <MyPagination
               totalPages={totalPages}
               page={page}
-              usp={usp}
-              isLoading={isLoading}
+              setPage={setPage}
             />
-          </div>
+          </PAGE>
         </section>
       </main>
       <Popup
@@ -180,6 +219,7 @@ function Product() {
         setSalesType={setSalesType}
         salesType={salesType}
       />
+      <GoToTop />
     </>
   );
 }

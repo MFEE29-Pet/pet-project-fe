@@ -102,7 +102,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                   fontWeight: 'bold ',
                 }}
                 onClick={() => {
-                  navigate(`${location.pathname}/form/?sid=${el.sid}`);
+                  navigate(`${location.pathname}/reserve?sid=${el.sid}`);
                 }}
               >
                 立即預約

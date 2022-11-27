@@ -21,7 +21,7 @@ const Label = styled.label`
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border:1px solid #727171;
+  border: 1px solid #727171;
   background: transparent;
   cursor: pointer;
   margin-right: 10px;

@@ -10,7 +10,9 @@ export default function AllContextProviders({ children }) {
       <AuthContextProvider>
         <CartInfoContextProvider>
           <IsLovedContextProvider>
-            <PageContextProvider>{children}</PageContextProvider>
+            <PageContextProvider>
+            {children}
+            </PageContextProvider>
           </IsLovedContextProvider>
         </CartInfoContextProvider>
       </AuthContextProvider>

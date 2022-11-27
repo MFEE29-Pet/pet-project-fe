@@ -9,7 +9,6 @@ import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
-import { MemberContextProvider } from './contexts/MemberContext';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Reserve from './Pages/Clinic/Reserve';
@@ -19,8 +18,25 @@ import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
 import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
+import PhotoReservePage from './Pages/Product/PhotoReservePage';
+import PhotoReserve from './Pages/Product/PhotoReserve';
+import PhotoCheck from './Pages/Product/PhotoCheck';
 import AllContextProviders from './contexts/AllContextProviders';
-import Login from './Pages/Product/Login';
+// import LoginPro from './Pages/Product/Login';
+// import Login from './Pages/Clinic/Login';
+import Check from './Pages/Clinic/Check';
+import ReservePage from './Pages/Clinic/ReservePage';
+import Pay from './Pages/Clinic/Pay';
+import PayResult from './Pages/Clinic/PayResult';
+import MemberLevel from './Pages/Member/MemberLevel';
+import MemberPetAdd from './Pages/Member/MemberPetAdd';
+import MemberArticleCollect from './Pages/Member/MemberArticleCollect';
+import MemberAppointment from './Pages/Member/MemberAppointment';
+import MemberProductCollect from './Pages/Member/MemberProductCollect';
+import MemberHistoryProduct from './Pages/Member/MemberHistoryProduct';
+import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
+import MemberProfileUp from './Pages/Member/MemberProfileUp';
+import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -72,14 +88,6 @@ function App() {
 
   return (
     <div id={mode} className="bg_bright_color" style={{ width: '100%' }}>
-      {/* 測試用，別管他 */}
-      {/* <SwitchButton
-        setChecked={setChecked}
-        checked={checked}
-        setSwitchMode={setSwitchMode}
-        switchMode={switchMode}
-      /> */}
-
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <AllContextProviders>
@@ -102,23 +110,49 @@ function App() {
               path="product/photographers/form"
               element={<PhotographerForm />}
             />
-            <Route path="login" element={<Login />} />
+
+            <Route path="product/photographers/" element={<PhotoReservePage />}>
+              <Route path="reserve" element={<PhotoReserve />} />
+              <Route path="check" element={<PhotoCheck />} />
+            </Route>
 
             <Route path="cart" element={<Cart />} />
-
             <Route path="clinic" element={<Clinic />} />
-            <Route path="clinic/reserve" element={<Reserve />} />
-            <Route path="clinic/login" element={<Login />} />
+            <Route path="clinic/pay" element={<Pay />} />
+            <Route path="clinic/payresult" element={<PayResult />} />
+            <Route path="clinic" element={<ReservePage />}>
+              <Route path="reserve" element={<Reserve />} />
+              <Route path="check" element={<Check />} />
+            </Route>
 
             <Route path="forum" element={<ForumList />} />
             <Route path="forum/detail" element={<ForumDetail />} />
 
-            <Route path="member" element={<Member />} />
+            <Route path="member" element={<Member />}>
+              <Route path="memberCenter" element={<MemberLevel />} />
+              <Route path="memberPet" element={<MemberPetAdd/>} />
+              <Route path="memberArticle" element={<MemberArticleCollect/>} />
+              <Route
+                path="memberProductCollect"
+                element={<MemberProductCollect/>}
+              />
+              <Route path="memberClinic" element={<MemberAppointment/>} />
+              <Route
+                path="memberProductHistory"
+                element={<MemberHistoryProduct/>}
+              />
+              <Route path="memberPhotoHistory" element={<MemberHistoryCamera/>} />
+              <Route path="memberDataRevise" element={<MemberProfileUp/>} />
+              <Route
+                path="memberPasswordRevise"
+                element={<MemberForgrtPassword/>}
+              />
+            </Route>
             <Route path="member/memberShipAdd" element={<MemberSing />} />
             <Route path="member/memberLogIn" element={<MemberLogIn />} />
           </Routes>
+          <Footer />
         </AllContextProviders>
-        <Footer />
       </BrowserRouter>
       {/* <Circle size="sm" ref={addCircleRef} delay={0} />
       <Circle size="md" ref={addCircleRef} delay={0.1} />

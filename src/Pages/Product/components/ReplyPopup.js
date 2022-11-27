@@ -40,7 +40,7 @@ const Textarea = styled.textarea`
   resize: none;
 `;
 
-function ReplyPopup({ showDiv, setShowDiv, sid }) {
+function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
   const { mode } = useContext(SwitchButtonContext);
   const [starValue, setStarValue] = useState(0);
   const [pSid, setPSid] = useState(sid);
@@ -85,9 +85,10 @@ function ReplyPopup({ showDiv, setShowDiv, sid }) {
     await setFields({ ...fields, p_sid: sid });
 
     const res = await axios.post(`${INSERT_REPLY}`, fields);
-    console.log(res);
+    // console.log(res);
 
     setShowDiv(!showDiv);
+    getProductsDetail();
     // setFields(initFields);
   };
   // console.log(INSERT_REPLY);
@@ -114,8 +115,9 @@ function ReplyPopup({ showDiv, setShowDiv, sid }) {
             marginBottom: '20px',
           }}
         >
+          {/* //TODO 待抓取localStorage的使用者圖片 */}
           <img
-            src="/images/test/person_5.jpeg"
+            src={`/images/test/person_5.jpeg`}
             style={{
               textAlign: 'center',
               objectFit: 'contain',

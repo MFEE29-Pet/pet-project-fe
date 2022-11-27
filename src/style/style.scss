@@ -56,6 +56,9 @@
 #dog .text_main_light_color1 {
   color: #f8b62b;
 }
+#dog .text_main_light_color1.active {
+  color: #ea5514;
+}
 
 #dog .bg_main_light_color2 {
   background-color: #c9bc9c;
@@ -163,6 +166,9 @@
 
 #cat .text_main_light_color1 {
   color: #00a29a;
+}
+#cat .text_main_light_color1.active {
+  color: #00535c;
 }
 
 #cat .bg_main_light_color2 {
