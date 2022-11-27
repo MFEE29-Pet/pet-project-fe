@@ -12,6 +12,7 @@ export const AuthContextProvider = function ({ children }) {
     authorized: false, // 有沒有登入
     sid: 0,
     account: '',
+    member_photo:'',
     token: '',
   };
 
