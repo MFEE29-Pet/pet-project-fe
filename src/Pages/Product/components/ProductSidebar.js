@@ -84,7 +84,8 @@ function ProductSidebar() {
         <I $mode={mode} className="fa-solid fa-list"></I>
         <H1 $mode={mode}>分類</H1>
       </DIV>
-      <ul className="categories" style={{ fontWeight: 'bold' }}>
+      {/* //XXX 字體是否加粗 ? */}
+      <ul className="categories">
         <li>
           <Link to="/product">
             <P $mode={mode}>所有商品</P>
