@@ -1,0 +1,20 @@
+.forum_detail_wrap{
+  width:1200px;
+  margin: auto;
+}
+
+.forum_detail_button_wrap{
+  /* margin: auto; */
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forum_detail_title_area{
+  display: flex;
+}
+
+.forum_article_area{
+
+  
+}

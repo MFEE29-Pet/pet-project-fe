@@ -31,8 +31,7 @@ export const AuthContextProvider = function ({ children }) {
   const logout = () => {
     localStorage.removeItem('auth');
     setMyAuth(unAuth);
-    navigate('/login');
-    alert('已登出');
+    navigate('/');
   };
   // 2. 登入: 成功, 失敗
 

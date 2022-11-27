@@ -1,0 +1,19 @@
+.forum_list_wrap{
+  width:1200px;
+  margin: auto;
+}
+
+.forum_search_select{
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forum_list_button_wrap{
+  /* margin: auto; */
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+
+}

@@ -1,0 +1,42 @@
+
+/* .forum_search_area {
+  margin-top: 10px;
+  display: flex;
+} */
+.search_area{
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.forum_search_bar{
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  height: 25px;
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+  width: 300px;
+  }
+
+  #pro_search {
+  color: white;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  margin: 0;
+  border-radius: 0 10px 10px 0;
+  line-height: 25px;
+  cursor: pointer;
+  }
+
+  /* .forum_select_area{
+width: 500px;
+background: red;
+  } */
+
+
+
+

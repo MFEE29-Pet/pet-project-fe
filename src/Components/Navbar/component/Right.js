@@ -24,8 +24,8 @@ function Right(props) {
   const { myAuth } = useContext(AuthContext);
   return (
     <RightBox>
-      {/* {console.log(myAuth)} */}
-      {myAuth.authorised ? <LoginInfo /> : <Login />}
+    {/* {console.log(myAuth)} */}
+      {myAuth.authorized ? <LoginInfo /> : <Login />}
 
       <CART to="/cart">
         <CartIcon />

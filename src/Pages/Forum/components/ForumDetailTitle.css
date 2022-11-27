@@ -1,0 +1,22 @@
+.title_area{
+width: 1200px;
+margin: auto;
+display: flex;
+justify-content: space-between;
+}
+
+
+.title_text{
+  font-size: 48px;
+  margin: 50px 0px 0px 0px ;
+}
+
+
+/* .user_area{
+  width: 50px;
+  height: 50px;
+  background: red;
+  display: flex;
+  align-items: center
+  ;
+} */
