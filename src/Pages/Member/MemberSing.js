@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import { useNavigate } from 'react-router';
 
 const JoinPage = styled.div`
   width: 100%;
@@ -32,6 +33,7 @@ const Memberroutes = [
 ];
 
 function MemberSing() {
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     account: '',
     password: '',
@@ -189,6 +191,10 @@ function MemberSing() {
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
     console.log(data);
+    if (data.success) {
+      alert('註冊成功')
+      navigate('/member/memberLogIn')
+    }
   };
   return (
     <JoinPage>

@@ -54,8 +54,8 @@ function MemberLogIn() {
     if (data.success) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
       //登入後跳轉換面
-      setMyAuth({ ...data.auth, authorised: true });
-      navigate('/member');
+      setMyAuth({ ...data.auth, authorized: true });
+      navigate('/member/memberCenter');
     } else {
       localStorage.removeItem('auth');
       alert('登入失敗');
