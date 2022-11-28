@@ -56,8 +56,8 @@ function Cart() {
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
   // 商品訂單明細 取資料上狀態為了要刪除時使用
-  const [testData, setTestData] = useState([{}]);
-  const [photoTestData, setPhotoTestData] = useState([{}]);
+  const [myData, setMyData] = useState([{}]);
+  const [myPhotoData, setMyPhotoData] = useState([{}]);
 
   // 真實串接資料來源
   const myCart = localStorage.getItem('cartItem');
@@ -73,10 +73,10 @@ function Cart() {
 
   // 獲取來源資料
   const getData = () => {
-    setTestData(myProduct);
-    // setTestData(jsonData);
+    setMyData(myProduct);
+    // setMyData(jsonData);
 
-    setPhotoTestData(photoJsonData);
+    setMyPhotoData(photoJsonData);
     setNewPhotoPrice(photoJsonData[0].photo_price);
   };
 
@@ -106,19 +106,19 @@ function Cart() {
 
   // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
-    const remove = photoTestData.filter((v, i) => {
+    const remove = myPhotoData.filter((v, i) => {
       return v.photo_id !== item;
     });
-    setPhotoTestData(remove);
+    setMyPhotoData(remove);
     setNewPhotoPrice(0);
   };
 
   // 刪除商品資料功能
   const removeProductData = (item) => {
-    const remove = testData.filter((v, i) => {
+    const remove = myData.filter((v, i) => {
       return v.sid !== item;
     });
-    setTestData(remove);
+    setMyData(remove);
   };
 
   return (
@@ -167,7 +167,7 @@ function Cart() {
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
           <div className="eason_list_title ">
-            {photoTestData && photoTestData.length !== 0 && (
+            {myPhotoData && myPhotoData.length !== 0 && (
               <>
                 <h2 className="text_main_dark_color2">攝影預約明細</h2>
                 <div className="eason_product_check">
@@ -191,7 +191,7 @@ function Cart() {
             )}
           </div>
           <table className="eason_list_table">
-            {photoTestData && photoTestData.length !== 0 && (
+            {myPhotoData && myPhotoData.length !== 0 && (
               <thead>
                 <tr>
                   <th>頭像</th>
@@ -206,7 +206,7 @@ function Cart() {
 
             <tbody>
               {/* 預約攝影資料引入------------------------------------------------------------------- */}
-              {photoTestData.map((v, i) => {
+              {myPhotoData.map((v, i) => {
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
@@ -235,7 +235,7 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            {testData && testData.length !== 0 && (
+            {myData && myData.length !== 0 && (
               <>
                 <h2 className="text_main_dark_color2">商品訂單明細</h2>
                 <div className="eason_product_check">
@@ -259,7 +259,7 @@ function Cart() {
             )}
           </div>
           <table className="eason_list_table">
-            {testData && testData.length !== 0 && (
+            {myData && myData.length !== 0 && (
               <thead>
                 <tr>
                   <th>商品圖</th>
@@ -274,7 +274,7 @@ function Cart() {
 
             <tbody>
               {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {testData.map((v, i) => {
+              {myData.map((v, i) => {
                 return (
                   <tr key={v.sid}>
                     <td className="eason_table_img">
