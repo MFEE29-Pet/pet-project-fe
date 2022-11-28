@@ -2,13 +2,14 @@
 import { useState, useContext, useEffect } from 'react';
 import './cart.css';
 import styled from 'styled-components';
-import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
+import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車數量連動商品
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 import photoJsonData from './photoTest.json';
 
-// 主題變色功能區-------------------------------------------------------------------------------------
+// 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
   i {
     color: ${(props) => (props.$mode === 'dog' ? '#c9bc9c' : '#50a4b2')};
@@ -120,6 +121,10 @@ function Cart() {
     });
     setMyData(remove);
   };
+
+  // 商品加減清除Context
+  const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
+    useContext(CartInfoContext);
 
   return (
     <>
@@ -297,6 +302,8 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
+                          handleReduce(myData[i]);
+
                           const decreaseAmount = [...amount];
                           decreaseAmount[i] = +decreaseAmount[i] - 1;
                           console.log(amount);
@@ -321,6 +328,8 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
+                          handleAddCart(myData[i], 1);
+
                           const newAmount = [...amount];
                           newAmount[i] = +newAmount[i] + 1;
                           const newPrice = [...totalPrice];
@@ -342,12 +351,15 @@ function Cart() {
                     <td>
                       <span
                         onClick={() => {
+                          // handleClear(myData[i],1);
+
                           setNewTotalPrice(
                             newTotalPrice - v.member_price * amount[i]
                           );
                           removeProductData(v.sid);
 
                           amount.splice(i, 1);
+                          console.log(v.sid);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
