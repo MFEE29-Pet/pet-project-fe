@@ -29,6 +29,10 @@ export const AuthContextProvider = function ({ children }) {
   const [myAuth, setMyAuth] = useState(initAuth);
 
 
+  // useEffect(()=>{
+
+  // },[])
+
 
   // 登出
   const logout = () => {

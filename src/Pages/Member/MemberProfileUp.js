@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { textAlign } from '@mui/system';
+import AuthContext from '../../contexts/AuthContext';
 
 function MemberProfileUp() {
   const [name, setName] = useState('');
@@ -14,6 +15,7 @@ function MemberProfileUp() {
   const [month, setMonth] = useState(0);
   const [day, setDay] = useState(0);
   const [gender, setGender] = useState('');
+  const { setMyAuth, myAuth } = useContext(AuthContext);
   const [memberData, setMemberData] = useState([
     {
       sid: '',
@@ -206,6 +208,8 @@ function MemberProfileUp() {
 
     const { data } = await axios.put('http://localhost:6001/member/edit', fd);
     console.log(data);
+
+    setMyAuth({ ...myAuth, member_photo: data.img });
   };
 
   return (
