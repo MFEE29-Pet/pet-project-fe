@@ -20,7 +20,7 @@ const CollectButton = () => {
         onClick={onCollectButtonClick}
       >
         收藏
-        <i class="fa-light fa-bookmark" id="forum_Collect"></i>
+        <i className="fa-light fa-bookmark" id="forum_Collect"></i>
       </button>
     </>
   );
