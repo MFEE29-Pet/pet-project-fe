@@ -1,5 +1,8 @@
-import ButtonPost from './components/ButtonPost';
 import './ForumPost.css';
+import ButtonBar from './components/ButtonBar';
+import { Link } from 'react-router-dom';
+
+const buttonText = [{ value: 1, label: '發表', to: '/complex' }];
 
 function ForumPost() {
   return (
@@ -24,7 +27,12 @@ function ForumPost() {
         </div>
 
         <div className="forum_post_button">
-          <button className="btn_post bg_main_light_color1">發表</button>
+          {buttonText.map((e, i) => {
+            const { label, value, to } = e;
+            console.log(e);
+            return <ButtonBar value={value} label={label} to={to} key={i} />;
+          })}
+          {/* <button className="btn_post bg_main_light_color1">發表</button> */}
         </div>
       </div>
     </>
