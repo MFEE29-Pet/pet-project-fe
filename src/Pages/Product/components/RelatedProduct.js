@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import Carousal3D from './Carousal3D';
 
 const ROW = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ function RelatedProduct({ relatedProducts }) {
         <div className="arrow arrow-right">
           <i className="fa-light fa-angle-right"></i>
         </div>
+        <Carousal3D relatedProducts={relatedProducts} />
       </ROW>
     </>
   );

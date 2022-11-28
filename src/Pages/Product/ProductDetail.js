@@ -2,6 +2,20 @@ import { useContext, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import {
+  EmailIcon,
+  FacebookIcon,
+  InstapaperIcon,
+  LineIcon,
+  MailruIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from 'react-share';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
 
 // import AuthContext from '../../contexts/AuthContext';
 import { PRODUCT_DETAIL } from './my-config';
@@ -255,6 +269,13 @@ function ProductDetail() {
                     className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
                   ></i>
                 </div>
+                <FacebookShareButton
+                  url={`https://github.com/AndyLincode`}
+                  quote={`GitHub`}
+                  className="Demo__some-network__share-button"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
               </div>
 
               <div className="sales-info">
