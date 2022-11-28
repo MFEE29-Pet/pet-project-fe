@@ -149,7 +149,7 @@ function ReservePage() {
         />
       </BreadcrumbBox>
       <ReserveForm>
-        <h1 className="text_main_dark_color2">{final[0].name}</h1>
+        <h1 className="text_main_dark_color2">{final[0].clinic_name}</h1>
         <div className="content_box">
           <div className="address">
             <i className="fa-sharp fa-solid fa-location-dot text_main_light_color1"></i>

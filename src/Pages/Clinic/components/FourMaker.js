@@ -17,7 +17,7 @@ function FourMaker({ dataFromSelect }) {
       return (
         <Marker position={[e.lat, e.lng]} icon={FourMarker} key={i}>
           <Tooltip direction="top" offset={[0, -40]} opacity={1} permanent>
-            {e.name}
+            {e.clinic_name}
           </Tooltip>
           <Popup style={{width:'300px',padding:'0px'}}>
             <FourTable/>

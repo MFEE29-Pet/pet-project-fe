@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link, useOutletContext,useNavigate } from 'react-router-dom';
+import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import axios from 'axios';
 
@@ -250,8 +250,7 @@ const CheckForm = styled.div`
 `;
 
 function Check() {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [
     memberId,
     setMemberId,
@@ -293,6 +292,9 @@ function Check() {
     setPreview,
   ] = useOutletContext();
 
+  const [cityName, setCityName] = useState('');
+  const [areaName, setAreaName] = useState('');
+
   const final = { ...clinicDetail };
   // console.log(final);
   const clinicId = final[0].sid;
@@ -323,13 +325,42 @@ function Check() {
     fd.append('date', date);
     fd.append('time', time);
 
-    const { data } = await axios.post('http://localhost:6001/clinic/add',fd);
+    const { data } = await axios.post('http://localhost:6001/clinic/add', fd);
     if (data.success === true) {
-      navigate('/')
+      navigate('/');
     }
 
     console.log(data);
   };
+
+
+  const getCityName = async () => {
+    const res = await axios.get(
+      `http://localhost:6001/clinic/cityname/${city}`
+    );
+    const data = res.data.rows[0];
+
+    console.log(data);
+
+    setCityName(data.city_name) ;
+  };
+  console.log(cityName);
+
+  const getAreaName = async () => {
+    const { res } = await axios.get(
+      `http://localhost:6001/clinic/areaname/${area}`
+    );
+    const data = res.data.rows[0];
+
+    console.log(data);
+
+    setAreaName(data.area_name) ;
+  };
+
+  useEffect(() => {
+    getCityName();
+    getAreaName();
+  }, []);
 
   return (
     <CheckForm>
@@ -366,8 +397,8 @@ function Check() {
           </div>
           <div className="address">
             <label htmlFor="address">地址</label>
-            <h3>{city}</h3>
-            <h3>{area}</h3>
+            <h3>{cityName}</h3>
+            <h3>{areaName}</h3>
             <h3>{address}</h3>
           </div>
         </div>

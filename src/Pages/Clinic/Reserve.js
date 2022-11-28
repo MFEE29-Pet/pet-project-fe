@@ -351,9 +351,9 @@ function Reserve() {
       setMemberName(memberData.name);
       setMemberEmail(memberData.email);
       setMemberMobile(memberData.mobile);
-      setCity(memberData.city_sid);
-      setArea(memberData.area_sid);
-      setAddress(memberData.address_detail);
+      setCity(memberData.city);
+      setArea(memberData.area);
+      setAddress(memberData.address);
     } catch (e) {
       console.log(e.message);
     }
@@ -409,6 +409,8 @@ function Reserve() {
     }
   };
 
+  // console.log(cityData);
+
   //拿到area資料
   const getAreaData = async () => {
     try {
@@ -428,6 +430,8 @@ function Reserve() {
       console.log(e.message);
     }
   };
+
+  // console.log(areaData);
 
   useEffect(() => {
     getCityData();
