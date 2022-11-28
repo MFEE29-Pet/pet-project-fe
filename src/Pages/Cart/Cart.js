@@ -279,7 +279,7 @@ function Cart() {
                   <tr key={v.sid}>
                     <td className="eason_table_img">
                       <img
-                        src="./imgs/product_3.png"
+                        src={`./images/test/${v.img}`}
                         alt=""
                         width="65px"
                         height="65px"
@@ -330,11 +330,15 @@ function Cart() {
                         <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
                       </span>
                     </td>
-                    <td className="eason_table_total">{v.member_price * amount[i]}</td>
+                    <td className="eason_table_total">
+                      {v.member_price * amount[i]}
+                    </td>
                     <td>
                       <span
                         onClick={() => {
-                          setNewTotalPrice(newTotalPrice - v.member_price * amount[i]);
+                          setNewTotalPrice(
+                            newTotalPrice - v.member_price * amount[i]
+                          );
                           removeProductData(v.sid);
 
                           amount.splice(i, 1);
