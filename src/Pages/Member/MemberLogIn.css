@@ -39,10 +39,10 @@ span {
 }
 
 .buttonLogIn {
-  width: 80px;
+  width: 100px;
   height: 40px;
   background-color: #ccc;
-  border-radius: 30px;
+  border-radius: 17px;
   border-color: #ccc;
   color: rgb(113, 103, 103);
   font-size: 14px;
@@ -50,9 +50,21 @@ span {
   margin-bottom: 40px;
 }
 
+.eyeicon{
+  cursor: pointer;
+  
+}
+
+.login_bottom{
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 80px;
+}
+
 /* 1200  100% */
 .loginpage {
-  width: 700px;
+  width: 800px;
   height: 350px;
   margin: 0 auto 50px;
   padding: 40px 0px 10px;
@@ -69,7 +81,7 @@ span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 50%;
   margin-bottom: 30px;
 }
 
@@ -80,7 +92,6 @@ span {
   border-radius: 30px;
   background: #fafafa;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
 
@@ -92,6 +103,9 @@ span {
   background: #fafafa;
   display: flex;
   align-items: center;
+}
+.lock_icon{
+  margin-left: 15px;
 }
 
 .logIninput {

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Pagination from './Pagination';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { Skeleton } from '@mui/material';
+import MyPagination from './MyPagination';
 
 const LIST = styled.div`
   &::before {
@@ -14,7 +14,7 @@ const LIST = styled.div`
   }
 `;
 
-function ProductCard({ rowProducts, page, totalPages, usp, isLoading }) {
+function ProductCard({ rowProducts, page, totalPages, isLoading, setPage }) {
   const { mode } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ function ProductCard({ rowProducts, page, totalPages, usp, isLoading }) {
                   }}
                 >
                   <Link to="">
-                    <div className="img-wrap bg_bright_color">
+                    <div className="img-wrap">
                       {isLoading ? (
                         <Skeleton
                           variant="rectangular"
@@ -107,7 +107,6 @@ function ProductCard({ rowProducts, page, totalPages, usp, isLoading }) {
           </LIST>
         );
       })}
-      <Pagination totalPages={totalPages} page={page} usp={usp} />
     </>
   );
 }

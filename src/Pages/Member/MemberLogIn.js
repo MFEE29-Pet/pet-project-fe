@@ -1,10 +1,39 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; //登入後跳轉換面
+import { useNavigate, Link } from 'react-router-dom'; //登入後跳轉換面
 import './MemberLogIn.css';
-import { MemberContext } from '../../contexts/MemberContext';
+import AuthContext from '../../contexts/AuthContext';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import styled from 'styled-components';
+
+const Memberroutes = [
+  {
+    to: '/',
+    label: '首頁',
+  },
+  {
+    to: '/member/memberLogIn',
+    label: '會員登入',
+  },
+];
+
+const BreadcrumbBox = styled.div`
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+`;
+
+const LoginPage = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 function MemberLogIn() {
-  const { logout } = useContext(MemberContext);
+  const { setMyAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: '',
@@ -22,22 +51,33 @@ function MemberLogIn() {
       user
     );
     console.log(data);
-    if (data.auth.login) {
-      localStorage.setItem('petAuth', JSON.stringify(data.auth));
+    if (data.success) {
+      localStorage.setItem('auth', JSON.stringify(data.auth));
       //登入後跳轉換面
+      setMyAuth({ ...data.auth, authorised: true });
       navigate('/member');
     } else {
+      localStorage.removeItem('auth');
       alert('登入失敗');
     }
   };
   return (
-    <>
+    <LoginPage>
+      <BreadcrumbBox>
+        <Breadcrumb
+          routes={Memberroutes}
+          separator={<BreadcrumbRightArrowIcon />}
+        />
+      </BreadcrumbBox>
       <div className="loginpage">
         <div className="logInenterA">
-          <h2>使用者帳號</h2>
+          <h2 className="text_main_dark_color2">使用者帳號</h2>
           <div className="logInenterC">
             <div className="logIninput">
-              <i className="fa-thin thin fa-user"></i>
+              <i
+                className="fa-thin thin fa-user"
+                style={{ marginRight: '5px' }}
+              ></i>
               <input
                 type="text"
                 name="username"
@@ -50,10 +90,13 @@ function MemberLogIn() {
           </div>
         </div>
         <div className="logInenterA">
-          <h2>密碼</h2>
+          <h2 className="text_main_dark_color2">密碼</h2>
           <div className="logInenterB">
             <div>
-              <i className="fa-thin thin fa-lock"></i>
+              <i
+                className="fa-thin fa-lock lock_icon"
+                style={{ marginRight: '5px' }}
+              ></i>
               {show ? (
                 <input
                   type="text"
@@ -76,14 +119,14 @@ function MemberLogIn() {
             </div>
             {show ? (
               <i
-                class="fa-light light fa-eye"
+                class="fa-light fa-eye eyeicon"
                 onClick={() => {
                   setShow(!show);
                 }}
               ></i>
             ) : (
               <i
-                className="fa-light light fa-eye-slash"
+                className="fa-light fa-eye-slash eyeicon"
                 onClick={() => {
                   setShow(!show);
                 }}
@@ -96,31 +139,27 @@ function MemberLogIn() {
           onClick={login}
           style={{
             backgroundColor: user.username && user.password && '#f8b62d',
+            color: user.username && user.password && '#fff',
+            fontWeight: '700',
           }}
         >
           登入
         </button>
-        {/* <button
-          onClick={() => {
-            logout();
-          }}
-        >
-          登出
-        </button> */}
-        <div>
-          <span>忘記密碼</span>
+        <div className="login_bottom">
+          <div>
+            <Link to="/" style={{ color: '#252525' }}>
+              忘記密碼
+            </Link>
+          </div>
           <i className="fa-regular fa-pipe"></i>
-          <span
-            className="s1"
-            onClick={() => {
-              navigate('/member/memberShipAdd');
-            }}
-          >
-            立即註冊
-          </span>
+          <div>
+            <Link className="text_main_light_color1" to="/memberShipAdd">
+              立即註冊
+            </Link>
+          </div>
         </div>
       </div>
-    </>
+    </LoginPage>
   );
 }
 

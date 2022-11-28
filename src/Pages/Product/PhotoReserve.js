@@ -1,14 +1,14 @@
 import React, { useEffect, useState, forwardRef, useRef } from 'react';
 import styled from 'styled-components';
-import Radio from './components/Radio';
 import axios from 'axios';
-
 import DatePicker from 'react-datepicker';
 import { addDays, getDay } from 'date-fns';
 import dayjs from 'dayjs';
 import 'react-datepicker/dist/react-datepicker.css';
-import Select from './components/Select';
 import { Link, useOutletContext } from 'react-router-dom';
+
+import Radio from '../Clinic/components/Radio';
+import Select from '../Clinic/components/Select';
 
 const varietyOptions = ['狗', '貓', '其他'];
 const genderOptions = ['公', '母'];
@@ -231,14 +231,14 @@ const ReserveForm = styled.div`
   }
 `;
 
-function Reserve() {
+function PhotoReserve() {
   const [
     memberId,
     setMemberId,
     petId,
     setPetId,
-    clinicDetail,
-    setClinicDetail,
+    photographerDetail,
+    setPhotographerDetail,
     startDate,
     setStartDate,
     time,
@@ -272,7 +272,8 @@ function Reserve() {
     preview,
     setPreview,
   ] = useOutletContext();
-  const final = { ...clinicDetail };
+  const final = { ...photographerDetail };
+  console.log(final);
 
   const [cityData, setCityData] = useState([
     {
@@ -304,16 +305,12 @@ function Reserve() {
 
   const timeData = [
     {
-      label: '早診',
+      label: '早上',
       value: 1,
     },
     {
-      label: '午診',
+      label: '下午',
       value: 2,
-    },
-    {
-      label: '晚診',
-      value: 3,
     },
   ];
 
@@ -347,7 +344,7 @@ function Reserve() {
 
       setMemberData(memberData);
       console.log(memberData.area_sid);
-      setMemberId(memberData.sid)
+      setMemberId(memberData.sid);
       setMemberName(memberData.name);
       setMemberEmail(memberData.email);
       setMemberMobile(memberData.mobile);
@@ -380,7 +377,7 @@ function Reserve() {
 
       // console.log(petData);
       setPetData(petData);
-      setPetId(petData.sid)
+      setPetId(petData.sid);
       setPetName(petData.pet_name);
       setVariety(petData.Kind_of_pet);
       setGender(petData.pet_gender);
@@ -436,27 +433,6 @@ function Reserve() {
     getPetData();
   }, []);
 
-  // useEffect(() => {
-  //   const filterData = areaData.filter((e, i) => {
-  //     const { city_sid } = e;
-
-  //     return city_sid === city;
-  //   });
-
-  //   const data = filterData.map((e) => {
-  //     return {
-  //       value: e.sid,
-  //       label: e.area_name,
-  //       cityid: e.city_sid,
-  //     };
-  //   });
-
-  //   // console.log(cityData)
-  //   // console.log(areaData)
-  //   // console.log(filterArea);
-  //   setFilterArea(data);
-  // }, [city]);
-
   const isWeekday = (date) => {
     const day = getDay(date);
     return day !== 1;
@@ -509,9 +485,8 @@ function Reserve() {
     }
     const objectUrl = URL.createObjectURL(selectedFile);
 
-    console.log(objectUrl);
-
     setPreview(objectUrl);
+    console.log(objectUrl);
 
     //當元件unmounted時清除記憶體
     return () => URL.revokeObjectURL(objectUrl);
@@ -553,7 +528,6 @@ function Reserve() {
     hiddenFileInput.current.click();
   };
 
-
   // const date = dayjs(startDate).format('YYYY/MM/DD');
 
   return (
@@ -579,7 +553,7 @@ function Reserve() {
                 includeDateIntervals={[
                   {
                     start: addDays(new Date(), 0),
-                    end: addDays(new Date(), 7),
+                    end: addDays(new Date(), 30),
                   },
                 ]}
               />
@@ -592,12 +566,11 @@ function Reserve() {
                 includeDateIntervals={[
                   {
                     start: addDays(new Date(), 0),
-                    end: addDays(new Date(), 7),
+                    end: addDays(new Date(), 30),
                   },
                 ]}
               />
             )}
-            {console.log(final[0].time)}
             <Select
               value={time}
               options={filterTime}
@@ -609,7 +582,7 @@ function Reserve() {
 
         {/* <!-- 會員資料 --> */}
         <div className="member-data">
-          <input type="hidden" value={memberId}/>
+          <input type="hidden" value={memberId} />
           <h2 className="text_main_dark_color2">飼主資料</h2>
           <div className="name">
             <label htmlFor="name">姓名</label>
@@ -635,33 +608,6 @@ function Reserve() {
               onChange={(e) => {
                 setMemberMobile(e.target.value);
               }}
-            />
-          </div>
-          <div className="address">
-            <label htmlFor="address">地址</label>
-            <Select
-              value={city}
-              options={cityData}
-              placeholder="請選擇縣市"
-              onSelect={(value) => setCity(value)}
-              isDisabled
-            />
-            <Select
-              value={area}
-              options={areaData}
-              placeholder="請選擇地區"
-              onSelect={(value) => setArea(value)}
-              isDisabled
-            />
-            <input
-              type="text"
-              name="road"
-              id="address"
-              value={address}
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
-              disabled
             />
           </div>
         </div>
@@ -718,50 +664,6 @@ function Reserve() {
               );
             })}
           </div>
-          {/* <!-- 節育狀況 --> */}
-          <div className="pet-control">
-            <h1 htmlFor="control">節育狀況</h1>
-            {controlOptions.map((v, i) => {
-              return (
-                <Radio
-                  key={i}
-                  value={v}
-                  checkedValue={control}
-                  setCheckedValue={setControl}
-                  disabled
-                />
-              );
-            })}
-          </div>
-          {/* 晶片編號 */}
-          <div className="pet-pid">
-            <label htmlFor="pet-pid">晶片編號</label>
-            <span style={{ fontFamily: 'art', marginRight: '5px' }}>PID-</span>
-            <input
-              type="text"
-              id="pet-pid"
-              value={petPid}
-              onChange={(e) => {
-                setPetPid(e.target.value);
-              }}
-              disabled
-            />
-          </div>
-          {/* 不適症狀 */}
-          <div className="pet-symptom">
-            <label htmlFor="pet-symptom">不適症狀</label>
-            <textarea
-              name="pet-symptom"
-              id="symptom"
-              cols="30"
-              rows="10"
-              value={textArea}
-              onChange={(e) => {
-                setTextArea(e.target.value);
-              }}
-              style={{ padding: '10px' }}
-            />
-          </div>
           <div className="pet-image">
             <label htmlFor="pet-image">上傳圖片</label>
             <div className="img-file-wrap" onClick={handleClick}>
@@ -784,7 +686,7 @@ function Reserve() {
             />
           </div>
         </div>
-        <Link to="/clinic/check">
+        <Link to="/product/photographers/check">
           <button
             className="bg_main_light_color1"
             style={{
@@ -806,4 +708,4 @@ function Reserve() {
   );
 }
 
-export default Reserve;
+export default PhotoReserve;

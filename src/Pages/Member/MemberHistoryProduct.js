@@ -2,107 +2,104 @@ import './Member.css';
 
 function MemberHistoryProduct() {
   return (
-    <div className="orderProduct-right">
-      <div className="orderProductWrap">
-        <div className="peat-orderProduct">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '80%',
+        marginTop: '80px',
+        fontSize: '20px',
+      }}
+    >
+      <div className="orderProduct-right">
+        <div className="orderProductWrap">
           <div className="orderProduct">
             <div className="detailProduct">
-              <h1>訂單明細</h1>
-              <p>訂單完成於2022-11-28</p>
+              <h1
+                className="text_main_dark_color2"
+                style={{ marginRight: '20px' }}
+              >
+                商品訂單明細
+              </h1>
+              <p style={{ color: '#727171', fontSize: '16px' }}>
+                訂單完成於2022-11-28
+              </p>
             </div>
             <div className="priceProduct">
-              <h1>訂單金額</h1>
-              <h4>$4,770</h4>
+              <h1 className="text_main_dark_color2">訂單金額</h1>
+              <p
+                style={{
+                  marginLeft: '20px',
+                  color: '#f00',
+                  fontWeight: '700',
+                  fontSize: '18px',
+                }}
+              >
+                $4,770
+              </p>
             </div>
           </div>
-          <div className="product">
-            <div className="titleProduct">
-              <p>商品圖</p>
-              <p>商品名</p>
-              <p>數量</p>
-              <p>價格</p>
-            </div>
-            <div className="product-all">
-              <div className="product-p">
-                <img src="../image/product_1.png" alt="" />
-              </div>
-              <p>濃郁機白館頭</p>
-              <p>2</p>
-              <p>$1,960</p>
-             
-            </div>
-          </div>
-        </div>
-        <div className="peat-orderProduct">
-          <div className="orderProduct">
-            <div className="detailProduct">
-              <h1>訂單明細</h1>
-              <p>訂單完成於2022-11-28</p>
-            </div>
-            <div className="priceProduct">
-              <h1>訂單金額</h1>
-              <h4>$4,770</h4>
-            </div>
-          </div>
-          <div className="product">
-            <div className="titleProduct">
-              <p>商品圖</p>
-              <p>商品名</p>
-              <p>數量</p>
-              <p>價格</p>
-            </div>
-            <div className="product-all">
-              <div className="product-p">
-                <img src="../image/product_1.png" alt="" />
-              </div>            
-              <p>濃郁機白館頭</p>
-              <p>2</p>
-              <p>$1,960</p>
-             
-            </div>
-          </div>
-        </div>
-        <div className="peat-orderProduct">
-          <div className="orderProduct">
-            <div className="detailProduct">
-              <h1>訂單明細</h1>
-              <p>訂單完成於2022-11-28</p>
-            </div>
-            <div className="priceProduct">
-              <h1>訂單金額</h1>
-              <h4>$4,770</h4>
-            </div>
-          </div>
-          <div className="product">
-            <div className="titleProduct">
-              <p>商品圖</p>
-              <p>商品名</p>
-              <p>數量</p>
-              <p>價格</p>
-            </div>
-            <div className="product-all">
-              <div className="product-p">
-                <img src="../image/product_1.png" alt="" />
-              </div>
-             
-              <p>濃郁機白館頭</p>
-              <p>2</p>
-              <p>$1,960</p>
-             
-            </div>
+          <div
+            style={{
+              width: '100%',
+              backgroundColor: '#fff',
+              borderRadius: '20px',
+              padding: '20px',
+            }}
+          >
+            <table style={{ width: '100%' }}>
+              <thead>
+                <tr>
+                  <th style={{ color: '#727171', fontSize: '16px' }}>商品圖</th>
+                  <th style={{ color: '#727171', fontSize: '16px' }}>商品名</th>
+                  <th style={{ color: '#727171', fontSize: '16px' }}>數量</th>
+                  <th style={{ color: '#727171', fontSize: '16px' }}>複價</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    style={{
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      height: '150px',
+                    }}
+                  >
+                    <img
+                      src=""
+                      alt=""
+                      style={{ width: '100px', height: '100px' }}
+                    />
+                  </td>
+                  <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
+                    濃郁雞白罐頭
+                  </td>
+                  <td
+                    style={{
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      color: '#727171',
+                    }}
+                  >
+                    2
+                  </td>
+                  <td
+                    style={{
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      color: '#f00',
+                    }}
+                  >
+                    $1960
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
-      <div className="orderProductPage">
-        <i className="fa-solid fa-angle-left"></i>
-        <i className="fa-light light fa-1"></i>
-        <i className="fa-light light fa-2"></i>
-        <i className="fa-light light fa-3"></i>
-        <i className="fa-light light fa-4"></i>
-        <i className="fa-solid fa-angle-right"></i>
       </div>
     </div>
-  )
+  );
 }
 
-export default MemberHistoryProduct
+export default MemberHistoryProduct;
