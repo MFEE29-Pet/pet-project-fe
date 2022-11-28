@@ -91,7 +91,7 @@ function Cart() {
     setAmount(origiAmount);
 
     // 來源資料原始小計金額map
-    const origiTotalPrice = myProduct.map((v, i) => v.price * v.amount);
+    const origiTotalPrice = myProduct.map((v, i) => v.member_price * v.amount);
     setTotalPrice(origiTotalPrice);
 
     // 所有小計加總後要結帳之總額
@@ -116,7 +116,7 @@ function Cart() {
   // 刪除商品資料功能
   const removeProductData = (item) => {
     const remove = testData.filter((v, i) => {
-      return v.p_sid !== item;
+      return v.sid !== item;
     });
     setTestData(remove);
   };
@@ -276,7 +276,7 @@ function Cart() {
               {/* 商品資料引入 --------------------------------------------------------------------*/}
               {testData.map((v, i) => {
                 return (
-                  <tr key={v.p_sid}>
+                  <tr key={v.sid}>
                     <td className="eason_table_img">
                       <img
                         src="./imgs/product_3.png"
@@ -285,8 +285,8 @@ function Cart() {
                         height="65px"
                       />
                     </td>
-                    <td className="eason_p_name">{v.p_name}</td>
-                    <td className="eason_table_price">{v.price}</td>
+                    <td className="eason_p_name">{v.name}</td>
+                    <td className="eason_table_price">{v.member_price}</td>
                     <td className="eason_table_amount">
                       <span
                         className=""
@@ -296,11 +296,12 @@ function Cart() {
                           console.log(amount);
 
                           const decreasePrice = [...totalPrice];
-                          decreasePrice[i] = decreaseAmount[i] * v.price;
+                          decreasePrice[i] = decreaseAmount[i] * v.member_price;
                           console.log(decreasePrice);
                           setNewTotalPrice(
                             decreasePrice.reduce((a, b) => a + b)
                           );
+
                           setAmount(decreaseAmount);
 
                           setTotalPrice(decreasePrice);
@@ -317,7 +318,7 @@ function Cart() {
                           const newAmount = [...amount];
                           newAmount[i] = +newAmount[i] + 1;
                           const newPrice = [...totalPrice];
-                          newPrice[i] = newAmount[i] * v.price;
+                          newPrice[i] = newAmount[i] * v.member_price;
                           console.log(newPrice);
 
                           setAmount(newAmount);
@@ -329,16 +330,14 @@ function Cart() {
                         <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
                       </span>
                     </td>
-                    <td className="eason_table_total">{v.price * amount[i]}</td>
+                    <td className="eason_table_total">{v.member_price * amount[i]}</td>
                     <td>
                       <span
                         onClick={() => {
-                          setNewTotalPrice(newTotalPrice - v.price * amount[i]);
-                          removeProductData(v.p_sid);
+                          setNewTotalPrice(newTotalPrice - v.member_price * amount[i]);
+                          removeProductData(v.sid);
 
                           amount.splice(i, 1);
-
-                          // localStorage.removeItem('cartItem');
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
