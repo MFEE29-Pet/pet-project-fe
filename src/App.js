@@ -5,6 +5,7 @@ import Index from './Pages/Index/Index';
 import Clinic from './Pages/Clinic/Clinic';
 import ForumList from './Pages/Forum/ForumList';
 import ForumDetail from './Pages/Forum/ForumDetail';
+import ForumPost from './Pages/Forum/ForumPost';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
@@ -19,7 +20,6 @@ import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
 import Login from './Pages/Product/Login';
-
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -83,37 +83,35 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           {/* <CartProvider> */}
-            <Navbar />
-            <i
-              className={`fa-light fa-shield-cat text_main_light_color1`}
-              style={{ opacity: 0, position: 'absolute' }}
-              // onClick={handleClick}
-              // id="switch_button"
-            ></i>
-            <section style={{ height: '100px' }}></section>
-            <Routes>
-              <Route path="/" element={<Index />} />
+          <Navbar />
+          <i
+            className={`fa-light fa-shield-cat text_main_light_color1`}
+            style={{ opacity: 0, position: 'absolute' }}
+            // onClick={handleClick}
+            // id="switch_button"
+          ></i>
+          <section style={{ height: '100px' }}></section>
+          <Routes>
+            <Route path="/" element={<Index />} />
 
-              <Route path="product" element={<Product />} />
-              <Route path="product/detail/" element={<ProductDetail />} />
-              <Route
-                path="product/photographers/"
-                element={<Photographers />}
-              />
-              <Route
-                path="product/photographers/form"
-                element={<PhotographerForm />}
-              />
-              <Route path="login" element={<Login />} />
+            <Route path="product" element={<Product />} />
+            <Route path="product/detail/" element={<ProductDetail />} />
+            <Route path="product/photographers/" element={<Photographers />} />
+            <Route
+              path="product/photographers/form"
+              element={<PhotographerForm />}
+            />
+            <Route path="login" element={<Login />} />
 
-              <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart />} />
 
             <Route path="clinic" element={<Clinic />} />
             <Route path="clinic/reserve" element={<Reserve />} />
             <Route path="clinic/login" element={<Login />} />
 
-          <Route path="forum" element={<ForumList />} />
-          <Route path="forum/detail" element={<ForumDetail />} />
+            <Route path="forum" element={<ForumList />} />
+            <Route path="forum/detail" element={<ForumDetail />} />
+            <Route path="forum/post" element={<ForumPost />} />
 
             <Route path="member" element={<Member />} />
             <Route path="member/memberShipAdd" element={<MemberSing />} />

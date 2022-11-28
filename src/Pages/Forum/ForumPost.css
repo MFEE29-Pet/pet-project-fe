@@ -1,0 +1,62 @@
+.forum_post_card{
+  width: 1200px;
+  height: 520px;
+  border-radius: 15px;
+  background-color: white;
+  margin: auto;
+  margin-bottom: 50px;
+
+  }
+
+  .forum_post_top{
+    width: 900px;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+
+
+#forum_post_title_bar{
+  width: 785px;
+  height: 25px;
+  border: 1px solid #c9caca;
+  border-radius: 15px;
+background-color: transparent;
+}
+
+.forum_post_content_bar{
+  width: 900px;
+  height: 300px;
+  margin: auto;
+  border: 1px solid #c9caca;
+  border-radius: 15px;
+}
+
+.forum_post_icon{
+width: 900px;
+margin: 10px auto;
+display: flex;
+justify-content: end;
+ }
+
+#forum_smile{
+  color: #b5b5b6;
+}
+
+#forum_image{
+  color: #b5b5b6;
+}
+
+#forum_post_content_bar{
+padding: 10px 0px 0px 15px ;
+background-color: transparent;
+}
+
+.forum_post_button{
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
