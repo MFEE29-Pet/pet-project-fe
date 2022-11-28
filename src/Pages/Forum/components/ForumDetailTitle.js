@@ -1,12 +1,13 @@
 import React from 'react';
 import './ForumDetailTitle.css';
 
-function ForumDetailTitle() {
+function ForumDetailTitle({ title }) {
+  // console.log(title);
   return (
     <>
       <div className="title_area">
         <div className="title_text">
-          <i>貓用品/玩具如何消毒？</i>
+          <i>{title}</i>
         </div>
       </div>
     </>

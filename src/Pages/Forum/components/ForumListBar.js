@@ -1,24 +1,74 @@
-import React from 'react';
+import axios from 'axios';
+import { GET_ALL_ARTICLE } from '../my-config';
+import { useEffect, useState } from 'react';
 import './ForumListBar.css';
+import { useNavigate } from 'react-router';
 
 function ForumListBar() {
+  const [articles, setArticles] = useState([
+    {
+      article_sid: 0,
+      category: '',
+      content: '',
+      create_at: '',
+      img: '',
+      m_sid: 0,
+      title: '',
+      tag: [],
+    },
+  ]);
+  const [tags, setTags] = useState([]);
+
+  const getArticles = async () => {
+    const res = await axios.get(`${GET_ALL_ARTICLE}`);
+
+    // console.log(res.data.rows);
+    const article = res.data.rows;
+    const tag = res.data.tags;
+    const tagsIntoArticles = article.map((e, i) => {
+      return {
+        ...e,
+        tag: tag.filter((v, i2) => {
+          return v.a_sid === e.article_sid;
+        }),
+      };
+    });
+
+    setArticles(tagsIntoArticles);
+    setTags(tag);
+    // console.log({ articles, tags });
+  };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
   return (
     <>
-      <div className="forumBar">
-        <div className="forumIconBar">
-          <i
-            className="fa-light fa-message-question text_main_dark_color2"
-            id="proIcon"
-          ></i>
-        </div>
+      {articles.map((e, i) => {
+        return (
+          <div className="forumBar" key={e.article_sid} onClick={()=>{
 
-        <div className="forumTitleBar">
-          <p className="forumTitle">貓用品/玩具如何消毒？</p>
-          <p className="forumTag">#貓 #狗 #玩具</p>
-        </div>
+          }} >
+            <div className="forumIconBar">
+              <i
+                className="fa-light fa-message-question text_main_dark_color2"
+                id="proIcon"
+              ></i>
+            </div>
 
-        <div className="forumUserBar">User</div>
-      </div>
+            <div className="forumTitleBar">
+              <p className="forumTitle">{e.title}</p>
+              <p className="forumTag">
+                {e.tag.map((e2, i2) => {
+                  return e2.tag_name;
+                })}
+              </p>
+            </div>
+
+            <div className="forumUserBar">{e.user}</div>
+          </div>
+        );
+      })}
     </>
   );
 }

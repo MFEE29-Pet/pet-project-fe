@@ -6,6 +6,10 @@ import ForumDetailBar from './components/ForumDetailBar';
 import ForumMessage from './components/ForumMessage';
 import ForumReply from './components/ForumReply';
 import UserBar from './components/UserBar';
+import axios from 'axios';
+import { GET_DETAILS } from './my-config';
+import { useLocation } from 'react-router';
+import { useEffect, useState } from 'react';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/complex' },
@@ -18,6 +22,27 @@ const buttonText = [
 ];
 
 function ForumDetail() {
+  const [details, setDetails] = useState([]);
+
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let sid = +params.get('sid');
+
+  const getDetails = async () => {
+    const res = await axios.get(`${GET_DETAILS}?sid=${sid}`);
+
+    // console.log(res);
+    const detail = res.data.details;
+
+    setDetails(detail[0]);
+    // console.log(detail[0]);
+  };
+
+  useEffect(() => {
+    getDetails();
+  }, [location]);
+
   return (
     <>
       <div className="forum_detail_wrap">
@@ -33,11 +58,11 @@ function ForumDetail() {
           })}
         </div>
         <div className="forum_detail_title_area">
-          <ForumDetailTitle />
+          <ForumDetailTitle title={details[0] ? details[0].title : ''} />
           <UserBar />
         </div>
         <div className="forum_article_area">
-          <ForumDetailBar />
+          <ForumDetailBar details={details[0] ? details[0] : ''} />
         </div>
         <div>
           <ForumMessage />
