@@ -4,7 +4,7 @@ import './Issuing.css';
 function Issuing() {
   return (
     <>
-      <div className="issuing_bar">發表於2022-11-22 12:16</div>
+      <div className="issuing_bar">a發表於2022-11-22 12:16</div>
     </>
   );
 }
