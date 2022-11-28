@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
-import Carousal3D from './Carousal3D';
+// import ShowC from './Carousel/ShowC';
 
 const ROW = styled.div`
   display: flex;
@@ -68,6 +68,7 @@ function RelatedProduct({ relatedProducts }) {
 
   return (
     <>
+      {/* <ShowC relatedProducts={relatedProducts} /> */}
       <ROW $mode={mode}>
         <div className="arrow arrow-left">
           <i className="fa-light fa-angle-left"></i>
@@ -84,10 +85,10 @@ function RelatedProduct({ relatedProducts }) {
             </div>
           );
         })}
+
         <div className="arrow arrow-right">
           <i className="fa-light fa-angle-right"></i>
         </div>
-        <Carousal3D relatedProducts={relatedProducts} />
       </ROW>
     </>
   );
