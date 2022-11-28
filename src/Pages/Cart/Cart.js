@@ -210,7 +210,12 @@ function Cart() {
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
-                      <img src="./imgs/person_2.jpeg" alt="" width="100px" />
+                      <img
+                        style={{ verticalAlign: 'middle' }}
+                        src="./imgs/person_2.jpeg"
+                        alt=""
+                        width="100px"
+                      />
                     </td>
                     <td>{v.photographer}</td>
                     <td>{v.date}</td>
@@ -279,6 +284,7 @@ function Cart() {
                   <tr key={v.sid}>
                     <td className="eason_table_img">
                       <img
+                        style={{ verticalAlign: 'middle' }}
                         src={`./images/test/${v.img}`}
                         alt=""
                         width="65px"
