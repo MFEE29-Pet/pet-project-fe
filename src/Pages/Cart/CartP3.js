@@ -30,21 +30,14 @@ const EasonProgressBar = styled.div`
   }
 `;
 
-// 整套購物車本體-------------------------------------------------------------------------------------
-function Cart() {
+// 整套購物車P3本體-------------------------------------------------------------------------------------
+function CartP3() {
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
 
-  // 付款方式按鈕選定效果
-  const [arrivedClick, setArrivedClick] = useState(false);
-  const [creditClick, setCreditClick] = useState(false);
 
-  // 加入結算勾選
-  const [photoChecked, setPhotoChecked] = useState(true);
-  const [productChecked, setProductChecked] = useState(true);
 
-  // 結帳用預約攝影價格
-  const [newPhotoPrice, setNewPhotoPrice] = useState(0);
+
 
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
@@ -77,7 +70,6 @@ function Cart() {
     // setTestData(jsonData);
 
     setPhotoTestData(photoJsonData);
-    setNewPhotoPrice(photoJsonData[0].photo_price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -104,14 +96,7 @@ function Cart() {
     getData();
   }, []);
 
-  // 刪除攝影資料並剔除總金額功能
-  const removePhotoData = (item) => {
-    const remove = photoTestData.filter((v, i) => {
-      return v.photo_id !== item;
-    });
-    setPhotoTestData(remove);
-    setNewPhotoPrice(0);
-  };
+
 
   // 刪除商品資料功能
   const removeProductData = (item) => {
@@ -164,100 +149,8 @@ function Cart() {
           </div>
         </EasonProgressBar>
 
-        {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
-        <div className="eason_section_1">
-          <div className="eason_list_title ">
-            {photoTestData && photoTestData.length !== 0 && (
-              <>
-                <h2 className="text_main_dark_color2">攝影預約明細</h2>
-                <div className="eason_product_check">
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    checked={photoChecked ? 'checked' : ''}
-                    onClick={() => {
-                      setPhotoChecked(!photoChecked);
-                    }}
-                  />
-                  <p
-                    className="text_main_dark_color2"
-                    style={{ fontSize: ' smaller' }}
-                  >
-                    加入結算
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-          <table className="eason_list_table">
-            {photoTestData && photoTestData.length !== 0 && (
-              <thead>
-                <tr>
-                  <th>頭像</th>
-                  <th>攝影師</th>
-                  <th>預約日期</th>
-                  <th>預約時段</th>
-                  <th>單價</th>
-                  <th>刪除</th>
-                </tr>
-              </thead>
-            )}
-
-            <tbody>
-              {/* 預約攝影資料引入------------------------------------------------------------------- */}
-              {photoTestData.map((v, i) => {
-                return (
-                  <tr key={v.id}>
-                    <td className="eason_table_img">
-                      <img src="./imgs/person_2.jpeg" alt="" width="100px" />
-                    </td>
-                    <td>{v.photographer}</td>
-                    <td>{v.date}</td>
-                    <td>{v.dayparts}</td>
-                    <td className="eason_table_price">{v.photo_price}</td>
-                    <td>
-                      <span
-                        onClick={() => {
-                          removePhotoData(v.photo_id);
-                        }}
-                      >
-                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
-          <div className="eason_list_title">
-            {testData && testData.length !== 0 && (
-              <>
-                <h2 className="text_main_dark_color2">商品訂單明細</h2>
-                <div className="eason_product_check">
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    checked={productChecked ? 'checked' : ''}
-                    onClick={() => {
-                      setProductChecked(!productChecked);
-                    }}
-                  />
-                  <p
-                    className="text_main_dark_color2"
-                    style={{ fontSize: 'smaller' }}
-                  >
-                    加入結算
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
           <table className="eason_list_table">
             {testData && testData.length !== 0 && (
               <thead>
@@ -350,102 +243,9 @@ function Cart() {
             </tbody>
           </table>
         </div>
-
-        {/* <!-- 下方區域------------------------------------------------------------------------> */}
-        <div className="eason_section_3">
-          <div className="eason_s3_left">
-            <h2 className="text_main_dark_color2">付款方式</h2>
-            <button
-              className={
-                arrivedClick === false
-                  ? 'bg_main_light_color1'
-                  : 'bg_main_color'
-              }
-              onClick={() => {
-                if (arrivedClick === false) {
-                  setArrivedClick(true);
-                  setCreditClick(false);
-                } else {
-                  setArrivedClick(false);
-                }
-              }}
-            >
-              貨到付款
-            </button>
-
-            <button
-              className={
-                creditClick === false ? 'bg_main_light_color1' : 'bg_main_color'
-              }
-              onClick={() => {
-                if (creditClick === false) {
-                  setCreditClick(true);
-                  setArrivedClick(false);
-                } else {
-                  setCreditClick(false);
-                }
-              }}
-            >
-              信用卡
-            </button>
-          </div>
-
-          <div className="eason_s3_right">
-            <div className="eason_s3_right_top">
-              <h2 className="text_main_dark_color2">優惠代碼</h2>
-              <div className="discountArea">
-                <input className="eason_discount_code" type="text" />
-                <i className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "></i>
-              </div>
-            </div>
-
-            <div className="eason_s3_right_bottom">
-              <h2 className="text_main_dark_color2">結算總額</h2>
-
-              <div className="eason_total">
-                <table>
-                  <tr>
-                    <th className="text_main_dark_color2">商品金額</th>
-                    <td>
-                      ${' '}
-                      {(productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? newPhotoPrice : 0)}
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <th className="text_main_dark_color2">優惠折扣</th>
-                    <td>10%</td>
-                  </tr>
-
-                  <tr>
-                    <th className="text_main_dark_color2">運費</th>
-                    <td style={{ fontWeight: '900' }}>免運</td>
-                  </tr>
-
-                  <tr>
-                    <th className="text_main_dark_color2">付款總額</th>
-                    <td style={{ color: 'red', fontSize: 'large' }}>
-                      ${' '}
-                      {Math.ceil(
-                        ((productChecked ? newTotalPrice : 0) +
-                          (photoChecked ? newPhotoPrice : 0)) *
-                          0.9
-                      )}
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <button className="eason_pay_btn bg_main_light_color1 ">
-                前往付款
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );
 }
 
-export default Cart;
+export default CartP3;

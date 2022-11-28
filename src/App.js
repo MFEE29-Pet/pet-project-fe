@@ -6,6 +6,8 @@ import Clinic from './Pages/Clinic/Clinic';
 import ForumList from './Pages/Forum/ForumList';
 import ForumDetail from './Pages/Forum/ForumDetail';
 import Cart from './Pages/Cart/Cart';
+import CartP3 from './Pages/Cart/CartP3';
+
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
@@ -105,6 +107,7 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="cart" element={<Cart />} />
+            <Route path="cart_p3" element={<CartP3 />} />
 
             <Route path="clinic" element={<Clinic />} />
             <Route path="clinic/reserve" element={<Reserve />} />
