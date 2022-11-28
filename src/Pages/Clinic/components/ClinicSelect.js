@@ -196,10 +196,10 @@ function ClinicSelect({ setDataFromSelect, setLocation }) {
       <InfiniteScroll>
         {/* {console.log(dataFromItem)} */}
         {showList.map((e, i) => {
-          const { name, address, mobile, code, sid, lat, lng } = e;
+          const { clinic_name, address, mobile, code, sid, lat, lng } = e;
           return (
             <ClinicItem
-              name={name}
+              name={clinic_name}
               address={address}
               mobile={mobile}
               code={code}
