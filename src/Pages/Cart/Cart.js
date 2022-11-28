@@ -1,5 +1,5 @@
 // 來源引用區-------------------------------------------------------------------------------------
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, memo } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
@@ -8,6 +8,7 @@ import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車�
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 import photoJsonData from './photoTest.json';
+import { es } from 'date-fns/locale';
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -110,21 +111,26 @@ function Cart() {
     const remove = myPhotoData.filter((v, i) => {
       return v.photo_id !== item;
     });
+
     setMyPhotoData(remove);
     setNewPhotoPrice(0);
   };
 
   // 刪除商品資料功能
   const removeProductData = (item) => {
-    const remove = myData.filter((v, i) => {
+    const remove = cartItem.productCart.filter((v, i) => {
       return v.sid !== item;
     });
+
     setMyData(remove);
   };
 
   // 商品加減清除Context
   const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
     useContext(CartInfoContext);
+
+  // localStorage index
+  const index = cartItem.productCart.findIndex((e) => e.sid === myData.sid);
 
   return (
     <>
@@ -230,6 +236,8 @@ function Cart() {
                       <span
                         onClick={() => {
                           removePhotoData(v.photo_id);
+
+                          // localStorage.removeItem('cartItem');
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
@@ -284,7 +292,9 @@ function Cart() {
 
             <tbody>
               {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {myData.map((v, i) => {
+              {/* {myData.map((v, i) => {
+               */}
+              {cartItem.productCart.map((v, i) => {
                 return (
                   <tr key={v.sid}>
                     <td className="eason_table_img">
@@ -351,8 +361,6 @@ function Cart() {
                     <td>
                       <span
                         onClick={() => {
-                          // handleClear(myData[i],1);
-
                           setNewTotalPrice(
                             newTotalPrice - v.member_price * amount[i]
                           );
@@ -360,6 +368,42 @@ function Cart() {
 
                           amount.splice(i, 1);
                           console.log(v.sid);
+
+                          const deleteItem = JSON.parse(
+                            localStorage.getItem('cartItem')
+                          );
+                          const productList = deleteItem.productCart;
+
+                          const index = productList.findIndex(
+                            (e) => e.sid === v.sid
+                          );
+
+                          const sliceP1 = productList.slice(0, index);
+
+                          const sliceP2 = productList.slice(index + 1);
+
+                          const newProductList = [...sliceP1, ...sliceP2];
+
+                          deleteItem.productCart = newProductList;
+
+                          const totalItem = newProductList.length;
+                          let totalAmount = 0;
+                          let totalPrice = 0;
+
+                          newProductList.forEach((v) => {
+                            totalAmount += v.amount;
+                            totalPrice += v.amount * v.member_price;
+                          });
+
+                          deleteItem.totalItem = totalItem;
+                          deleteItem.totalAmount = totalAmount;
+                          deleteItem.totalPrice = totalPrice;
+                          localStorage.setItem(
+                            'cartItem',
+                            JSON.stringify(deleteItem)
+                          );
+
+                          setCartItem(deleteItem);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
