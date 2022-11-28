@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import PageContext from '../contexts/PageContext';
 
 function Filter({
@@ -9,17 +10,11 @@ function Filter({
   setSortMethod,
   totalPages,
   setSearchWord,
+  page,
 }) {
   const { nowPage, location, cate } = useContext(PageContext);
+  const { mode, productShow, setProductShow } = useContext(SwitchButtonContext);
   const navigate = useNavigate();
-  // const params = new URLSearchParams(location.search);
-  // const search = params.get('search');
-  // let searchKeyWords = '';
-  // console.log(search);
-  // if (!search) {
-  //   searchKeyWords += search;
-  // }
-  // console.log(searchKeyWords);
 
   const handleChange = (e) => {
     setSearchWord(e.target.value);
@@ -35,20 +30,61 @@ function Filter({
               name="search"
               id="search"
               onChange={handleChange}
+              style={{ outline: 'none', paddingLeft: '10px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass bg_main_light_color1"
               id="pro-search"
             ></i>
           </div>
-          <div
-            className="price-filter"
-            onClick={() => {
-              setTrigger(!trigger);
-            }}
-          >
-            <i className="fa-solid fa-filter"></i>
-            <p>篩選</p>
+          <div className="filter_and_show">
+            <div
+              className="price-filter"
+              onClick={() => {
+                setTrigger(!trigger);
+              }}
+            >
+              <i className="fa-solid fa-filter"></i>
+              <p>篩選</p>
+            </div>
+            <div
+              className="productShowButton"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                className="showCard"
+                style={{
+                  backgroundColor: `${productShow === 'card' ? '#ccc' : ''}`,
+                  borderRadius: '10px 0 0 10px',
+                  width: '100%',
+                }}
+              >
+                <i
+                  onClick={() => setProductShow('card')}
+                  className={`fa-solid fa-grid productShow text_main_light_color1 ${
+                    productShow === 'card' ? 'active' : ''
+                  }`}
+                ></i>
+              </div>
+              <div
+                className="showLine"
+                style={{
+                  backgroundColor: `${productShow === 'line' ? '#ccc' : ''}`,
+                  borderRadius: '0 10px 10px 0',
+                  width: '100%',
+                }}
+              >
+                <i
+                  onClick={() => setProductShow('line')}
+                  className={`fa-solid fa-square-list productShow text_main_light_color1  ${
+                    productShow === 'line' ? 'active' : ''
+                  }`}
+                ></i>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -104,7 +140,7 @@ function Filter({
           </div>
           <div className="pageSel">
             <p>
-              <span className="text_main_color">{nowPage}</span>/{totalPages}
+              <span className="text_main_color">{page}</span>/{totalPages}
             </p>
             <div className="changeBtn">
               <div

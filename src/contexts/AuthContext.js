@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({});
@@ -12,6 +12,7 @@ export const AuthContextProvider = function ({ children }) {
     authorized: false, // 有沒有登入
     sid: 0,
     account: '',
+    member_photo:'',
     token: '',
   };
 
@@ -27,12 +28,17 @@ export const AuthContextProvider = function ({ children }) {
   }
   const [myAuth, setMyAuth] = useState(initAuth);
 
+
+  // useEffect(()=>{
+
+  // },[])
+
+
   // 登出
   const logout = () => {
     localStorage.removeItem('auth');
     setMyAuth(unAuth);
-    navigate('/login');
-    alert('已登出');
+    navigate('/');
   };
   // 2. 登入: 成功, 失敗
 

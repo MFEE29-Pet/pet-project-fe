@@ -1,11 +1,11 @@
-@font-face {
+/* @font-face {
   font-family: big_circle;
   src: url(../../../public/font/GenSenRounded-R.ttc);
-}
+} */
 
 * {
   box-sizing: border-box;
-  font-family: big_circle;
+  font-family: art;
 }
 
 h2 {
@@ -26,15 +26,7 @@ span {
   font-size: 18px;
 }
 
-select {
-  /* width: 150px;
-        height: 35px; */
-  border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
-  background-color: #fff;
-  padding: 5px 10px;
-}
+
 /* --------------------------------------------------------------------- */
 /* MemberChevron */
 .Web {
@@ -168,6 +160,12 @@ select {
   margin: 0 auto;
 }
 
+.member-ship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .member-shipL {
   width: 20%;
   display: flex;
@@ -176,8 +174,8 @@ select {
 }
 
 .member-photo {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: darkblue;
   border-radius: 50%;
   overflow: hidden;
@@ -199,26 +197,14 @@ select {
 
 .member-icon ul {
   display: flex;
+  justify-content: space-around;
   margin-bottom: 35px;
 }
+
 .member-icon ul li {
   cursor: pointer;
 }
 
-.icon {
-  width: 10px;
-  height: 10px;
-}
-
-.fa-caret-right {
-  color: #966134;
-}
-
-.fa-thin,
-.fa-light {
-  color: #966134;
-  margin-right: 10px;
-}
 /* --------------------------------------------------------------------- */
 /* MemberLevel */
 .degreeWrap {
@@ -248,16 +234,18 @@ select {
 }
 
 .degreeC {
-  height: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-degree {
-  width: 80%;
-  height: 700px;
+  width: 100%;
   background-color: #fff;
-  padding-top: 30px;
+  padding-top: 80px;
   border-radius: 15px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .degreeImg {
@@ -276,6 +264,9 @@ select {
 
 .degree-card {
   margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .degree-card h2 {
@@ -289,29 +280,33 @@ select {
 .degree-txt {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  margin: 50px 0px;
   color: #966134;
+  align-self: center;
 }
 
 .degreeIcon {
-  width: 354px;
-  /* flex-grow: 1; */
-  /* align-self: center; */
+  margin: 5px 0px;
 }
+
+
 
 .ship-bottom {
   width: 100%;
-  height: 30%;
-  background-color: #dcdddd;
+  height: 200px;
+  background-color: #c9caca;
   display: flex;
   flex-direction: column;
   padding: 30px 0px;
   justify-content: space-between;
+  align-items: center;
+
 }
 
 .ship {
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ship h2 {
@@ -319,28 +314,6 @@ select {
   display: inline-block;
   font-size: 20px;
   margin-bottom: 5px;
-}
-
-.ship h2::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: -15px;
-  width: 10px;
-  height: 1px;
-  border-bottom: 1px solid rgb(0, 0, 0);
-}
-
-.ship h2::after {
-  content: '';
-  position: absolute;
-  top: 7px;
-  right: -14px;
-  width: 10px;
-  height: 1px;
-  border-bottom: 1px solid rgb(0, 0, 0);
-
-  border-bottom: 1px solid rgb(11, 11, 11);
 }
 
 .ship p {
@@ -351,6 +324,8 @@ select {
 
 .input-text {
   display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
 }
 
 .input {
@@ -378,14 +353,24 @@ select {
 .inputRange {
   width: 40%;
 }
+
 /* --------------------------------------------------------------------- */
 /* MembePetAdd */
 
 .peat-ship {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.pet_icon {
+  width: 8%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .peat-name {
@@ -431,8 +416,6 @@ select {
 
 .icon {
   color: #966134;
-  display: flex;
-  width: 10%;
 }
 
 .icon i {
@@ -446,6 +429,12 @@ select {
   color: #40220f;
   font-weight: 900;
 }
+
+.addPetbutton {
+  font-size: 20px;
+  cursor: pointer;
+}
+
 
 .peat-add {
   width: 100%;
@@ -496,21 +485,22 @@ select {
 }
 
 /* pee add page */
-button {
+.button {
   background-color: darkorange;
   background: 50%;
   color: #fff;
 }
 
-select {
-  /* width: 150px;
-    height: 35px; */
+.buttonAdd {
+  width: 80px;
+  height: 30px;
+  background-color: darkorange;
   border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
-  background-color: #fff;
-  padding: 5px 10px;
+  color: #fff;
+  border: darkorange;
 }
+
+
 
 #uname {
   width: 160px;
@@ -535,28 +525,30 @@ select {
 /* --------------------------------------------------------------------- */
 /* MembeArticle */
 
-.article-all .fa-thin {
+.article-all .thin {
   font-size: 30px;
 }
 
-.fa-trash-can {
+.trash {
   font-size: 20px;
 }
+
 .articleWrap {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
+
 .articleInfo {
   width: 100%;
   height: 100vh;
   overflow: auto;
 }
+
 .article {
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   padding-left: 10px;
 }
 
@@ -572,7 +564,6 @@ select {
 }
 
 .article-details {
-  width: 95%;
   background-color: #fff;
   padding: 40px 20px;
   display: flex;
@@ -580,10 +571,12 @@ select {
   align-items: center;
   margin-bottom: 20px;
   border-radius: 25px;
+
 }
 
 .article-all {
   display: flex;
+  width: 40%;
 }
 
 .hashtag span {
@@ -627,49 +620,58 @@ select {
 /* --------------------------------------------------------------------- */
 /* MemberAppointment */
 
-.Hospital-order,
-.Hospital-info,
 .time {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 33.33333333%;
+  align-items: flex-start;
+  width: 20%;
+}
+
+.Hospital-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
 }
 
 .Hospital-order {
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
 }
 
-.Hospital-info h2 {
-  width: 80%;
-  align-self: flex-end;
-  margin-bottom: 10px;
+
+.Hospital-order {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
+
 
 .Hospital-order h3 {
   font-size: 19px;
   color: #40220f;
 }
+
 .Hospital-order h3:first-child {
   color: firebrick;
+  font-weight: 500;
 }
 
 .Hospital-order h3:last-child {
   color: #a4a5a5;
+  font-weight: 500;
+
 }
 
-.time h2 {
-  width: 69%;
-  align-self: flex-end;
-  margin-bottom: 10px;
-}
 
 .Hospital-all {
   padding: 20px 0;
   margin-bottom: 15px;
-  width: 95%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
   font-size: 30px;
   background-color: #fff;
   border-radius: 20px;
@@ -677,7 +679,6 @@ select {
 
 .Hospital {
   width: 100%;
-  height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -685,9 +686,7 @@ select {
 }
 
 .Hospital-title {
-  display: flex;
   justify-content: space-between;
-  padding: 20px;
 }
 
 .Hospital-details {
@@ -715,6 +714,7 @@ select {
   margin-right: 10px;
   font-size: 16px;
 }
+
 .Hospital-A span {
   font-size: 16px;
   color: #966134;
@@ -724,7 +724,7 @@ select {
 /* MemberProductCollect */
 
 .product-title {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -753,6 +753,7 @@ select {
 
 .proudct-price {
   display: flex;
+  align-items: center;
 }
 
 .product-img {
@@ -823,77 +824,6 @@ select {
 /* --------------------------------------------------------------------- */
 /* MemberHistoryCamera */
 
-.productCamera-p {
-  width: 90px;
-  height: 100px;
-  margin-left: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.productCamera-p img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.productCamera {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 100%;
-  background-color: #fff;
-  padding: 30px 0;
-}
-
-.titleCamera {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto 25px;
-  /* align-content: center; */
-}
-
-.titleCamera p {
-  width: 15%;
-  text-align: center;
-  color: #a4a5a5;
-  font-size: 14px;
-}
-
-.orderCameradetail {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.orderCameradetail p {
-  width: 22%;
-  text-align: center;
-}
-
-.productCamera-all {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.productCamera-all p:nth-child(2) {
-  width: 100px;
-  color: #40210f;
-}
-
-.productCamera-all p:nth-child(3) {
-  width: 55px;
-  color: #a4a5a5;
-}
-
-.productCamera-all p:nth-child(4) {
-  color: #ff0e00;
-}
 
 .orderCameraWrap {
   display: flex;
@@ -906,126 +836,29 @@ select {
   flex-direction: column;
 }
 
-.orderCameraPage {
-  width: 60%;
-  margin: 20px auto;
+.detailCamera {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  width: 40%;
 }
 
-.orderCameraPage i {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 2rem;
-  /* 文字置中 */
-}
-
-.orderCameraPage .fa-light {
-  color: #40210f;
+.priceCamera {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  width: 40%;
 }
 
 .orderCamera {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.pet-orderCamera {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.detailCamera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detailCamera p {
-  font-size: 15px;
-  margin-left: 10px;
-  color: #a4a5a5;
-}
-
-.detailCamera h1,
-.priceCamera h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.priceCamera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.priceCamera h4 {
-  margin-left: 10px;
-  color: #ff0e00;
-}
 
 /* --------------------------------------------------------------------- */
 /* ＭemberHistoryProduct */
-
-.product-p {
-  width: 90px;
-  height: 100px;
-}
-
-.product-p img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 100%;
-  background-color: #fff;
-  padding: 30px 0;
-}
-
-.titleProduct {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto 25px;
-  padding: 0 15px;
-  /* align-content: center; */
-}
-
-.titleProduct p {
-  color: #a4a5a5;
-  font-size: 14px;
-}
-
-.product-all {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.product-all p:nth-child(2) {
-  width: 100px;
-  color: #40210f;
-}
-
-.product-all p:nth-child(3) {
-  width: 55px;
-  color: #a4a5a5;
-}
-
-.product-all p:nth-child(4) {
-  color: #ff0e00;
-}
 
 .orderProductWrap {
   display: flex;
@@ -1034,69 +867,289 @@ select {
 
 .orderProduct-right {
   width: 100%;
-  height: 100vh;
-  overflow: auto;
   display: flex;
   flex-direction: column;
-}
-
-.orderProductPage {
-  width: 60%;
-  margin: 20px auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.orderProductPage i {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 2rem;
-  /* 文字置中 */
-}
-
-.orderProductPage .fa-light {
-  color: #40210f;
-}
-
-.fa-1 {
-  /* background-color: red; */
-  /* background: url(../image/cat.png) no-repeat center center; */
-  background-size: 30px 30px;
-}
-
-.detailProduct {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.detailProduct p {
-  font-size: 15px;
-  margin-left: 10px;
-  color: #a4a5a5;
-}
-
-.detailProduct h1,
-.priceProduct h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.priceProduct {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.priceProduct h4 {
-  margin-left: 10px;
-  color: #ff0e00;
 }
 
 .orderProduct {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.detailProduct {
+  display: flex;
+  align-items: flex-end;
+  width: 40%;
+}
+
+.priceProduct {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 40%;
+}
+
+
+/* --------------------------------------------------------------------- */
+/* MemberPassword */
+
+
+.input input {
+  border: none;
+  outline: none;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  background-color: rgb(242, 140, 31);
+  border-radius: 30px;
+  border-color: #ccc;
+  color: rgb(255, 253, 253);
+  font-size: 14px;
+  border: none;
+  margin-top: 30px;
+}
+
+
+.pagePassword {
+  width: 700px;
+  margin: 0 auto;
+  /* padding: 40px 0px; */
+  height: 350px;
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter-A {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #FaFaFa;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+.enter-L select {
   width: 100%;
-  padding: 10px;
+  height: 30px;
+  border-radius: 20px;
+  color: #727171;
+  background-color: #fff;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.enter-M select {
+  width: 100%;
+  height: 30px;
+  border-radius: 20px;
+  color: #727171;
+  background-color: #fff;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.input {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.Revise {
+  width: 300px;
+  height: 200px;
+  background-color: #FaFaFa;
+  margin: 30px;
+  border-radius: 30px;
+}
+
+.pet_text {
+  justify-content: space-between;
+  width: 70%;
+  display: flex;
+}
+
+/* --------------------------------------------------------------------- */
+/*MemberProfileUp */
+
+
+.singUp-page {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.pageProfileUp {
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 0px;
+  /* height: 350px; */
+  background-color: #ffff;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.page-left {
+  width: 70%;
+}
+
+.enter-L {
+  width: 32%;
+  display: flex;
+  justify-content: center;
+}
+
+.enter-M {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.enter-P {
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+}
+
+.enter-B {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.addressA {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 250px;
+}
+
+
+
+.input {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.up-photoProfile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #dcdddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a4a5a5;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.up-photoProfile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.radio {
+  width: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo input {
+  /* background-color: #fff;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid#989898;
+  color: #989898; */
+}
+
+.dd {
+  width: 250px;
+  outline: 1px solid #989898;
+  height: 30px;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+
+.member_date {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* --------------------------------------------------------------------- */
+/* ForgrtPasswordsuccess . MemberSingsuccess */
+
+
+.fill {
+  width: 100%;
+  height: 100vh;
+  background-color: #989898;
+  opacity: 0.7;
+  position: absolute;
+}
+
+.success {
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 30px;
+  top: 40%;
+  left: 40%;
+}
+
+.success h1 {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
 }

@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { PRODUCT_LIST } from '../my-config';
 import { useLocation } from 'react-router-dom';
+import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
 const LABEL = styled.label`
   &::after {
@@ -24,11 +23,11 @@ function Popup({
   setSalesType,
   salesType,
 }) {
-  // const [minPrice, setMinPrice] = useState(0);
-  // const [maxPrice, setMaxPrice] = useState(0);
   const [active, setActive] = useState('');
   const [btnActive, setBtnActive] = useState(0);
   const [checked, setChecked] = useState(false);
+
+  const { mode } = useContext(SwitchButtonContext);
 
   // 取得 queryString
   const location = useLocation();
@@ -84,6 +83,7 @@ function Popup({
                   type="number"
                   placeholder="最大值"
                   name="max_price"
+                  min={1}
                   id="max_price"
                   value={maxPrice}
                   onChange={(e) => {
@@ -203,7 +203,7 @@ function Popup({
                 type="button"
                 onClick={() => {
                   setMinPrice(0);
-                  setMaxPrice(0);
+                  setMaxPrice(99999);
                   setActive('');
                   setBtnActive(0);
                   setSalesType('');
@@ -213,12 +213,6 @@ function Popup({
               </button>
             </form>
           </div>
-          {/* <div className="filter-title">
-
-          </div>
-          <div className="service_sale_form">
-
-          </div> */}
         </div>
       </section>
     </>

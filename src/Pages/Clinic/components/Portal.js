@@ -14,14 +14,14 @@ const Portal = ({ children, customRootId }) => {
     portalRoot = divDOM;
   }
 
-  useEffect(() => () => {
-    portalRoot?.parentElement?.removeChild(portalRoot);
-  }, [portalRoot]);
-
-  return ReactDOM.createPortal(
-    children,
-    portalRoot,
+  useEffect(
+    () => () => {
+      portalRoot?.parentElement?.removeChild(portalRoot);
+    },
+    [portalRoot]
   );
+
+  return ReactDOM.createPortal(children, portalRoot);
 };
 
 export default Portal;

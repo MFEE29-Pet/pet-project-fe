@@ -30,8 +30,10 @@ const PHOTO = styled.div`
 `;
 
 const IMG = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 `;
 const MemberBox = styled(Link)`
   width: 80%;
@@ -43,15 +45,17 @@ const MemberBox = styled(Link)`
 const Logout = styled.div``;
 
 function LoginInfoBoxTop() {
-  const { logout,myAuth } = useContext(AuthContext);
-
+  const { logout, myAuth } = useContext(AuthContext);
 
   return (
     <LoginInfoTop>
-      <MemberBox to="/member">
+      <MemberBox to="member/memberCenter">
         <H2 className="text_main_dark_color2">{myAuth.name}</H2>
         <PHOTO className="border_big_main_light_color1">
-          <IMG src={`${imgUrl}/images/test.webp`} alt="" />
+          <IMG
+            src={`http://localhost:6001/uploads/imgs/${myAuth.member_photo}`}
+            alt=""
+          />
         </PHOTO>
       </MemberBox>
       <Logout

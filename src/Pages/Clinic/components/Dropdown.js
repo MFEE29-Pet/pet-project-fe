@@ -195,7 +195,7 @@ const Dropdown = ({
         ref={childrenRef}
         data-dropdown-id="dropdown"
         onClick={onClick}
-        style={{ width: '200px'}}
+        style={{ width: '200px' }}
       >
         {children}
       </div>
