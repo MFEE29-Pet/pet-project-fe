@@ -33,7 +33,7 @@ const Memberroutes = [
 ];
 
 function MemberSing() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     account: '',
     password: '',
@@ -49,12 +49,26 @@ function MemberSing() {
   });
   const genderWrap = ['生理男', '生理女', '其他'];
   const [gender, setGender] = useState('');
-  const [year, setYear] = useState(0);
-  const [month, setMonth] = useState(0);
-  const [day, setDay] = useState(0);
-  const [city, setCity] = useState(0);
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [city, setCity] = useState('');
   const [area, setArea] = useState('');
   const [address, setAddress] = useState('');
+  const yearList = [];
+  const monthList = [];
+  const dayList = [];
+  const days = new Date(year, month, 0).getDate();
+
+  for (let i = 1900; i <= 2055; i++) {
+    yearList.push(i);
+  }
+  for (let i = 1; i <= 12; i++) {
+    monthList.push(i);
+  }
+  for (let i = 1; i <= days; i++) {
+    dayList.push(i);
+  }
 
   const [cityData, setCityData] = useState([
     {
@@ -166,14 +180,7 @@ function MemberSing() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const addUser = async () => {
-    const newUser = { ...user };
-    let newMonth = month;
-    let newDay = day;
-    newMonth = newMonth.split('月')[0];
-    newDay = newDay.split('日')[0];
-    const d = dayjs(Date.parse(`${year}-${newMonth}-${newDay}`)).format(
-      'YYYY/MM/DD'
-    );
+    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY/MM/DD');
 
     const fd = new FormData();
 
@@ -184,16 +191,18 @@ function MemberSing() {
     fd.append('mobile', user.mobile);
     fd.append('city', user.city);
     fd.append('area', user.area);
-    fd.append('address',user.address)
+    fd.append('address', user.address);
     fd.append('date', d);
     fd.append('member_photo', selectedFile);
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
+    const {send} = await axios.post('http://localhost:6001/member/send',fd)
     console.log(data);
+    console.log(send);
     if (data.success) {
-      alert('註冊成功')
-      navigate('/member/memberLogIn')
+      alert('註冊成功');
+      navigate('/member/memberLogIn');
     }
   };
   return (
@@ -248,11 +257,15 @@ function MemberSing() {
               </div>
               <div className="enter-A">
                 <h2 className="text_main_dark_color2">確認密碼</h2>
-                <input type="text" className="cc" style={{
+                <input
+                  type="text"
+                  className="cc"
+                  style={{
                     border: '1px solid #727171',
                     outline: 'none',
                     backgroundColor: 'transparent',
-                  }}/>
+                  }}
+                />
               </div>
               <div className="enter-A">
                 <h2 className="text_main_dark_color2">姓名</h2>
@@ -315,7 +328,6 @@ function MemberSing() {
                     height: '60px',
                     fontWeight: '700',
                   }}
-                  
                 >
                   地址
                 </div>
@@ -378,10 +390,10 @@ function MemberSing() {
                       setAddress(e.target.value);
                     }}
                     style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
+                      border: '1px solid #727171',
+                      outline: 'none',
+                      backgroundColor: 'transparent',
+                    }}
                   />
                 </div>
               </div>
@@ -425,16 +437,14 @@ function MemberSing() {
                         setYear(e.target.value);
                       }}
                     >
-                      <option value="">年</option>
-                      {Array(2022 - 1922 + 1)
-                        .fill(1)
-                        .map((v, i) => {
-                          return (
-                            <option value={i + 1922} key={i}>
-                              {i + 1922}
-                            </option>
-                          );
-                        })}
+                      <option>年</option>
+                      {yearList.map((e, i) => {
+                        return (
+                          <option value={e} key={i}>
+                            {e}年
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div className="enter-D">
@@ -447,15 +457,13 @@ function MemberSing() {
                       }}
                     >
                       <option>月</option>
-                      {Array(12)
-                        .fill(1 + '月')
-                        .map((v, i) => {
-                          return (
-                            <option value={`${i + 1}月`} key={i}>{`${
-                              i + 1
-                            }月`}</option>
-                          );
-                        })}
+                      {monthList.map((e, i) => {
+                        return (
+                          <option value={e} key={i}>
+                            {e}月
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div className="enter-D">
@@ -468,15 +476,13 @@ function MemberSing() {
                       }}
                     >
                       <option>日</option>
-                      {Array(31)
-                        .fill(1 + '日')
-                        .map((v, i) => {
-                          return (
-                            <option value={`${i + 1}日`} key={i}>{`${
-                              i + 1
-                            }日`}</option>
-                          );
-                        })}
+                      {dayList.map((e, i) => {
+                        return (
+                          <option value={e} key={i}>
+                            {e}日
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                 </div>
