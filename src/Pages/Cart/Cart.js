@@ -219,7 +219,7 @@ function Cart() {
               {/* 預約攝影資料引入------------------------------------------------------------------- */}
               {myPhotoData.map((v, i) => {
                 return (
-                  <tr key={v.id}>
+                  <tr key={v.sid}>
                     <td className="eason_table_img">
                       <img
                         style={{ verticalAlign: 'middle' }}
