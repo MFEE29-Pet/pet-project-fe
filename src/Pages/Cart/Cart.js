@@ -7,7 +7,7 @@ import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車�
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
-import photoJsonData from './photoTest.json';
+// import photoJsonData from './photoTest.json';
 // import { es } from 'date-fns/locale';
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ function Cart() {
   const [productChecked, setProductChecked] = useState(true);
 
   // 結帳用預約攝影價格
-  const [newPhotoPrice, setNewPhotoPrice] = useState(0);
+  // const [newPhotoPrice, setNewPhotoPrice] = useState(0);
 
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
@@ -64,7 +64,7 @@ function Cart() {
   // 真實串接資料來源
   const myCart = localStorage.getItem('cartItem');
   const myProduct = JSON.parse(myCart).productCart;
-  console.log(myCart.productCart);
+  // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
   // photoCart:[]
   // productCart:
@@ -78,8 +78,9 @@ function Cart() {
     setMyData(myProduct);
     // setMyData(jsonData);
 
-    setMyPhotoData(photoJsonData);
-    setNewPhotoPrice(photoJsonData[0].photo_price);
+    setMyPhotoData(cartItem.photoCart);
+    console.log(myPhotoData[0].price);
+    // setNewPhotoPrice(myPhotoData[0].price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -92,13 +93,14 @@ function Cart() {
     });
     setAmount(origiAmount);
 
-    // 來源資料原始小計金額map
+    // 來源資料商品原始小計金額map
     const origiTotalPrice = myProduct.map((v, i) => v.member_price * v.amount);
     setTotalPrice(origiTotalPrice);
 
-    // 所有小計加總後要結帳之總額
+    // 所有商品小計加總後要結帳之總額
     setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
   };
+
 
   // 一進來頁面就載入來源資料
   useEffect(() => {
@@ -106,14 +108,25 @@ function Cart() {
     getData();
   }, []);
 
+  
+  const photo = JSON.parse(localStorage.getItem('cartItem'));
+  const aaa = photo.photo_totalPrice + photo.totalPrice;
+
+  console.log(aaa);
+
   // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
     const remove = myPhotoData.filter((v, i) => {
-      return v.photo_id !== item;
+      return v.sid !== item;
     });
 
+    const newBB = { ...photo, photo_totalPrice: 0 };
+    localStorage.setItem('cartItem', JSON.stringify(newBB));
+
+    const newCC = { ...photo, photoCart: [] };
+    localStorage.setItem('cartItem', JSON.stringify(newCC));
     setMyPhotoData(remove);
-    setNewPhotoPrice(0);
+    // setNewPhotoPrice(0);
   };
 
   // 刪除商品資料功能
@@ -223,21 +236,19 @@ function Cart() {
                     <td className="eason_table_img">
                       <img
                         style={{ verticalAlign: 'middle' }}
-                        src="./imgs/person_2.jpeg"
+                        src={`./images/test/${v.img}`}
                         alt=""
                         width="100px"
                       />
                     </td>
-                    <td>{v.photographer}</td>
+                    <td>{v.name}</td>
                     <td>{v.date}</td>
-                    <td>{v.dayparts}</td>
-                    <td className="eason_table_price">{v.photo_price}</td>
+                    <td>{v.time ? '早上' : '晚上'}</td>
+                    <td className="eason_table_price">{v.price}</td>
                     <td>
                       <span
                         onClick={() => {
-                          removePhotoData(v.photo_id);
-
-                          // localStorage.removeItem('cartItem');
+                          removePhotoData(v.sid);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
@@ -390,7 +401,7 @@ function Cart() {
                           let totalAmount = 0;
                           let totalPrice = 0;
 
-                          newProductList.forEach((v,i) => {
+                          newProductList.forEach((v, i) => {
                             totalAmount += v.amount;
                             totalPrice += v.amount * v.member_price;
                           });
@@ -472,9 +483,9 @@ function Cart() {
                   <tr>
                     <th className="text_main_dark_color2">商品金額</th>
                     <td>
-                      ${' '}
-                      {(productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? newPhotoPrice : 0)}
+                      {aaa}
+                      {/* {(productChecked ? newTotalPrice : 0) +
+                        (photoChecked ? newPhotoPrice : 0)} */}
                     </td>
                   </tr>
 
@@ -491,12 +502,12 @@ function Cart() {
                   <tr>
                     <th className="text_main_dark_color2">付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
-                      ${' '}
-                      {Math.ceil(
+                      ${aaa * 0.9}
+                      {/* {Math.ceil(
                         ((productChecked ? newTotalPrice : 0) +
                           (photoChecked ? newPhotoPrice : 0)) *
                           0.9
-                      )}
+                      )} */}
                     </td>
                   </tr>
                 </table>
