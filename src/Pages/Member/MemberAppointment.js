@@ -46,11 +46,11 @@ function MemberAppointment() {
           掛號預約紀錄
         </h2>
         {clinicData.map((e, i) => {
-          const { address, code, mobile, clinic_name, date, finish, sid } = e;
+          const { address, code, mobile, clinic_name, date, sid } = e;
           return (
             <div className="Hospital-all" key={i}>
               <div className="Hospital-order">
-                {finish ? (
+                {dayjs(date).valueOf() < +new Date() ? (
                   <>
                     <h3>已完成</h3>
                   </>

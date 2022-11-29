@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { textAlign } from '@mui/system';
 import AuthContext from '../../contexts/AuthContext';
 
 function MemberProfileUp() {
@@ -207,8 +206,11 @@ function MemberProfileUp() {
     fd.append('sid', memberID.sid);
 
     const { data } = await axios.put('http://localhost:6001/member/edit', fd);
-    console.log(data);
-    
+
+    if (data.success) {
+      alert('修改成功');
+    }
+
     if (selectedFile) {
       setMyAuth({ ...myAuth, member_photo: data.img });
 
