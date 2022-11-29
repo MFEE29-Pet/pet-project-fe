@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import AuthContext from '../../contexts/AuthContext';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 function MemberProfileUp() {
   const [name, setName] = useState('');
@@ -208,7 +212,10 @@ function MemberProfileUp() {
     const { data } = await axios.put('http://localhost:6001/member/edit', fd);
 
     if (data.success) {
-      alert('修改成功');
+      MySwal.fire({
+        title: <strong>成功修改</strong>,
+        icon: 'success',
+      });
     }
 
     if (selectedFile) {
