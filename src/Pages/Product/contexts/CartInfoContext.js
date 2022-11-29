@@ -28,7 +28,7 @@ export const CartInfoContextProvider = function ({ children }) {
   // 加入購物車
   // 須帶入參數 data :obj 和 amount(要加的數量),  data要用到的value所對應key值 sid,name,price,img
   const handleAddCart = async (data, amount) => {
-    let index = cartItem.productCart.findIndex((e) => e.p_sid === data.sid);
+    let index = cartItem.productCart.findIndex((e) => e.sid === data.sid);
     // console.log(index);
     // 非重複商品
     if (index === -1) {
@@ -37,10 +37,10 @@ export const CartInfoContextProvider = function ({ children }) {
         productCart: [
           ...cartItem.productCart,
           {
-            p_sid: data.sid,
-            p_name: data.name,
-            price: data.member_price,
-            image: data.img,
+            sid: data.sid,
+            name: data.name,
+            member_price: data.member_price,
+            img: data.img,
             amount: amount,
           },
         ],
@@ -71,7 +71,7 @@ export const CartInfoContextProvider = function ({ children }) {
   // 購物車數量 -1 , 數量等於0會清除, 小於0會跳alert
   // 須帶入參數 data :obj ,  data要用到的value所對應key值 sid,amount,price
   const handleReduce = async (data) => {
-    let index = cartItem.productCart.findIndex((e) => e.p_sid === data.sid);
+    let index = cartItem.productCart.findIndex((e) => e.sid === data.sid);
     // console.log(index);
     if (index === -1) {
       alert('錯誤，無此商品');

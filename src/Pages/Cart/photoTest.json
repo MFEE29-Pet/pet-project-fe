@@ -1,7 +1,9 @@
 [
   {
-    "id": 1,
+    "photo_id": 1,
     "photographer": "柏延",
+    "date":"2022/11/11",
+    "dayparts":"下午",
     "photo_price": 980
   }
 ]

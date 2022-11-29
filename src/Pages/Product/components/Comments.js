@@ -6,7 +6,7 @@ function Comments({ comments }) {
         className="score-reply"
         style={{ height: '355px', overflow: 'auto' }}
       >
-        {comments.map((e, i) => {
+        {comments && comments.map((e, i) => {
           return (
             <div
               className="reply-card"
