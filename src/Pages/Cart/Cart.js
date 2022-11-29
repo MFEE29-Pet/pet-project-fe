@@ -178,7 +178,7 @@ function Cart() {
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
         <div className="eason_section_1">
           <div className="eason_list_title ">
-            {cartItem.photoCart && cartItem.photoCart.length !== 0 && (
+            {myPhotoData && myPhotoData.length !== 0 && (
               <>
                 <h2 className="text_main_dark_color2">攝影預約明細</h2>
                 <div className="eason_product_check">
@@ -202,7 +202,7 @@ function Cart() {
             )}
           </div>
           <table className="eason_list_table">
-            {cartItem.photoCart && cartItem.photoCart.length !== 0 && (
+            {myPhotoData && myPhotoData.length !== 0 && (
               <thead>
                 <tr>
                   <th>頭像</th>
@@ -217,7 +217,7 @@ function Cart() {
 
             <tbody>
               {/* 預約攝影資料引入------------------------------------------------------------------- */}
-              {cartItem.photoCart.map((v, i) => {
+              {myPhotoData.map((v, i) => {
                 return (
                   <tr key={v.id}>
                     <td className="eason_table_img">
