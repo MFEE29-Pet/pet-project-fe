@@ -167,13 +167,21 @@ function ProductDetail() {
           {/* <!-- search-bar & pro-loved --> */}
           <div className="filter-s-p" style={{ justifyContent: 'flex-end' }}>
             <div className="pro-loved-list">
-              <Link
-                to="/member/memberProductCollect"
+              <div
+                style={{ display: 'flex' }}
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}
                 onMouseLeave={() => {
                   setLovedHover(!lovedHover);
+                }}
+                onClick={() => {
+                  if (!JSON.stringify(localStorage.getItem('auth'))) {
+                    navigate('/member/memberProductCollect');
+                  } else {
+                    alert('請先登入');
+                    navigate('/member/memberLogIn');
+                  }
                 }}
               >
                 <i
@@ -182,7 +190,7 @@ function ProductDetail() {
                   } fa-heart`}
                 ></i>
                 <p style={{ textAlign: 'end' }}>我的收藏</p>
-              </Link>
+              </div>
             </div>
           </div>
 

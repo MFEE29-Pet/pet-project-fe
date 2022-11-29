@@ -220,7 +220,7 @@ function Product() {
         setSalesType={setSalesType}
         salesType={salesType}
       />
-      <Socket />
+      {/* <Socket /> */}
       <GoToTop />
     </>
   );
