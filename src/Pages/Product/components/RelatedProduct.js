@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
-// import ShowC from './Carousel/ShowC';
+import ShowC from './Carousel/ShowC';
 
 const ROW = styled.div`
   display: flex;

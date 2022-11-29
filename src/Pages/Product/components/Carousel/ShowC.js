@@ -2,7 +2,7 @@ import './showC.css';
 import { v4 as uuidv4 } from 'uuid';
 import Card from './Card';
 import Carousel from './Carousel';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 function ShowC({ relatedProducts }) {
   let cards1 = [
@@ -38,6 +38,7 @@ function ShowC({ relatedProducts }) {
     },
   ];
   const [cards2, setCards2] = useState([]);
+  const carouselRef = useRef();
 
   const imgRelated = relatedProducts.map((e, i) => {
     return {
@@ -80,8 +81,9 @@ function ShowC({ relatedProducts }) {
   //   });
   // };
   return (
-    <div className="">
+    <div className="" ref={carouselRef}>
       <Carousel
+        relatedProducts={relatedProducts}
         cards={cards}
         height="500px"
         width="30%"

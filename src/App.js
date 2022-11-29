@@ -37,6 +37,7 @@ import MemberHistoryProduct from './Pages/Member/MemberHistoryProduct';
 import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
 import MemberProfileUp from './Pages/Member/MemberProfileUp';
 import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
+import Socket from './Pages/Product/components/Socket/Socket';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -106,15 +107,11 @@ function App() {
             <Route path="product" element={<Product />} />
             <Route path="product/detail/" element={<ProductDetail />} />
             <Route path="product/photographers/" element={<Photographers />} />
-            <Route
-              path="product/photographers/form"
-              element={<PhotographerForm />}
-            />
-
             <Route path="product/photographers/" element={<PhotoReservePage />}>
               <Route path="reserve" element={<PhotoReserve />} />
               <Route path="check" element={<PhotoCheck />} />
             </Route>
+            <Route path="chat" element={<Socket />} />
 
             <Route path="cart" element={<Cart />} />
             <Route path="clinic" element={<Clinic />} />
@@ -130,22 +127,25 @@ function App() {
 
             <Route path="member" element={<Member />}>
               <Route path="memberCenter" element={<MemberLevel />} />
-              <Route path="memberPet" element={<MemberPetAdd/>} />
-              <Route path="memberArticle" element={<MemberArticleCollect/>} />
+              <Route path="memberPet" element={<MemberPetAdd />} />
+              <Route path="memberArticle" element={<MemberArticleCollect />} />
               <Route
                 path="memberProductCollect"
-                element={<MemberProductCollect/>}
+                element={<MemberProductCollect />}
               />
-              <Route path="memberClinic" element={<MemberAppointment/>} />
+              <Route path="memberClinic" element={<MemberAppointment />} />
               <Route
                 path="memberProductHistory"
-                element={<MemberHistoryProduct/>}
+                element={<MemberHistoryProduct />}
               />
-              <Route path="memberPhotoHistory" element={<MemberHistoryCamera/>} />
-              <Route path="memberDataRevise" element={<MemberProfileUp/>} />
+              <Route
+                path="memberPhotoHistory"
+                element={<MemberHistoryCamera />}
+              />
+              <Route path="memberDataRevise" element={<MemberProfileUp />} />
               <Route
                 path="memberPasswordRevise"
-                element={<MemberForgrtPassword/>}
+                element={<MemberForgrtPassword />}
               />
             </Route>
             <Route path="member/memberShipAdd" element={<MemberSing />} />

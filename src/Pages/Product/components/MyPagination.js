@@ -57,7 +57,7 @@ export default function MyPagination({ totalPages, page, setPage }) {
           )}
           page={page}
           onChange={(e, p) => {
-            console.log({ p });
+            // console.log({ p });
             setPage(p);
             if (p > totalPages) {
               return navigate(

@@ -1,5 +1,5 @@
 import Carousel from 'react-spring-3d-carousel';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { config } from 'react-spring';
 import { useLocation } from 'react-router';
 
@@ -14,18 +14,18 @@ export default function Carroussel(props) {
   const [cards] = useState(table);
   const location = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setOffsetRadius(props.offset);
     setShowArrows(props.showArrows);
   }, [props.offset, props.showArrows]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     setOffsetRadius(props.offset);
     setShowArrows(props.showArrows);
-  }, []);
-  useEffect(() => {
-    setOffsetRadius(props.offset);
-    setShowArrows(props.showArrows);
-  }, [location]);
+  }, [props.relatedProducts]);
+  // useLayoutEffect(() => {
+  //   setOffsetRadius(props.offset);
+  //   setShowArrows(props.showArrows);
+  // }, [location]);
 
   return (
     <div
