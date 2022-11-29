@@ -81,7 +81,7 @@ const ReserveForm = styled.div`
         margin-left: 30px;
       }
     }
-    .address {
+    .form_address {
       display: flex;
       align-items: center;
       justify-content: start;
@@ -670,7 +670,14 @@ function PhotoReserve() {
               {isFilePicked ? (
                 <img src={preview} alt="" style={{ width: '100%' }} />
               ) : (
-                <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <i className="fa-regular fa-upload"></i>
                   <p>上傳圖片</p>
                 </div>

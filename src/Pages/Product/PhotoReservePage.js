@@ -55,7 +55,7 @@ const ReserveForm = styled.div`
   }
   .content_box {
     display: flex;
-    .address {
+    .form_address {
       display: flex;
       margin: 20px 0;
       align-items: center;
@@ -162,7 +162,7 @@ function PhotoReservePage() {
       <ReserveForm>
         <h1 className="text_main_dark_color2">預約寵物攝影</h1>
         <div className="content_box">
-          <div className="address">
+          <div className="form_address">
             <i
               className="fa-solid fa-camera text_main_light_color1"
               style={{ fontSize: '20px' }}

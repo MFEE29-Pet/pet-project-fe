@@ -5,6 +5,7 @@ import Index from './Pages/Index/Index';
 import Clinic from './Pages/Clinic/Clinic';
 import ForumList from './Pages/Forum/ForumList';
 import ForumDetail from './Pages/Forum/ForumDetail';
+import ForumPost from './Pages/Forum/ForumPost';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
@@ -124,6 +125,7 @@ function App() {
 
             <Route path="forum" element={<ForumList />} />
             <Route path="forum/detail" element={<ForumDetail />} />
+            <Route path="forum/post" element={<ForumPost />} />
 
             <Route path="member" element={<Member />}>
               <Route path="memberCenter" element={<MemberLevel />} />

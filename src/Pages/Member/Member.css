@@ -205,11 +205,6 @@ span {
   cursor: pointer;
 }
 
-
-.right {
-  color: #966134;
-}
-
 /* --------------------------------------------------------------------- */
 /* MemberLevel */
 .degreeWrap {
@@ -1025,6 +1020,7 @@ span {
   display: flex;
   justify-content: center;
 }
+
 .enter-M {
   width: 45%;
   display: flex;

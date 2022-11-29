@@ -54,8 +54,8 @@ function MemberLogIn() {
     if (data.success) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
       //登入後跳轉換面
-      setMyAuth({ ...data.auth, authorised: true });
-      navigate('/member');
+      setMyAuth({ ...data.auth, authorized: true });
+      navigate('/member/memberCenter');
     } else {
       localStorage.removeItem('auth');
       alert('登入失敗');
@@ -81,6 +81,11 @@ function MemberLogIn() {
               <input
                 type="text"
                 name="username"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
                 value={user.username}
                 onChange={(e) => {
                   handle(e);
@@ -105,6 +110,11 @@ function MemberLogIn() {
                   onChange={(e) => {
                     handle(e);
                   }}
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
+                  }}
                 />
               ) : (
                 <input
@@ -113,6 +123,11 @@ function MemberLogIn() {
                   value={user.password}
                   onChange={(e) => {
                     handle(e);
+                  }}
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    backgroundColor: 'transparent',
                   }}
                 />
               )}

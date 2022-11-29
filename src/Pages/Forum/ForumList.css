@@ -7,7 +7,11 @@
   width: 1200px;
   margin: auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+.forum_btnpost_select{
+  display: flex;
 }
 
 .forum_list_button_wrap{

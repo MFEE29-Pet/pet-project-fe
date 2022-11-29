@@ -60,7 +60,7 @@ const PhotographersForm = styled.div`
   }
   .content_box {
     display: flex;
-    .address {
+    .form_address {
       display: flex;
       margin: 20px 0;
       align-items: center;
@@ -153,7 +153,7 @@ const PhotographersForm = styled.div`
         margin-left: 30px;
       }
     }
-    .address {
+    .form_address {
       label {
         font-weight: bold;
         margin: 0 80px 0 30px;
@@ -497,7 +497,7 @@ function PhotographerForm() {
                 <label htmlFor="mobile">手機</label>
                 <input type="text" id="mobile" />
               </div>
-              <div className="address">
+              <div className="form_address">
                 <label htmlFor="address">地址</label>
                 <FormControl
                   sx={{ m: 1, minWidth: 120 }}
@@ -660,102 +660,6 @@ function PhotographerForm() {
             </div>
           </form>
         </PhotographersForm>
-        {/* <form id="reservation" name="reservation" action=""> */}
-        {/* <!-- 預約時段 --> */}
-        {/* <div className="reserve-time">
-              <h2>預約時間</h2>
-              <label htmlFor="">日期時段</label>
-              <input type="date" name="date" id="date" />
-              <select name="time" id="time">
-                <option value="A">上午</option>
-                <option value="B">下午</option>
-              </select>
-            </div> */}
-
-        {/* <!-- 會員資料 --> */}
-        {/* <div className="member-data">
-              <h2>飼主資料</h2>
-              <div className="name">
-                <label htmlFor="name">姓名</label>
-                <input type="text" id="name" />
-              </div>
-              <div className="email">
-                <label htmlFor="email">信箱</label>
-                <input type="email" id="email" />
-              </div>
-              <div className="mobile">
-                <label htmlFor="mobile">手機</label>
-                <input type="text" id="mobile" />
-              </div>
-              <div className="address">
-                <label htmlFor="address">地址</label>
-                <select type="text" id="address">
-                  <option value="taipei">台北市</option>
-                </select>
-                <select type="text" id="address">
-                  <option value="1">大安區</option>
-                </select>
-                <input type="text" name="road" id="address" />
-              </div>
-            </div> */}
-
-        {/* <!-- 寵物資料 --> */}
-        {/* <div className="pet-data">
-              <h2>飼主資料</h2>
-              <div className="pet-variety"> */}
-        {/* <!-- 寵物種類 --> */}
-        {/* <label htmlFor="variety">種類</label>
-                <input type="radio" name="variety" value="1" />
-                {'狗'}
-                <input type="radio" name="variety" value="2" />
-                {'貓'}
-                <input type="radio" name="variety" value="3" />
-                {'其他'}
-              </div> */}
-        {/* <!-- 寵物名稱 --> */}
-        {/* <div className="pet-name">
-                <label htmlFor="pet-name">名稱</label>
-                <input type="tezt" id="pet-name" />
-              </div> */}
-        {/* <!-- 寵物年紀 --> */}
-        {/* <div className="pet-age">
-                <label htmlFor="pet-age">年紀</label>
-                <input type="number" id="pet-age" />
-              </div> */}
-        {/* <!-- 寵物性別 --> */}
-        {/* <div className="pet-gender">
-                <label htmlFor="pet-gender">性別</label>
-                <input type="radio" name="pet-gender" id="pet-gender" />公
-                <input type="radio" name="pet-gender" id="pet-gender" />母
-              </div>
-              <div className="pet-image">
-                <label htmlFor="pet-image">上傳圖片</label>
-                <input type="file" name="image" multiple hidden />
-                <div
-                  className="img-file-wrap"
-                  onClick={document.reservation.image.click()}
-                >
-                  <i className="fa-regular fa-upload"></i>
-                  <p>上傳圖片</p>
-                </div>
-                <div
-                  className="img-file-wrap"
-                  onClick={document.reservation.image.click()}
-                >
-                  <i className="fa-regular fa-upload"></i>
-                  <p>上傳圖片</p>
-                </div>
-                <div
-                  className="img-file-wrap"
-                  onClick={document.reservation.image.click()}
-                >
-                  <i className="fa-regular fa-upload"></i>
-                  <p>上傳圖片</p>
-                </div>
-              </div>
-            </div>
-          </form> */}
-        {/* </div> */}
       </main>
 
       <div className="go-to-top">
