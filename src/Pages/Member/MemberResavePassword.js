@@ -1,6 +1,6 @@
 import React from 'react';
 import './Member.css';
-function MemberForgrtPassword() {
+function MemberResavePassword() {
   return (
     <div className="pagePassword">
       <div className="enter-A">
@@ -52,4 +52,4 @@ function MemberForgrtPassword() {
   );
 }
 
-export default MemberForgrtPassword;
+export default MemberResavePassword;

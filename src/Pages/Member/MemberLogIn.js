@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; //登入後跳轉換面
 import './MemberLogIn.css';
 import AuthContext from '../../contexts/AuthContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import styled from 'styled-components';
-import jwt_decode from 'jwt-decode';
-import { googleLogin } from '../../config';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const Memberroutes = [
   {
@@ -48,55 +50,28 @@ function MemberLogIn() {
     //做淺拷貝重新把值取代回去
   };
   const login = async () => {
-    const { data } = await axios.post(
-      '/member/login-api',
-      user
-    );
+    const { data } = await axios.post('/member/login-api', user);
     console.log(data);
+
     if (data.success) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
       //登入後跳轉換面
       setMyAuth({ ...data.auth, authorized: true });
+      MySwal.fire({
+        title: <strong>成功登入</strong>,
+        text: '歡迎回來PetBen',
+        icon: 'success',
+      });
       navigate('/member/memberCenter');
     } else {
       localStorage.removeItem('auth');
-      alert('登入失敗');
+      Swal.fire({
+        title: '<strong>登入失敗</strong>',
+        text: '帳號密碼錯誤',
+        icon: 'info',
+      });
     }
   };
-  // const [userGoogle, setUserGoogle] = useState(null);
-
-  // useEffect(() => {
-  //   const getUser = () => {
-  //     const res = axios.get('http://localhost:6001/member/login/success');
-  //     console.log(res);
-  //   };
-
-  //   getUser();
-  // }, []);
-
-  // console.log(userGoogle);
-
-  // function handleCredentialResponse(response) {
-  //   console.log('Encoded JWT ID token: ' + response.credential);
-  //   let decoded = jwt_decode(response.credential);
-  //   console.log(decoded);
-  // }
-
-  // useEffect(() => {
-  //   const google = window.google;
-  //   google.accounts.id.initialize({
-  //     client_id: googleLogin,
-  //     callback: handleCredentialResponse,
-  //   });
-  //   google.accounts.id.renderButton(
-  //     document.getElementById('buttonDiv'),
-  //     { theme: 'outline', size: 'large' } // customization attributes
-  //   );
-  // }, []);
-
-  // const google = () => {
-  //   window.open('http://localhost:6001/member/google', '_self');
-  // };
 
   return (
     <LoginPage>
@@ -199,13 +174,13 @@ function MemberLogIn() {
         </button>
         <div className="login_bottom">
           <div>
-            <Link to="/" style={{ color: '#252525' }}>
+            <Link to="/member/memberForgetPassword" style={{ color: '#252525' }}>
               忘記密碼
             </Link>
           </div>
           <i className="fa-regular fa-pipe"></i>
           <div>
-            <Link className="text_main_light_color1" to="/memberShipAdd">
+            <Link className="text_main_light_color1" to="/member/memberShipAdd">
               立即註冊
             </Link>
           </div>
