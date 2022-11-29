@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import ProductLine from './components/ProductLine';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import GoToTop from './components/GoToTop';
-
+import Socket from './components/Socket/Socket';
 
 const PAGE = styled.div`
   ul {
@@ -220,6 +220,7 @@ function Product() {
         setSalesType={setSalesType}
         salesType={salesType}
       />
+      <Socket />
       <GoToTop />
     </>
   );
