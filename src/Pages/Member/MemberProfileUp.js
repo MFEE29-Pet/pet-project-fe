@@ -203,13 +203,23 @@ function MemberProfileUp() {
     fd.append('address', address);
     fd.append('birthday', d);
     fd.append('gender', gender);
-    fd.append('member_photo', selectedFile);
+    fd.append('member_photo', selectedFile || '');
     fd.append('sid', memberID.sid);
 
     const { data } = await axios.put('http://localhost:6001/member/edit', fd);
     console.log(data);
+    
+    if (selectedFile) {
+      setMyAuth({ ...myAuth, member_photo: data.img });
 
-    setMyAuth({ ...myAuth, member_photo: data.img });
+      const authOld = JSON.parse(localStorage.getItem('auth'));
+
+      const newAuth = { ...authOld, member_photo: data.img };
+
+      localStorage.setItem('auth', JSON.stringify(newAuth));
+
+      console.log(newAuth);
+    }
   };
 
   return (

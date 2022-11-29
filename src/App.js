@@ -91,67 +91,81 @@ function App() {
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <AllContextProviders>
-          {/* <CartProvider> */}
-          <Navbar />
-          <i
-            className={`fa-light fa-shield-cat text_main_light_color1`}
-            style={{ opacity: 0, position: 'absolute' }}
-            // onClick={handleClick}
-            // id="switch_button"
-          ></i>
-          <section style={{ height: '100px' }}></section>
-          <Routes>
-            <Route path="/" element={<Index />} />
+          
+            {/* <CartProvider> */}
+            <Navbar />
+            <i
+              className={`fa-light fa-shield-cat text_main_light_color1`}
+              style={{ opacity: 0, position: 'absolute' }}
+              // onClick={handleClick}
+              // id="switch_button"
+            ></i>
+            <section style={{ height: '100px' }}></section>
+            <Routes>
+              <Route path="/" element={<Index />} />
 
-            <Route path="product" element={<Product />} />
-            <Route path="product/detail/" element={<ProductDetail />} />
-            <Route path="product/photographers/" element={<Photographers />} />
-            <Route
-              path="product/photographers/form"
-              element={<PhotographerForm />}
-            />
-
-            <Route path="product/photographers/" element={<PhotoReservePage />}>
-              <Route path="reserve" element={<PhotoReserve />} />
-              <Route path="check" element={<PhotoCheck />} />
-            </Route>
-
-            <Route path="cart" element={<Cart />} />
-            <Route path="clinic" element={<Clinic />} />
-            <Route path="clinic/pay" element={<Pay />} />
-            <Route path="clinic/payresult" element={<PayResult />} />
-            <Route path="clinic" element={<ReservePage />}>
-              <Route path="reserve" element={<Reserve />} />
-              <Route path="check" element={<Check />} />
-            </Route>
-
-            <Route path="forum" element={<ForumList />} />
-            <Route path="forum/detail" element={<ForumDetail />} />
-
-            <Route path="member" element={<Member />}>
-              <Route path="memberCenter" element={<MemberLevel />} />
-              <Route path="memberPet" element={<MemberPetAdd/>} />
-              <Route path="memberArticle" element={<MemberArticleCollect/>} />
+              <Route path="product" element={<Product />} />
+              <Route path="product/detail/" element={<ProductDetail />} />
               <Route
-                path="memberProductCollect"
-                element={<MemberProductCollect/>}
+                path="product/photographers/"
+                element={<Photographers />}
               />
-              <Route path="memberClinic" element={<MemberAppointment/>} />
               <Route
-                path="memberProductHistory"
-                element={<MemberHistoryProduct/>}
+                path="product/photographers/form"
+                element={<PhotographerForm />}
               />
-              <Route path="memberPhotoHistory" element={<MemberHistoryCamera/>} />
-              <Route path="memberDataRevise" element={<MemberProfileUp/>} />
+
               <Route
-                path="memberPasswordRevise"
-                element={<MemberForgrtPassword/>}
-              />
-            </Route>
-            <Route path="member/memberShipAdd" element={<MemberSing />} />
-            <Route path="member/memberLogIn" element={<MemberLogIn />} />
-          </Routes>
-          <Footer />
+                path="product/photographers/"
+                element={<PhotoReservePage />}
+              >
+                <Route path="reserve" element={<PhotoReserve />} />
+                <Route path="check" element={<PhotoCheck />} />
+              </Route>
+
+              <Route path="cart" element={<Cart />} />
+              <Route path="clinic" element={<Clinic />} />
+              <Route path="clinic/pay" element={<Pay />} />
+              <Route path="clinic/payresult" element={<PayResult />} />
+              <Route path="clinic" element={<ReservePage />}>
+                <Route path="reserve" element={<Reserve />} />
+                <Route path="check" element={<Check />} />
+              </Route>
+
+              <Route path="forum" element={<ForumList />} />
+              <Route path="forum/detail" element={<ForumDetail />} />
+
+              <Route path="member" element={<Member />}>
+                <Route path="memberCenter" element={<MemberLevel />} />
+                <Route path="memberPet" element={<MemberPetAdd />} />
+                <Route
+                  path="memberArticle"
+                  element={<MemberArticleCollect />}
+                />
+                <Route
+                  path="memberProductCollect"
+                  element={<MemberProductCollect />}
+                />
+                <Route path="memberClinic" element={<MemberAppointment />} />
+                <Route
+                  path="memberProductHistory"
+                  element={<MemberHistoryProduct />}
+                />
+                <Route
+                  path="memberPhotoHistory"
+                  element={<MemberHistoryCamera />}
+                />
+                <Route path="memberDataRevise" element={<MemberProfileUp />} />
+                <Route
+                  path="memberPasswordRevise"
+                  element={<MemberForgrtPassword />}
+                />
+              </Route>
+              <Route path="member/memberShipAdd" element={<MemberSing />} />
+              <Route path="member/memberLogIn" element={<MemberLogIn />} />
+            </Routes>
+            <Footer />
+   
         </AllContextProviders>
       </BrowserRouter>
       {/* <Circle size="sm" ref={addCircleRef} delay={0} />

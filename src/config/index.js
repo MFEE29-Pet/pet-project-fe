@@ -5,3 +5,5 @@ export const appConfig = {
 }
 
 export const imgUrl = appConfig.debug ? appConfig.devUrl : appConfig.prodUrl
+
+export const googleLogin = '689283504832-mgsgcs6cu9vphmmnbkmck6oe5mfscun1.apps.googleusercontent.com'

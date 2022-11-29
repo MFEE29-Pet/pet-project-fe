@@ -193,11 +193,11 @@ function MemberSing() {
     fd.append('area', user.area);
     fd.append('address', user.address);
     fd.append('date', d);
-    fd.append('member_photo', selectedFile);
+    fd.append('member_photo', selectedFile || '');
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
-    const {send} = await axios.post('http://localhost:6001/member/send',fd)
+    const { send } = await axios.post('http://localhost:6001/member/send', fd);
     console.log(data);
     console.log(send);
     if (data.success) {
@@ -501,7 +501,11 @@ function MemberSing() {
                 {isFilePicked ? (
                   <img src={preview} alt="" style={{ width: '100%' }} />
                 ) : (
-                  <i className="fa-thin thin fa-user"></i>
+                  <img
+                    src="/images/bone.png"
+                    alt=""
+                    style={{ width: '100%' }}
+                  />
                 )}
               </div>
               <div

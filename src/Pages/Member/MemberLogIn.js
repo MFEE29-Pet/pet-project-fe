@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; //登入後跳轉換面
 import './MemberLogIn.css';
 import AuthContext from '../../contexts/AuthContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import styled from 'styled-components';
+import jwt_decode from 'jwt-decode';
+import { googleLogin } from '../../config';
 
 const Memberroutes = [
   {
@@ -61,6 +63,41 @@ function MemberLogIn() {
       alert('登入失敗');
     }
   };
+  const [userGoogle, setUserGoogle] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      const res = axios.get('http://localhost:6001/member/login/success');
+      console.log(res);
+    };
+
+    getUser();
+  }, []);
+
+  console.log(userGoogle);
+
+  // function handleCredentialResponse(response) {
+  //   console.log('Encoded JWT ID token: ' + response.credential);
+  //   let decoded = jwt_decode(response.credential);
+  //   console.log(decoded);
+  // }
+
+  // useEffect(() => {
+  //   const google = window.google;
+  //   google.accounts.id.initialize({
+  //     client_id: googleLogin,
+  //     callback: handleCredentialResponse,
+  //   });
+  //   google.accounts.id.renderButton(
+  //     document.getElementById('buttonDiv'),
+  //     { theme: 'outline', size: 'large' } // customization attributes
+  //   );
+  // }, []);
+
+  const google = () => {
+    window.open('http://localhost:6001/member/google', '_self');
+  };
+
   return (
     <LoginPage>
       <BreadcrumbBox>
@@ -172,6 +209,8 @@ function MemberLogIn() {
               立即註冊
             </Link>
           </div>
+          {/* <div id="buttonDiv"></div> */}
+          <button onClick={google}>酷狗登入</button>
         </div>
       </div>
     </LoginPage>
