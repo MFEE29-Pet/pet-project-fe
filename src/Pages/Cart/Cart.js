@@ -1,5 +1,5 @@
 // 來源引用區-------------------------------------------------------------------------------------
-import { useState, useContext, useEffect, memo } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
@@ -8,7 +8,7 @@ import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車�
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 import photoJsonData from './photoTest.json';
-import { es } from 'date-fns/locale';
+// import { es } from 'date-fns/locale';
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -126,11 +126,11 @@ function Cart() {
   };
 
   // 商品加減清除Context
-  const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
+  const { cartItem, setCartItem, handleAddCart, handleReduce } =
     useContext(CartInfoContext);
 
   // localStorage index
-  const index = cartItem.productCart.findIndex((e) => e.sid === myData.sid);
+  // const index = cartItem.productCart.findIndex((e) => e.sid === myData.sid);
 
   return (
     <>
@@ -390,7 +390,7 @@ function Cart() {
                           let totalAmount = 0;
                           let totalPrice = 0;
 
-                          newProductList.forEach((v) => {
+                          newProductList.forEach((v,i) => {
                             totalAmount += v.amount;
                             totalPrice += v.amount * v.member_price;
                           });
