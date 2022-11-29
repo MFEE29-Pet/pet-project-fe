@@ -191,7 +191,7 @@ function MemberProfileUp() {
   }, [city]);
 
   const saveData = async () => {
-    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY/MM/DD');
+    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY-MM-DD');
 
     const fd = new FormData();
 

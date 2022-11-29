@@ -193,13 +193,13 @@ function MemberSing() {
     fd.append('area', user.area);
     fd.append('address', user.address);
     fd.append('date', d);
-    fd.append('member_photo', selectedFile || '');
+    fd.append('member_photo', selectedFile || 'noname.png');
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
-    const { send } = await axios.post('http://localhost:6001/member/send', fd);
+    // const { send } = await axios.post('http://localhost:6001/member/send', fd);
     console.log(data);
-    console.log(send);
+    // console.log(send);
     if (data.success) {
       alert('註冊成功');
       navigate('/member/memberLogIn');
@@ -502,9 +502,9 @@ function MemberSing() {
                   <img src={preview} alt="" style={{ width: '100%' }} />
                 ) : (
                   <img
-                    src="/images/bone.png"
+                    src="/images/noname.png"
                     alt=""
-                    style={{ width: '100%' }}
+                    style={{ height: '100%',objectFit:'contain' }}
                   />
                 )}
               </div>

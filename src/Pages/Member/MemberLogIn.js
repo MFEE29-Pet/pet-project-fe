@@ -49,7 +49,7 @@ function MemberLogIn() {
   };
   const login = async () => {
     const { data } = await axios.post(
-      'http://localhost:6001/member/login-api',
+      '/member/login-api',
       user
     );
     console.log(data);
@@ -63,18 +63,18 @@ function MemberLogIn() {
       alert('登入失敗');
     }
   };
-  const [userGoogle, setUserGoogle] = useState(null);
+  // const [userGoogle, setUserGoogle] = useState(null);
 
-  useEffect(() => {
-    const getUser = () => {
-      const res = axios.get('http://localhost:6001/member/login/success');
-      console.log(res);
-    };
+  // useEffect(() => {
+  //   const getUser = () => {
+  //     const res = axios.get('http://localhost:6001/member/login/success');
+  //     console.log(res);
+  //   };
 
-    getUser();
-  }, []);
+  //   getUser();
+  // }, []);
 
-  console.log(userGoogle);
+  // console.log(userGoogle);
 
   // function handleCredentialResponse(response) {
   //   console.log('Encoded JWT ID token: ' + response.credential);
@@ -94,9 +94,9 @@ function MemberLogIn() {
   //   );
   // }, []);
 
-  const google = () => {
-    window.open('http://localhost:6001/member/google', '_self');
-  };
+  // const google = () => {
+  //   window.open('http://localhost:6001/member/google', '_self');
+  // };
 
   return (
     <LoginPage>
@@ -210,7 +210,7 @@ function MemberLogIn() {
             </Link>
           </div>
           {/* <div id="buttonDiv"></div> */}
-          <button onClick={google}>酷狗登入</button>
+          <button>酷狗登入</button>
         </div>
       </div>
     </LoginPage>

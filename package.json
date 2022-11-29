@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/utils": "^4.11.3",
     "@mui/icons-material": "^5.10.14",
@@ -56,5 +57,6 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.0"
-  }
+  },
+  "proxy":"http://localhost:6001"
 }
