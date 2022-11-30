@@ -8,7 +8,6 @@ import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車�
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 // import photoJsonData from './photoTest.json';
-// import { es } from 'date-fns/locale';
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -45,9 +44,6 @@ function Cart() {
   const [photoChecked, setPhotoChecked] = useState(true);
   const [productChecked, setProductChecked] = useState(true);
 
-  // 結帳用預約攝影價格
-  // const [newPhotoPrice, setNewPhotoPrice] = useState(0);
-
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
 
@@ -58,15 +54,22 @@ function Cart() {
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
   // 商品訂單明細 取資料上狀態為了要刪除時使用
-  const [myData, setMyData] = useState([{}]);
+  const [myProductData, setMyProductData] = useState([{}]);
   const [myPhotoData, setMyPhotoData] = useState([{}]);
 
   // 真實串接 Local Storage 資料來源
   // cartItem 是 Local Storage 的 Key
   // productCart 和 photoCart 是 cartItem 的 Value
-  const myCartItem = localStorage.getItem('cartItem');
-  const myProductCart = JSON.parse(myCartItem).productCart;
-  const myPhotoCart = JSON.parse(myCartItem).photoCart;
+  const getCartItem = localStorage.getItem('cartItem');
+
+  const myCartItem = JSON.parse(getCartItem);
+  const myProductCart = JSON.parse(getCartItem).productCart;
+  const myPhotoCart = JSON.parse(getCartItem).photoCart;
+
+  const myPhotoTotalPrice = myCartItem.photo_totalPrice;
+  const myTotalPrice = myCartItem.totalPrice;
+
+  console.log(myPhotoTotalPrice);
 
   // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
@@ -79,12 +82,11 @@ function Cart() {
 
   // 獲取來源資料
   const getData = () => {
-    setMyData(myProductCart);
-    // setMyData(jsonData);
+    setMyProductData(myProductCart);
+    // setMyProductData(jsonData);
 
     setMyPhotoData(myPhotoCart);
     console.log(myPhotoData[0].price);
-    // setNewPhotoPrice(myPhotoData[0].price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
@@ -113,24 +115,18 @@ function Cart() {
     getData();
   }, []);
 
-  const photo = JSON.parse(localStorage.getItem('cartItem'));
-  const aaa = photo.photo_totalPrice + photo.totalPrice;
-
-  console.log(aaa);
-
   // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
     const remove = myPhotoData.filter((v, i) => {
       return v.sid !== item;
     });
 
-    const newBB = { ...photo, photo_totalPrice: 0 };
-    localStorage.setItem('cartItem', JSON.stringify(newBB));
+    const removePhotoTotalPrice = { ...myCartItem, photo_totalPrice: 0 };
+    localStorage.setItem('cartItem', JSON.stringify(removePhotoTotalPrice));
+    const removePhotoCart = { ...myCartItem, photoCart: [] };
+    localStorage.setItem('cartItem', JSON.stringify(removePhotoCart));
 
-    const newCC = { ...photo, photoCart: [] };
-    localStorage.setItem('cartItem', JSON.stringify(newCC));
     setMyPhotoData(remove);
-    // setNewPhotoPrice(0);
   };
 
   // 刪除商品資料功能
@@ -139,15 +135,12 @@ function Cart() {
       return v.sid !== item;
     });
 
-    setMyData(remove);
+    setMyProductData(remove);
   };
 
-  // 商品加減清除Context
+  // 購物車加減刪除Context
   const { cartItem, setCartItem, handleAddCart, handleReduce } =
     useContext(CartInfoContext);
-
-  // localStorage index
-  // const index = cartItem.productCart.findIndex((e) => e.sid === myData.sid);
 
   return (
     <>
@@ -269,7 +262,7 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            {myData && myData.length !== 0 && (
+            {myProductData && myProductData.length !== 0 && (
               <>
                 <h2 className="text_main_dark_color2">商品訂單明細</h2>
                 <div className="eason_product_check">
@@ -293,7 +286,7 @@ function Cart() {
             )}
           </div>
           <table className="eason_list_table">
-            {myData && myData.length !== 0 && (
+            {myProductData && myProductData.length !== 0 && (
               <thead>
                 <tr>
                   <th>商品圖</th>
@@ -308,9 +301,7 @@ function Cart() {
 
             <tbody>
               {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {/* {myData.map((v, i) => {
-               */}
-              {cartItem.productCart.map((v, i) => {
+              {myProductData.map((v, i) => {
                 return (
                   <tr key={v.sid}>
                     <td className="eason_table_img">
@@ -319,7 +310,7 @@ function Cart() {
                         src={`./images/test/${v.img}`}
                         alt=""
                         width="70px"
-                        height="70px"
+                        height="80px"
                       />
                     </td>
                     <td className="eason_p_name">{v.name}</td>
@@ -328,7 +319,7 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          handleReduce(myData[i]);
+                          handleReduce(myProductData[i]);
 
                           const decreaseAmount = [...amount];
                           decreaseAmount[i] = +decreaseAmount[i] - 1;
@@ -354,7 +345,7 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          handleAddCart(myData[i], 1);
+                          handleAddCart(myProductData[i], 1);
 
                           const newAmount = [...amount];
                           newAmount[i] = +newAmount[i] + 1;
@@ -488,9 +479,9 @@ function Cart() {
                   <tr>
                     <th className="text_main_dark_color2">商品金額</th>
                     <td>
-                      $ {aaa}
-                      {/* {(productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? newPhotoPrice : 0)} */}
+                      ${' '}
+                      {(productChecked ? myTotalPrice : 0) +
+                        (photoChecked ? myPhotoTotalPrice : 0)}
                     </td>
                   </tr>
 
@@ -507,12 +498,12 @@ function Cart() {
                   <tr>
                     <th className="text_main_dark_color2">付款總額</th>
                     <td style={{ color: 'red', fontSize: 'large' }}>
-                      $ {Math.ceil(aaa * 0.9)}
-                      {/* {Math.ceil(
-                        ((productChecked ? newTotalPrice : 0) +
-                          (photoChecked ? newPhotoPrice : 0)) *
+                      ${' '}
+                      {Math.ceil(
+                        ((productChecked ? myTotalPrice : 0) +
+                          (photoChecked ? myPhotoTotalPrice : 0)) *
                           0.9
-                      )} */}
+                      )}
                     </td>
                   </tr>
                 </table>
