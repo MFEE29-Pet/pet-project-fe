@@ -53,7 +53,7 @@ ul {
   color: #966134;
 }
 
-select {
+.member_select {
   width: 100px;
   height: 30px;
   border-radius: 20px;
@@ -188,7 +188,6 @@ span {
   align-items: center;
 }
 
-.photo input {}
 
 .cc {
   width: 250px;

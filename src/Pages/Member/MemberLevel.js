@@ -2,20 +2,19 @@ import './Member.css';
 import { imgUrl } from '../../config';
 import { useState } from 'react';
 import Slider from 'react-slick';
+import { display } from '@mui/system';
 
 function MemberLevel() {
   const NextArrow = ({ onClick }) => {
     return (
-      <div className="arrow next" onClick={onClick}>
-        <i class="fa-light fa-arrow-turn-down-right"></i>
+      <div className="hidden_arrow_right" onClick={onClick}>
       </div>
     );
   };
 
   const PrevArrow = ({ onClick }) => {
     return (
-      <div className="arrow prev" onClick={onClick}>
-        <i class="fa-light fa-arrow-turn-down-left"></i>
+      <div className="hidden_arrow_left" onClick={onClick}>
       </div>
     );
   };

@@ -43,6 +43,7 @@ function MemberLogIn() {
     username: '',
     password: '',
   });
+
   //for password show
   const [show, setShow] = useState(false);
   const handle = (e) => {
@@ -72,6 +73,14 @@ function MemberLogIn() {
       });
     }
   };
+
+  const googleLogin = async () => {
+    const { data } = await axios.get('http://localhost:6001/member/login');
+    console.log(data);
+    window.open(data);
+  };
+
+
 
   return (
     <LoginPage>
@@ -174,7 +183,10 @@ function MemberLogIn() {
         </button>
         <div className="login_bottom">
           <div>
-            <Link to="/member/memberForgetPassword" style={{ color: '#252525' }}>
+            <Link
+              to="/member/memberForgetPassword"
+              style={{ color: '#252525' }}
+            >
               忘記密碼
             </Link>
           </div>
@@ -184,8 +196,7 @@ function MemberLogIn() {
               立即註冊
             </Link>
           </div>
-          {/* <div id="buttonDiv"></div> */}
-          <button>酷狗登入</button>
+          <button onClick={googleLogin}>酷狗登入</button>
         </div>
       </div>
     </LoginPage>

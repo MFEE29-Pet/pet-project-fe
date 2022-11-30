@@ -38,6 +38,7 @@ import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
 import MemberProfileUp from './Pages/Member/MemberProfileUp';
 import MemberResavePassword from './Pages/Member/MemberResavePassword';
 import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
+import GoogleCallback from './Pages/Member/GoogleCallback';
 
 function App() {
   // const [checked, setChecked] = useState(true);
@@ -158,6 +159,7 @@ function App() {
               path="member/memberForgetPassword"
               element={<MemberForgetPassword />}
             />
+            <Route path="member/callback" element={<GoogleCallback />} />
           </Routes>
           <Footer />
         </AllContextProviders>
