@@ -414,7 +414,7 @@ function ProductDetail() {
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        <RelatedProduct relatedProducts={relatedProducts} />
+        <RelatedProduct relatedProducts={relatedProducts} setRelatedProducts={setRelatedProducts} />
       </section>
       {/* Go To Top */}
       <GoToTop />

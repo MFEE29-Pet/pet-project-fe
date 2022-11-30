@@ -3,11 +3,11 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import { config } from 'react-spring';
 import { useLocation } from 'react-router';
 
-export default function Carroussel(props) {
+export default function Caroussel(props) {
   const table = props.cards.map((element, index) => {
     return { ...element, onClick: () => setGoToSlide(index) };
   });
-  console.log(table);
+  // console.log(table);
   const [offsetRadius, setOffsetRadius] = useState(2);
   const [showArrows, setShowArrows] = useState(false);
   const [goToSlide, setGoToSlide] = useState(null);

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import ShowC from './Carousel/ShowC';
+import DetailCarousel from './DetailCarousel/DetailCarousel';
 
 const ROW = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const ROW = styled.div`
   height: 50%;
   justify-content: space-around;
   align-items: center;
-  &::before {
+  ${'' /* &::before {
     content: '';
     width: 100%;
     display: block;
@@ -30,7 +31,7 @@ const ROW = styled.div`
     bottom: 39%;
     z-index: 0;
     box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.82);
-  }
+  } */}
 
   .bottom-pro-line-card {
     height: 100%;
@@ -68,12 +69,13 @@ function RelatedProduct({ relatedProducts }) {
 
   return (
     <>
-      {/* <ShowC relatedProducts={relatedProducts} /> */}
+      {/* <ShowC
+        relatedProducts={relatedProducts}
+        setRelatedProducts={setRelatedProducts}
+      /> */}
       <ROW $mode={mode}>
-        <div className="arrow arrow-left">
-          <i className="fa-light fa-angle-left"></i>
-        </div>
-        {relatedProducts.map((e, i) => {
+      <DetailCarousel relatedProducts={relatedProducts} />
+        {/* {relatedProducts.map((e, i) => {
           return (
             <div className="bottom-pro-line-card" key={e.sid}>
               <div className="pro-line-ls-img-wrap">
@@ -84,11 +86,7 @@ function RelatedProduct({ relatedProducts }) {
               </div>
             </div>
           );
-        })}
-
-        <div className="arrow arrow-right">
-          <i className="fa-light fa-angle-right"></i>
-        </div>
+        })} */}
       </ROW>
     </>
   );
