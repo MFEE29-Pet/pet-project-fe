@@ -121,9 +121,11 @@ function Cart() {
       return v.sid !== item;
     });
 
-    const removePhotoTotalPrice = { ...myCartItem, photo_totalPrice: 0 };
-    localStorage.setItem('cartItem', JSON.stringify(removePhotoTotalPrice));
-    const removePhotoCart = { ...myCartItem, photoCart: [] };
+    const removePhotoCart = {
+      ...myCartItem,
+      photoCart: [],
+      photo_totalPrice: 0,
+    };
     localStorage.setItem('cartItem', JSON.stringify(removePhotoCart));
 
     setMyPhotoData(remove);
