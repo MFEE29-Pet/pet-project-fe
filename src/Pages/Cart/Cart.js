@@ -125,8 +125,11 @@ function Cart() {
       ...myCartItem,
       photoCart: [],
       photo_totalPrice: 0,
+      totalAmount: myCartItem.totalAmount - 1,
+      totalItem: myCartItem.totalItem - 1,
     };
     localStorage.setItem('cartItem', JSON.stringify(removePhotoCart));
+    setCartItem(removePhotoCart);
 
     setMyPhotoData(remove);
   };
