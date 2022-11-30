@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
-import { padding } from '@mui/system';
 
 const ForgetPasswordPage = styled.div`
   width: 100%;
@@ -31,6 +30,19 @@ const Memberroutes = [
 ];
 
 function MemberForgetPassword() {
+  const [mail, setMail] = useState('');
+
+  const sendMail = async () => {
+    const fd = new FormData();
+    fd.append('mail', mail);
+    const { data } = await axios.post(
+      'http://localhost:6001/member/sendpassword',
+      fd
+    );
+
+    console.log(data);
+  };
+
   return (
     <ForgetPasswordPage>
       <BreadcrumbBox>
@@ -73,15 +85,27 @@ function MemberForgetPassword() {
               width: '85%',
               height: '40px',
               border: '1px solid #727171',
-              display:'flex',
-              alignItems:'center',
-              padding:'10px 10px'
+              display: 'flex',
+              alignItems: 'center',
+              padding: '10px 10px',
             }}
           >
-            <i class="fa-light fa-envelope" style={{fontSize:'16px',color:'#c9caca'}}></i>
+            <i
+              className="fa-light fa-envelope"
+              style={{ fontSize: '16px', color: '#c9caca' }}
+            ></i>
             <input
               type="email"
-              style={{ border: 'none', padding: '5px 10px',outline:'none',width:'100%' }}
+              value={mail}
+              style={{
+                border: 'none',
+                padding: '5px 10px',
+                outline: 'none',
+                width: '100%',
+              }}
+              onChange={(e) => {
+                setMail(e.target.value);
+              }}
             ></input>
           </div>
         </div>
@@ -94,6 +118,7 @@ function MemberForgetPassword() {
               padding: '10px 20px',
               borderRadius: '20px',
             }}
+            onClick={sendMail}
           >
             重新設定密碼
           </button>

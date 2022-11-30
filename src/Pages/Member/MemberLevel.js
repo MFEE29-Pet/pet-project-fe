@@ -2,7 +2,6 @@ import './Member.css';
 import { imgUrl } from '../../config';
 import { useState } from 'react';
 import Slider from 'react-slick';
-import { display } from '@mui/system';
 
 function MemberLevel() {
   const NextArrow = ({ onClick }) => {
