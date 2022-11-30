@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
@@ -36,6 +36,13 @@ function ProductSidebar() {
   const [cates, setCates] = useState([]);
   const { mode } = useContext(SwitchButtonContext);
 
+  // 取得 queryString
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  let cateFromQueryString = +params.get('cate');
+  const [currentCate, setCurrentCate] = useState(cateFromQueryString || 0);
+  // setCurrentCate(cateFromQueryString);
+
   const getCates = async () => {
     try {
       const res = await axios.get('http://localhost:6001/product/c-json');
@@ -52,6 +59,12 @@ function ProductSidebar() {
   useEffect(() => {
     getCates();
   }, []);
+  useEffect(() => {
+    setCurrentCate(cateFromQueryString);
+  }, []);
+  useEffect(() => {
+    setCurrentCate(cateFromQueryString);
+  }, [location]);
 
   // parents層分類
   const parents = cates.filter((v, i) => {
@@ -88,7 +101,14 @@ function ProductSidebar() {
       <ul className="categories">
         <li>
           <Link to="/product">
-            <P $mode={mode}>所有商品</P>
+            <P
+              $mode={mode}
+              style={{
+                fontWeight: `${currentCate === 0 ? 'bold' : ''}`,
+              }}
+            >
+              所有商品
+            </P>
           </Link>
         </li>
         {/* 短路求值 */}
@@ -97,14 +117,30 @@ function ProductSidebar() {
             return (
               <li key={e.sid}>
                 <Link to={`/product?cate=${e.sid}&page=1`}>
-                  <P $mode={mode}>{e.name}</P>
+                  <P
+                    $mode={mode}
+                    style={{
+                      fontWeight: `${currentCate === e.sid ? 'bold' : ''}`,
+                    }}
+                  >
+                    {e.name}
+                  </P>
                 </Link>
                 <ul>
                   {e.child.map((e2, i2) => {
                     return (
                       <LI key={e2.sid} $mode={mode}>
                         <Link to={`/product?cate=${e2.sid}&page=1`}>
-                          <P $mode={mode}>{e2.name}</P>
+                          <P
+                            $mode={mode}
+                            style={{
+                              fontWeight: `${
+                                currentCate === e2.sid ? 'bold' : ''
+                              }`,
+                            }}
+                          >
+                            {e2.name}
+                          </P>
                         </Link>
                         <i
                           className={`fa-duotone ${
