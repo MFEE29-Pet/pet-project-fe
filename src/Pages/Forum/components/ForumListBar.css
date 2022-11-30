@@ -8,23 +8,22 @@
 }
 .forumIconBar{
   display: flex;
-  width: 180px;
-  justify-content: center;
+  width: 200px;
+  justify-content:right;
   align-items: center;
 }
 
 
-#proIcon{
+#forum_big_Icon{
 font-size: 320%;
 }
 
 .forumTitleBar{
-  /* background-color: gray; */
-  width: 800px;
+  width: 600px;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   flex-direction: column;
+  padding-left: 50px;
 }
 .forumTitle{
   font-weight: bold;
@@ -34,7 +33,14 @@ font-size: 320%;
   color: #c9caca;
 }
 
+.forum_list_like_bar{
+  width: 200px;
+  display: flex;
+align-items: center;
+}
+
 .forumUserBar{
+  width: 200px;
   display: flex;
   justify-content: left;
   align-items: center;

@@ -1,4 +1,6 @@
 import axios from 'axios';
+// import CollectBar from './CollectBar';
+import CollectLikeBar from './CollectLikeBar';
 import { GET_ALL_ARTICLE } from '../my-config';
 import { useEffect, useState } from 'react';
 import './ForumListBar.css';
@@ -50,27 +52,39 @@ function ForumListBar() {
           <div
             className="forumBar"
             key={e.article_sid}
-            onClick={() => {
-              navigate(`detail?sid=${e.article_sid}`);
-            }}
             style={{ cursor: 'pointer' }}
           >
-            <div className="forumIconBar">
+            <div
+              className="forumIconBar"
+              onClick={() => {
+                navigate(`detail?sid=${e.article_sid}`);
+              }}
+            >
               <i
                 className="fa-light fa-message-question text_main_dark_color2"
-                id="proIcon"
+                id="forum_big_Icon"
               ></i>
             </div>
 
             <div className="forumTitleBar">
-              <p className="forumTitle">{e.title}</p>
+              <p
+                className="forumTitle"
+                onClick={() => {
+                  navigate(`detail?sid=${e.article_sid}`);
+                }}
+              >
+                {e.title}
+              </p>
               <p className="forumTag">
                 {e.tag.map((e2, i2) => {
                   return e2.tag_name;
                 })}
               </p>
             </div>
-
+            {/* 喜歡跟讚數 */}
+            <div className="forum_list_like_bar">
+              <CollectLikeBar />
+            </div>
             <div className="forumUserBar">{e.user}</div>
           </div>
         );

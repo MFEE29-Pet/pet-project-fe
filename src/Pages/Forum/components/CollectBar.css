@@ -7,6 +7,7 @@
 .forum_unCollect_button {
   color: #b5b5b6;
   border: none;
+  background-color: transparent;
 }
 /* 符號 */
 .forum_Collect_button #forum_Collect{
@@ -17,4 +18,5 @@
 .forum_Collect_button {
   color: #c30d23;
   border: none;
+  background-color: transparent;
 }

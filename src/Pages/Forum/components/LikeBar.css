@@ -14,6 +14,7 @@
 .forum_unlike_button {
   color: #b5b5b6;
   border: none;
+  background-color: transparent;
 
 }
 /* 符號 */
@@ -21,10 +22,12 @@
   color: #036eb8;
   margin-left: 8px;
 
+
 }
 /* 文字 */
 .forum_like_button {
   color: #036eb8;
   border: none;
+  background-color: transparent;
 
 }

@@ -10,11 +10,11 @@ function SearchBar() {
             placeholder="搜尋關鍵字"
             type="search"
             name="search"
-            id="search"
+            id="forum_search"
           />
           <i
             className="fa-solid fa-magnifying-glass bg_main_light_color1"
-            id="forum_search"
+            id="forum_search_glass"
           ></i>
         </div>
       </div>

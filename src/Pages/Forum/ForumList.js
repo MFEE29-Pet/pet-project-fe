@@ -5,7 +5,6 @@ import ButtonBar from './components/ButtonBar';
 import ForumListBar from './components/ForumListBar';
 import './ForumList.css';
 
-
 const buttonText = [
   { value: 1, label: '綜合', to: '/complex' },
   { value: 2, label: '發問', to: '/question' },
@@ -17,14 +16,12 @@ const buttonText = [
 ];
 
 function ForumList() {
-
-
   return (
     <>
       <div className="forum_list_wrap">
         <div className="forum_search_select">
           <SearchBar />
-          <div className="forum_btnpost_select">
+          <div className="forum_btn_post_select">
             <ButtonPost />
             <SelectBar />
           </div>
@@ -36,6 +33,7 @@ function ForumList() {
             return <ButtonBar value={value} label={label} to={to} key={i} />;
           })}
         </div>
+
         <ForumListBar />
       </div>
     </>
