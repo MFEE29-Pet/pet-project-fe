@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 $titlesize: 48px;
 $h1size : 24px;
 $h2size : 18px;
@@ -921,6 +924,25 @@ section.bottom-pro-list {
         }
     }
 
+    .degreeWrap {
+        .slick-slider {
+            width: 100%;
+
+        }
+    }
+
+    .slide {
+        transform: scale(0.2);
+        transition: transform 300ms;
+        opacity: 0.5;
+    }
+
+    .activeSlide {
+        transform: scale(0.6);
+        opacity: 1;
+
+    }
+
     .bottom-list-pro-title h2::before,
     .bottom-list-pro-title h2::after {
         content: '-';
@@ -943,6 +965,10 @@ section.bottom-pro-list {
             align-items: center;
 
             .pro-line-ls-img-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 height: 100%;
                 margin-bottom: 10px;
 
