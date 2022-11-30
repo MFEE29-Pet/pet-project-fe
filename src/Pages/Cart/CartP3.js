@@ -35,10 +35,6 @@ function CartP3() {
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
 
-
-
-
-
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
 
@@ -96,8 +92,6 @@ function CartP3() {
     getData();
   }, []);
 
-
-
   // 刪除商品資料功能
   const removeProductData = (item) => {
     const remove = testData.filter((v, i) => {
@@ -148,102 +142,13 @@ function CartP3() {
             </a>
           </div>
         </EasonProgressBar>
+<div className='easonCompleteSection'>
 
-        {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
-        <div className="eason_section_2">
-          <table className="eason_list_table">
-            {testData && testData.length !== 0 && (
-              <thead>
-                <tr>
-                  <th>商品圖</th>
-                  <th>商品名</th>
-                  <th>單價</th>
-                  <th>數量</th>
-                  <th>小計</th>
-                  <th>刪除</th>
-                </tr>
-              </thead>
-            )}
+</div>
 
-            <tbody>
-              {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {testData.map((v, i) => {
-                return (
-                  <tr key={v.p_sid}>
-                    <td className="eason_table_img">
-                      <img
-                        src="./imgs/product_3.png"
-                        alt=""
-                        width="65px"
-                        height="65px"
-                      />
-                    </td>
-                    <td className="eason_p_name">{v.p_name}</td>
-                    <td className="eason_table_price">{v.price}</td>
-                    <td className="eason_table_amount">
-                      <span
-                        className=""
-                        onClick={() => {
-                          const decreaseAmount = [...amount];
-                          decreaseAmount[i] = +decreaseAmount[i] - 1;
-                          console.log(amount);
 
-                          const decreasePrice = [...totalPrice];
-                          decreasePrice[i] = decreaseAmount[i] * v.price;
-                          console.log(decreasePrice);
-                          setNewTotalPrice(
-                            decreasePrice.reduce((a, b) => a + b)
-                          );
-                          setAmount(decreaseAmount);
-
-                          setTotalPrice(decreasePrice);
-                        }}
-                      >
-                        <i className="eason_fa-solid fa-solid fa-circle-minus">
-                          {' '}
-                        </i>
-                      </span>
-                      {amount[i]}
-                      <span
-                        className=""
-                        onClick={() => {
-                          const newAmount = [...amount];
-                          newAmount[i] = +newAmount[i] + 1;
-                          const newPrice = [...totalPrice];
-                          newPrice[i] = newAmount[i] * v.price;
-                          console.log(newPrice);
-
-                          setAmount(newAmount);
-                          setTotalPrice(newPrice);
-
-                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
-                        }}
-                      >
-                        <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
-                      </span>
-                    </td>
-                    <td className="eason_table_total">{v.price * amount[i]}</td>
-                    <td>
-                      <span
-                        onClick={() => {
-                          setNewTotalPrice(newTotalPrice - v.price * amount[i]);
-                          removeProductData(v.p_sid);
-
-                          amount.splice(i, 1);
-
-                          // localStorage.removeItem('cartItem');
-                        }}
-                      >
-                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
       </div>
+
     </>
   );
 }

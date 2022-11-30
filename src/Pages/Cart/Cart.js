@@ -4,6 +4,8 @@ import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
 import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車數量連動商品
+import axios from 'axios';
+import { logDOM } from '@testing-library/react';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
@@ -67,9 +69,12 @@ function Cart() {
   const myPhotoCart = JSON.parse(getCartItem).photoCart;
 
   const myPhotoTotalPrice = myCartItem.photo_totalPrice;
+  console.log(myPhotoTotalPrice);
   const myTotalPrice = myCartItem.totalPrice;
 
-  console.log(myPhotoTotalPrice);
+  // 最終結帳總額
+  const finalPrice = myPhotoTotalPrice + myTotalPrice;
+  console.log(finalPrice);
 
   // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
@@ -514,7 +519,15 @@ function Cart() {
                 </table>
               </div>
 
-              <button className="eason_pay_btn bg_main_light_color1 ">
+              <button
+                onClick={async () => {
+                  const { data } = await axios.post(
+                    'http://localhost:6001/cart/add'
+                  );
+                  console.log({ data });
+                }}
+                className="eason_pay_btn bg_main_light_color1 "
+              >
                 前往付款
               </button>
             </div>
