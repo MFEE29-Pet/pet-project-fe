@@ -34,6 +34,7 @@ const Border = styled.div`
 
 function ProductSidebar() {
   const [cates, setCates] = useState([]);
+  const [hover, setHover] = useState(true);
   const { mode } = useContext(SwitchButtonContext);
 
   // 取得 queryString
@@ -150,20 +151,28 @@ function ProductSidebar() {
                       </LI>
                     );
                   })}
-                  <li key={99}>
-                    <Link to={`/product/photographers`}>
-                      <P $mode={mode}>攝影服務</P>
-                    </Link>
-                    <i
-                      className={`fa-duotone ${
-                        mode === 'dog' ? 'fa-bone' : 'fa-fish'
-                      } text_main_light_color1`}
-                    ></i>
-                  </li>
                 </ul>
               </li>
             );
           })}
+        <li
+          key={99}
+          onMouseEnter={() => setHover(false)}
+          onMouseLeave={() => setHover(true)}
+        >
+          <Link to={`/product/photographers`}>
+            <P $mode={mode}>攝影服務</P>
+          </Link>
+          <i
+            style={{
+              display: `${hover ? 'none' : 'inline'}`,
+              opacity: '.7',
+            }}
+            className={`fa-duotone ${
+              mode === 'dog' ? 'fa-bone' : 'fa-fish'
+            } text_main_light_color1`}
+          ></i>
+        </li>
       </ul>
     </section>
   );
