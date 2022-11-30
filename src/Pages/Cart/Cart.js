@@ -236,7 +236,7 @@ function Cart() {
                         src={`./images/test/${v.img}`}
                         alt=""
                         width="80px"
-                        height="70px"
+                        height="80px"
                       />
                     </td>
                     <td>{v.name}</td>
