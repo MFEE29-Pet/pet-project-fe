@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'; //登入後跳轉換面
 import './MemberLogIn.css';
 import { MemberContext } from '../../contexts/MemberContext';
 function MemberLogIn() {
-  const { logout } = useContext(MemberContext);
+  const { logout,setAuth } = useContext(MemberContext);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     username: '',
@@ -24,6 +24,7 @@ function MemberLogIn() {
     console.log(data);
     if (data.auth.login) {
       localStorage.setItem('petAuth', JSON.stringify(data.auth));
+      setAuth(data.auth)
       //登入後跳轉換面
       navigate('/member');
     } else {

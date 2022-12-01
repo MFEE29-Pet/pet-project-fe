@@ -1,5 +1,5 @@
 import React from 'react';
-import './Issuing.css';
+import './issuing.css';
 
 function Issuing() {
   return (

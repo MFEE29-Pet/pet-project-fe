@@ -4,35 +4,42 @@ export const MemberContext = createContext({});
 //登入帳號
 export const MemberContextProvider = ({ children }) => {
   const unData = {
-    account: '',
-    address: '',
-    area: '',
-    city: '',
-    create_at: '',
-    gender: '',
-    level: 1,
-    member_photo: '',
-    name: '',
-    password: '',
-    sid: 1,
+    row: {
+      account: '',
+      address: '',
+      area: '',
+      city: '',
+      create_at: '',
+      gender: '',
+      level: 1,
+      member_photo: '',
+      name: '',
+      password: '',
+      sid: 1,
+    },
+    token: '',
+    login: false,
   };
+
   let newData = { ...unData };
-  let login = 'false';
+
   const str = localStorage.getItem('petAuth');
   if (str) {
-    const localAuth = JSON.parse(str);
-    newData = localAuth;
-    login = 'true';
+    const localData = JSON.parse(str);
+    if (localData && localData.token) {
+      newData = { ...localData };
+    }
   }
   const [auth, setAuth] = useState(newData);
   console.log(auth);
 
   const logout = () => {
     localStorage.removeItem('petAuth');
+    setAuth(unData);
     alert('登出成功');
   };
   return (
-    <MemberContext.Provider value={{ auth, logout }}>
+    <MemberContext.Provider value={{ auth, logout, setAuth }}>
       {children}
     </MemberContext.Provider>
   );

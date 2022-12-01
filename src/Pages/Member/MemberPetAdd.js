@@ -1,8 +1,19 @@
 import { useState } from 'react';
 import './Member.css';
 function MemberPetAdd() {
+  const [photos, setPhotos] = useState('');
   const [addOpen, setAddOpen] = useState(true);
-  
+  const [user, setUser] = useState({
+    pet_pid: '',
+    pet_name: '',
+    Kind_of_pet: '',
+  });
+
+  // const addUser = async () => {
+  //   const fd = new FormData();
+  //   fd.append('avatar', userPhoto);
+  // }
+
   return (
     <>
       <div class="peat-ship">
@@ -19,8 +30,8 @@ function MemberPetAdd() {
               <span>已節育</span>
               <span>PID-2960824</span>
             </div>
-            <div class="icon">
-              <i class="fa-regular fa-pen-to-square"></i>
+            <div class="peticon">
+              <i class="fa-regular regular fa-pen-to-square"></i>
 
               <i class="fa-light fa-trash-can"></i>
             </div>
@@ -39,8 +50,8 @@ function MemberPetAdd() {
               <span>已節育</span>
               <span>PID-1244908</span>
             </div>
-            <div class="icon">
-              <i class="fa-regular fa-pen-to-square"></i>
+            <div class="peticon">
+              <i class="fa-regular regular fa-pen-to-square"></i>
 
               <i class="fa-light fa-trash-can"></i>
             </div>
@@ -59,18 +70,21 @@ function MemberPetAdd() {
               <span>未節育</span>
               <span>PID-5621920</span>
             </div>
-            <div class="icon">
-              <i class="fa-regular fa-pen-to-square"></i>
+            <div class="peticon">
+              <i class="fa-regular regular fa-pen-to-square"></i>
               <i class="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
 
         {addOpen && (
-          <div class="addPetbutton" onClick={()=>{
-            setAddOpen(!addOpen)
-          }}>
-          {/* 點擊以後Ｔ＝>F ! */}
+          <div
+            class="addPetbutton"
+            onClick={() => {
+              setAddOpen(!addOpen);
+            }}
+          >
+            {/* 點擊以後Ｔ＝>F ! */}
             新增寵物資料
             <i class="fa-solid fa-plus-large"></i>
           </div>
@@ -78,8 +92,11 @@ function MemberPetAdd() {
         {addOpen || (
           <div class="peat-add">
             <div class="up-photo">
-              <i class="fa-regular fa-upload"></i>
-              上傳圖片
+              {photos === '' ? (
+                <i class="fa-regular regular fa-upload">上傳圖片</i>
+              ) : (
+                <img src={photos} alt="" />
+              )}
             </div>
             <div class="peatAll">
               <div class="peatAddID">
@@ -114,12 +131,7 @@ function MemberPetAdd() {
                   <option value="">未節育</option>
                 </select>
 
-                <input
-                  type="button"
-                  className="buttonAdd"
-                  value="新增"
-                  
-                />
+                <input type="button" className="buttonAdd" value="新增" />
               </div>
             </div>
           </div>

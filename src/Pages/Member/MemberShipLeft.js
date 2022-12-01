@@ -1,9 +1,10 @@
 import './Member.css';
-import { useContext } from 'react' ;
-import SwitchButtonContext from '../../contexts/SwitchButtonContext'
+import { useContext } from 'react';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import { MemberContext } from '../../contexts/MemberContext';
 function MemberShipLeft({ components, pageIndex, setPageIndex }) {
-  const {mode} = useContext(SwitchButtonContext);
-
+  const { mode } = useContext(SwitchButtonContext);
+  const { auth } = useContext(MemberContext);
   return (
     <>
       {/* <div className="member-page">
@@ -11,16 +12,19 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           <h2>首頁會員中心會員首頁</h2>
         </div> */}
       {/* <div className="member"> */}
-      <div className='member-shipL'>
+      <div className="member-shipL">
         <div className="member-ship">
           <div className="member-photo">
-            <img src="../image/person_1.jpg" alt="" />
+            <img
+              src={`http://localhost:6002/uploads/${auth.row.member_photo}`}
+              alt=""
+            />
           </div>
-          <h5>艾蜜莉</h5>
+          <h5>{auth.row.name}</h5>
         </div>
 
         <div className="member-icon">
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-house-user"></i>
             <li
               onClick={() => {
@@ -30,7 +34,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               會員首頁
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-shield-dog"></i>
             <li
               onClick={() => {
@@ -40,7 +44,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               我的寵物
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-books"></i>
             <li
               onClick={() => {
@@ -50,7 +54,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               文章收藏
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-folder-bookmark"></i>
             <li
               onClick={() => {
@@ -60,7 +64,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               商品收藏
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-thin thin fa-book-medical"></i>
             <li
               onClick={() => {
@@ -71,7 +75,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
 
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-thin thin fa-rectangle-history-circle-plus"></i>
             <li
               onClick={() => {
@@ -81,7 +85,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               歷史訂單（商品）
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-camera"></i>
             <li
               onClick={() => {
@@ -92,8 +96,11 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
 
-          <ul>
-            <i className="fa-light light fa-user-gear"></i>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
+            <i
+              className="fa-light light fa-user-gear"
+              style={{ color: mode === 'cat' && '#18334e' }}
+            ></i>
             <li
               onClick={() => {
                 setPageIndex(7);
@@ -102,7 +109,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               修改資料
             </li>
           </ul>
-          <ul>
+          <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-thin thin fa-key"></i>
             <li
               onClick={() => {

@@ -8,10 +8,15 @@ const BTN = styled.button`
   font-size: 18px;
   border-radius: 18px;
   cursor: pointer;
+  align-self: center;
 `;
 
-function DogButton({ Text, ClassName }) {
-  return <BTN className={ClassName}>{Text}</BTN>;
+function DogButton({ Text, ClassName, nav }) {
+  return (
+    <BTN className={ClassName} onClick={nav}>
+      {Text}
+    </BTN>
+  );
 }
 
 export default DogButton;

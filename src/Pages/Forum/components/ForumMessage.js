@@ -1,7 +1,7 @@
 import React from 'react';
 import './ForumMessage.css';
 import UserBar from './UserBar';
-import Issuing from './Issuing';
+import Issuing from './issuing';
 import CollectLikeBar from './CollectLikeBar';
 function ForumMessage() {
   return (
