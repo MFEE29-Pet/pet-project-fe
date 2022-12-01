@@ -1,6 +1,10 @@
-import React from 'react';
+import { useContext } from 'react';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import './Member.css';
+
 function MemberSingsuccess() {
+  const { mode } = useContext(SwitchButtonContext);
+
   return (
     <>
       <div className="fill"></div>

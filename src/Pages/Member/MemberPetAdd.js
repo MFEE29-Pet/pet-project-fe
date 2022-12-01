@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Member.css';
 function MemberPetAdd() {
   const [addOpen, setAddOpen] = useState(true);
+  
   return (
     <>
       <div class="peat-ship">
@@ -21,7 +22,7 @@ function MemberPetAdd() {
             <div class="icon">
               <i class="fa-regular fa-pen-to-square"></i>
 
-              <i class="fa-light light fa-trash-can trash"></i>
+              <i class="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
@@ -41,7 +42,7 @@ function MemberPetAdd() {
             <div class="icon">
               <i class="fa-regular fa-pen-to-square"></i>
 
-              <i class="fa-light light fa-trash-can trash"></i>
+              <i class="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
@@ -60,19 +61,16 @@ function MemberPetAdd() {
             </div>
             <div class="icon">
               <i class="fa-regular fa-pen-to-square"></i>
-              <i class="fa-light light fa-trash-can trash"></i>
+              <i class="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
 
         {addOpen && (
-          <div
-            class="addPetbutton"
-            onClick={() => {
-              setAddOpen(!addOpen);
-            }}
-          >
-            {/* 點擊以後Ｔ＝>F !做反向 */}
+          <div class="addPetbutton" onClick={()=>{
+            setAddOpen(!addOpen)
+          }}>
+          {/* 點擊以後Ｔ＝>F ! */}
             新增寵物資料
             <i class="fa-solid fa-plus-large"></i>
           </div>
@@ -120,9 +118,7 @@ function MemberPetAdd() {
                   type="button"
                   className="buttonAdd"
                   value="新增"
-                  onClick={() => {
-                    setAddOpen(!addOpen);
-                  }}
+                  
                 />
               </div>
             </div>

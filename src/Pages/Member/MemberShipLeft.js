@@ -1,5 +1,9 @@
 import './Member.css';
+import { useContext } from 'react' ;
+import SwitchButtonContext from '../../contexts/SwitchButtonContext'
 function MemberShipLeft({ components, pageIndex, setPageIndex }) {
+  const {mode} = useContext(SwitchButtonContext);
+
   return (
     <>
       {/* <div className="member-page">

@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { useContext } from 'react' ;
+import SwitchButtonContext from '../../contexts/SwitchButtonContext'
 function ForgrtPasswordsuccess() {
+  const { mode } = useContext(SwitchButtonContext);
   return (
     <>
       <div className="fill"></div>

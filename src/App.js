@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import SwitchButtonContext from '../../contexts/SwitchButtonContext'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
@@ -11,7 +12,7 @@ import MemberLogIn from './Pages/Member/MemberLogIn';
 import { MemberContextProvider } from './contexts/MemberContext'; 
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import SwitchButtonContext from './contexts/SwitchButtonContext';
+
 import './style/style.scss';
 import './style/reset.css';
 
