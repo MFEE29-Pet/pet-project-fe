@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { PHOTOGRAPH } from './my-config';
 import PhotographersCard from './components/PhotographersCard';
 import MyCarousel from './components/MyCarousel';
+import './style/photo.scss';
 
 const H2 = styled.h2`
   text-align: center;

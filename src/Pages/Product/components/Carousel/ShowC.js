@@ -2,9 +2,10 @@ import './showC.css';
 import { v4 as uuidv4 } from 'uuid';
 import Card from './Card';
 import Carousel from './Carousel';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router';
 
-function ShowC({ relatedProducts }) {
+function ShowC({ relatedProducts, setRelatedProducts }) {
   let cards1 = [
     {
       key: uuidv4(),
@@ -37,8 +38,10 @@ function ShowC({ relatedProducts }) {
       ),
     },
   ];
+  const location = useLocation();
   const [cards2, setCards2] = useState([]);
   const carouselRef = useRef();
+  const [data, setData] = useState([]);
 
   const imgRelated = relatedProducts.map((e, i) => {
     return {
@@ -63,6 +66,13 @@ function ShowC({ relatedProducts }) {
       name: imgRelated[i].name,
     });
   }
+  useEffect(() => {
+    setData(imgRelated);
+  }, []);
+  useEffect(() => {
+    setData(imgRelated);
+  }, [location]);
+
   console.log({ imgRelated, cards1, cards });
 
   // const slide = a.map((e) => {
@@ -83,7 +93,7 @@ function ShowC({ relatedProducts }) {
   return (
     <div className="" ref={carouselRef}>
       <Carousel
-        relatedProducts={relatedProducts}
+        relatedProducts={data}
         cards={cards}
         height="500px"
         width="30%"

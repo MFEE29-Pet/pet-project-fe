@@ -146,19 +146,21 @@ function Filter({
               <div
                 className={`pre-page ${nowPage === 1 ? 'disable' : ''}`}
                 onClick={() => {
-                  navigate(
-                    nowPage > 1
-                      ? `${location.pathname}${
-                          cate
-                            ? `?cate=${cate}&page=${
-                                nowPage <= 1 ? 1 : nowPage - 1
-                              }`
-                            : `?page=${nowPage <= 1 ? 1 : nowPage - 1}`
-                        }`
-                      : `${location.pathname}${
-                          cate ? `?cate=${cate}&page=${1}` : `?page=${1}`
-                        }`
-                  );
+                  if (nowPage > 1) {
+                    navigate(
+                      nowPage > 1
+                        ? `${location.pathname}${
+                            cate
+                              ? `?cate=${cate}&page=${
+                                  nowPage <= 1 ? 1 : nowPage - 1
+                                }`
+                              : `?page=${nowPage <= 1 ? 1 : nowPage - 1}`
+                          }`
+                        : `${location.pathname}${
+                            cate ? `?cate=${cate}&page=${1}` : `?page=${1}`
+                          }`
+                    );
+                  }
                 }}
               >
                 <i className="fa-solid fa-angle-left"></i>
@@ -168,23 +170,29 @@ function Filter({
                   nowPage === totalPages ? 'disable' : ''
                 }`}
                 onClick={() => {
-                  navigate(
-                    nowPage < totalPages
-                      ? `${location.pathname}${
-                          cate
-                            ? `?cate=${cate}&page=${
-                                nowPage >= totalPages ? totalPages : nowPage + 1
-                              }`
-                            : `?page=${
-                                nowPage >= totalPages ? totalPages : nowPage + 1
-                              }`
-                        }`
-                      : `${location.pathname}${
-                          cate
-                            ? `?cate=${cate}&page=${totalPages}`
-                            : `?page=${totalPages}`
-                        }`
-                  );
+                  if (nowPage < totalPages) {
+                    navigate(
+                      nowPage < totalPages
+                        ? `${location.pathname}${
+                            cate
+                              ? `?cate=${cate}&page=${
+                                  nowPage >= totalPages
+                                    ? totalPages
+                                    : nowPage + 1
+                                }`
+                              : `?page=${
+                                  nowPage >= totalPages
+                                    ? totalPages
+                                    : nowPage + 1
+                                }`
+                          }`
+                        : `${location.pathname}${
+                            cate
+                              ? `?cate=${cate}&page=${totalPages}`
+                              : `?page=${totalPages}`
+                          }`
+                    );
+                  }
                 }}
               >
                 <i className="fa-solid fa-angle-right"></i>
