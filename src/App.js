@@ -20,7 +20,7 @@ import Photographers from './Pages/Product/Photographers';
 import PhotographerForm from './Pages/Product/PhotographerForm';
 import AllContextProviders from './contexts/AllContextProviders';
 import Login from './Pages/Product/Login';
-
+import Reserve from './Pages/Clinic/Reserve';
 function App() {
   // const [checked, setChecked] = useState(true);
   // const [switchMode, setSwitchMode] = useState('cat');
