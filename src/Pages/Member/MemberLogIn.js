@@ -32,6 +32,13 @@ const LoginPage = styled.div`
   align-items: center;
 `;
 
+const AUTO_LOGIN_ROOT = styled.div`
+  background-color: #fff;
+  &:hover {
+    background-color: #fff5de;
+  }
+`;
+
 function MemberLogIn() {
   const { setMyAuth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -174,6 +181,22 @@ function MemberLogIn() {
           </div>
         </div>
       </div>
+      <AUTO_LOGIN_ROOT
+        onClick={() => {
+          setUser({
+            username: 'root',
+            password: 'root',
+          });
+        }}
+        style={{
+          width: '20px',
+          height: '20px',
+          position: 'absolute',
+          top: '30%',
+          right: '30%',
+          borderRadius: '50%',
+        }}
+      ></AUTO_LOGIN_ROOT>
     </LoginPage>
   );
 }
