@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
@@ -18,7 +18,6 @@ import './style/style.scss';
 import './style/reset.css';
 import ProductDetail from './Pages/Product/ProductDetail';
 import Photographers from './Pages/Product/Photographers';
-import PhotographerForm from './Pages/Product/PhotographerForm';
 import PhotoReservePage from './Pages/Product/PhotoReservePage';
 import PhotoReserve from './Pages/Product/PhotoReserve';
 import PhotoCheck from './Pages/Product/PhotoCheck';
@@ -38,11 +37,16 @@ import MemberHistoryProduct from './Pages/Member/MemberHistoryProduct';
 import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
 import MemberProfileUp from './Pages/Member/MemberProfileUp';
 import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
-import Socket from './Pages/Product/components/Socket/Socket';
+
+// try socket io
+// import Socket from './Pages/Product/components/Socket/Socket';
+import Home from './Pages/Product/components/Chat/Home/Home';
+import io from 'socket.io-client';
+import { SOCKET_HOST } from './Pages/Product/my-config';
+
+const socket = io.connect(SOCKET_HOST); // connect socket server
 
 function App() {
-  // const [checked, setChecked] = useState(true);
-  // const [switchMode, setSwitchMode] = useState('cat');
   const { mode } = useContext(SwitchButtonContext);
   // console.log(mode);
   // const Circle = forwardRef(({ size, delay }, ref) => {
@@ -88,6 +92,10 @@ function App() {
   //   }
   // };
 
+  // try socket io
+  const [username, setUsername] = useState('');
+  const [room, setRoom] = useState('');
+
   return (
     <div id={mode} className="bg_bright_color" style={{ width: '100%' }}>
       {/* 以下為路由，如需新增請通知 */}
@@ -112,7 +120,19 @@ function App() {
               <Route path="reserve" element={<PhotoReserve />} />
               <Route path="check" element={<PhotoCheck />} />
             </Route>
-            <Route path="chat" element={<Socket />} />
+            {/* <Route path="chat" element={<Socket />} /> */}
+            <Route
+              path="chat_home"
+              element={
+                <Home
+                  username={username}
+                  setUsername={setUsername}
+                  room={room}
+                  setRoom={setRoom}
+                  socket={socket}
+                />
+              }
+            />
 
             <Route path="cart" element={<Cart />} />
             <Route path="clinic" element={<Clinic />} />
