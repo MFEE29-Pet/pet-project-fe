@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
 import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車數量連動商品
 import axios from 'axios';
-import { logDOM } from '@testing-library/react';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
@@ -35,6 +34,9 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
+  //拿到會員資料
+  const member = JSON.parse(localStorage.getItem('auth'));
+
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
 
@@ -63,18 +65,19 @@ function Cart() {
   // cartItem 是 Local Storage 的 Key
   // productCart 和 photoCart 是 cartItem 的 Value
   const getCartItem = localStorage.getItem('cartItem');
-
+  // console.log(getCartItem);
   const myCartItem = JSON.parse(getCartItem);
+  // console.log(myCartItem);
   const myProductCart = JSON.parse(getCartItem).productCart;
   const myPhotoCart = JSON.parse(getCartItem).photoCart;
 
   const myPhotoTotalPrice = myCartItem.photo_totalPrice;
-  console.log(myPhotoTotalPrice);
+  // console.log(myPhotoTotalPrice);
   const myTotalPrice = myCartItem.totalPrice;
 
   // 最終結帳總額
   const finalPrice = myPhotoTotalPrice + myTotalPrice;
-  console.log(finalPrice);
+  // console.log(finalPrice);
 
   // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
@@ -91,12 +94,12 @@ function Cart() {
     // setMyProductData(jsonData);
 
     setMyPhotoData(myPhotoCart);
-    console.log(myPhotoData[0].price);
+    // console.log(myPhotoData[0].price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
   const dataAmount = () => {
-    console.log(myProductCart);
+    // console.log(myProductCart);
 
     // 來源資料原始商品數量map
     const origiAmount = myProductCart.map((v, i) => {
@@ -111,7 +114,8 @@ function Cart() {
     setTotalPrice(origiTotalPrice);
 
     // 所有商品小計加總後要結帳之總額
-    setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
+
+    setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b, 0));
   };
 
   // 一進來頁面就載入來源資料
@@ -333,11 +337,11 @@ function Cart() {
 
                           const decreaseAmount = [...amount];
                           decreaseAmount[i] = +decreaseAmount[i] - 1;
-                          console.log(amount);
+                          // console.log(amount);
 
                           const decreasePrice = [...totalPrice];
                           decreasePrice[i] = decreaseAmount[i] * v.member_price;
-                          console.log(decreasePrice);
+                          // console.log(decreasePrice);
                           setNewTotalPrice(
                             decreasePrice.reduce((a, b) => a + b)
                           );
@@ -361,7 +365,7 @@ function Cart() {
                           newAmount[i] = +newAmount[i] + 1;
                           const newPrice = [...totalPrice];
                           newPrice[i] = newAmount[i] * v.member_price;
-                          console.log(newPrice);
+                          // console.log(newPrice);
 
                           setAmount(newAmount);
                           setTotalPrice(newPrice);
@@ -384,7 +388,7 @@ function Cart() {
                           removeProductData(v.sid);
 
                           amount.splice(i, 1);
-                          console.log(v.sid);
+                          // console.log(v.sid);
 
                           const deleteItem = JSON.parse(
                             localStorage.getItem('cartItem')
@@ -521,10 +525,28 @@ function Cart() {
 
               <button
                 onClick={async () => {
-                  const { data } = await axios.post(
-                    'http://localhost:6001/cart/add'
+                  const fd = new FormData();
+
+                  fd.append('photoCart', myCartItem.photoCart);
+                  fd.append('photoPrice', myCartItem.photo_totalPrice);
+                  fd.append('productCart', myCartItem.productCart);
+                  fd.append('productPrice', myCartItem.totalPrice);
+                  fd.append('memberID', member.sid);
+                  fd.append('cartTotalPrice', finalPrice);
+
+                  console.log(
+                    myCartItem.photoCart,
+                    myCartItem.photo_totalPrice,
+                    myCartItem.productCart,
+                    myCartItem.totalPrice,
+                    member.sid,
+                    finalPrice
                   );
-                  console.log({ data });
+
+                  const { data } = await axios.post(
+                    'http://localhost:6001/cart/addOrder'
+                  );
+                  console.log( data );
                 }}
                 className="eason_pay_btn bg_main_light_color1 "
               >
