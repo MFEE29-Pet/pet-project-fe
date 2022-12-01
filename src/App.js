@@ -43,6 +43,7 @@ import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
 import Home from './Pages/Product/components/Chat/Home/Home';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
+import Chat from './Pages/Product/components/Chat/Room/Chat';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -132,6 +133,10 @@ function App() {
                   socket={socket}
                 />
               }
+            />
+            <Route
+              path="chat_room"
+              element={<Chat username={username} room={room} socket={socket} />}
             />
 
             <Route path="cart" element={<Cart />} />
