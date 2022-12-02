@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { MEMBER_DATA } from '../../../my-config';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from './styles.modules.css';
+import axios from 'axios';
 
 const Container = styled.div`
   height: 100vh;
@@ -43,6 +45,18 @@ const Select = styled.select`
 
 function Home({ username, setUsername, room, setRoom, socket }) {
   const navigate = useNavigate();
+  const sid = localStorage.getItem('auth')
+    ? JSON.parse(localStorage.getItem('auth')).sid
+    : 0;
+  const [memberData, setMemberData] = useState([]);
+  const getMemberData = async () => {
+    const res = await axios.get(MEMBER_DATA);
+
+    const data = res.data.rows;
+    console.log(data);
+
+    setMemberData(data);
+  };
 
   // 加入指定聊天室 function
   const joinRoom = () => {
@@ -53,6 +67,9 @@ function Home({ username, setUsername, room, setRoom, socket }) {
 
     navigate('/chat_room', { replace: true });
   };
+  useEffect(() => {
+    getMemberData();
+  }, []);
 
   return (
     <>
@@ -70,10 +87,17 @@ function Home({ username, setUsername, room, setRoom, socket }) {
             onChange={(e) => setRoom(e.target.value)}
           >
             <option>-- Select Room --</option>
-            <option value="javascript">JavaScript</option>
-            <option value="node">Node</option>
-            <option value="express">Express</option>
-            <option value="react">React</option>
+            {sid === 2 ? (
+              <>
+                {memberData.map((e, i) => {
+                  return <option value={e.sid}>會員{e.sid}</option>;
+                })}
+              </>
+            ) : (
+              <>
+                <option value={sid}>客服人員</option>
+              </>
+            )}
           </Select>
 
           <button
