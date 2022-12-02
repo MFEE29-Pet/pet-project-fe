@@ -1,6 +1,7 @@
 import './ForumPost.css';
 import ButtonBar from './components/ButtonBar';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { ADD_MESS } from './my-config';
@@ -9,7 +10,7 @@ const buttonText = [{ value: 1, label: '發表', to: '/forum' }];
 
 function ForumPost({ setDoRerender, doRerender }) {
   // const useParams = useParams();
-
+  const navigate = useNavigate();
   const [messMessTitle, setMessTitle] = useState({
     title: '',
   });
@@ -36,8 +37,9 @@ function ForumPost({ setDoRerender, doRerender }) {
     // fd.append('img', messContent.img);
 
     console.log(fd);
-    const { date } = await axios.post(`${ADD_MESS}`, fd);
-    console.log(date);
+    const { data } = await axios.post(`${ADD_MESS}`, fd);
+    console.log(data.sid);
+    navigate(`/forum/detail?sid=${data.sid}`);
     // if (date.success) {
     //   alert('發文成功');
     //   setDoRerender(!doRerender);

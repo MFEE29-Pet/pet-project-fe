@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import EvaluateComponent from './EvaluateComponents/EvaluateComponent';
+import InputComponent from './InputComponents/InputComponent';
 import './ForumReply.css';
-import ButtonBar from './ButtonBar';
-import UserBar from './UserBar';
+// import imgUrl from './images/person_jason.jpg';
+// import imgg from '/images/person_jason.jpg';
 
-function ForumReply({ author, time, children }) {
-  return (
-    <>
-      <div className="forum_reply_card">
-        <div className="forum_relay_user">
-          <UserBar />
-        </div>
-        <div className="forum_right_area">
-          <div className="forum_reply_text"></div>
-          <div className="forum_ButtonBar_wrap">
-            <ButtonBar />
-          </div>
-        </div>
+export class ForumReply extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      evaluateList: [
+        {
+          imgUrl: '/images/person_jason.jpg',
+          nickName: '傑森',
+          sendTime: '2022.12.10',
+          evaluate: '這篇實用文章 推推！',
+        },
+      ],
+    };
+  }
+  render() {
+    return (
+      <div className="root">
+        <p className="content">{this.state.message}</p>
+        <EvaluateComponent evaluateList={this.state.evaluateList} />
+        <InputComponent sendSubmit={(e) => this.sendSubmit(e)} />
       </div>
-    </>
-  );
+    );
+  }
+
+  sendSubmit(e) {
+    let data = {
+      // imgUrl: "",
+      nickName: '艾蜜莉',
+      sendTime: '2022.12.14',
+      evaluate: e,
+    };
+    this.setState({
+      evaluateList: [data, ...this.state.evaluateList],
+    });
+  }
 }
 
 export default ForumReply;

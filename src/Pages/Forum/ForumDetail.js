@@ -64,9 +64,9 @@ function ForumDetail() {
         <div className="forum_article_area">
           <ForumDetailBar details={details[0] ? details[0] : ''} />
         </div>
-        <div>
+        {/* <div>
           <ForumMessage />
-        </div>
+        </div> */}
         <ForumReply />
       </div>
     </>
