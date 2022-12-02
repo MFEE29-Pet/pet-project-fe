@@ -3,7 +3,6 @@ import EvaluateComponent from './EvaluateComponents/EvaluateComponent';
 import InputComponent from './InputComponents/InputComponent';
 import './ForumReply.css';
 // import imgUrl from './images/person_jason.jpg';
-// import imgg from '/images/person_jason.jpg';
 
 export class ForumReply extends PureComponent {
   constructor(props) {
@@ -21,7 +20,7 @@ export class ForumReply extends PureComponent {
   }
   render() {
     return (
-      <div className="root">
+      <div className="forum_reply_card">
         <p className="content">{this.state.message}</p>
         <EvaluateComponent evaluateList={this.state.evaluateList} />
         <InputComponent sendSubmit={(e) => this.sendSubmit(e)} />
