@@ -122,7 +122,7 @@ function LocationMarker() {
 function ClinicMap({ dataFromSelect, location }) {
   return (
     <MapContainer
-      center={[25.033671, 121.564427]}
+      center={[+location.lat, +location.lng]}
       scrollWheelZoom={true}
       zoom={21}
       style={{ height: '600px', width: '75%', borderRadius: '10px', zIndex: 0 }}
@@ -138,6 +138,7 @@ function ClinicMap({ dataFromSelect, location }) {
       <OneMaker dataFromSelect={dataFromSelect} location={location}/>
       <TwoMaker dataFromSelect={dataFromSelect}/>
       <ThreeMaker dataFromSelect={dataFromSelect} />
+      {console.log(location)}
       <FourMaker dataFromSelect={dataFromSelect} />
       {/* {console.log(dataFromSelect)} */}
       

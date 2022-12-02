@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@material-ui/core": "^4.12.3",
+    "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/utils": "^4.11.3",
     "@mui/icons-material": "^5.10.14",
@@ -18,6 +18,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
     "gsap": "^3.11.3",
+    "jwt-decode": "^3.1.2",
     "leaflet": "^1.9.2",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
@@ -66,5 +67,6 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.0"
-  }
+  },
+  "proxy": "http://localhost:6001"
 }

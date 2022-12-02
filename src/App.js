@@ -38,7 +38,9 @@ import MemberProductCollect from './Pages/Member/MemberProductCollect';
 import MemberHistoryProduct from './Pages/Member/MemberHistoryProduct';
 import MemberHistoryCamera from './Pages/Member/MemberHistoryCamera';
 import MemberProfileUp from './Pages/Member/MemberProfileUp';
-import MemberForgrtPassword from './Pages/Member/MemberForgrtPassword';
+import MemberResavePassword from './Pages/Member/MemberResavePassword';
+import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
+import GoogleCallback from './Pages/Member/GoogleCallback';
 
 // try socket io
 // import Socket from './Pages/Product/components/Socket/Socket';
@@ -183,11 +185,16 @@ function App() {
               <Route path="memberDataRevise" element={<MemberProfileUp />} />
               <Route
                 path="memberPasswordRevise"
-                element={<MemberForgrtPassword />}
+                element={<MemberResavePassword />}
               />
             </Route>
             <Route path="member/memberShipAdd" element={<MemberSing />} />
             <Route path="member/memberLogIn" element={<MemberLogIn />} />
+            <Route
+              path="member/memberForgetPassword"
+              element={<MemberForgetPassword />}
+            />
+            <Route path="member/callback" element={<GoogleCallback />} />
           </Routes>
           <Footer />
         </AllContextProviders>

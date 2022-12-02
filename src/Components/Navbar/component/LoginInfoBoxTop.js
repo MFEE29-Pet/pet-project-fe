@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { imgUrl } from '../../../config/index';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../contexts/AuthContext';
 
