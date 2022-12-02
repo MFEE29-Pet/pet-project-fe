@@ -76,45 +76,46 @@ export const CartInfoContextProvider = function ({ children }) {
     if (index === -1) {
       alert('錯誤，無此商品');
       return;
-    }
-    if (cartItem.productCart[index].amount > 1) {
-      cartItem.productCart[index] = {
-        ...cartItem.productCart[index],
-        amount:
-          cartItem.productCart[index].amount > 0
-            ? cartItem.productCart[index].amount - 1
-            : cartItem.productCart[index].amount,
-      };
-      const newProductState = {
-        ...cartItem,
-        productCart: cartItem.productCart,
-        totalPrice: cartItem.totalPrice - data.member_price,
-        totalAmount:
-          cartItem.totalAmount > 0
-            ? cartItem.totalAmount - 1
-            : cartItem.totalAmount,
-      };
-      localStorage.setItem('cartItem', JSON.stringify(newProductState));
-      // console.log(cartItem.productCart[index].amount);
-      // console.log({ newProductState });
-      setCartItem(newProductState);
-    } else if (cartItem.productCart[index].amount === 1) {
-      const productCartItems1 = cartItem.productCart.slice(0, index);
-      // console.log(productCartItems1);
-      const productCartItems2 = cartItem.productCart.slice(index + 1);
-      // console.log(productCartItems2);
-      const productItems = productCartItems1.concat(productCartItems2);
-      // console.log(productItems);
+    } else {
+      if (cartItem.productCart[index].amount > 1) {
+        cartItem.productCart[index] = {
+          ...cartItem.productCart[index],
+          amount:
+            cartItem.productCart[index].amount > 0
+              ? cartItem.productCart[index].amount - 1
+              : cartItem.productCart[index].amount,
+        };
+        const newProductState = {
+          ...cartItem,
+          productCart: cartItem.productCart,
+          totalPrice: cartItem.totalPrice - data.member_price,
+          totalAmount:
+            cartItem.totalAmount > 0
+              ? cartItem.totalAmount - 1
+              : cartItem.totalAmount,
+        };
+        localStorage.setItem('cartItem', JSON.stringify(newProductState));
+        // console.log(cartItem.productCart[index].amount);
+        // console.log({ newProductState });
+        setCartItem(newProductState);
+      } else if (cartItem.productCart[index].amount === 1) {
+        const productCartItems1 = cartItem.productCart.slice(0, index);
+        // console.log(productCartItems1);
+        const productCartItems2 = cartItem.productCart.slice(index + 1);
+        // console.log(productCartItems2);
+        const productItems = productCartItems1.concat(productCartItems2);
+        // console.log(productItems);
 
-      const newProductItems = {
-        ...cartItem,
-        productCart: [...productItems],
-        totalPrice: cartItem.totalPrice - data.member_price,
-        totalAmount: cartItem.totalAmount - 1,
-      };
-      localStorage.setItem('cartItem', JSON.stringify(newProductItems));
-      // console.log({ newProductItems });
-      setCartItem(newProductItems);
+        const newProductItems = {
+          ...cartItem,
+          productCart: [...productItems],
+          totalPrice: cartItem.totalPrice - data.member_price,
+          totalAmount: cartItem.totalAmount - 1,
+        };
+        localStorage.setItem('cartItem', JSON.stringify(newProductItems));
+        // console.log({ newProductItems });
+        setCartItem(newProductItems);
+      }
     }
   };
 

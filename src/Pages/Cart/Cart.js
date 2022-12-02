@@ -334,21 +334,67 @@ function Cart() {
                         className=""
                         onClick={() => {
                           handleReduce(myProductData[i]);
+                          if (amount > 1) {
+                            const decreaseAmount = [...amount];
+                            decreaseAmount[i] = +decreaseAmount[i] - 1;
+                            // console.log(amount);
 
-                          const decreaseAmount = [...amount];
-                          decreaseAmount[i] = +decreaseAmount[i] - 1;
-                          // console.log(amount);
+                            const decreasePrice = [...totalPrice];
+                            decreasePrice[i] =
+                              decreaseAmount[i] * v.member_price;
+                            // console.log(decreasePrice);
+                            setNewTotalPrice(
+                              decreasePrice.reduce((a, b) => a + b)
+                            );
 
-                          const decreasePrice = [...totalPrice];
-                          decreasePrice[i] = decreaseAmount[i] * v.member_price;
-                          // console.log(decreasePrice);
-                          setNewTotalPrice(
-                            decreasePrice.reduce((a, b) => a + b)
-                          );
+                            setAmount(decreaseAmount);
 
-                          setAmount(decreaseAmount);
+                            setTotalPrice(decreasePrice);
+                          } else {
+                            setNewTotalPrice(
+                              newTotalPrice - v.member_price * amount[i]
+                            );
+                            removeProductData(v.sid);
 
-                          setTotalPrice(decreasePrice);
+                            amount.splice(i, 1);
+                            // console.log(v.sid);
+
+                            const deleteItem = JSON.parse(
+                              localStorage.getItem('cartItem')
+                            );
+                            const productList = deleteItem.productCart;
+
+                            const index = productList.findIndex(
+                              (e) => e.sid === v.sid
+                            );
+
+                            const sliceP1 = productList.slice(0, index);
+
+                            const sliceP2 = productList.slice(index + 1);
+
+                            const newProductList = [...sliceP1, ...sliceP2];
+
+                            deleteItem.productCart = newProductList;
+
+                            const totalItem = newProductList.length;
+                            let totalAmount = 0;
+                            let totalPrice = 0;
+
+                            newProductList.forEach((v, i) => {
+                              totalAmount += v.amount;
+                              totalPrice += v.amount * v.member_price;
+                            });
+
+                            deleteItem.totalItem = totalItem;
+                            deleteItem.totalAmount = totalAmount;
+                            deleteItem.totalPrice = totalPrice;
+                            localStorage.setItem(
+                              'cartItem',
+                              JSON.stringify(deleteItem)
+                            );
+
+                            setCartItem(deleteItem);
+                          }
                         }}
                       >
                         <i className="eason_fa-solid fa-solid fa-circle-minus">
@@ -387,7 +433,7 @@ function Cart() {
                           );
                           removeProductData(v.sid);
 
-                          amount.splice(i, 1);
+                          // amount.splice(i, 1);
                           // console.log(v.sid);
 
                           const deleteItem = JSON.parse(
@@ -410,10 +456,23 @@ function Cart() {
                           const totalItem = newProductList.length;
                           let totalAmount = 0;
                           let totalPrice = 0;
+                          if (cartItem.photoCart.length === 1) {
+                            totalAmount = 1;
+                            totalPrice = 0;
+                          } else {
+                            totalAmount = 0;
+                            totalPrice = 0;
+                          }
 
                           newProductList.forEach((v, i) => {
-                            totalAmount += v.amount;
-                            totalPrice += v.amount * v.member_price;
+                            totalAmount =
+                              totalAmount +
+                              v.amount +
+                              cartItem.photoCart.length;
+                            totalPrice =
+                              totalPrice +
+                              v.amount * v.member_price +
+                              cartItem.photoCart.price;
                           });
 
                           deleteItem.totalItem = totalItem;
@@ -546,7 +605,7 @@ function Cart() {
                   const { data } = await axios.post(
                     'http://localhost:6001/cart/addOrder'
                   );
-                  console.log( data );
+                  console.log(data);
                 }}
                 className="eason_pay_btn bg_main_light_color1 "
               >
