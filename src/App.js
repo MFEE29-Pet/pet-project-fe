@@ -49,6 +49,7 @@ import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import Chat from './Pages/Product/components/Chat/Room/Chat';
 import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
+import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -161,6 +162,7 @@ function App() {
                 />
               }
             />
+            <Route path="service" element={<ServiceIndex />} />
 
             <Route path="cart" element={<Cart />} />
             <Route path="cart_p3" element={<CartP3 />} />
