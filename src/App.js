@@ -48,7 +48,7 @@ import Home from './Pages/Product/components/Chat/Home/Home';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import Chat from './Pages/Product/components/Chat/Room/Chat';
-// import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
+import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -141,14 +141,26 @@ function App() {
             />
             <Route
               path="chat_room"
-              element={<Chat username={username} room={room} socket={socket} />}
+              element={
+                <Chat
+                  username={username}
+                  room={room}
+                  setRoom={setRoom}
+                  socket={socket}
+                />
+              }
             />
-            {/* <Route
+            <Route
               path="room_list"
               element={
-                <RoomList username={username} room={room} socket={socket} />
+                <RoomList
+                  username={username}
+                  room={room}
+                  socket={socket}
+                  setRoom={setRoom}
+                />
               }
-            /> */}
+            />
 
             <Route path="cart" element={<Cart />} />
             <Route path="cart_p3" element={<CartP3 />} />

@@ -67,9 +67,34 @@ function Home({ username, setUsername, room, setRoom, socket }) {
 
     navigate('/chat_room', { replace: true });
   };
+
+  // 傳送通知
+  const handleNotification = (msg) => {
+    socket.emit('sendNotification', {
+      senderName: username,
+      receiverName: '客服',
+      msg,
+    });
+  };
+
   useEffect(() => {
     getMemberData();
+    setUsername(
+      localStorage.getItem('auth')
+        ? JSON.parse(localStorage.getItem('auth')).name
+        : '使用者'
+    );
   }, []);
+
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    socket.on('getNotification', (data) => {
+      setNotifications((prev) => [...prev, data]);
+    });
+  }, [socket]);
+
+  console.log(notifications);
 
   return (
     <>
@@ -79,6 +104,7 @@ function Home({ username, setUsername, room, setRoom, socket }) {
           <Input
             className={styles.input}
             placeholder="Username..."
+            defaultValue={username}
             onChange={(e) => setUsername(e.target.value)}
           />
 

@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { MEMBER_DATA } from '../../../my-config';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Chat from '../Room/Chat';
 
-function RoomList({ socket }) {
+function RoomList({ socket, setRoom, room }) {
   const sid = localStorage.getItem('auth')
     ? JSON.parse(localStorage.getItem('auth')).sid
     : 0;
@@ -13,9 +14,9 @@ function RoomList({ socket }) {
     : 0;
   const navigate = useNavigate();
   const [memberData, setMemberData] = useState([]);
-  const [roomId, setRoomId] = useState(0);
+  // const [roomId, setRoomId] = useState(0);
   const [username, setUsername] = useState(sid === 2 ? '客服人員' : name);
-  const [userSid, setUserSid] = useState(0);
+  // const [userSid, setUserSid] = useState(0);
 
   const getMemberData = async () => {
     const res = await axios.get(MEMBER_DATA);
@@ -27,10 +28,11 @@ function RoomList({ socket }) {
   };
   // 加入指定聊天室 function
   const joinRoom = () => {
-    if (roomId !== '') {
+    if (room !== '') {
       // server 收到事件
-      socket.emit('join_room', { username, roomId });
+      socket.emit('join_room', { username, room });
     }
+    navigate('/chat_room');
   };
 
   useEffect(() => {
@@ -71,10 +73,10 @@ function RoomList({ socket }) {
                   height: '80px',
                   width: '100%',
                   padding: '0 10px',
-                  outline: `${roomId === e.sid ? '1px solid red' : ''}`,
+                  outline: `${room === e.sid ? '1px solid red' : ''}`,
                 }}
                 onClick={() => {
-                  setRoomId(e.sid);
+                  setRoom(e.sid);
                 }}
               >
                 <div
@@ -110,6 +112,7 @@ function RoomList({ socket }) {
           className="chat_room"
           style={{ width: '70%', outline: '1px solid blue' }}
         >
+          
         </div>
       </div>
     </>
