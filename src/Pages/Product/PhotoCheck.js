@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import CartInfoContext from './contexts/CartInfoContext';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const CheckForm = styled.div`
   font-family: art;
@@ -310,19 +314,20 @@ function PhotoCheck() {
     datatime = '下午';
   }
 
-  const photoCart = { name: '', img: '', date: '', time: '', price: 0 };
+  const photoCart = { sid: 0, name: '', img: '', date: '', time: '', price: 0 };
   // //傳送表單
   const handleSubmission = async (e) => {
     e.preventDefault();
     const newPhotoCart = {
       ...photoCart,
+      sid: photographerId,
       name: photographerName,
       img: photographerImg,
       date: date,
       time: time,
       price: +photographerPrice,
     };
-    console.log(newPhotoCart);
+    // console.log(newPhotoCart);
     if (cartItem.photoCart.length) {
       const photoItem = await {
         ...cartItem,
@@ -344,6 +349,12 @@ function PhotoCheck() {
       localStorage.setItem('cartItem', JSON.stringify({ ...photoItem }));
       setCartItem(photoItem);
     }
+    MySwal.fire({
+      title: <strong>已加入購物車</strong>,
+      text: '歡迎回來PetBan!',
+      icon: 'success',
+    });
+    navigate('/product');
     // setCartItem();
     // localStorage.setItem('cartItem', JSON.stringify({}));
     // await fd.append('name', photographerName);
