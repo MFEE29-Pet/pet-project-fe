@@ -128,7 +128,7 @@ function App() {
               <Route path="check" element={<PhotoCheck />} />
             </Route>
             {/* <Route path="chat" element={<Socket />} /> */}
-            <Route
+            {/* <Route
               path="chat_home"
               element={
                 <Home
@@ -161,8 +161,8 @@ function App() {
                   setRoom={setRoom}
                 />
               }
-            />
-            <Route path="service" element={<ServiceIndex />} />
+            /> */}
+            <Route path="service" element={<ServiceIndex socket={socket} />} />
 
             <Route path="cart" element={<Cart />} />
             <Route path="cart_p3" element={<CartP3 />} />

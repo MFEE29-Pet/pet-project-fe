@@ -1,6 +1,11 @@
 import React from 'react';
 import './Messages.scss';
-function Messages({ own }) {
+import dayjs from 'dayjs';
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+
+function Messages({ own, message }) {
+  // console.log(message);
   return (
     <>
       <div className={own ? 'message own' : 'message'}>
@@ -12,18 +17,14 @@ function Messages({ own }) {
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <p className="messageUser" style={{ marginRight: '10px' }}>
-              user1:
+              {message.sender}
             </p>
-            <p className="messageText">
-              Hello, there! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Cupiditate at saepe reiciendis neque explicabo!
-              Necessitatibus dolore inventore laudantium culpa voluptatum sequi
-              maiores. Accusamus reprehenderit, quae unde voluptatum consectetur
-              ipsum vitae?
-            </p>
+            <p className="messageText">{message.messages}</p>
           </div>
         </div>
-        <div className="messageBottom">1 hour ago</div>
+        <div className="messageBottom">
+          {dayjs(message.created_at).fromNow()}
+        </div>
       </div>
     </>
   );
