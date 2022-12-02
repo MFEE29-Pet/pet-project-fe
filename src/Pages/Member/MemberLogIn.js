@@ -8,6 +8,7 @@ import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRigh
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import {imgUrl} from '../../config'
 
 const MySwal = withReactContent(Swal);
 
@@ -181,7 +182,7 @@ function MemberLogIn() {
         >
           登入
         </button>
-        <div className="login_bottom">
+        <div className="login_bottom" >
           <div>
             <Link
               to="/member/memberForgetPassword"
@@ -196,7 +197,17 @@ function MemberLogIn() {
               立即註冊
             </Link>
           </div>
-          <button onClick={googleLogin}>酷狗登入</button>
+        </div>
+        <div style={{width:'50%',borderBottom:'1px solid #c9caca',margin:'50px 0px',position:'relative'}}>
+          <div style={{position:'absolute',bottom:'-10px',left:'50%',transform:'translateX(-50%)',backgroundColor:'#fff',width:'40px',display:'flex',justifyContent:'center'}}>OR</div>
+        </div>
+        <div onClick={googleLogin} style={{cursor:'pointer',display:'flex',alignItems:'center',border:'1px solid #727171',borderRadius:'10px',padding:'5px 10px'}}>
+          <div style={{width:'25%',display:'flex',justifyContent:'center'}}>
+            <img src={`${imgUrl}/images/google-icon.png`} alt="" style={{width:'100%'}}/>
+          </div>
+          <div style={{width:'75%',display:'flex',justifyContent:'center'}}> 
+            Login With Google
+          </div>
         </div>
       </div>
     </LoginPage>

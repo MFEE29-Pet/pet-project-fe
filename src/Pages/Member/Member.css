@@ -211,7 +211,7 @@ span {
   height: 100%;
 }
 
-.hidden_arrow_right{
+.hidden_arrow_right {
   position: absolute;
   width: 250px;
   height: 250px;
@@ -221,7 +221,7 @@ span {
   cursor: pointer;
 }
 
-.hidden_arrow_left{
+.hidden_arrow_left {
   position: absolute;
   width: 250px;
   height: 250px;
@@ -252,7 +252,7 @@ span {
 }
 
 .slide {
-  transform: scale(0.2);
+  transform: scale(0.7);
   transition: transform 300ms;
   opacity: 0.5;
 }
@@ -271,7 +271,7 @@ span {
   object-fit: cover;
 }
 
-.degree-card{
+.degree-card {
   height: 70px;
   display: flex;
   flex-direction: column;

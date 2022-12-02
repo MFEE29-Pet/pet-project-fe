@@ -5,17 +5,11 @@ import Slider from 'react-slick';
 
 function MemberLevel() {
   const NextArrow = ({ onClick }) => {
-    return (
-      <div className="hidden_arrow_right" onClick={onClick}>
-      </div>
-    );
+    return <div className="hidden_arrow_right" onClick={onClick}></div>;
   };
 
   const PrevArrow = ({ onClick }) => {
-    return (
-      <div className="hidden_arrow_left" onClick={onClick}>
-      </div>
-    );
+    return <div className="hidden_arrow_left" onClick={onClick}></div>;
   };
 
   const [imageIndex, setImageIndex] = useState(0);
@@ -50,7 +44,9 @@ function MemberLevel() {
           <div className="degreeC">
             <div className="degreeWrap">
               <Slider {...settings}>
-                <div className={0 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={0 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_1.png`} alt="" />
                   </div>
@@ -61,7 +57,9 @@ function MemberLevel() {
                     </p>
                   </div>
                 </div>
-                <div className={1 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={1 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_2.png`} alt="" />
                   </div>
@@ -70,7 +68,9 @@ function MemberLevel() {
                     <p style={{ color: '#727171' }}>會員卡</p>
                   </div>
                 </div>
-                <div className={2 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={2 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_3.png`} alt="" />
                   </div>
@@ -79,7 +79,9 @@ function MemberLevel() {
                     <p style={{ color: '#727171' }}>會員卡</p>
                   </div>
                 </div>
-                <div className={3 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={3 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_1.png`} alt="" />
                   </div>
@@ -90,7 +92,9 @@ function MemberLevel() {
                     </p>
                   </div>
                 </div>
-                <div className={4 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={4 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_2.png`} alt="" />
                   </div>
@@ -99,7 +103,9 @@ function MemberLevel() {
                     <p style={{ color: '#727171' }}>會員卡</p>
                   </div>
                 </div>
-                <div className={5 === imageIndex ? "slide activeSlide" : "slide"}>
+                <div
+                  className={5 === imageIndex ? 'slide activeSlide' : 'slide'}
+                >
                   <div className="degreeImg">
                     <img src={`${imgUrl}/images/MemberCard_3.png`} alt="" />
                   </div>
@@ -111,24 +117,78 @@ function MemberLevel() {
               </Slider>
             </div>
             <div className="degree-txt">
-              <div className="degreeIcon">
-                <i
-                  className="fa-solid fa-caret-right right text_main_dark_color2"
-                  style={{ marginRight: '5px' }}
-                ></i>
-                <span className="text_main_dark_color2">
-                  每月第一筆訂單，不限金額，即可享免運優惠。
-                </span>
-              </div>
-              <div className="degreeIcon">
-                <i
-                  className="fa-solid fa-caret-right text_main_dark_color2"
-                  style={{ marginRight: '5px' }}
-                ></i>
-                <span className="text_main_dark_color2">
-                  單筆凡超過2,500元可享5%折扣
-                </span>
-              </div>
+              {imageIndex === 0 || imageIndex === 3 ? (
+                <>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      每月第一筆訂單，不限金額，即可享免運優惠。
+                    </span>
+                  </div>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      單筆凡超過2,500元可享5%折扣
+                    </span>
+                  </div>
+                </>
+              ) : (
+                ''
+              )}
+              {imageIndex === 1 || imageIndex === 4 ? (
+                <>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      每月第一筆訂單，不限金額，即可享免運優惠。
+                    </span>
+                  </div>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      單筆凡超過5,000元可享5%折扣
+                    </span>
+                  </div>
+                </>
+              ) : (
+                ''
+              )}
+              {imageIndex === 2 || imageIndex === 5 ? (
+                <>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      每月第一筆訂單，不限金額，即可享免運優惠。
+                    </span>
+                  </div>
+                  <div className="degreeIcon">
+                    <i
+                      className="fa-solid fa-caret-right text_main_dark_color2"
+                      style={{ marginRight: '5px' }}
+                    ></i>
+                    <span className="text_main_dark_color2">
+                      單筆凡超過8,000元可享5%折扣
+                    </span>
+                  </div>
+                </>
+              ) : (
+                ''
+              )}
             </div>
           </div>
           <div className="ship-bottom">

@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router';
+
+const MySwal = withReactContent(Swal);
 
 const ForgetPasswordPage = styled.div`
   width: 100%;
@@ -31,6 +36,7 @@ const Memberroutes = [
 
 function MemberForgetPassword() {
   const [mail, setMail] = useState('');
+  const navigate = useNavigate()
 
   const sendMail = async () => {
     const fd = new FormData();
@@ -39,8 +45,16 @@ function MemberForgetPassword() {
       'http://localhost:6001/member/sendpassword',
       fd
     );
-
     console.log(data);
+
+    if(data.msg === 'success'){
+      MySwal.fire({
+        title: <strong>已更換密碼</strong>,
+        text: '請至您的信箱查看新密碼',
+        icon: 'success',
+      });
+      navigate('/member/memberLogIn')
+    }
   };
 
   return (
