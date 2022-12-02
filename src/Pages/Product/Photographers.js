@@ -62,29 +62,31 @@ function Photographers() {
 
   return (
     <>
-      <div className="title_wrap" style={{ marginBottom: '30px' }}>
-        <H2>攝影師</H2>
-      </div>
-      <div
-        className="photographers_row"
-        style={{ display: 'flex', justifyContent: 'space-around' }}
-      >
-        <PhotographersCard
-          photoGraphers={photoGraphers}
-          floatNum={floatNum}
-          setFloatNum={setFloatNum}
-        />
-      </div>
-      <H2 style={{ marginTop: '100px' }}>攝影作品</H2>
-      <div
-        className="carouselDiv"
-        style={{
-          display: 'flex',
-          margin: '50px 0 100px 0',
-          justifyContent: 'center',
-        }}
-      >
-        <MyCarousel styleImages={styleImages} floatNum={floatNum} />
+      <div className="div_wrap" style={{ width: '1400px', margin: '0 auto' }}>
+        <div className="title_wrap" style={{ marginBottom: '30px' }}>
+          <H2>攝影師</H2>
+        </div>
+        <div
+          className="photographers_row"
+          style={{ display: 'flex', justifyContent: 'space-around' }}
+        >
+          <PhotographersCard
+            photoGraphers={photoGraphers}
+            floatNum={floatNum}
+            setFloatNum={setFloatNum}
+          />
+        </div>
+        <H2 style={{ marginTop: '100px' }}>攝影作品</H2>
+        <div
+          className="carouselDiv"
+          style={{
+            display: 'flex',
+            margin: '50px 0 100px 0',
+            justifyContent: 'center',
+          }}
+        >
+          <MyCarousel styleImages={styleImages} floatNum={floatNum} />
+        </div>
       </div>
     </>
   );
