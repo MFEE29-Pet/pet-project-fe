@@ -4,11 +4,11 @@ import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
 import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車數量連動商品
+import axios from 'axios';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
-import photoJsonData from './photoTest.json';
-// import { es } from 'date-fns/locale';
+// import photoJsonData from './photoTest.json';
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -34,6 +34,9 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
+  //拿到會員資料
+  const member = JSON.parse(localStorage.getItem('auth'));
+
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
 
@@ -45,9 +48,6 @@ function Cart() {
   const [photoChecked, setPhotoChecked] = useState(true);
   const [productChecked, setProductChecked] = useState(true);
 
-  // 結帳用預約攝影價格
-  const [newPhotoPrice, setNewPhotoPrice] = useState(0);
-
   // 商品訂單明細 即時商品數量
   const [amount, setAmount] = useState([]);
 
@@ -58,13 +58,28 @@ function Cart() {
   const [newTotalPrice, setNewTotalPrice] = useState(0);
 
   // 商品訂單明細 取資料上狀態為了要刪除時使用
-  const [myData, setMyData] = useState([{}]);
+  const [myProductData, setMyProductData] = useState([{}]);
   const [myPhotoData, setMyPhotoData] = useState([{}]);
 
-  // 真實串接資料來源
-  const myCart = localStorage.getItem('cartItem');
-  const myProduct = JSON.parse(myCart).productCart;
-  console.log(myCart.productCart);
+  // 真實串接 Local Storage 資料來源
+  // cartItem 是 Local Storage 的 Key
+  // productCart 和 photoCart 是 cartItem 的 Value
+  const getCartItem = localStorage.getItem('cartItem');
+  // console.log(getCartItem);
+  const myCartItem = JSON.parse(getCartItem);
+  // console.log(myCartItem);
+  const myProductCart = JSON.parse(getCartItem).productCart;
+  const myPhotoCart = JSON.parse(getCartItem).photoCart;
+
+  const myPhotoTotalPrice = myCartItem.photo_totalPrice;
+  // console.log(myPhotoTotalPrice);
+  const myTotalPrice = myCartItem.totalPrice;
+
+  // 最終結帳總額
+  const finalPrice = myPhotoTotalPrice + myTotalPrice;
+  // console.log(finalPrice);
+
+  // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
   // photoCart:[]
   // productCart:
@@ -75,29 +90,32 @@ function Cart() {
 
   // 獲取來源資料
   const getData = () => {
-    setMyData(myProduct);
-    // setMyData(jsonData);
+    setMyProductData(myProductCart);
+    // setMyProductData(jsonData);
 
-    setMyPhotoData(photoJsonData);
-    setNewPhotoPrice(photoJsonData[0].photo_price);
+    setMyPhotoData(myPhotoCart);
+    // console.log(myPhotoData[0].price);
   };
 
   // 商品訂單明細 商品數量相關連動功能
   const dataAmount = () => {
-    console.log(myProduct);
+    // console.log(myProductCart);
 
     // 來源資料原始商品數量map
-    const origiAmount = myProduct.map((v, i) => {
+    const origiAmount = myProductCart.map((v, i) => {
       return [v.amount];
     });
     setAmount(origiAmount);
 
-    // 來源資料原始小計金額map
-    const origiTotalPrice = myProduct.map((v, i) => v.member_price * v.amount);
+    // 來源資料商品原始小計金額map
+    const origiTotalPrice = myProductCart.map(
+      (v, i) => v.member_price * v.amount
+    );
     setTotalPrice(origiTotalPrice);
 
-    // 所有小計加總後要結帳之總額
-    setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b));
+    // 所有商品小計加總後要結帳之總額
+
+    setNewTotalPrice(origiTotalPrice.reduce((a, b) => a + b, 0));
   };
 
   // 一進來頁面就載入來源資料
@@ -109,11 +127,20 @@ function Cart() {
   // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
     const remove = myPhotoData.filter((v, i) => {
-      return v.photo_id !== item;
+      return v.sid !== item;
     });
 
+    const removePhotoCart = {
+      ...myCartItem,
+      photoCart: [],
+      photo_totalPrice: 0,
+      totalAmount: myCartItem.totalAmount - 1,
+      totalItem: myCartItem.totalItem - 1,
+    };
+    localStorage.setItem('cartItem', JSON.stringify(removePhotoCart));
+    setCartItem(removePhotoCart);
+
     setMyPhotoData(remove);
-    setNewPhotoPrice(0);
   };
 
   // 刪除商品資料功能
@@ -122,15 +149,12 @@ function Cart() {
       return v.sid !== item;
     });
 
-    setMyData(remove);
+    setMyProductData(remove);
   };
 
-  // 商品加減清除Context
+  // 購物車加減刪除Context
   const { cartItem, setCartItem, handleAddCart, handleReduce } =
     useContext(CartInfoContext);
-
-  // localStorage index
-  // const index = cartItem.productCart.findIndex((e) => e.sid === myData.sid);
 
   return (
     <>
@@ -219,25 +243,24 @@ function Cart() {
               {/* 預約攝影資料引入------------------------------------------------------------------- */}
               {myPhotoData.map((v, i) => {
                 return (
-                  <tr key={v.id}>
+                  <tr key={v.sid}>
                     <td className="eason_table_img">
                       <img
                         style={{ verticalAlign: 'middle' }}
-                        src="./imgs/person_2.jpeg"
+                        src={`./images/test/${v.img}`}
                         alt=""
-                        width="100px"
+                        width="80px"
+                        height="80px"
                       />
                     </td>
-                    <td>{v.photographer}</td>
+                    <td>{v.name}</td>
                     <td>{v.date}</td>
-                    <td>{v.dayparts}</td>
-                    <td className="eason_table_price">{v.photo_price}</td>
+                    <td>{v.time ? '早上' : '晚上'}</td>
+                    <td className="eason_table_price">{v.price}</td>
                     <td>
                       <span
                         onClick={() => {
-                          removePhotoData(v.photo_id);
-
-                          // localStorage.removeItem('cartItem');
+                          removePhotoData(v.sid);
                         }}
                       >
                         <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
@@ -253,7 +276,7 @@ function Cart() {
         {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
         <div className="eason_section_2">
           <div className="eason_list_title">
-            {myData && myData.length !== 0 && (
+            {myProductData && myProductData.length !== 0 && (
               <>
                 <h2 className="text_main_dark_color2">商品訂單明細</h2>
                 <div className="eason_product_check">
@@ -277,7 +300,7 @@ function Cart() {
             )}
           </div>
           <table className="eason_list_table">
-            {myData && myData.length !== 0 && (
+            {myProductData && myProductData.length !== 0 && (
               <thead>
                 <tr>
                   <th>商品圖</th>
@@ -292,9 +315,7 @@ function Cart() {
 
             <tbody>
               {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {/* {myData.map((v, i) => {
-               */}
-              {cartItem.productCart.map((v, i) => {
+              {myProductData.map((v, i) => {
                 return (
                   <tr key={v.sid}>
                     <td className="eason_table_img">
@@ -302,8 +323,8 @@ function Cart() {
                         style={{ verticalAlign: 'middle' }}
                         src={`./images/test/${v.img}`}
                         alt=""
-                        width="65px"
-                        height="65px"
+                        width="70px"
+                        height="80px"
                       />
                     </td>
                     <td className="eason_p_name">{v.name}</td>
@@ -312,15 +333,15 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          handleReduce(myData[i]);
+                          handleReduce(myProductData[i]);
 
                           const decreaseAmount = [...amount];
                           decreaseAmount[i] = +decreaseAmount[i] - 1;
-                          console.log(amount);
+                          // console.log(amount);
 
                           const decreasePrice = [...totalPrice];
                           decreasePrice[i] = decreaseAmount[i] * v.member_price;
-                          console.log(decreasePrice);
+                          // console.log(decreasePrice);
                           setNewTotalPrice(
                             decreasePrice.reduce((a, b) => a + b)
                           );
@@ -338,13 +359,13 @@ function Cart() {
                       <span
                         className=""
                         onClick={() => {
-                          handleAddCart(myData[i], 1);
+                          handleAddCart(myProductData[i], 1);
 
                           const newAmount = [...amount];
                           newAmount[i] = +newAmount[i] + 1;
                           const newPrice = [...totalPrice];
                           newPrice[i] = newAmount[i] * v.member_price;
-                          console.log(newPrice);
+                          // console.log(newPrice);
 
                           setAmount(newAmount);
                           setTotalPrice(newPrice);
@@ -367,7 +388,7 @@ function Cart() {
                           removeProductData(v.sid);
 
                           amount.splice(i, 1);
-                          console.log(v.sid);
+                          // console.log(v.sid);
 
                           const deleteItem = JSON.parse(
                             localStorage.getItem('cartItem')
@@ -390,7 +411,7 @@ function Cart() {
                           let totalAmount = 0;
                           let totalPrice = 0;
 
-                          newProductList.forEach((v,i) => {
+                          newProductList.forEach((v, i) => {
                             totalAmount += v.amount;
                             totalPrice += v.amount * v.member_price;
                           });
@@ -473,8 +494,8 @@ function Cart() {
                     <th className="text_main_dark_color2">商品金額</th>
                     <td>
                       ${' '}
-                      {(productChecked ? newTotalPrice : 0) +
-                        (photoChecked ? newPhotoPrice : 0)}
+                      {(productChecked ? myTotalPrice : 0) +
+                        (photoChecked ? myPhotoTotalPrice : 0)}
                     </td>
                   </tr>
 
@@ -493,8 +514,8 @@ function Cart() {
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       ${' '}
                       {Math.ceil(
-                        ((productChecked ? newTotalPrice : 0) +
-                          (photoChecked ? newPhotoPrice : 0)) *
+                        ((productChecked ? myTotalPrice : 0) +
+                          (photoChecked ? myPhotoTotalPrice : 0)) *
                           0.9
                       )}
                     </td>
@@ -502,7 +523,33 @@ function Cart() {
                 </table>
               </div>
 
-              <button className="eason_pay_btn bg_main_light_color1 ">
+              <button
+                onClick={async () => {
+                  const fd = new FormData();
+
+                  fd.append('photoCart', myCartItem.photoCart);
+                  fd.append('photoPrice', myCartItem.photo_totalPrice);
+                  fd.append('productCart', myCartItem.productCart);
+                  fd.append('productPrice', myCartItem.totalPrice);
+                  fd.append('memberID', member.sid);
+                  fd.append('cartTotalPrice', finalPrice);
+
+                  console.log(
+                    myCartItem.photoCart,
+                    myCartItem.photo_totalPrice,
+                    myCartItem.productCart,
+                    myCartItem.totalPrice,
+                    member.sid,
+                    finalPrice
+                  );
+
+                  const { data } = await axios.post(
+                    'http://localhost:6001/cart/addOrder'
+                  );
+                  console.log( data );
+                }}
+                className="eason_pay_btn bg_main_light_color1 "
+              >
                 前往付款
               </button>
             </div>
