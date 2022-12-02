@@ -122,7 +122,9 @@ function Cart() {
   useEffect(() => {
     dataAmount();
     getData();
+    // setAmount(+myCartItem.totalAmount);
   }, []);
+  // console.log(amount);
 
   // 刪除攝影資料並剔除總金額功能
   const removePhotoData = (item) => {
@@ -334,7 +336,7 @@ function Cart() {
                         className=""
                         onClick={() => {
                           handleReduce(myProductData[i]);
-                          if (amount > 1) {
+                          if (amount[i] > 1) {
                             const decreaseAmount = [...amount];
                             decreaseAmount[i] = +decreaseAmount[i] - 1;
                             // console.log(amount);
@@ -350,6 +352,7 @@ function Cart() {
                             setAmount(decreaseAmount);
 
                             setTotalPrice(decreasePrice);
+                            console.log({ amount });
                           } else {
                             setNewTotalPrice(
                               newTotalPrice - v.member_price * amount[i]
@@ -379,6 +382,13 @@ function Cart() {
                             const totalItem = newProductList.length;
                             let totalAmount = 0;
                             let totalPrice = 0;
+                            if (cartItem.photoCart.length === 1) {
+                              totalAmount = 1;
+                              totalPrice = 0;
+                            } else {
+                              totalAmount = 0;
+                              totalPrice = 0;
+                            }
 
                             newProductList.forEach((v, i) => {
                               totalAmount += v.amount;
