@@ -594,6 +594,12 @@ function Cart() {
 
               <button
                 onClick={async () => {
+                  const cartData = {
+                    ...myCartItem,
+                    memberID: member.sid,
+                    cartTotalPrice: finalPrice,
+                  };
+                  /*
                   const fd = new FormData();
 
                   fd.append('photoCart', myCartItem.photoCart);
@@ -611,9 +617,10 @@ function Cart() {
                     member.sid,
                     finalPrice
                   );
-
+*/
                   const { data } = await axios.post(
-                    'http://localhost:6001/cart/addOrder'
+                    'http://localhost:6001/cart/addOrder',
+                    cartData
                   );
                   console.log(data);
                 }}
