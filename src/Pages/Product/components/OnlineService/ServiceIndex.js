@@ -17,6 +17,8 @@ function ServiceIndex({ socket }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [arrivalMessaage, setArrivalMessaage] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  // const [open, setOpen] = useState(false);
   // const [socket, setSocket] = useState(null);
 
   const scrollRef = useRef();
@@ -44,11 +46,15 @@ function ServiceIndex({ socket }) {
     }
   };
 
+  const handleRead = () => {
+    setNotifications([]);
+  };
+
   useEffect(() => {
     socket.emit('addUser', myAuth.sid);
     // 取得socket上個別使用者sid
     socket.on('getUsers', (users) => {
-      console.log(users);
+      // console.log(users);
     });
   }, [myAuth.sid]);
 
@@ -62,6 +68,7 @@ function ServiceIndex({ socket }) {
 
   // console.log(myAuth);
   // console.log({ currentChat });
+  // console.log({ conversations });
   // console.log(messages);
 
   const handleSubmit = async (e) => {
@@ -73,11 +80,11 @@ function ServiceIndex({ socket }) {
     };
 
     // const receiverId = currentChat?.find((member) => member !== myAuth.sid);
-    console.log(conversations);
+    // console.log(conversations);
 
     socket.emit('sendMessage', {
       senderId: myAuth.sid,
-      receiverId: currentChat,
+      receiverId: currentChat === myAuth.sid ? 2 : currentChat,
       text: newMessage,
     });
 
@@ -94,13 +101,16 @@ function ServiceIndex({ socket }) {
   useEffect(() => {
     socket.on('getMessage', (data) => {
       setArrivalMessaage({
-        conversationId: currentChat,
         senderId: data.senderId,
         text: data.text,
       });
+
+      setNotifications((prev) => [...prev, data]);
     });
   }, []);
-  console.log(arrivalMessaage);
+  console.log(notifications);
+
+  // console.log(arrivalMessaage);
   useEffect(() => {
     arrivalMessaage &&
       currentChat === arrivalMessaage.senderId &&
@@ -161,7 +171,7 @@ function ServiceIndex({ socket }) {
             height: '100%',
             display: 'flex',
             overflow: 'auto',
-            padding: '5px',
+            // padding: '5px',
           }}
         >
           <div
@@ -170,7 +180,8 @@ function ServiceIndex({ socket }) {
               display: 'flex',
               width: '30%',
               height: '100%',
-              outline: '1px solid red',
+              borderRight: '1px solid red',
+              padding: '0 5px',
               overflow: 'auto',
               flexDirection: 'column',
             }}
@@ -186,152 +197,21 @@ function ServiceIndex({ socket }) {
                   conversations={e}
                   receivedId={myAuth.sid}
                   username={myAuth.name}
+                  notifications={notifications.filter(
+                    (v, i) =>
+                      v.receiverId === myAuth.sid && v.senderId === e.sid
+                  )}
+                  setNotifications={setNotifications}
                 />
               </div>
             ))}
-            {/* <div
-              className="room_list"
-              style={{
-                display: 'flex',
-                margin: '10px 0 0 0',
-                height: '80px',
-                width: '100%',
-                padding: '0 10px',
-              }}
-            >
-              <div
-                className="user_img_wrap"
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src="/images/test/user1.jpeg"
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-              <div className="user_name_wrap" style={{ margin: '10px 20px' }}>
-                <h1>user1</h1>
-                <button style={{ margin: '10px 0' }}>加入</button>
-              </div>
-            </div>
-            <div
-              className="room_list"
-              style={{
-                display: 'flex',
-                margin: '10px 0 0 0 ',
-                height: '80px',
-                width: '100%',
-                padding: '0 10px',
-              }}
-            >
-              <div
-                className="user_img_wrap"
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src="/images/test/user1.jpeg"
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-              <div className="user_name_wrap" style={{ margin: '10px 20px' }}>
-                <h1>user1</h1>
-                <button style={{ margin: '10px 0' }}>加入</button>
-              </div>
-            </div>
-            <div
-              className="room_list"
-              style={{
-                display: 'flex',
-                margin: '10px 0 0 0',
-                height: '80px',
-                width: '100%',
-                padding: '0 10px',
-              }}
-            >
-              <div
-                className="user_img_wrap"
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src="/images/test/user1.jpeg"
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-              <div className="user_name_wrap" style={{ margin: '10px 20px' }}>
-                <h1>user1</h1>
-                <button style={{ margin: '10px 0' }}>加入</button>
-              </div>
-            </div>
-            <div
-              className="room_list"
-              style={{
-                display: 'flex',
-                margin: '10px 0 0 0 ',
-                height: '80px',
-                width: '100%',
-                padding: '0 10px',
-              }}
-            >
-              <div
-                className="user_img_wrap"
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src="/images/test/user1.jpeg"
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </div>
-              <div className="user_name_wrap" style={{ margin: '10px 20px' }}>
-                <h1>user1</h1>
-                <button style={{ margin: '10px 0' }}>加入</button>
-              </div>
-            </div> */}
           </div>
           <div
             className="chat_room"
             style={{
               width: '70%',
               // backgroundColor: 'blue',
-              outline: '1px solid blue',
+              // outline: '1px solid blue',
               padding: '5px',
             }}
           >
@@ -348,22 +228,13 @@ function ServiceIndex({ socket }) {
                 <>
                   {messages &&
                     messages.map((e, i) => (
-                      <div ref={scrollRef} key={e.sid}>
+                      <div ref={scrollRef} key={i}>
                         <Messages
                           message={e}
                           own={e.sender_sid === myAuth.sid}
                         />
                       </div>
                     ))}
-                  {/* <Messages own={true} />
-                  <Messages />
-                  <Messages />
-                  <Messages />
-                  <Messages />
-                  <Messages />
-                  <Messages />
-                  <Messages />
-                  <Messages /> */}
                 </>
               ) : (
                 <>
@@ -413,6 +284,7 @@ function ServiceIndex({ socket }) {
                   color: '#fff',
                   backgroundColor: 'lightblue',
                 }}
+                disabled={currentChat ? false : true}
                 onClick={handleSubmit}
               >
                 送出

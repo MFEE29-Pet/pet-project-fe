@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-function Conversation({ conversations, receivedId }) {
+function Conversation({
+  conversations,
+  receivedId,
+  notifications,
+  setNotifications,
+}) {
   const [user, setUser] = useState(0);
+  // const [showNotifications, setShowNotifications] = useState(notifications.length > 0 ? notifications.length : '');
   // console.log(receivedId);
   // console.log(conversations);
+  console.log(notifications);
   useEffect(() => {
     setUser(receivedId);
   }, [conversations, receivedId]);
+
+  const handleRead = () => {
+    setNotifications([]);
+  };
 
   return (
     <>
@@ -17,14 +28,15 @@ function Conversation({ conversations, receivedId }) {
           margin: '10px 0 0 0 ',
           height: '80px',
           width: '100%',
-          padding: '0 10px',
+          // padding: '0 10px',
         }}
+        onClick={handleRead}
       >
         <div
           className="user_img_wrap"
           style={{
-            width: '80px',
-            height: '80px',
+            width: '70px',
+            height: '70px',
             borderRadius: '50%',
             overflow: 'hidden',
           }}
@@ -43,11 +55,19 @@ function Conversation({ conversations, receivedId }) {
             }}
           />
         </div>
-        <div className="user_name_wrap" style={{ margin: '10px 20px' }}>
+        <div className="user_name_wrap" style={{ margin: '10px ' }}>
           <h1>
             {user === 2 ? conversations.senderName : conversations.receiverName}
           </h1>
-          <button style={{ margin: '10px 0' }}>加入</button>
+        </div>
+        <div>
+          <span>
+            {notifications.length > 0
+              ? notifications.length > 10
+                ? 10 + '+'
+                : notifications.length
+              : ''}
+          </span>
         </div>
       </div>
     </>
