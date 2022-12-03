@@ -7,8 +7,8 @@ import ForumList from './Pages/Forum/ForumList';
 import ForumDetail from './Pages/Forum/ForumDetail';
 import Cart from './Pages/Cart/Cart';
 import Member from './Pages/Member/Member';
-import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
+import MemberSign from './Pages/Member/MemberSign';
 import { MemberContextProvider } from './contexts/MemberContext';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
@@ -113,7 +113,7 @@ function App() {
             <Route path="forum/detail" element={<ForumDetail />} />
 
             <Route path="member" element={<Member />} />
-            <Route path="member/memberShipAdd" element={<MemberSing />} />
+            <Route path="member/memberShipAdd" element={<MemberSign/>} />
             <Route path="member/memberLogIn" element={<MemberLogIn />} />
           </Routes>
         </AllContextProviders>

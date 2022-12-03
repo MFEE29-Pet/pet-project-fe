@@ -3,40 +3,6 @@
   src: url(../../../public/font/GenSenRounded-R.ttc);
 }
 
-* {
-  box-sizing: border-box;
-  font-family: big_circle;
-}
-
-h2 {
-  font-weight: 900;
-  color: #40220f;
-}
-
-h1 {
-  font-weight: 900;
-  color: #40220f;
-}
-
-body {
-  background-color: #fff5de;
-}
-
-ul {
-  font-size: 15px;
-  color: #966134;
-}
-
-input {
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
-span {
-  font-size: 14px;
-  color: #40220f;
-}
 
 .buttonLogIn {
   width: 80px;
@@ -64,7 +30,16 @@ span {
   justify-content: center;
   align-items: center;
 }
-
+.forget span:first-child{
+  font-size: 14px;
+  color: #40220f;
+}
+.loginpage input{
+  border: none;
+  outline: none;
+  background-color: transparent;
+/* 透明 */
+}
 .logInenterA {
   display: flex;
   justify-content: space-between;

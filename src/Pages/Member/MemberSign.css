@@ -28,40 +28,7 @@
   font-size: 25px;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: big_circle;
-}
-
-h2 {
-  font-weight: 900;
-  color: #40220f;
-}
-
-body {
-  background-color: #fff5de;
-}
-option {
-  border: none;
-  outline: none;
-}
-ul {
-  font-size: 15px;
-  color: #966134;
-}
-
-select {
-  width: 100px;
-  height: 30px;
-  margin-right: 15px;
-  border-radius: 20px;
-  border: 2px solid #a4a5a5;
-  color: #a4a5a5;
-  background-color: #fff;
-  padding: 5px 10px;
-}
-
-.singUp-page {
+.signUp-page {
   width: 1200px;
   display: flex;
   justify-content: space-between;
@@ -74,15 +41,10 @@ select {
   margin-bottom: 40px;
 }
 
-input {
+/* input {
   border: none;
   outline: none;
-}
-
-span {
-  font-size: 14px;
-  color: #40220f;
-}
+} */
 
 .button {
   width: 80px;
@@ -194,10 +156,4 @@ span {
   color: #989898;
   cursor: pointer;
 }
-.cc {
-  width: 250px;
-  outline: 1px solid #989898;
-  height: 30px;
-  border-radius: 30px;
-  padding-left: 10px;
-}
+

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import './MemberSing.css';
+import './MemberSign.css';
 import axios from 'axios';
-function MemberSing() {
+function MemberSign() {
   const nav = useNavigate();
   const [signSuccess, setSignSuccess] = useState(false);
   const [photos, setPhotos] = useState('');
@@ -61,8 +61,12 @@ function MemberSing() {
       alert('密碼不一致');
       return;
     }
-    const a = /\d/;
-    if (!(password.length > 8 && a.test(password))) {
+    const a = /\d/;//需要有數字
+    const b = /[A-Z]/;
+    const c = /[a-z]/
+    const e = /\s/;//空白就true所以要false 
+
+    if (!(password.length > 8 && a.test(password) && b.test(password) && c.test(password) && e.test(password))) {
       alert('密碼格式有誤');
       return;
     }
@@ -151,7 +155,7 @@ function MemberSing() {
       )}
 
       <div className="member-page">
-        <div className="singUp-page">
+        <div className="signUp-page">
           <div className="page">
             <div className="page-left">
               <div className="enter-A">
@@ -403,4 +407,4 @@ function MemberSing() {
   );
 }
 
-export default MemberSing;
+export default MemberSign;

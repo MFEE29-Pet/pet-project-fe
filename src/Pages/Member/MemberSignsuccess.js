@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import './Member.css';
 
-function MemberSingsuccess() {
+function MemberSignsuccess() {
   const { mode } = useContext(SwitchButtonContext);
 
   return (
@@ -15,4 +15,4 @@ function MemberSingsuccess() {
   );
 }
 
-export default MemberSingsuccess;
+export default MemberSignsuccess;

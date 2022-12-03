@@ -108,7 +108,7 @@ function MemberLogIn() {
         >
           登出
         </button> */}
-        <div>
+        <div className='forget'>
           <span>忘記密碼</span>
           <i className="fa-regular fa-pipe"></i>
           <span

@@ -15,7 +15,7 @@ function MemberForgrtPassword() {
                 <div className="enter-A">
                     <h2>新密碼</h2>
                     <div className="enter-B">
-                        <div>
+                        <div className="input">
                            
                             <input type="text"/>
                         </div>
@@ -26,7 +26,7 @@ function MemberForgrtPassword() {
                 <div className="enter-A">
                     <h2>新密碼確認</h2>
                     <div className="enter-B">
-                        <div>
+                        <div className="input">
                             
                             <input type="text"/>
                         </div>
