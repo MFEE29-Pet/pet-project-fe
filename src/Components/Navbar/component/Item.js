@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { LittleItem } from './LittleItem.js';
 
 const forumItem = [
-  { id: 1, name: '綜合版', to: '/forum/?complex' },
+  { id: 1, name: '綜合版', to: '/forum/?forum' },
   { id: 2, name: '發問版', to: '/forum/?question' },
   { id: 3, name: '經驗版', to: '/forum/?experience' },
   { id: 4, name: '活動版', to: '/forum/?activity' },

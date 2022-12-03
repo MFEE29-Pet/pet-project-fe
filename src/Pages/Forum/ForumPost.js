@@ -69,14 +69,6 @@ function ForumPost({ setDoRerender, doRerender }) {
               <option value="E">送養版</option>
               <option value="F">領養版</option>
               <option value="G">其他版</option>
-              {/* <option value="">選擇主題</option>
-              <option value="forum_complex">綜合版</option>
-              <option value="forum_question">發問版</option>
-              <option value="forum_experience">經驗版</option>
-              <option value="forum_activity">活動版</option>
-              <option value="forum_give">送養版</option>
-              <option value="forum_adoption">領養版</option>
-              <option value="forum_other">其他版</option> */}
             </select>
 
             <div className="forum_post_title_bar">
@@ -103,6 +95,11 @@ function ForumPost({ setDoRerender, doRerender }) {
           <div className="forum_post_icon">
             <i className="fa-light fa-face-smile" id="forum_smile"></i>
             <i className="fa-light fa-image" id="forum_image"></i>
+            {/* <input
+              type="file"
+              accept="image/gif,image/jpeg,image/jpg,image/png"
+              multiple
+            /> */}
           </div>
 
           <div className="forum_post_button">
@@ -118,8 +115,6 @@ function ForumPost({ setDoRerender, doRerender }) {
             >
               發表
             </button>
-
-            {/* <button className="btn_post bg_main_light_color1">發表</button> */}
           </div>
         </div>
       </form>

@@ -23,7 +23,8 @@ const buttonText = [
 
 function ForumDetail() {
   const [details, setDetails] = useState([]);
-
+  const [forumComment, setForumComment] = useState([]);
+  const [reRenderForum, setReRenderForum] = useState(false);
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -32,16 +33,17 @@ function ForumDetail() {
   const getDetails = async () => {
     const res = await axios.get(`${GET_DETAILS}?sid=${sid}`);
 
-    // console.log(res);
+    console.log(res);
     const detail = res.data.details;
-
+    const forum_comment = res.data.forum_comment;
     setDetails(detail[0]);
+    setForumComment(forum_comment);
     // console.log(detail[0]);
   };
 
   useEffect(() => {
     getDetails();
-  }, [location]);
+  }, [location, reRenderForum]);
 
   return (
     <>
@@ -53,7 +55,9 @@ function ForumDetail() {
         <div className="forum_detail_button_wrap">
           {buttonText.map((e, i) => {
             const { label, value, to } = e;
-            console.log(e);
+            {
+              /* console.log(e); */
+            }
             return <ButtonBar value={value} label={label} to={to} key={i} />;
           })}
         </div>
@@ -67,7 +71,11 @@ function ForumDetail() {
         {/* <div>
           <ForumMessage />
         </div> */}
-        <ForumReply />
+        <ForumReply
+          forumComment={forumComment}
+          reRenderForum={reRenderForum}
+          setReRenderForum={setReRenderForum}
+        />
       </div>
     </>
   );

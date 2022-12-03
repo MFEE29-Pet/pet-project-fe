@@ -10,28 +10,26 @@ export default class InputComponent extends Component {
   }
   render() {
     return (
-      <div className="sendEvaluate">
-        <img
-          className="headImg"
-          src="https://xhs-rookies.com/img/rookie-icon.png"
-          alt=""
-        />
-        <div className="inputBox">
-          <textarea
-            className="inputText"
-            placeholder="請輸入回覆"
-            value={this.state.inputMess}
-            onChange={(e) => this.getEvaluate(e)}
-          />
-          <button
-            className="btn_post bg_main_light_color1"
-            id="send_reply"
-            onClick={() => this.sendSubmit()}
-          >
-            發文
-          </button>
+      <>
+        <div className="sendEvaluate">
+          <img className="headImg" src="" alt="" />
+          <div className="inputBox">
+            <textarea
+              className="inputText"
+              placeholder="請輸入回覆"
+              value={this.state.inputMess}
+              onChange={(e) => this.getEvaluate(e)}
+            />
+            <button
+              className="btn_post bg_main_light_color1"
+              id="send_reply"
+              onClick={() => this.sendSubmit()}
+            >
+              發文
+            </button>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
   // 獲取輸入內容

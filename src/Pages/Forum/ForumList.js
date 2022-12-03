@@ -6,7 +6,7 @@ import ForumListBar from './components/ForumListBar';
 import './ForumList.css';
 
 const buttonText = [
-  { value: 1, label: '綜合', to: '/complex' },
+  { value: 1, label: '綜合', to: '/forum' },
   { value: 2, label: '發問', to: '/question' },
   { value: 3, label: '經驗', to: '/experience' },
   { value: 4, label: '活動', to: '/activity' },
