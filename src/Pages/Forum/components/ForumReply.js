@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ForumReply.css';
 import ButtonBar from './ButtonBar';
 import UserBar from './UserBar';

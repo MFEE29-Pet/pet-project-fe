@@ -4,7 +4,6 @@ import { useContext, useState, useEffect } from 'react';
 import StarRate from './StarRate';
 import axios from 'axios';
 import { INSERT_REPLY } from '../my-config';
-import { useLocation } from 'react-router-dom';
 
 const ReplyBackground = styled.div`
   width: 100vw;

@@ -129,7 +129,7 @@
 }
 
 .eason_section_1 .eason_list_table th:nth-child(1) {
-  width: 13%;
+  width: 12%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(2) {
@@ -137,14 +137,13 @@
 }
 
 .eason_section_1 .eason_list_table th:nth-child(3) {
-  width: 20%;
+  width: 17%;
 }
 
 .eason_section_1 .eason_table_price {
   font-weight: 900;
   color: red;
 }
-
 
 /* .fa-pen-to-square {
   color: #c9caca;
@@ -155,11 +154,11 @@
   color: #40220f;
 } */
 .eason_section_1 .eason_list_table th:nth-child(4) {
-  width: 20%;
+  width: 15%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(5) {
-  width: 11%;
+  width: 12%;
 }
 
 .eason_section_1 .eason_list_table th:nth-child(6) {
@@ -200,15 +199,15 @@
 }
 
 .eason_section_2 .eason_list_table th:nth-child(1) {
-  width: 12.5%;
+  width: 10%;
 }
 
 .eason_section_2 .eason_list_table th:nth-child(2) {
-  width: 20%;
+  width: 16%;
 }
 
 .eason_section_2 .eason_list_table th:nth-child(3) {
-  width: 15%;
+  width: 14%;
 }
 
 .eason_section_2 .eason_table_price {
@@ -216,7 +215,7 @@
 }
 
 .eason_section_2 .eason_list_table th:nth-child(4) {
-  width: 15%;
+  width: 13%;
 }
 
 .eason_section_2 .eason_table_amount {
@@ -224,7 +223,7 @@
 }
 
 .eason_section_2 .eason_list_table th:nth-child(5) {
-  width: 10%;
+  width: 11%;
 }
 
 .eason_section_2 .eason_table_total {
@@ -265,16 +264,39 @@
   flex-direction: column;
 }
 
-.eason_discount_code {
-  background-color: #fff;
+.discountArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
   border-radius: 12px;
+  overflow: hidden;
   width: 260px;
   height: 25px;
+}
+
+.eason_discount_code {
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  border-radius: 12px;
   border: none;
 }
 
 .eason_discount_code:focus {
   outline: none;
+}
+
+.eason_fa-magnifying-glass {
+  color: #fff;
+  display: flex;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  padding: 3px 10px;
+  font-weight: 900;
+  height: 25px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .eason_s3_right_top {

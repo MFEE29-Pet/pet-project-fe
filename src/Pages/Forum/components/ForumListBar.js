@@ -18,6 +18,7 @@ function ForumListBar() {
     },
   ]);
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   const getArticles = async () => {
     const res = await axios.get(`${GET_ALL_ARTICLE}`);
@@ -46,9 +47,14 @@ function ForumListBar() {
     <>
       {articles.map((e, i) => {
         return (
-          <div className="forumBar" key={e.article_sid} onClick={()=>{
-
-          }} >
+          <div
+            className="forumBar"
+            key={e.article_sid}
+            onClick={() => {
+              navigate(`detail?sid=${e.article_sid}`);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="forumIconBar">
               <i
                 className="fa-light fa-message-question text_main_dark_color2"

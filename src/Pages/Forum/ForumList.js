@@ -1,4 +1,5 @@
 import SearchBar from './components/SearchBar';
+import ButtonPost from './components/ButtonPost';
 import SelectBar from './components/SelectBar';
 import ButtonBar from './components/ButtonBar';
 import ForumListBar from './components/ForumListBar';
@@ -23,7 +24,10 @@ function ForumList() {
       <div className="forum_list_wrap">
         <div className="forum_search_select">
           <SearchBar />
-          <SelectBar />
+          <div className="forum_btnpost_select">
+            <ButtonPost />
+            <SelectBar />
+          </div>
         </div>
 
         <div className="forum_list_button_wrap">
