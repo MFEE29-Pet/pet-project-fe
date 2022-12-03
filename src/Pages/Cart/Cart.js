@@ -549,8 +549,22 @@ function Cart() {
             <div className="eason_s3_right_top">
               <h2 className="text_main_dark_color2">優惠代碼</h2>
               <div className="discountArea">
-                <input className="eason_discount_code" type="text" />
-                <i className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "></i>
+                <input className="eason_discount_code" id="rrr" type="text" />
+                <span
+                  onClick={() => {
+                    //折扣碼測試
+                    // const discount = document.getElementById('rrr');
+
+                    // if (discount.value === '1234') {
+                    //   console.log('-100');
+                    // } else if (discount.value === '2222') {
+                    //   console.log('-200');
+                    // }
+
+                    // console.log(discount.value);
+                  }}
+                  className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "
+                ></span>
               </div>
             </div>
 
