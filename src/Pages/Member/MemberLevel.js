@@ -241,7 +241,7 @@ function MemberLevel() {
                     累積消費
                   </p>
                   <span style={{ color: '#f00', fontSize: '24px' }}>
-                    ＄5,080
+                    $5 <span style={{ fontSize: '18px' }}>,</span> 080
                   </span>
                   <span style={{ fontSize: '18px' }}>/8,000</span>
                 </div>
