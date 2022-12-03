@@ -9,6 +9,7 @@ function History(props) {
   const [show, setShow] = useState(false);
   // 歷史列表
   const [history, setHistory] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState(0);
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -29,6 +30,7 @@ function History(props) {
       } else {
         localStorage.setItem('history', newHistory);
       }
+      setCurrentProduct(p_sid);
     }
   }, [location]);
 
@@ -52,6 +54,9 @@ function History(props) {
   useEffect(() => {
     getHistoryProduct();
   }, []);
+  useEffect(() => {
+    getHistoryProduct();
+  }, [currentProduct]);
 
   return (
     <>

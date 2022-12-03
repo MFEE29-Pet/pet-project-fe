@@ -2,6 +2,20 @@ import { useContext, useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import {
+  EmailIcon,
+  FacebookIcon,
+  InstapaperIcon,
+  LineIcon,
+  MailruIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from 'react-share';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from 'react-share';
 
 // import AuthContext from '../../contexts/AuthContext';
 import { PRODUCT_DETAIL } from './my-config';
@@ -125,7 +139,7 @@ function ProductDetail() {
     return { ...e };
   });
   const data = pd[0];
-  // console.log(data);
+  console.log(data);
 
   // console.log(avgNum);
 
@@ -153,13 +167,21 @@ function ProductDetail() {
           {/* <!-- search-bar & pro-loved --> */}
           <div className="filter-s-p" style={{ justifyContent: 'flex-end' }}>
             <div className="pro-loved-list">
-              <Link
-                to="/member/memberProductCollect"
+              <div
+                style={{ display: 'flex' }}
                 onMouseEnter={() => {
                   setLovedHover(!lovedHover);
                 }}
                 onMouseLeave={() => {
                   setLovedHover(!lovedHover);
+                }}
+                onClick={() => {
+                  if (!JSON.stringify(localStorage.getItem('auth'))) {
+                    navigate('/member/memberProductCollect');
+                  } else {
+                    alert('請先登入');
+                    navigate('/member/memberLogIn');
+                  }
                 }}
               >
                 <i
@@ -168,7 +190,7 @@ function ProductDetail() {
                   } fa-heart`}
                 ></i>
                 <p style={{ textAlign: 'end' }}>我的收藏</p>
-              </Link>
+              </div>
             </div>
           </div>
 
@@ -255,6 +277,13 @@ function ProductDetail() {
                     className={`${loved ? 'fa-solid' : 'fa-regular'} fa-heart`}
                   ></i>
                 </div>
+                <FacebookShareButton
+                  url={`https://github.com/AndyLincode`}
+                  quote={`GitHub`}
+                  className="Demo__some-network__share-button"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
               </div>
 
               <div className="sales-info">
@@ -385,7 +414,7 @@ function ProductDetail() {
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        <RelatedProduct relatedProducts={relatedProducts} />
+        <RelatedProduct relatedProducts={relatedProducts} setRelatedProducts={setRelatedProducts} />
       </section>
       {/* Go To Top */}
       <GoToTop />

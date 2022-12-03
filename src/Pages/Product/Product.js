@@ -5,7 +5,7 @@ import ProductCard from './components/ProductCard';
 import { useState, useEffect, useContext } from 'react';
 import Popup from './components/Popup';
 import { PRODUCT_LIST } from './my-config';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
 import MyPagination from './components/MyPagination';
@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import ProductLine from './components/ProductLine';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import GoToTop from './components/GoToTop';
+import Socket from './components/Socket/Socket';
 
 const PAGE = styled.div`
   ul {
@@ -161,9 +162,10 @@ function Product() {
 
   // 切割資料
   const rowProducts = _.chunk(product, 4);
-
+  const navigate = useNavigate();
   return (
     <>
+      <button onClick={() => navigate('/chat_home')}>進入聊天室</button>
       <main>
         <ProductSidebar isLoading={isLoading} />
         <section className="right">
@@ -219,6 +221,7 @@ function Product() {
         setSalesType={setSalesType}
         salesType={salesType}
       />
+      {/* <Socket /> */}
       <GoToTop />
     </>
   );

@@ -6,6 +6,11 @@ import AuthContext from '../../contexts/AuthContext';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import {imgUrl} from '../../config'
+
+const MySwal = withReactContent(Swal);
 
 const Memberroutes = [
   {
@@ -32,6 +37,13 @@ const LoginPage = styled.div`
   align-items: center;
 `;
 
+const AUTO_LOGIN_ROOT = styled.div`
+  background-color: #fff;
+  &:hover {
+    background-color: #fff5de;
+  }
+`;
+
 function MemberLogIn() {
   const { setMyAuth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -39,6 +51,7 @@ function MemberLogIn() {
     username: '',
     password: '',
   });
+
   //for password show
   const [show, setShow] = useState(false);
   const handle = (e) => {
@@ -46,21 +59,37 @@ function MemberLogIn() {
     //做淺拷貝重新把值取代回去
   };
   const login = async () => {
-    const { data } = await axios.post(
-      'http://localhost:6001/member/login-api',
-      user
-    );
+    const { data } = await axios.post('/member/login-api', user);
     console.log(data);
+
     if (data.success) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
       //登入後跳轉換面
       setMyAuth({ ...data.auth, authorized: true });
+      MySwal.fire({
+        title: <strong>成功登入</strong>,
+        text: '歡迎回來PetBen',
+        icon: 'success',
+      });
       navigate('/member/memberCenter');
     } else {
       localStorage.removeItem('auth');
-      alert('登入失敗');
+      Swal.fire({
+        title: '<strong>登入失敗</strong>',
+        text: '帳號密碼錯誤',
+        icon: 'info',
+      });
     }
   };
+
+  const googleLogin = async () => {
+    const { data } = await axios.get('http://localhost:6001/member/login');
+    console.log(data);
+    window.open(data);
+  };
+
+
+
   return (
     <LoginPage>
       <BreadcrumbBox>
@@ -160,20 +189,50 @@ function MemberLogIn() {
         >
           登入
         </button>
-        <div className="login_bottom">
+        <div className="login_bottom" >
           <div>
-            <Link to="/" style={{ color: '#252525' }}>
+            <Link
+              to="/member/memberForgetPassword"
+              style={{ color: '#252525' }}
+            >
               忘記密碼
             </Link>
           </div>
           <i className="fa-regular fa-pipe"></i>
           <div>
-            <Link className="text_main_light_color1" to="/memberShipAdd">
+            <Link className="text_main_light_color1" to="/member/memberShipAdd">
               立即註冊
             </Link>
           </div>
         </div>
+        <div style={{width:'50%',borderBottom:'1px solid #c9caca',margin:'50px 0px',position:'relative'}}>
+          <div style={{position:'absolute',bottom:'-10px',left:'50%',transform:'translateX(-50%)',backgroundColor:'#fff',width:'40px',display:'flex',justifyContent:'center'}}>OR</div>
+        </div>
+        <div onClick={googleLogin} style={{cursor:'pointer',display:'flex',alignItems:'center',border:'1px solid #727171',borderRadius:'10px',padding:'5px 10px'}}>
+          <div style={{width:'25%',display:'flex',justifyContent:'center'}}>
+            <img src={`${imgUrl}/images/google-icon.png`} alt="" style={{width:'100%'}}/>
+          </div>
+          <div style={{width:'75%',display:'flex',justifyContent:'center'}}> 
+            Login With Google
+          </div>
+        </div>
       </div>
+      <AUTO_LOGIN_ROOT
+        onClick={() => {
+          setUser({
+            username: 'root',
+            password: 'root',
+          });
+        }}
+        style={{
+          width: '20px',
+          height: '20px',
+          position: 'absolute',
+          top: '30%',
+          right: '30%',
+          borderRadius: '50%',
+        }}
+      ></AUTO_LOGIN_ROOT>
     </LoginPage>
   );
 }

@@ -1,0 +1,86 @@
+.eason_container {
+  margin: auto;
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 進度條CSS--------------------------------------------------------------- */
+.eason_progress_bar {
+  width: 880px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  color: #dcdddd;
+}
+
+.eason_progress_bar::after {
+  content: '';
+  position: absolute;
+  width: 95%;
+  height: 3px;
+  top: 59%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.eason_progress_bar::before {
+  content: '';
+  position: absolute;
+  width: 48%;
+  height: 3px;
+  top: 59%;
+  left: 26%;
+  transform: translateX(-50%);
+  /* background-color: #40220f; */
+  z-index: 1;
+}
+
+.eason_dot {
+  width: 15px;
+  height: 15px;
+  border: 0.13rem solid #dcdddd;
+  border-radius: 50%;
+  margin: 8px 0;
+  background-color: #fff5de;
+  z-index: 1;
+}
+
+.eason_dot_1 {
+  width: 15px;
+  height: 15px;
+  border: 0.13rem solid #dcdddd;
+  border-radius: 50%;
+  margin: 8px 0;
+  background-color: #fff5de;
+  z-index: 1;
+}
+.eason_order .eason_dot {
+  border: 0.13rem solid #40220f;
+}
+
+.eason_order i {
+  color: #40220f;
+}
+
+.eason_progress_bar a {
+  text-decoration: none;
+  color: #dcdddd;
+  font-weight: 900;
+}
+
+.eason_order,
+.eason_pay,
+.eason_check,
+.eason_truck,
+.eason_complete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: x-small;
+}

@@ -154,13 +154,6 @@ function ProductLine({ product, isLoading }) {
                 </H1>
               )}
 
-              <i
-                className={`${
-                  isLovedNum.indexOf(e.sid) !== -1 ? 'fa-solid' : 'fa-regular'
-                } fa-heart`}
-                style={{ marginLeft: '5px', color: 'red', cursor: 'pointer' }}
-                onClick={() => handleClickForLine(e.sid)}
-              ></i>
               {/* <button
                 onClick={() => {
                   console.log(typeof [isLovedNum]);
@@ -168,7 +161,7 @@ function ProductLine({ product, isLoading }) {
               >
                 案
               </button> */}
-              <SHOW
+              {/* <SHOW
                 $mode={mode}
                 onClick={() => {
                   if (showInfo === e.sid) {
@@ -179,7 +172,7 @@ function ProductLine({ product, isLoading }) {
                 }}
               >
                 <p>{showInfo === e.sid ? '隱藏' : '顯示更多'}</p>
-              </SHOW>
+              </SHOW> */}
               {isLoading ? (
                 <Skeleton
                   variant="rectangular"
@@ -203,22 +196,74 @@ function ProductLine({ product, isLoading }) {
                   >
                     {e.info}
                   </INFO>
+                  <span
+                    style={{ cursor: 'pointer', fontSize: '14px' }}
+                    onClick={() => {
+                      if (showInfo === e.sid) {
+                        setShowInfo(0);
+                      } else {
+                        setShowInfo(e.sid);
+                      }
+                    }}
+                  >
+                    {showInfo === e.sid ? '' : '顯示更多'}
+                  </span>
                 </Skeleton>
               ) : (
-                <INFO
-                  showInfo={showInfo}
-                  sid={e.sid}
-                  onClick={() => {
-                    if (showInfo === e.sid) {
-                      setShowInfo(0);
-                    } else {
-                      setShowInfo(e.sid);
-                    }
-                  }}
-                >
-                  {e.info}
-                </INFO>
+                <>
+                  <i
+                    className={`${
+                      isLovedNum.indexOf(e.sid) !== -1
+                        ? 'fa-solid'
+                        : 'fa-regular'
+                    } fa-heart`}
+                    style={{
+                      marginLeft: '5px',
+                      color: 'red',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => handleClickForLine(e.sid)}
+                  ></i>
+                  <INFO
+                    showInfo={showInfo}
+                    sid={e.sid}
+                    onClick={() => {
+                      if (showInfo === e.sid) {
+                        setShowInfo(0);
+                      } else {
+                        setShowInfo(e.sid);
+                      }
+                    }}
+                  >
+                    {e.info}
+                  </INFO>
+                  <span
+                    style={{ cursor: 'pointer', fontSize: '14px' }}
+                    onClick={() => {
+                      if (showInfo === e.sid) {
+                        setShowInfo(0);
+                      } else {
+                        setShowInfo(e.sid);
+                      }
+                    }}
+                  >
+                    {showInfo === e.sid ? '' : '顯示更多'}
+                  </span>
+                </>
               )}
+
+              {/* <SHOW
+                $mode={mode}
+                onClick={() => {
+                  if (showInfo === e.sid) {
+                    setShowInfo(0);
+                  } else {
+                    setShowInfo(e.sid);
+                  }
+                }}
+              > */}
+
+              {/* </SHOW> */}
             </div>
 
             <LINK

@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { textAlign } from '@mui/system';
 import AuthContext from '../../contexts/AuthContext';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 function MemberProfileUp() {
   const [name, setName] = useState('');
@@ -191,7 +194,7 @@ function MemberProfileUp() {
   }, [city]);
 
   const saveData = async () => {
-    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY/MM/DD');
+    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY-MM-DD');
 
     const fd = new FormData();
 
@@ -203,13 +206,34 @@ function MemberProfileUp() {
     fd.append('address', address);
     fd.append('birthday', d);
     fd.append('gender', gender);
-    fd.append('member_photo', selectedFile);
+    fd.append('member_photo', selectedFile || '');
     fd.append('sid', memberID.sid);
 
     const { data } = await axios.put('http://localhost:6001/member/edit', fd);
-    console.log(data);
 
-    setMyAuth({ ...myAuth, member_photo: data.img });
+    if (data.success) {
+      MySwal.fire({
+        title: <strong>成功修改</strong>,
+        icon: 'success',
+      });
+    } else {
+      Swal.fire({
+        title: '<strong>資料未修改</strong>',
+        icon: 'info',
+      });
+    }
+
+    if (selectedFile) {
+      setMyAuth({ ...myAuth, member_photo: data.img });
+
+      const authOld = JSON.parse(localStorage.getItem('auth'));
+
+      const newAuth = { ...authOld, member_photo: data.img };
+
+      localStorage.setItem('auth', JSON.stringify(newAuth));
+
+      console.log(newAuth);
+    }
   };
 
   return (

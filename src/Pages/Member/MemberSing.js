@@ -193,13 +193,13 @@ function MemberSing() {
     fd.append('area', user.area);
     fd.append('address', user.address);
     fd.append('date', d);
-    fd.append('member_photo', selectedFile);
+    fd.append('member_photo', selectedFile || 'noname.png');
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
-    const {send} = await axios.post('http://localhost:6001/member/send',fd)
+    // const { send } = await axios.post('http://localhost:6001/member/send', fd);
     console.log(data);
-    console.log(send);
+    // console.log(send);
     if (data.success) {
       alert('註冊成功');
       navigate('/member/memberLogIn');
@@ -351,6 +351,7 @@ function MemberSing() {
                         onChange={(e) => {
                           setCity(e.target.value);
                         }}
+                        className="member_select"
                       >
                         {cityData.map((e, i) => {
                           const { sid, city_name } = e;
@@ -370,6 +371,7 @@ function MemberSing() {
                         onChange={(e) => {
                           setArea(e.target.value);
                         }}
+                        className="member_select"
                       >
                         {filterAreaData.map((e, i) => {
                           const { area_name, sid } = e;
@@ -432,10 +434,10 @@ function MemberSing() {
                       name=""
                       id=""
                       value={year}
-                      className="year"
                       onChange={(e) => {
                         setYear(e.target.value);
                       }}
+                      className="member_select"
                     >
                       <option>年</option>
                       {yearList.map((e, i) => {
@@ -455,6 +457,7 @@ function MemberSing() {
                       onChange={(e) => {
                         setMonth(e.target.value);
                       }}
+                      className="member_select"
                     >
                       <option>月</option>
                       {monthList.map((e, i) => {
@@ -474,6 +477,7 @@ function MemberSing() {
                       onChange={(e) => {
                         setDay(e.target.value);
                       }}
+                      className="member_select"
                     >
                       <option>日</option>
                       {dayList.map((e, i) => {
@@ -501,7 +505,11 @@ function MemberSing() {
                 {isFilePicked ? (
                   <img src={preview} alt="" style={{ width: '100%' }} />
                 ) : (
-                  <i className="fa-thin thin fa-user"></i>
+                  <img
+                    src="/images/noname.png"
+                    alt=""
+                    style={{ height: '100%', objectFit: 'contain' }}
+                  />
                 )}
               </div>
               <div
