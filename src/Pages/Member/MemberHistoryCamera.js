@@ -1,6 +1,47 @@
+import { useEffect, useState } from 'react';
 import './Member.css';
+import dayjs from 'dayjs';
+import axios from 'axios';
+import PhotoDetail from './components/PhotoDetail';
 
 function MemberHistoryCamera() {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [select, setSelect] = useState(0);
+  const [detailNum, setDetailNum] = useState('');
+
+  const memberID = JSON.parse(localStorage.getItem('auth'));
+
+  const getProductData = async () => {
+    const res = await axios.get(
+      `http://localhost:6001/member/orderdata/${memberID.sid}`
+    );
+    console.log(res);
+
+    const data = res.data.rows;
+
+    const data1 = data.filter((e, i) => {
+      const { photo_total_price } = e;
+      return photo_total_price > 0;
+    });
+
+    const m_data = data1.map((e, i) => {
+      const { ordered_at } = e;
+      return { ...data1[i], ordered_at: dayjs(ordered_at).format('YYYY-MM-DD') };
+    });
+    console.log(m_data);
+    setData(m_data);
+  };
+  const click = (orders_num) => {
+    open ? setOpen(false) : setOpen(true);
+    console.log(orders_num);
+    setDetailNum(orders_num);
+  };
+
+  useEffect(() => {
+    getProductData();
+  }, []);
+
   return (
     <div
       style={{
@@ -11,106 +52,82 @@ function MemberHistoryCamera() {
         fontSize: '20px',
       }}
     >
-      <div className="orderCamera-right">
-        <div className="orderCameraWrap">
-          <div className="orderCamera">
-            <div className="detailCamera">
-              <h1
-                className="text_main_dark_color2"
-                style={{ marginRight: '20px' }}
-              >
-                攝影預約明細
-              </h1>
-              <p style={{ color: '#727171', fontSize: '16px' }}>
-                訂單完成於2022-11-28
-              </p>
-            </div>
-            <div className="priceCamera">
-              <h1 className="text_main_dark_color2">訂單金額</h1>
-              <p
+      <div
+        className="orderProduct-right"
+        style={{ height: '700px', overflowY: 'scroll' }}
+      >
+        {data.map((e, i) => {
+          const { photo_total_price, ordered_at, orders_num } = e;
+          return (
+            <div className="orderProductWrap" key={i}>
+              <div
+                className="orderProduct"
                 style={{
-                  marginLeft: '20px',
-                  color: '#f00',
-                  fontWeight: '700',
-                  fontSize: '18px',
+                  backgroundColor: '#fff',
+                  padding: '30px',
+                  borderRadius: '15px',
                 }}
               >
-                $4,770
-              </p>
-            </div>
-          </div>
-          <div
-            style={{
-              width: '100%',
-              backgroundColor: '#fff',
-              borderRadius: '20px',
-              padding: '20px',
-            }}
-          >
-            <table style={{ width: '100%' }}>
-              <thead>
-                <tr>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>頭像</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>攝影師</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>
-                    預約日期
-                  </th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>
-                    預約時段
-                  </th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>單價</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      height: '150px',
-                    }}
+                <div
+                  className="detailProduct"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-end',
+                    width: '66%',
+                  }}
+                >
+                  <div
+                    className="text_main_dark_color2"
+                    style={{ width: '15%', fontWeight: '700' }}
                   >
-                    <img
-                      src=""
-                      alt=""
-                      style={{ width: '100px', height: '100px' }}
-                    />
-                  </td>
-                  <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                    柏延
-                  </td>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      color: '#727171',
-                    }}
+                    攝影訂單
+                  </div>
+                  <div
+                    style={{ color: '#727171', fontSize: '16px', width: '50%' }}
                   >
-                    2023/01/02
-                  </td>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      color: '#727171',
-                    }}
+                    訂單編號:{orders_num}
+                  </div>
+                  <div
+                    style={{ color: '#727171', fontSize: '16px', width: '35%' }}
                   >
-                    下午
-                  </td>
-                  <td
+                    訂單已完成於{ordered_at}
+                  </div>
+                </div>
+                <div
+                  className="priceProduct"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    width: '20%',
+                  }}
+                >
+                  <h1 className="text_main_dark_color2">訂單金額</h1>
+                  <p
                     style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
                       color: '#f00',
+                      fontWeight: '700',
+                      fontSize: '18px',
                     }}
                   >
-                    $1960
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                    ${photo_total_price}
+                  </p>
+                  <i
+                    className="fa-regular fa-circle-chevron-down"
+                    style={{ cursor: 'pointer', fontSize: '22px' }}
+                    onClick={() => {
+                      if (select === i) {
+                        click(orders_num);
+                      }
+                    }}
+                  ></i>
+                </div>
+              </div>
+              <PhotoDetail open={open} detailNum={detailNum} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

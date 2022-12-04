@@ -1,9 +1,12 @@
 import './Member.css';
 import { imgUrl } from '../../config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
+import axios from 'axios';
 
 function MemberLevel() {
+  const [data, setData] = useState([]);
+
   const NextArrow = ({ onClick }) => {
     return <div className="hidden_arrow_right" onClick={onClick}></div>;
   };
@@ -25,6 +28,53 @@ function MemberLevel() {
     prevArrow: <PrevArrow />,
     beforeChange: (current, next) => setImageIndex(next),
   };
+  //取出會員ID
+  const memberID = JSON.parse(localStorage.getItem('auth'));
+
+  const getMemberData = async () => {
+    const res = await axios.get(
+      `http://localhost:6001/member/memberdetail/${memberID.sid}`
+    );
+
+    const data = res.data;
+
+    setData(data);
+  };
+
+  useEffect(() => {
+    getMemberData();
+  }, []);
+
+  const m_price = data.price;
+  const m_order = data.total;
+  let m_level = '';
+
+  //判斷等級
+  if (0 < m_price < 5000 && 0 < m_order < 5) {
+    m_level = '初階學士';
+  } else if (5000 < m_price < 10000 && 5 < m_order < 10) {
+    m_level = '中階碩士';
+  } else {
+    m_level = '高階碩士';
+  }
+
+  let min_price = 0;
+  let min_order = 0;
+  if (m_level === '初階學士') {
+    min_price = 5000;
+    min_order = 5;
+  } else if (m_level === '中階碩士') {
+    min_price = 10000;
+    min_order = 10;
+  } else {
+    min_price = 15000;
+    min_order = 15;
+  }
+
+  const order_percent = (m_order / min_order) *100;
+  const price_percent = (m_price / min_price) * 100;
+
+  console.log(order_percent, price_percent);
 
   return (
     <>
@@ -205,7 +255,7 @@ function MemberLevel() {
               </div>
 
               <p style={{ fontSize: '16px' }} className="text_main_dark_color1">
-                目前級別：初階學士
+                目前級別：{m_level}
               </p>
             </div>
             <div
@@ -227,12 +277,16 @@ function MemberLevel() {
                       lineHeight: '24px',
                     }}
                   >
-                    4
+                    {m_order}
                   </span>
-                  <span style={{ fontSize: '18px' }}>/10</span>
+                  <span style={{ fontSize: '18px' }}>/{min_order}</span>
                 </div>
                 <div className="range">
-                  <div></div>
+                  <div style={{
+                      width: `${order_percent}%`,
+                      height: '100%',
+                      backgroundColor: 'red',
+                    }}></div>
                 </div>
               </div>
               <div className="inputRange">
@@ -241,13 +295,18 @@ function MemberLevel() {
                     累積消費
                   </p>
                   <span style={{ color: '#f00', fontSize: '24px' }}>
-                    $5 <span style={{ fontSize: '18px' }}>,</span> 080
+                    ${m_price}
                   </span>
-                  <span style={{ fontSize: '18px' }}>/8,000</span>
+                  <span style={{ fontSize: '18px' }}>/{min_price}</span>
                 </div>
-
                 <div className="range">
-                  <div></div>
+                  <div
+                    style={{
+                      width: `${price_percent}%`,
+                      height: '100%',
+                      backgroundColor: 'red',
+                    }}
+                  ></div>
                 </div>
               </div>
             </div>

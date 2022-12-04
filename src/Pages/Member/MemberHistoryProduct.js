@@ -1,8 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ProductDetail from './components/ProductDetail';
+import axios from 'axios';
 import './Member.css';
+import dayjs from 'dayjs';
 
 function MemberHistoryProduct() {
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [select, setSelect] = useState(0);
+  const [detailNum, setDetailNum] = useState('');
+
+  const memberID = JSON.parse(localStorage.getItem('auth'));
+
+  const getProductData = async () => {
+    const res = await axios.get(
+      `http://localhost:6001/member/orderdata/${memberID.sid}`
+    );
+    // console.log(res);
+
+    const data = res.data.rows;
+
+    const data1 = data.filter((e, i) => {
+      const { product_total_price } = e;
+      return product_total_price > 0;
+    });
+
+    const m_data = data1.map((e, i) => {
+      const { ordered_at } = e;
+      return { ...data1[i], ordered_at: dayjs(ordered_at).format('YYYY-MM-DD') };
+    });
+    setData(m_data);
+  };
+  const click = (orders_num) => {
+    open ? setOpen(false) : setOpen(true);
+    console.log(orders_num);
+    setDetailNum(orders_num);
+  };
+
+  useEffect(() => {
+    getProductData();
+  }, []);
 
   return (
     <div
@@ -14,244 +51,79 @@ function MemberHistoryProduct() {
         fontSize: '20px',
       }}
     >
-      <div className="orderProduct-right">
-        <div className="orderProductWrap">
-          <div
-            className="orderProduct"
-            style={{
-              backgroundColor: '#fff',
-              padding: '30px',
-              borderRadius: '15px',
-            }}
-          >
-            <div
-              className="detailProduct"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-end',
-                width: '50%',
-              }}
-            >
-              <h1
-                className="text_main_dark_color2"
-                style={{ marginRight: '20px' }}
-              >
-                商品訂單
-              </h1>
-              <p style={{ color: '#727171', fontSize: '16px' }}>
-                訂單編號:123456789
-              </p>
-              <p style={{ color: '#727171', fontSize: '16px' }}>
-                訂單已完成於2022-11-01
-              </p>
-            </div>
-            <div
-              className="priceProduct"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '20%',
-              }}
-            >
-              <h1 className="text_main_dark_color2">訂單金額</h1>
-              <p
+      <div className="orderProduct-right" style={{height:'700px',overflowY:'scroll'}}>
+        {data.map((e, i) => {
+          const { product_total_price, ordered_at, orders_num } = e;
+          return (
+            <div className="orderProductWrap" key={i}>
+              <div
+                className="orderProduct"
                 style={{
-                  color: '#f00',
-                  fontWeight: '700',
-                  fontSize: '18px',
+                  backgroundColor: '#fff',
+                  padding: '30px',
+                  borderRadius: '15px',
                 }}
               >
-                $4,770
-              </p>
-              <i
-                className="fa-regular fa-circle-chevron-down"
-                style={{ cursor: 'pointer', fontSize: '22px' }}
-                onClick={() => {
-                  open ? setOpen(false) : setOpen(true);
-                }}
-              ></i>
-            </div>
-          </div>
-          <div
-            style={{
-              width: '100%',
-              backgroundColor: '#fff',
-              borderRadius: '20px',
-              padding: '20px',
-              marginBottom:'10px',
-              display: open ? 'block' : 'none',
-            }}
-          >
-            <table style={{ width: '100%' }}>
-              <thead>
-                <tr>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>商品圖</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>商品名</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>數量</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>複價</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      height: '150px',
-                    }}
+                <div
+                  className="detailProduct"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-end',
+                    width: '66%',
+                  }}
+                >
+                  <div
+                    className="text_main_dark_color2"
+                    style={{ width: '15%', fontWeight: '700' }}
                   >
-                    <img
-                      src=""
-                      alt=""
-                      style={{ width: '100px', height: '100px' }}
-                    />
-                  </td>
-                  <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                    濃郁雞白罐頭
-                  </td>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      color: '#727171',
-                    }}
+                    商品訂單
+                  </div>
+                  <div
+                    style={{ color: '#727171', fontSize: '16px', width: '50%' }}
                   >
-                    2
-                  </td>
-                  <td
+                    訂單編號:{orders_num}
+                  </div>
+                  <div
+                    style={{ color: '#727171', fontSize: '16px', width: '35%' }}
+                  >
+                    訂單已完成於{ordered_at}
+                  </div>
+                </div>
+                <div
+                  className="priceProduct"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    width: '20%',
+                  }}
+                >
+                  <h1 className="text_main_dark_color2">訂單金額</h1>
+                  <p
                     style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
                       color: '#f00',
+                      fontWeight: '700',
+                      fontSize: '18px',
                     }}
                   >
-                    $1960
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="orderProductWrap">
-          <div
-            className="orderProduct"
-            style={{
-              backgroundColor: '#fff',
-              padding: '30px',
-              borderRadius: '15px',
-            }}
-          >
-            <div
-              className="detailProduct"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-end',
-                width: '50%',
-              }}
-            >
-              <h1
-                className="text_main_dark_color2"
-                style={{ marginRight: '20px' }}
-              >
-                商品訂單
-              </h1>
-              <p style={{ color: '#727171', fontSize: '16px' }}>
-                訂單編號:123456789
-              </p>
-              <p style={{ color: '#727171', fontSize: '16px' }}>
-                訂單已完成於2022-11-01
-              </p>
+                    ${product_total_price}
+                  </p>
+                  <i
+                    className="fa-regular fa-circle-chevron-down"
+                    style={{ cursor: 'pointer', fontSize: '22px' }}
+                    onClick={() => {
+                      if (select === i) {
+                        click(orders_num);
+                      }
+                    }}
+                  ></i>
+                </div>
+              </div>
+              <ProductDetail open={open} detailNum={detailNum} />
             </div>
-            <div
-              className="priceProduct"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '20%',
-              }}
-            >
-              <h1 className="text_main_dark_color2">訂單金額</h1>
-              <p
-                style={{
-                  color: '#f00',
-                  fontWeight: '700',
-                  fontSize: '18px',
-                }}
-              >
-                $4,770
-              </p>
-              <i
-                className="fa-regular fa-circle-chevron-down"
-                style={{ cursor: 'pointer', fontSize: '22px' }}
-                onClick={() => {
-                  open ? setOpen(false) : setOpen(true);
-                }}
-              ></i>
-            </div>
-          </div>
-          <div
-            style={{
-              width: '100%',
-              backgroundColor: '#fff',
-              borderRadius: '20px',
-              padding: '20px',
-              display: open ? 'block' : 'none',
-            }}
-          >
-            <table style={{ width: '100%' }}>
-              <thead>
-                <tr>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>商品圖</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>商品名</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>數量</th>
-                  <th style={{ color: '#727171', fontSize: '16px' }}>複價</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      height: '150px',
-                    }}
-                  >
-                    <img
-                      src=""
-                      alt=""
-                      style={{ width: '100px', height: '100px' }}
-                    />
-                  </td>
-                  <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                    濃郁雞白罐頭
-                  </td>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      color: '#727171',
-                    }}
-                  >
-                    2
-                  </td>
-                  <td
-                    style={{
-                      textAlign: 'center',
-                      verticalAlign: 'middle',
-                      color: '#f00',
-                    }}
-                  >
-                    $1960
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
