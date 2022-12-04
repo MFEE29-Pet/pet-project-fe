@@ -20,12 +20,12 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               alt=""
             />
           </div>
-          <h5>{auth.row.name}</h5>
+          <h5 style={{ color: mode === 'cat' && '#fff5de' }}>{auth.row.name}</h5>
         </div>
 
         <div className="member-icon">
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-light light fa-house-user"></i>
+            <i className="fa-light light fa-house-user" style={{ color: mode === 'cat' && '#18334e' }}></i>
             <li
               onClick={() => {
                 setPageIndex(0);
@@ -35,7 +35,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-light light fa-shield-dog"></i>
+            <i className="fa-light light fa-shield-dog" style={{ color: mode === 'cat' && '#18334e' }}></i>
             <li
               onClick={() => {
                 setPageIndex(1);
@@ -45,7 +45,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-light light fa-books"></i>
+            <i className="fa-light light fa-books" style={{ color: mode === 'cat' && '#18334e' }}></i>
             <li
               onClick={() => {
                 setPageIndex(2);
@@ -55,7 +55,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-light light fa-folder-bookmark"></i>
+            <i className="fa-light light fa-folder-bookmark" style={{ color: mode === 'cat' && '#18334e' }}></i>
             <li
               onClick={() => {
                 setPageIndex(3);
@@ -65,7 +65,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-thin thin fa-book-medical"></i>
+            <i className="fa-thin thin fa-book-medical" style={{ color: mode === 'cat' && '#18334e' ,fontWeight: mode === 'cat' && '300'}}></i>
             <li
               onClick={() => {
                 setPageIndex(4);
@@ -76,23 +76,24 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           </ul>
 
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-thin thin fa-rectangle-history-circle-plus"></i>
+            <i className="fa-thin thin fa-rectangle-history-circle-plus" style={{ color: mode === 'cat' && '#18334e' ,fontWeight: mode === 'cat' && '300'}}></i>
             <li
               onClick={() => {
                 setPageIndex(5);
               }}
             >
-              歷史訂單（商品）
+              商品訂單
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-light light fa-camera"></i>
+            <i className="fa-light light fa-camera" style={{ color: mode === 'cat' && '#18334e' }}></i>
+            
             <li
               onClick={() => {
                 setPageIndex(6);
               }}
             >
-              歷史訂單（攝影）
+              攝影訂單
             </li>
           </ul>
 
@@ -110,7 +111,10 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
             </li>
           </ul>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
-            <i className="fa-thin thin fa-key"></i>
+            <i className="fa-thin thin fa-key" style={{ color: mode === 'cat' && '#18334e' ,fontSize: mode === 'cat' && '20px' ,fontWeight: mode === 'cat' && '300'}}>
+
+            </i>
+            
             <li
               onClick={() => {
                 setPageIndex(8);

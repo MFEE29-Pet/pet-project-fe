@@ -63,10 +63,10 @@ function MemberSign() {
     }
     const a = /\d/;//需要有數字
     const b = /[A-Z]/;
-    const c = /[a-z]/
-    const e = /\s/;//空白就true所以要false 
+    const c = /[a-z]/;
+    // const e = /\s/;//空白就true所以要false e.test(password)
 
-    if (!(password.length > 8 && a.test(password) && b.test(password) && c.test(password) && e.test(password))) {
+    if (!(password.length > 8 && a.test(password) && b.test(password) && c.test(password) )) {
       alert('密碼格式有誤');
       return;
     }
@@ -82,7 +82,10 @@ function MemberSign() {
       area === '' ||
       address === '' ||
       gender === '' ||
-      birthday === ''
+      // birthday === ''
+      year === 0 ||
+      month === 0 ||
+      day === 0 
     ) {
       alert('請輸入正確資料');
       return;
@@ -109,7 +112,8 @@ function MemberSign() {
     if (data.success) {
       setSignSuccess(!signSuccess);
       setTimeout(() => {
-        nav('/member');
+        // 跳轉會員登入
+        nav('/member/memberLogIn');
       }, 1000);
     }
   };
@@ -294,6 +298,7 @@ function MemberSign() {
                           checked={whatGender === v}
                           onChange={(e) => {
                             setWhatGender(e.target.value);
+                            setUser({...user,gender:e.target.value});
                           }}
                         />
                         <label for="">{v}</label>

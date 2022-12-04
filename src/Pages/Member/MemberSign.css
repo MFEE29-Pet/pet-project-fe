@@ -70,16 +70,6 @@
   display: flex;
   justify-content: center;
 }
-.page-left {
-  width: 70%;
-}
-.enter-A {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 80%;
-}
 
 .enter-B {
   width: 250px;
@@ -98,10 +88,6 @@
 .address {
   display: flex;
   width: 250px;
-}
-.addressText {
-  margin-left: 140px;
-  margin-bottom: 10px;
 }
 .input {
   margin-left: 15px;
@@ -156,4 +142,3 @@
   color: #989898;
   cursor: pointer;
 }
-

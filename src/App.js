@@ -113,7 +113,7 @@ function App() {
             <Route path="forum/detail" element={<ForumDetail />} />
 
             <Route path="member" element={<Member />} />
-            <Route path="member/memberShipAdd" element={<MemberSign/>} />
+            <Route path="member/memberShipAdd" element={<MemberSign />} />
             <Route path="member/memberLogIn" element={<MemberLogIn />} />
           </Routes>
         </AllContextProviders>

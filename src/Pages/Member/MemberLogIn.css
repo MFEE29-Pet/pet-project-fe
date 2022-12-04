@@ -3,7 +3,6 @@
   src: url(../../../public/font/GenSenRounded-R.ttc);
 }
 
-
 .buttonLogIn {
   width: 80px;
   height: 40px;
@@ -29,16 +28,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* RWD定位 */
+  position: relative;
 }
-.forget span:first-child{
+.forget span:first-child {
   font-size: 14px;
   color: #40220f;
 }
-.loginpage input{
+.loginpage input {
   border: none;
   outline: none;
   background-color: transparent;
-/* 透明 */
+  /* 透明 */
 }
 .logInenterA {
   display: flex;
@@ -88,4 +89,43 @@
 
 .text {
   justify-content: center;
+}
+
+/* --------------------------------------------------------------------- */
+/* RWD . MemberLogin */
+
+@media screen and (max-width: 576px) {
+  .member {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .loginpage::before {
+    content: '會員登入';
+    display: inline-block;
+    position: absolute;
+    top: 40px;
+    font-size: 25px;
+    font-weight: 900;
+  }
+
+  .loginpage {
+    width: 90%;
+    min-width: 350px;
+    flex-direction: column;
+    height: 600px;
+  }
+
+  .logInenterA h2{
+    margin-bottom: 10px;
+
+  }
+
+  .logInenterA {
+    width: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

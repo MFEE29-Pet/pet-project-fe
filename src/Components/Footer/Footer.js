@@ -13,6 +13,7 @@ const FOOTER = styled.div`
 `;
 const FOOTERBOX = styled.div`
   width: 1400px;
+  ${'' /* width: 100%; */}
   display: flex;
   justify-content: space-between;
 `;

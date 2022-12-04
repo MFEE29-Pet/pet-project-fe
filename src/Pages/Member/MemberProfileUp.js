@@ -39,9 +39,9 @@ function MemberProfileUp() {
     setEditUser({ ...editUser, [e.target.name]: e.target.value });
   };
   const getUserInfo = () => {
-    setYear(dayjs(auth.row.birthday).format('YYYY'))
-    setMonth(dayjs(auth.row.birthday).format('MM'))
-    setDay(dayjs(auth.row.birthday).format('DD'))
+    setYear(dayjs(auth.row.birthday).format('YYYY'));
+    setMonth(dayjs(auth.row.birthday).format('M'));
+    setDay(dayjs(auth.row.birthday).format('D'));
     setEditUser(auth.row);
     setWhatGender(auth.row.gender);
   };
@@ -200,44 +200,44 @@ function MemberProfileUp() {
               </div>
               <div className="enter-C">
                 <div className="input-Choose">
-                <select
-                        name=""
-                        id=""
-                        onChange={(e) => {
-                          setMonth(+e.target.value.split('月')[0]);
-                        }}
-                      >
-                        <option>{month}</option>
-                        {Array(12)
-                          .fill(1 + '月')
-                          .map((v, i) => {
-                            return (
-                              <option value={`${i + 1}月`} key={i}>{`${
-                                i + 1
-                              }月`}</option>
-                            );
-                          })}
-                      </select>
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      setMonth(+e.target.value.split('月')[0]);
+                    }}
+                  >
+                    <option>{month}月</option>
+                    {Array(12)
+                      .fill(1 + '月')
+                      .map((v, i) => {
+                        return (
+                          <option value={`${i + 1}月`} key={i}>{`${
+                            i + 1
+                          }月`}</option>
+                        );
+                      })}
+                  </select>
                 </div>
               </div>
               <div className="enter-C">
                 <div className="input-Choose">
-                <select
-                        name=""
-                        id=""
-                        onChange={(e) => {
-                          setDay(+e.target.value.split('日')[0]);
-                        }}
-                      >
-                        <option>{day}</option>
-                        {days.map((v, i) => {
-                          return (
-                            <option value={`${i + 1}日`} key={i}>{`${
-                              i + 1
-                            }日`}</option>
-                          );
-                        })}
-                      </select>
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      setDay(+e.target.value.split('日')[0]);
+                    }}
+                  >
+                    <option>{day}日</option>
+                    {days.map((v, i) => {
+                      return (
+                        <option value={`${i + 1}日`} key={i}>{`${
+                          i + 1
+                        }日`}</option>
+                      );
+                    })}
+                  </select>
                 </div>
               </div>
             </div>

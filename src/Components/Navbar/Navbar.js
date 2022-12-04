@@ -21,6 +21,7 @@ const NAV = styled.div`
 
 const NAVBOX = styled.div`
   width: 1400px;
+  ${'' /* width: 100%; */}
   height: 100px;
   display: flex;
   justify-content: space-between;

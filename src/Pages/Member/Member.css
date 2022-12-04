@@ -3,7 +3,6 @@
   src: url(../../../public/font/GenSenRounded-R.ttc);
 }
 
-
 /* --------------------------------------------------------------------- */
 /* MemberChevron */
 .Web {
@@ -132,21 +131,26 @@
 
 .member {
   width: 1200px;
+  height: 700px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 }
 
 .member-shipL {
-  width: 20%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.member-ship h5 {
+  font-size: 18px;
+  text-align: center;
+}
 .member-photo {
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   background-color: darkblue;
   border-radius: 50%;
   overflow: hidden;
@@ -222,8 +226,8 @@
 }
 
 .card-degree {
-  width: 80%;
-  height: 700px;
+  width: 900px;
+  height: 650px;
   background-color: #fff;
   padding-top: 30px;
   border-radius: 15px;
@@ -329,9 +333,9 @@
   justify-content: space-between;
   margin: 0 auto;
 }
-.input input{
+.input input {
   width: 100%;
-  height:100% ;
+  height: 100%;
 }
 
 .range {
@@ -356,11 +360,11 @@
 /* MembePetAdd */
 
 .peat-ship {
-  width: 80%;
+  width: 900px;
+  max-height: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   flex-direction: column;
   overflow: auto;
 }
@@ -527,7 +531,8 @@
 .articleWrap {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 900px;
+  max-height: 650px;
 }
 .articleInfo {
   width: 100%;
@@ -661,8 +666,8 @@
 }
 
 .Hospital {
-  width: 100%;
-  height: 110vh;
+  width: 900px;
+  max-height: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -709,7 +714,7 @@
 /* MemberProductCollect */
 
 .product-title {
-  width: 70%;
+  width: 900px;
   display: flex;
   flex-direction: column;
 }
@@ -886,9 +891,11 @@
 }
 
 .orderCamera-right {
-  width: 100%;
+  width: 900px;
+  max-height: 650px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .orderCameraPage {
@@ -1018,8 +1025,8 @@
 }
 
 .orderProduct-right {
-  width: 100%;
-  height: 100vh;
+  width: 900px;
+  max-height: 650px;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -1122,13 +1129,6 @@
   border: none;
   outline: none;
   background-color: transparent;
-}
-.enter-A {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-  margin-bottom: 30px;
 }
 
 .enter-B {
@@ -1310,4 +1310,46 @@
   justify-content: center;
   align-items: center;
   font-size: 25px;
+}
+
+/* --------------------------------------------------------------------- */
+/* RWD . MemberSignup */
+@media screen and (max-width: 576px) {
+  .member {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  .member-shipL {
+    display: none;
+  }
+  .pageProfileUp {
+    width: 100%;
+    /* 主軸反轉 */
+    flex-direction: column-reverse;
+    background-color: #fff5de;
+    position: relative;
+  }
+  .pageProfileUp::before {
+    content: '資料修改';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 40%;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .photo {
+    margin-bottom: 15px;
+  }
+  .page-left {
+    width: 100%;
+  }
+  .enter-A {
+    width: 100%;
+  }
+  .addressText {
+    margin-left: 120px;
+  }
 }
