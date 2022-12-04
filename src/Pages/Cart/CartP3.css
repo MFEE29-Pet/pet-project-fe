@@ -10,7 +10,7 @@
 /* 進度條CSS--------------------------------------------------------------- */
 .eason_progress_bar {
   width: 880px;
-  margin-top: 30px;
+  margin-top: 0;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -83,4 +83,74 @@
   justify-content: center;
   align-items: center;
   font-size: x-small;
+}
+
+/* 中間區域-------------------------------------------- */
+.eason_section_end {
+  width: 900px;
+}
+
+.eason_section_end .eason_list_title {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.eason_box {
+  margin: 25px 0 50px 0;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eason_box_top {
+  padding: 80px 0 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eason_check_logo {
+  color: green;
+  margin-right: 15px;
+}
+
+.eason_big_title {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.eason_box_bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+}
+
+.eason_bottom_small_title {
+  line-height: 40px;
+}
+
+.eason_box_bottom_left {
+  display: flex;
+  flex-direction: column;
+  line-height: 22px;
+}
+
+.eason_order_date {
+  display: flex;
+}
+
+.eason_order_num {
+  display: flex;
+}
+
+.eason_box_bottom_right {
+  display: flex;
+  flex-direction: column;
+  line-height: 22px;
 }

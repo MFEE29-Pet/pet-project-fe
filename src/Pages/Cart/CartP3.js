@@ -91,8 +91,39 @@ function CartP3() {
             </a>
           </div>
         </EasonProgressBar>
-        <div className="easonCompleteSection">
-          <div>訂單成立</div>
+
+        <div className="eason_section_end">
+          <div className="eason_list_title ">
+            <h1 className="text_main_dark_color2">訂單成立</h1>
+          </div>
+          <div className="eason_box">
+            <div className="eason_box_top">
+              <span className="fa-light fa-circle-check fa-3x eason_check_logo "></span>
+              <div className="eason_big_title">完成購買</div>
+            </div>
+            <div className="eason_box_bottom">
+              <div className="eason_box_bottom_left">
+                <div className="eason_bottom_small_title">
+                  <h1>訂單資訊</h1>
+                </div>
+                <div className="eason_order_date">
+                  <p>訂單日期</p>
+                  <span>2022-12-14</span>
+                </div>
+                <div className="eason_order_num">
+                  <p>訂單編號</p>
+                  <span>88888888</span>
+                </div>
+              </div>
+              <div className="eason_box_bottom_right">
+                <div className="eason_bottom_small_title">
+                  <h1>付款資訊</h1>
+                </div>
+                <p>付款方式</p>
+                <p>付款狀態</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

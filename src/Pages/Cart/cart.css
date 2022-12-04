@@ -10,7 +10,7 @@
 /* 進度條CSS--------------------------------------------------------------- */
 .eason_progress_bar {
   width: 880px;
-  margin-top: 30px;
+  margin-top: 0;
   display: flex;
   justify-content: space-between;
   position: relative;
