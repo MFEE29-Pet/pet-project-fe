@@ -60,12 +60,17 @@ function Conversation({
             {user === 2 ? conversations.senderName : conversations.receiverName}
           </h1>
         </div>
-        <div style={{ position: 'relative' }}>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            width: '50%',
+          }}
+        >
           <span
             style={{
-              position: 'absolute',
-              right: '-40px',
-              bottom: '40px',
               fontWeight: 'bold',
               width: '20px',
               height: '20px',

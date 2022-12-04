@@ -176,7 +176,7 @@ function ServiceIndex({ socket }) {
               display: 'flex',
               width: '30%',
               height: '100%',
-              borderRight: '1px solid red',
+              borderRight: '2px solid #f8b62b',
               padding: '0 5px',
               overflow: 'auto',
               flexDirection: 'column',
