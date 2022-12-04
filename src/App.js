@@ -43,12 +43,8 @@ import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
 import GoogleCallback from './Pages/Member/GoogleCallback';
 
 // try socket io
-// import Socket from './Pages/Product/components/Socket/Socket';
-import Home from './Pages/Product/components/Chat/Home/Home';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
-import Chat from './Pages/Product/components/Chat/Room/Chat';
-import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
@@ -127,41 +123,6 @@ function App() {
               <Route path="reserve" element={<PhotoReserve />} />
               <Route path="check" element={<PhotoCheck />} />
             </Route>
-            {/* <Route path="chat" element={<Socket />} /> */}
-            {/* <Route
-              path="chat_home"
-              element={
-                <Home
-                  username={username}
-                  setUsername={setUsername}
-                  room={room}
-                  setRoom={setRoom}
-                  socket={socket}
-                />
-              }
-            />
-            <Route
-              path="chat_room"
-              element={
-                <Chat
-                  username={username}
-                  room={room}
-                  setRoom={setRoom}
-                  socket={socket}
-                />
-              }
-            />
-            <Route
-              path="room_list"
-              element={
-                <RoomList
-                  username={username}
-                  room={room}
-                  socket={socket}
-                  setRoom={setRoom}
-                />
-              }
-            /> */}
             <Route path="service" element={<ServiceIndex socket={socket} />} />
 
             <Route path="cart" element={<Cart />} />

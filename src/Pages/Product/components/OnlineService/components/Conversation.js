@@ -60,8 +60,22 @@ function Conversation({
             {user === 2 ? conversations.senderName : conversations.receiverName}
           </h1>
         </div>
-        <div>
-          <span>
+        <div style={{ position: 'relative' }}>
+          <span
+            style={{
+              position: 'absolute',
+              right: '-40px',
+              bottom: '40px',
+              fontWeight: 'bold',
+              width: '20px',
+              height: '20px',
+              backgroundColor: `${notifications.length > 0 ? 'red' : ''}`,
+              textAlign: 'center',
+              paddingTop: '3px',
+              color: '#fff',
+              borderRadius: '50%',
+            }}
+          >
             {notifications.length > 0
               ? notifications.length > 10
                 ? 10 + '+'

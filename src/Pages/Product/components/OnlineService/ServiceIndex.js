@@ -46,10 +46,6 @@ function ServiceIndex({ socket }) {
     }
   };
 
-  const handleRead = () => {
-    setNotifications([]);
-  };
-
   useEffect(() => {
     socket.emit('addUser', myAuth.sid);
     // 取得socket上個別使用者sid
