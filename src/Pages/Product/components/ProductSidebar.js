@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 
@@ -36,6 +36,7 @@ function ProductSidebar() {
   const [cates, setCates] = useState([]);
   const [hover, setHover] = useState(true);
   const { mode } = useContext(SwitchButtonContext);
+  const navigate = useNavigate();
 
   // 取得 queryString
   const location = useLocation();
@@ -93,6 +94,26 @@ function ProductSidebar() {
 
   return (
     <section className="side-bar">
+      <div
+        onClick={() => navigate('/service')}
+        style={{
+          display: 'flex',
+          position: 'absolute',
+          left: '2%',
+          top: '-10px',
+          width: '120px',
+          justifyContent: 'center',
+          height: '25px',
+          alignItems: 'center',
+          borderRadius: '20px',
+          color: '#fff5de',
+          cursor: 'pointer',
+        }}
+        className="bg_main_light_color1"
+      >
+        <i class="fa-solid fa-messages" style={{ marginRight: '5px' }}></i>
+        <p style={{ color: '#fff5de' }}>線上客服</p>
+      </div>
       <DIV className="side-title" $mode={mode}>
         <Border $mode={mode}></Border>
         <I $mode={mode} className="fa-solid fa-list"></I>

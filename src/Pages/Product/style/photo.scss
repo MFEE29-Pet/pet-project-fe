@@ -41,7 +41,7 @@ select {
 
 main {
   // display: flex;
-  width: 1200px;
+  width: 80%;
   // justify-content: center;
   margin: 50px auto;
 
@@ -230,20 +230,24 @@ main {
     }
   }
 }
+
 .photo_img_wrap {
   transition: 0.5s;
   position: relative;
   bottom: 0;
   right: 0;
 }
+
 .dog_foot {
   opacity: 0;
   transition: 1s;
 }
+
 .dog_foot.floatUp {
   opacity: 1;
   animation: sayHi 0.3s linear infinite;
 }
+
 .photo_img_wrap.floatUp {
   box-shadow: 12px 8px 12px rgb(82, 82, 82, 0.6);
   transition: 0.5s;
@@ -252,6 +256,7 @@ main {
   right: 3%;
   // animation: float .8s 5 linear;
 }
+
 // @keyframes float {
 //   0% {
 //     bottom: 3%;
@@ -270,41 +275,113 @@ main {
   0% {
     transform: rotateZ(130deg);
   }
+
   15% {
     transform: rotateZ(128deg);
   }
+
   25% {
     transform: rotateZ(125deg);
   }
+
   50% {
     transform: rotateZ(120deg);
   }
+
   65% {
     transform: rotateZ(125deg);
   }
+
   75% {
     transform: rotateZ(128deg);
   }
+
   100% {
     transform: rotateZ(128deg);
   }
 }
 
-.go-to-top {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.664);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 10%;
-  right: 5%;
-  cursor: pointer;
+// .go-to-top {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-color: rgba(0, 0, 0, 0.664);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: fixed;
+//   bottom: 10%;
+//   right: 5%;
+//   cursor: pointer;
 
-  svg {
-    width: 30px;
-    height: 30px;
+//   svg {
+//     width: 30px;
+//     height: 30px;
+//   }
+// }
+
+// RWD
+@media screen and (max-width:400px) {
+  .div_wrap {
+    width: 100% !important;
+
+    .photographers_row {
+      flex-direction: column;
+      align-items: center;
+
+      .photographer_cards {
+        margin: 10px 0;
+      }
+    }
+
+    .carouselDiv {
+      .sc-gzrROc.eHPjRf {
+        .sc-gkSfol.ciqNZC {
+          transform: translateX(0) !important;
+        }
+      }
+    }
+  }
+
+}
+
+// photographer form RWD
+
+@media screen and (max-width:400px) {
+  .photo_breadcrumb {
+    width: 100% !important;
+  }
+
+  .photo_reserve_form {
+    width: 100% !important;
+    padding: 40px 10px !important;
+    margin-bottom: 35px;
+
+    h1.text_main_dark_color2 {
+      text-align: left;
+    }
+
+    .content_box {
+      flex-direction: column;
+
+      .photo_price {
+        margin-left: 0 !important;
+      }
+    }
+
+    .reserve_form {
+      .reserve-time {
+        display: flex;
+        flex-direction: column;
+
+        .dayTime {
+          margin: 0;
+
+          h3 {
+            margin-right: 0;
+          }
+        }
+      }
+    }
   }
 }

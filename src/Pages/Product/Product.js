@@ -164,7 +164,6 @@ function Product() {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={() => navigate('/service')}>進入聊天室</button>
       <main>
         <ProductSidebar isLoading={isLoading} />
         <section className="right">
@@ -209,6 +208,7 @@ function Product() {
             />
           </PAGE>
         </section>
+        <GoToTop />
       </main>
       <Popup
         trigger={trigger}
@@ -221,7 +221,6 @@ function Product() {
         salesType={salesType}
       />
       {/* <Socket /> */}
-      <GoToTop />
     </>
   );
 }
