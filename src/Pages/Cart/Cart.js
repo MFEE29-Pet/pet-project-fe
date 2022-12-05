@@ -160,14 +160,10 @@ function Cart() {
 
   const [discount, setDiscount] = useState(0);
 
-  // 最終結帳總額
-  let finalPrice = myPhotoTotalPrice + myTotalPrice - discount;
-  // console.log(finalPrice);
-
   // 優惠代碼測試
   const coupon = () => {
     const myDiscount = document.getElementById('discount');
-    console.log(myDiscount.value);
+    // console.log(myDiscount.value);
 
     if (myDiscount.value === '1234') {
       setDiscount(100);
@@ -187,6 +183,9 @@ function Cart() {
     }
   };
 
+  // 最終結帳總額
+  let finalPrice = myPhotoTotalPrice + myTotalPrice - discount;
+  // console.log(finalPrice);
   return (
     <>
       <div className="eason_container">
@@ -635,6 +634,8 @@ function Cart() {
                     memberID: member.sid,
                     cartTotalPrice: finalPrice,
                   };
+                  console.log(finalPrice);
+
                   /*
                   const fd = new FormData();
 
