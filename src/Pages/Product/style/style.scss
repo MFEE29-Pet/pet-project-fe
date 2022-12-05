@@ -224,7 +224,7 @@ section.right {
 
     .product-info-div::before {
         content: '';
-        width: 980px;
+        width: 110%;
         height: 15px;
         display: block;
         position: absolute;
@@ -773,11 +773,10 @@ section.right {
 
         .list-row::before {
             content: '';
-            width: 980px;
+            width: 110%;
             height: 15px;
             display: block;
             position: absolute;
-
             // background-color: $d-main-color;
             // border: 1px solid $d-main-color;
             top: 68%;
