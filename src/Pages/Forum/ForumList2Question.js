@@ -2,7 +2,7 @@ import SearchBar from './components/SearchBar';
 import ButtonPost from './components/ButtonPost';
 import SelectBar from './components/SelectBar';
 import ButtonBar from './components/ButtonBar';
-import ForumListBar from './components/ForumListBar';
+import ForumListBar2Question from './components/ForumListBar2Question';
 import './ForumList.css';
 
 const buttonText = [
@@ -15,7 +15,7 @@ const buttonText = [
   { value: 7, label: '其他', to: '/forum/other' },
 ];
 
-function ForumList() {
+function ForumList2Question() {
   return (
     <>
       <div className="forum_list_wrap">
@@ -34,10 +34,10 @@ function ForumList() {
           })}
         </div>
 
-        <ForumListBar />
+        <ForumListBar2Question />
       </div>
     </>
   );
 }
 
-export default ForumList;
+export default ForumList2Question;

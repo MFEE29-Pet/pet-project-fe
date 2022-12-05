@@ -1,0 +1,23 @@
+.sendEvaluate {
+  width: 800px;
+  min-height: 120px;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+}
+.inputBox {
+  width: 900px;
+  display: flex;
+}
+.inputText {
+  width: 710px;
+  height: 80px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 15px;
+  background: #f6f6f6;
+
+}

@@ -1,11 +1,12 @@
-#search {
+#forum_search {
   height: 25px;
   border: none;
   border-radius: 10px 0px 0px 10px;
   width: 300px;
+  padding-left: 15px;
   }
 
-  #forum_search {
+  #forum_search_glass {
   color: white;
   text-align: center;
   height: 25px;

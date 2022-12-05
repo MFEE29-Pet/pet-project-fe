@@ -1,8 +1,11 @@
-#forum_select{
-  margin-left: 60px;
+#forumSort{
+  /* margin-left: 60px; */
+  border: 1px solid #c9caca;
+  border-radius: 15px;
   width: 120px;
   height: 25px;
-  border: none;
-  border-radius: 10px;
-  color: #c9caca;
+  padding: 1px 2px 1px 15px;
+  /* border: none;
+  border-radius: 10px; */
+  /* color: #c9caca; */
 }

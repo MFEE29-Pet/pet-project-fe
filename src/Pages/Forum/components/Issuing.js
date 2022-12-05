@@ -1,10 +1,10 @@
 import React from 'react';
 import './Issuing.css';
 
-function Issuing() {
+function Issuing({ date }) {
   return (
     <>
-      <div className="issuing_bar">發表於2022-11-22 12:16</div>
+      <div className="issuing_bar">發表於{date}</div>
     </>
   );
 }

@@ -4,7 +4,7 @@ import Issuing from './Issuing';
 import CollectLikeBar from './CollectLikeBar';
 
 function ForumDetailBar({ details }) {
-  const dogpic = '/images/toys_1.png';
+  const forumpic = '/images/toys_1.png';
   return (
     <>
       <div className="forum_detail_card">
@@ -19,10 +19,10 @@ function ForumDetailBar({ details }) {
         </div>
 
         <div className="forum_detail_pic">
-          <img src={dogpic} />
+          <img src={forumpic} />
         </div>
         <div className="forum_btm_area">
-          <Issuing />
+          <Issuing date={details.created_at} />
           <CollectLikeBar />
         </div>
       </div>
