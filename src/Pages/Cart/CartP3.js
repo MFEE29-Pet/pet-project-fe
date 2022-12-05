@@ -34,6 +34,12 @@ const EasonProgressBar = styled.div`
   }
 `;
 
+const EasonPayEnd = styled.div`
+  span {
+    color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#50a4b2')};
+  }
+`;
+
 // 整套購物車P3本體-------------------------------------------------------------------------------------
 function CartP3() {
   // 主題變色
@@ -91,8 +97,55 @@ function CartP3() {
             </a>
           </div>
         </EasonProgressBar>
-        <div className="easonCompleteSection">
-          <div>訂單成立</div>
+
+        <div className="eason_section_end">
+          <div className="eason_list_title ">
+            <h1 className="text_main_dark_color2">訂單成立</h1>
+          </div>
+          <div className="eason_box">
+            <div className="eason_box_top">
+              <span className="fa-light fa-circle-check fa-3x eason_check_logo "></span>
+              <div className="eason_big_title text_main_dark_color2">
+                完成購買
+              </div>
+            </div>
+            <EasonPayEnd className="eason_box_bottom" $mode={mode}>
+              <div className="eason_box_bottom_left">
+                <div className="eason_bottom_small_title">
+                  <h1 className="text_main_dark_color2">訂單資訊</h1>
+                </div>
+                <div className="eason_order_date">
+                  <p className="text_main_dark_color2">
+                    訂單日期&nbsp;&nbsp;&nbsp;
+                  </p>
+                  <span className="">2022-12-14</span>
+                </div>
+                <div className="eason_order_num">
+                  <p className="text_main_dark_color2">
+                    訂單編號&nbsp;&nbsp;&nbsp;
+                  </p>
+                  <span className="">88888888</span>
+                </div>
+              </div>
+              <div className="eason_box_bottom_right">
+                <div className="eason_bottom_small_title">
+                  <h1 className="text_main_dark_color2">付款資訊</h1>
+                </div>
+                <div className="eason_completed_payment">
+                  <p className="text_main_dark_color2">
+                    付款方式&nbsp;&nbsp;&nbsp;
+                  </p>
+                  <span className="">信用卡</span>
+                </div>
+                <div className="eason_completed_payment">
+                  <p className="text_main_dark_color2">
+                    付款狀態&nbsp;&nbsp;&nbsp;
+                  </p>
+                  <span className="">已付款</span>
+                </div>
+              </div>
+            </EasonPayEnd>
+          </div>
         </div>
       </div>
     </>
