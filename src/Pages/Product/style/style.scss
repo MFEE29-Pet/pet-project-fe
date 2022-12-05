@@ -1300,6 +1300,9 @@ section.popup {
     }
 
     .popup_reply_bg {
+        top: 20% !important;
+        height: 100% !important;
+
         .popup_reply_container {
             left: 0;
             width: 100%;
