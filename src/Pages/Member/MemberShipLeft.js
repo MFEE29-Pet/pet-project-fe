@@ -8,7 +8,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
   return (
     <>
       {/* <div className="member-page">
-        <div className="Web-path">
+        <div className="memberWeb-path">
           <h2>首頁會員中心會員首頁</h2>
         </div> */}
       {/* <div className="member"> */}

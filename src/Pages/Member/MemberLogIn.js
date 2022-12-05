@@ -22,13 +22,19 @@ function MemberLogIn() {
       user
     );
     console.log(data);
+    if(data.error === '帳號錯誤'){
+      alert('帳號錯誤')
+      return
+    }
+    if(data.error === '密碼錯誤'){
+      alert('密碼錯誤')
+      return
+    }
     if (data.auth.login) {
       localStorage.setItem('petAuth', JSON.stringify(data.auth));
       setAuth(data.auth)
       //登入後跳轉換面
       navigate('/member');
-    } else {
-      alert('登入失敗');
     }
   };
   return (
@@ -75,6 +81,7 @@ function MemberLogIn() {
                 />
               )}
             </div>
+            {/* icon眼睛切換看密碼 */}
             {show ? (
               <i
                 class="fa-light light fa-eye"

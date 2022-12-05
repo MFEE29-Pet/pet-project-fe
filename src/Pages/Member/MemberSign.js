@@ -5,6 +5,11 @@ import './MemberSign.css';
 import axios from 'axios';
 function MemberSign() {
   const nav = useNavigate();
+  //for password show
+  const [show, setShow] = useState(false);
+  const [showEye, setShowEye] = useState('password');
+  const [checkShow, setcheckShow] = useState(false);
+  const [checkShowEye, setcheckShowEye] = useState('password');
   const [signSuccess, setSignSuccess] = useState(false);
   const [photos, setPhotos] = useState('');
   const [userPhoto, setUserPhoto] = useState('');
@@ -16,7 +21,7 @@ function MemberSign() {
     email: '',
     mobile: 0,
     city: 0,
-    area: '',
+    area: 0,
     address: '',
     gender: '',
     birthday: '',
@@ -61,14 +66,29 @@ function MemberSign() {
       alert('密碼不一致');
       return;
     }
-    const a = /\d/;//需要有數字
+    const a = /\d/; //需要有數字
     const b = /[A-Z]/;
     const c = /[a-z]/;
     // const e = /\s/;//空白就true所以要false e.test(password)
 
-    if (!(password.length > 8 && a.test(password) && b.test(password) && c.test(password) )) {
+    if (
+      !(
+        password.length > 8 &&
+        a.test(password) &&
+        b.test(password) &&
+        c.test(password)
+      )
+    ) {
       alert('密碼格式有誤');
       return;
+    }
+    if (!checkMail(email)) {
+      alert('請輸入正確的電子郵件格式');
+      return;
+    }
+    if(mobile.length < 10){
+      alert('請輸入正確手機號碼格式')
+      return
     }
     // 欄位驗證
     if (
@@ -85,13 +105,9 @@ function MemberSign() {
       // birthday === ''
       year === 0 ||
       month === 0 ||
-      day === 0 
+      day === 0
     ) {
       alert('請輸入正確資料');
-      return;
-    }
-    if (!checkMail(email)) {
-      alert('請輸入正確的電子郵件格式');
       return;
     }
     const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY-MM-DD');
@@ -109,6 +125,10 @@ function MemberSign() {
     fd.append('avatar', userPhoto);
 
     const { data } = await axios.post('http://localhost:6002/member/add', fd);
+    if(data ==='帳號使用過'){
+      alert('此帳號已被註冊')
+      return
+    }
     if (data.success) {
       setSignSuccess(!signSuccess);
       setTimeout(() => {
@@ -177,24 +197,62 @@ function MemberSign() {
               <div className="enter-A">
                 <h2>設定密碼</h2>
                 <input
-                  type="text"
+                  // 更改類型password不顯示
+                  type={showEye}
                   className="cc"
                   name="password"
+                  placeholder='8位數以上,需要有英文大小寫，數字'
                   value={user.password}
                   onChange={(e) => {
                     postUser(e);
                   }}
                 />
+                {show ? (
+                  <i
+                    class="fa-light light fa-eye"
+                    onClick={() => {
+                      setShow(!show);
+                      setShowEye('text')
+                    }}
+                  ></i>
+                ) : (
+                  <i
+                    className="fa-light light fa-eye-slash"
+                    onClick={() => {
+                      setShow(!show);
+                      setShowEye('password')
+                    }}
+                  ></i>
+                )}
               </div>
               <div className="enter-A">
                 <h2>確認密碼</h2>
                 <input
-                  type="text"
+                  // 更改類型password不顯示
+                  type={checkShowEye}
                   className="cc"
+
                   onChange={(e) => {
                     setCheckPass(e.target.value);
                   }}
                 />
+                {checkShow ? (
+                  <i
+                    class="fa-light light fa-eye"
+                    onClick={() => {
+                      setcheckShow(!checkShow);
+                      setcheckShowEye('text');
+                    }}
+                  ></i>
+                ) : (
+                  <i
+                    className="fa-light light fa-eye-slash"
+                    onClick={() => {
+                      setcheckShow(!checkShow);
+                      setcheckShowEye('password');
+                    }}
+                  ></i>
+                )}
               </div>
               <div className="enter-A">
                 <h2>姓名</h2>
@@ -226,6 +284,7 @@ function MemberSign() {
                   type="text"
                   className="cc"
                   name="mobile"
+                  placeholder='09-xxx-xxx-xxx'
                   value={user.mobile ? user.mobile : ''}
                   onChange={(e) => {
                     postUser(e);
@@ -265,7 +324,7 @@ function MemberSign() {
                         {allArea &&
                           allArea.map((v, i) => {
                             return (
-                              <option value={v.area_name} key={v.sid}>
+                              <option value={v.sid} key={v.sid}>
                                 {v.area_name}
                               </option>
                             );
@@ -298,7 +357,7 @@ function MemberSign() {
                           checked={whatGender === v}
                           onChange={(e) => {
                             setWhatGender(e.target.value);
-                            setUser({...user,gender:e.target.value});
+                            setUser({ ...user, gender: e.target.value });
                           }}
                         />
                         <label for="">{v}</label>
@@ -382,7 +441,7 @@ function MemberSign() {
               </div>
             </div>
             <div className="photo">
-              <div className="up-photo">
+              <div className="up-Signphoto">
                 {photos === '' ? (
                   <i className="fa-thin thin fa-user"></i>
                 ) : (

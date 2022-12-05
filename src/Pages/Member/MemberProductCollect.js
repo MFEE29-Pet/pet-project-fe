@@ -56,7 +56,7 @@ function MemberProductCollect() {
               </div>
             </div>
           </div>
-          <div className="orderPage">
+          <div className="memberorderPage">
             <i className="fa-solid fa-angle-left"></i>
             <i className="fa-light light fa-1"></i>
             <i className="fa-light light fa-2"></i>

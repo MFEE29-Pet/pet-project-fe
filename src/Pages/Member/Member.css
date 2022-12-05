@@ -5,14 +5,14 @@
 
 /* --------------------------------------------------------------------- */
 /* MemberChevron */
-.Web {
+.memberWeb {
   width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-.Web-path {
+.memberWeb-path {
   width: 30%;
 }
 
@@ -51,21 +51,21 @@
   cursor: pointer;
 }
 
-.order {
+.memberorder {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 10px;
 }
 
-.orderPage {
+.memberorderPage {
   width: 60%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
 }
 
-.orderPage i {
+.memberorderPage i {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -73,7 +73,7 @@
   /* 文字置中 */
 }
 
-.orderPage .fa-light {
+.memberorderPage .fa-light {
   color: #40210f;
 }
 
@@ -791,14 +791,14 @@
   padding: 10px;
 }
 
-.orderPage {
+.memberorderPage {
   width: 60%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
 }
 
-.orderPage i {
+.memberorderPage i {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -1207,11 +1207,22 @@
   width: 70%;
 }
 .enter-A {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
   width: 80%;
+}
+.enter-A i {
+  position: absolute;
+  top: 7px;
+  right: 0;
+  color: #40210f;
+}
+/* placehold  */
+.enter-A input::-webkit-input-placeholder{
+  font-size: 6px;
 }
 
 .enter-B {

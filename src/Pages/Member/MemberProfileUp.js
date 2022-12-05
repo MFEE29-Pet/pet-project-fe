@@ -110,7 +110,7 @@ function MemberProfileUp() {
                     setWhoArea(e.target.value);
                   }}
                 >
-                  <option>{editUser.city}</option>
+                  <option>{editUser.city_name}</option>
                   {allCity &&
                     allCity.map((v, i) => {
                       return (
@@ -129,7 +129,7 @@ function MemberProfileUp() {
                       postUser(e);
                     }}
                   >
-                    <option value="">{editUser.area}</option>
+                    <option value="">{editUser.area_name}</option>
                     {allArea &&
                       allArea.map((v, i) => {
                         return (
