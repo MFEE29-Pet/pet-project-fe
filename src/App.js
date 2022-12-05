@@ -43,6 +43,7 @@ import GoogleCallback from './Pages/Member/GoogleCallback';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
+import LineCallback from './Pages/Member/LineCallback';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -172,6 +173,7 @@ function App() {
               element={<MemberForgetPassword />}
             />
             <Route path="member/callback" element={<GoogleCallback />} />
+            <Route path="member/lineCallback" element={<LineCallback />} />
           </Routes>
 
           {/* Footer */}

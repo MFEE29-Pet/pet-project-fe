@@ -1,5 +1,5 @@
 // 來源引用區-------------------------------------------------------------------------------------
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
@@ -39,6 +39,9 @@ function Cart() {
 
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
+
+  //Opay Callback連結
+  const [link, setLink] = useState('');
 
   // 付款方式按鈕選定效果
   const [arrivedClick, setArrivedClick] = useState(false);
@@ -157,6 +160,62 @@ function Cart() {
   // 購物車加減刪除Context
   const { cartItem, setCartItem, handleAddCart, handleReduce } =
     useContext(CartInfoContext);
+
+  const SendData = async () => {
+    const cartData = {
+      ...myCartItem,
+      memberID: member.sid,
+      cartTotalPrice: finalPrice,
+    };
+    /*
+    const fd = new FormData();
+
+    fd.append('photoCart', myCartItem.photoCart);
+    fd.append('photoPrice', myCartItem.photo_totalPrice);
+    fd.append('productCart', myCartItem.productCart);
+    fd.append('productPrice', myCartItem.totalPrice);
+    fd.append('memberID', member.sid);
+    fd.append('cartTotalPrice', finalPrice);
+
+    console.log(
+      myCartItem.photoCart,
+      myCartItem.photo_totalPrice,
+      myCartItem.productCart,
+      myCartItem.totalPrice,
+      member.sid,
+      finalPrice
+    );
+*/
+    const { data } = await axios.post(
+      'http://localhost:6001/cart/addOrder',
+      cartData
+    );
+    console.log(data);
+  };
+
+  const LinkOpay = async () => {
+    try {
+      const res = await axios.get('http://localhost:6001/clinic/paymentaction');
+
+      setLink(res.data);
+
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+  function createMarkup() {
+    return { __html: link };
+  }
+
+  const Opay = useRef(null);
+  useEffect(() => {
+    const result = document.querySelector('#_form_aiochk');
+    if (!result) {
+      return;
+    }
+    result.submit();
+  }, [link]);
 
   return (
     <>
@@ -594,40 +653,14 @@ function Cart() {
 
               <button
                 onClick={async () => {
-                  const cartData = {
-                    ...myCartItem,
-                    memberID: member.sid,
-                    cartTotalPrice: finalPrice,
-                  };
-                  /*
-                  const fd = new FormData();
-
-                  fd.append('photoCart', myCartItem.photoCart);
-                  fd.append('photoPrice', myCartItem.photo_totalPrice);
-                  fd.append('productCart', myCartItem.productCart);
-                  fd.append('productPrice', myCartItem.totalPrice);
-                  fd.append('memberID', member.sid);
-                  fd.append('cartTotalPrice', finalPrice);
-
-                  console.log(
-                    myCartItem.photoCart,
-                    myCartItem.photo_totalPrice,
-                    myCartItem.productCart,
-                    myCartItem.totalPrice,
-                    member.sid,
-                    finalPrice
-                  );
-*/
-                  const { data } = await axios.post(
-                    'http://localhost:6001/cart/addOrder',
-                    cartData
-                  );
-                  console.log(data);
+                  await SendData();
+                  await LinkOpay();
                 }}
                 className="eason_pay_btn bg_main_light_color1 "
               >
                 前往付款
               </button>
+              <div dangerouslySetInnerHTML={createMarkup()} ref={Opay}></div>
             </div>
           </div>
         </div>

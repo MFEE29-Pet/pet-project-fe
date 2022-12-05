@@ -83,10 +83,16 @@ function MemberLogIn() {
   };
 
   const googleLogin = async () => {
-    const { data } = await axios.get('http://localhost:6001/member/login');
+    const { data } = await axios.get('http://localhost:6001/member/googlelogin');
     console.log(data);
     window.open(data);
   };
+
+  const lineLogin =async ()=>{
+    const {data} = await axios.get('http://localhost:6001/member/linelogin')
+    console.log(data);
+    window.open(data);
+  }
 
 
 
@@ -216,6 +222,7 @@ function MemberLogIn() {
             Login With Google
           </div>
         </div>
+        <div style={{marginTop:'10px',cursor:'pointer'}} onClick={lineLogin}>加賴較過去</div>
       </div>
       <AUTO_LOGIN_ROOT
         onClick={() => {
