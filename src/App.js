@@ -48,6 +48,7 @@ import Home from './Pages/Product/components/Chat/Home/Home';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import Chat from './Pages/Product/components/Chat/Room/Chat';
+import LineCallback from './Pages/Member/LineCallback';
 // import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
@@ -195,6 +196,7 @@ function App() {
               element={<MemberForgetPassword />}
             />
             <Route path="member/callback" element={<GoogleCallback />} />
+            <Route path="member/lineCallback" element={<LineCallback />} />
           </Routes>
           <Footer />
         </AllContextProviders>
