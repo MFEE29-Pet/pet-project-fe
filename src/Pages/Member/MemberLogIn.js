@@ -100,7 +100,7 @@ function MemberLogIn() {
       </BreadcrumbBox>
       <div className="loginpage">
         <div className="logInenterA">
-          <h2 className="text_main_dark_color2">使用者帳號</h2>
+          <h2 className="text_main_dark_color2">使用者信箱</h2>
           <div className="logInenterC">
             <div className="logIninput">
               <i

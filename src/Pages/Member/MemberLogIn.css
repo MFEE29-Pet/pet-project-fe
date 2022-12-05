@@ -40,12 +40,12 @@ ul {
   margin-bottom: 40px;
 }
 
-.eyeicon{
+.eyeicon {
   cursor: pointer;
-  
+
 }
 
-.login_bottom{
+.login_bottom {
   width: 200px;
   display: flex;
   justify-content: space-around;
@@ -56,8 +56,7 @@ ul {
 .loginpage {
   width: 800px;
   margin: 0 auto 50px;
-  padding: 40px 0px 10px;
-  /* height: 300px; */
+  padding: 40px 10px;
   background-color: #ffff;
   border-radius: 25px;
   display: flex;
@@ -93,7 +92,8 @@ ul {
   display: flex;
   align-items: center;
 }
-.lock_icon{
+
+.lock_icon {
   margin-left: 15px;
 }
 

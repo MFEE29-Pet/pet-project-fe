@@ -3,9 +3,18 @@ import { imgUrl } from '../../config';
 import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import axios from 'axios';
+import { set } from 'date-fns';
 
 function MemberLevel() {
   const [data, setData] = useState([]);
+  const [level, setLevel] = useState('');
+  const [price, setPrice] = useState(0);
+  const [order, setOrder] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
+  const [minOrder, setMinOrder] = useState(0);
+  const [orderPercent,setOrderPercent]= useState(0)
+  const [pricePercent,setPricePercent]= useState(0)
+
 
   const NextArrow = ({ onClick }) => {
     return <div className="hidden_arrow_right" onClick={onClick}></div>;
@@ -39,42 +48,48 @@ function MemberLevel() {
     const data = res.data;
 
     setData(data);
+    setPrice(data.price);
+    setOrder(data.total);
   };
 
   useEffect(() => {
     getMemberData();
   }, []);
 
-  const m_price = data.price;
-  const m_order = data.total;
-  let m_level = '';
+  useEffect(() => {
+    console.log(price);
+    console.log(order);
+    if (price > 15000 && order > 15) {
+      setLevel('高階博士');
+    } else if (price > 10000 && order > 10) {
+      setLevel('中階碩士');
+    } else if (price > 5000 && order > 5) {
+      setLevel('初階學士');
+    }else{
+      setLevel('普通會員');
+    }
+    console.log(level);
+
+    if (level === '初階學士') {
+      setMinPrice(5000);
+      setMinOrder(5);
+    } else if (level === '中階碩士') {
+      setMinPrice(10000);
+      setMinOrder(10);
+    } else {
+      setMinPrice(15000);
+      setMinOrder(15);
+    }
+
+    const order_percent = (+order / minOrder) * 100;
+
+    setOrderPercent(order_percent)
+    const price_percent = (+price / minPrice) * 100;
+    setPricePercent(price_percent)
+  }, [data]);
+
 
   //判斷等級
-  if (0 < m_price < 5000 && 0 < m_order < 5) {
-    m_level = '初階學士';
-  } else if (5000 < m_price < 10000 && 5 < m_order < 10) {
-    m_level = '中階碩士';
-  } else {
-    m_level = '高階碩士';
-  }
-
-  let min_price = 0;
-  let min_order = 0;
-  if (m_level === '初階學士') {
-    min_price = 5000;
-    min_order = 5;
-  } else if (m_level === '中階碩士') {
-    min_price = 10000;
-    min_order = 10;
-  } else {
-    min_price = 15000;
-    min_order = 15;
-  }
-
-  const order_percent = (m_order / min_order) *100;
-  const price_percent = (m_price / min_price) * 100;
-
-  console.log(order_percent, price_percent);
 
   return (
     <>
@@ -255,7 +270,7 @@ function MemberLevel() {
               </div>
 
               <p style={{ fontSize: '16px' }} className="text_main_dark_color1">
-                目前級別：{m_level}
+                目前級別：{level}
               </p>
             </div>
             <div
@@ -277,16 +292,18 @@ function MemberLevel() {
                       lineHeight: '24px',
                     }}
                   >
-                    {m_order}
+                    {order}
                   </span>
-                  <span style={{ fontSize: '18px' }}>/{min_order}</span>
+                  <span style={{ fontSize: '18px' }}>/{minOrder}</span>
                 </div>
                 <div className="range">
-                  <div style={{
-                      width: `${order_percent}%`,
+                  <div
+                    style={{
+                      width: `${orderPercent}%`,
                       height: '100%',
                       backgroundColor: 'red',
-                    }}></div>
+                    }}
+                  ></div>
                 </div>
               </div>
               <div className="inputRange">
@@ -295,14 +312,14 @@ function MemberLevel() {
                     累積消費
                   </p>
                   <span style={{ color: '#f00', fontSize: '24px' }}>
-                    ${m_price}
+                    ${price}
                   </span>
-                  <span style={{ fontSize: '18px' }}>/{min_price}</span>
+                  <span style={{ fontSize: '18px' }}>/{minPrice}</span>
                 </div>
                 <div className="range">
                   <div
                     style={{
-                      width: `${price_percent}%`,
+                      width: `${pricePercent}%`,
                       height: '100%',
                       backgroundColor: 'red',
                     }}

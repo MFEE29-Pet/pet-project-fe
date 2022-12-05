@@ -22,7 +22,18 @@ function GoogleCallback() {
       `http://localhost:6001/member/callback?code=${code}`
     );
     console.log(data);
-    if (data.success) {
+
+    if(data.registersuccess){
+      MySwal.fire({
+        title: <strong>註冊成功</strong>,
+        text: '歡迎回來PetBen',
+        icon: 'success',
+      });
+      navigate('/member/memberLogIn')
+    }
+
+
+    if (data.loginsuccess) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
       setMyAuth({ ...data.auth, authorized: true });
       MySwal.fire({
