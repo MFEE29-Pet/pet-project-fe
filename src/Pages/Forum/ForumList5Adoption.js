@@ -2,7 +2,7 @@ import SearchBar from './components/SearchBar';
 import ButtonPost from './components/ButtonPost';
 import SelectBar from './components/SelectBar';
 import ButtonBar from './components/ButtonBar';
-import ForumListBar from './components/ForumListBar';
+import ForumListBar5Adoption from './components/ForumListBar5Adoption';
 import './ForumList.css';
 
 const buttonText = [
@@ -15,7 +15,7 @@ const buttonText = [
   { value: 7, label: '其他', to: '/forum/other' },
 ];
 
-function ForumList() {
+function ForumList5Adoption() {
   return (
     <>
       <div className="forum_list_wrap">
@@ -34,10 +34,10 @@ function ForumList() {
           })}
         </div>
 
-        <ForumListBar />
+        <ForumListBar5Adoption />
       </div>
     </>
   );
 }
 
-export default ForumList;
+export default ForumList5Adoption;

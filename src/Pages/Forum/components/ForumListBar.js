@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import CollectBar from './CollectBar';
 import CollectLikeBar from './CollectLikeBar';
 import { GET_ALL_ARTICLE } from '../my-config';
 import { useEffect, useState } from 'react';
@@ -60,10 +59,54 @@ function ForumListBar() {
                 navigate(`detail?sid=${e.article_sid}`);
               }}
             >
-              <i
-                className="fa-light fa-message-question text_main_dark_color2"
-                id="forum_big_Icon"
-              ></i>
+              {e.category === 'A' ? (
+                <i
+                  className="fa-light fa-comment-dots text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
+              {e.category === 'B' ? (
+                <i
+                  className="fa-light fa-message-question text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
+              {e.category === 'C' ? (
+                <i
+                  className="fa-light fa-party-horn text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
+              {e.category === 'D' ? (
+                <i
+                  className="fa-light fa-hand-holding-heart text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
+              {e.category === 'E' ? (
+                <i
+                  className="fa-light fa-house-chimney-heart text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
+              {e.category === 'F' ? (
+                <i
+                  className="fa-light fa-icons text_main_dark_color2"
+                  id="forum_big_Icon"
+                ></i>
+              ) : (
+                <></>
+              )}
             </div>
 
             <div className="forumTitleBar">

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./EvaluateComponent.css";
+import React, { Component } from 'react';
+import './EvaluateComponent.css';
 
 export class EvaluateComponent extends Component {
   render() {
@@ -9,16 +9,18 @@ export class EvaluateComponent extends Component {
         {/* 接收留言列表, 展開展示 */}
         {this.props.evaluateList.map((item) => {
           return (
-            <div className="evaluateItem">
-              <img className="headImg" src={item.imgUrl} alt="" />
-              <div className="senderProfile">
-                <div className="nickNameBox">
-                  <div className="nickName">{item.nickName}</div>
-                  <div className="sendTime">{item.sendTime}</div>
+            <>
+              <div className="evaluateItem">
+                <img className="headImg" src={item.imgUrl} alt="" />
+                <div className="senderProfile">
+                  <div className="nickNameBox">
+                    <div className="nickName">{item.nickName}</div>
+                    <div className="sendTime">{item.sendTime}</div>
+                    <div className="evaluate">{item.evaluate}</div>
+                  </div>
                 </div>
-                <div className="evaluate">{item.evaluate}</div>
               </div>
-            </div>
+            </>
           );
         })}
       </div>

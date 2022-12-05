@@ -3,9 +3,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
 import Clinic from './Pages/Clinic/Clinic';
+
 import ForumList from './Pages/Forum/ForumList';
+import ForumList1Talk from './Pages/Forum/ForumList1Talk';
+import ForumList2Question from './Pages/Forum/ForumList2Question';
+import ForumList3Activity from './Pages/Forum/ForumList3Activity';
+import ForumList4Give from './Pages/Forum/ForumList4Give';
+import ForumList5Adoption from './Pages/Forum/ForumList5Adoption';
+import ForumList6Other from './Pages/Forum/ForumList6Other';
 import ForumDetail from './Pages/Forum/ForumDetail';
 import ForumPost from './Pages/Forum/ForumPost';
+
 import Cart from './Pages/Cart/Cart';
 import CartP3 from './Pages/Cart/CartP3';
 
@@ -162,7 +170,15 @@ function App() {
             </Route>
 
             <Route path="forum" element={<ForumList />} />
+            <Route path="forum/talk" element={<ForumList1Talk />} />
+            <Route path="forum/question" element={<ForumList2Question />} />
+            <Route path="forum/activity" element={<ForumList3Activity />} />
+            <Route path="forum/give" element={<ForumList4Give />} />
+            <Route path="forum/adoption" element={<ForumList5Adoption />} />
+            <Route path="forum/other" element={<ForumList6Other />} />
+
             <Route path="forum/detail" element={<ForumDetail />} />
+
             <Route path="forum/post" element={<ForumPost />} />
 
             <Route path="member" element={<Member />}>

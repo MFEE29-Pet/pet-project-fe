@@ -10,19 +10,24 @@ import axios from 'axios';
 import { GET_DETAILS } from './my-config';
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 
 const buttonText = [
-  { value: 1, label: '綜合', to: '/complex' },
-  { value: 2, label: '發問', to: '/question' },
-  { value: 3, label: '經驗', to: '/experience' },
-  { value: 4, label: '活動', to: '/activity' },
-  { value: 5, label: '送養', to: '/give' },
-  { value: 6, label: '領養', to: '/adoption' },
-  { value: 7, label: '其他', to: '/other' },
+  { value: 1, label: '綜合', to: '/forum' },
+  { value: 2, label: '閒聊', to: '/forum/talk' },
+  { value: 3, label: '發問', to: '/forum/question' },
+  { value: 4, label: '活動', to: '/forum/activity' },
+  { value: 5, label: '送養', to: '/forum/give' },
+  { value: 6, label: '領養', to: '/forum/adoption' },
+  { value: 7, label: '其他', to: '/forum/other' },
 ];
 
 function ForumDetail() {
-  const [details, setDetails] = useState([]);
+  const [details, setDetails] = useState([
+    {
+      name: '',
+    },
+  ]);
   const [forumComment, setForumComment] = useState([]);
   const [reRenderForum, setReRenderForum] = useState(false);
   // 取得 queryString
@@ -33,13 +38,30 @@ function ForumDetail() {
   const getDetails = async () => {
     const res = await axios.get(`${GET_DETAILS}?sid=${sid}`);
 
-    console.log(res);
-    const detail = res.data.details;
+    // console.log(res);
+    const detail = res.data.details[0];
+    const new_detail = detail.map((e, i) => {
+      const { created_at } = e;
+      return {
+        ...detail[i],
+        created_at: dayjs(created_at).format('YYYY-MM-DD HH:mm'),
+      };
+    });
+
     const forum_comment = res.data.forum_comment;
-    setDetails(detail[0]);
-    setForumComment(forum_comment);
+
+    const new_forum_comment = forum_comment.map((e, i) => {
+      const { created_at } = e;
+      return {
+        ...forum_comment[i],
+        created_at: dayjs(created_at).format('YYYY-MM-DD'),
+      };
+    });
+    setDetails(new_detail);
+    setForumComment(new_forum_comment);
     // console.log(detail[0]);
   };
+  //console.log(details);
 
   useEffect(() => {
     getDetails();
@@ -63,7 +85,7 @@ function ForumDetail() {
         </div>
         <div className="forum_detail_title_area">
           <ForumDetailTitle title={details[0] ? details[0].title : ''} />
-          <UserBar />
+          <UserBar name={details[0].name} />
         </div>
         <div className="forum_article_area">
           <ForumDetailBar details={details[0] ? details[0] : ''} />
@@ -75,6 +97,7 @@ function ForumDetail() {
           forumComment={forumComment}
           reRenderForum={reRenderForum}
           setReRenderForum={setReRenderForum}
+          getDetails={getDetails}
         />
       </div>
     </>

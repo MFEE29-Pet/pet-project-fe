@@ -45,13 +45,19 @@ import './ForumReply.css';
 import React from 'react';
 import ForumReplyOld from './ForumReplyOld';
 
-function ForumReply({ forumComment, reRenderForum, setReRenderForum }) {
+function ForumReply({
+  forumComment,
+  reRenderForum,
+  setReRenderForum,
+  getDetails,
+}) {
   return (
     <>
       <ForumReplyOld
         forumComment={forumComment}
         reRenderForum={reRenderForum}
         setReRenderForum={setReRenderForum}
+        getDetails={getDetails}
       />
     </>
   );

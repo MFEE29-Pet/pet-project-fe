@@ -62,13 +62,12 @@ function ForumPost({ setDoRerender, doRerender }) {
               onChange={(e) => setMessCategory({ category: e.target.value })}
             >
               <option value="">選擇主題</option>
-              <option value="A">綜合版</option>
+              <option value="A">閒聊版</option>
               <option value="B">發問版</option>
-              <option value="C">經驗版</option>
-              <option value="D">活動版</option>
-              <option value="E">送養版</option>
-              <option value="F">領養版</option>
-              <option value="G">其他版</option>
+              <option value="C">活動版</option>
+              <option value="D">送養版</option>
+              <option value="E">領養版</option>
+              <option value="F">其他版</option>
             </select>
 
             <div className="forum_post_title_bar">
@@ -113,7 +112,7 @@ function ForumPost({ setDoRerender, doRerender }) {
               // to={to}
               key={'i'}
             >
-              發表
+              留言
             </button>
           </div>
         </div>
