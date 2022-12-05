@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-function PhotoDetail({ detailNum, open }) {
+function PhotoDetail({ detailNum, open, i }) {
   const [data, setData] = useState([]);
 
   const getPhotoDetailData = async () => {
@@ -33,7 +33,7 @@ function PhotoDetail({ detailNum, open }) {
         borderRadius: '20px',
         padding: '20px',
         marginBottom: '10px',
-        display: open ? 'block' : 'none',
+        display: open === i ? 'block' : 'none',
       }}
     >
       <table style={{ width: '100%' }}>
@@ -82,26 +82,28 @@ function PhotoDetail({ detailNum, open }) {
                 >
                   {date}
                 </td>
-                {
-                  day_parts ? (<td
-                  style={{
-                    textAlign: 'center',
-                    verticalAlign: 'middle',
-                    color: '#727171',
-                  }}
-                >
-                  早上
-                </td>):(<td
-                  style={{
-                    textAlign: 'center',
-                    verticalAlign: 'middle',
-                    color: '#727171',
-                  }}
-                >
-                  下午
-                </td>)
-                }
-                
+                {day_parts ? (
+                  <td
+                    style={{
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      color: '#727171',
+                    }}
+                  >
+                    早上
+                  </td>
+                ) : (
+                  <td
+                    style={{
+                      textAlign: 'center',
+                      verticalAlign: 'middle',
+                      color: '#727171',
+                    }}
+                  >
+                    下午
+                  </td>
+                )}
+
                 <td
                   style={{
                     textAlign: 'center',

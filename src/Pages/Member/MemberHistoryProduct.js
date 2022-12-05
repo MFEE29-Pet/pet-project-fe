@@ -5,9 +5,8 @@ import './Member.css';
 import dayjs from 'dayjs';
 
 function MemberHistoryProduct() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(-1);
   const [data, setData] = useState([]);
-  const [select, setSelect] = useState(0);
   const [detailNum, setDetailNum] = useState('');
 
   const memberID = JSON.parse(localStorage.getItem('auth'));
@@ -27,12 +26,19 @@ function MemberHistoryProduct() {
 
     const m_data = data1.map((e, i) => {
       const { ordered_at } = e;
-      return { ...data1[i], ordered_at: dayjs(ordered_at).format('YYYY-MM-DD') };
+      return {
+        ...data1[i],
+        ordered_at: dayjs(ordered_at).format('YYYY-MM-DD'),
+      };
     });
     setData(m_data);
   };
-  const click = (orders_num) => {
-    open ? setOpen(false) : setOpen(true);
+  const click = (orders_num, i) => {
+    // open ? setOpen(false) : setOpen(true);
+    if (i === open) {
+      return setOpen(-1);
+    }
+    setOpen(i);
     console.log(orders_num);
     setDetailNum(orders_num);
   };
@@ -51,7 +57,10 @@ function MemberHistoryProduct() {
         fontSize: '20px',
       }}
     >
-      <div className="orderProduct-right" style={{height:'700px',overflowY:'scroll'}}>
+      <div
+        className="orderProduct-right"
+        style={{ height: '700px', overflowY: 'scroll' }}
+      >
         {data.map((e, i) => {
           const { product_total_price, ordered_at, orders_num } = e;
           return (
@@ -113,14 +122,12 @@ function MemberHistoryProduct() {
                     className="fa-regular fa-circle-chevron-down"
                     style={{ cursor: 'pointer', fontSize: '22px' }}
                     onClick={() => {
-                      if (select === i) {
-                        click(orders_num);
-                      }
+                      click(orders_num, i);
                     }}
                   ></i>
                 </div>
               </div>
-              <ProductDetail open={open} detailNum={detailNum} />
+              <ProductDetail open={open} detailNum={detailNum} i={i} />
             </div>
           );
         })}

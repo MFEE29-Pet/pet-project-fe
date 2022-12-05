@@ -5,9 +5,8 @@ import axios from 'axios';
 import PhotoDetail from './components/PhotoDetail';
 
 function MemberHistoryCamera() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(-1);
   const [data, setData] = useState([]);
-  const [select, setSelect] = useState(0);
   const [detailNum, setDetailNum] = useState('');
 
   const memberID = JSON.parse(localStorage.getItem('auth'));
@@ -27,13 +26,19 @@ function MemberHistoryCamera() {
 
     const m_data = data1.map((e, i) => {
       const { ordered_at } = e;
-      return { ...data1[i], ordered_at: dayjs(ordered_at).format('YYYY-MM-DD') };
+      return {
+        ...data1[i],
+        ordered_at: dayjs(ordered_at).format('YYYY-MM-DD'),
+      };
     });
     console.log(m_data);
     setData(m_data);
   };
-  const click = (orders_num) => {
-    open ? setOpen(false) : setOpen(true);
+  const click = (orders_num, i) => {
+    if (i === open) {
+      return setOpen(-1);
+    }
+    setOpen(i);
     console.log(orders_num);
     setDetailNum(orders_num);
   };
@@ -117,14 +122,12 @@ function MemberHistoryCamera() {
                     className="fa-regular fa-circle-chevron-down"
                     style={{ cursor: 'pointer', fontSize: '22px' }}
                     onClick={() => {
-                      if (select === i) {
-                        click(orders_num);
-                      }
+                      click(orders_num, i);
                     }}
                   ></i>
                 </div>
               </div>
-              <PhotoDetail open={open} detailNum={detailNum} />
+              <PhotoDetail open={open} detailNum={detailNum} i={i}/>
             </div>
           );
         })}
