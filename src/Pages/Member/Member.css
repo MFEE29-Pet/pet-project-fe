@@ -356,11 +356,6 @@ span {
   margin-top: 3px;
 }
 
-.range div {
-  width: 20%;
-  height: 100%;
-  background-color: red;
-}
 
 .inputRange {
   width: 40%;
@@ -887,6 +882,7 @@ span {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  
 }
 
 .detailProduct {

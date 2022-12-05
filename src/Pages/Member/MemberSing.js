@@ -1,11 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import dayjs from 'dayjs';
+import React, { useState } from 'react';
 import './MemberSing.css';
 import axios from 'axios';
 import styled from 'styled-components';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 import { useNavigate } from 'react-router';
+import { imgUrl } from '../../config';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const JoinPage = styled.div`
   width: 100%;
@@ -34,502 +38,216 @@ const Memberroutes = [
 
 function MemberSing() {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    account: '',
-    password: '',
-    name: '',
-    email: '',
-    mobile: '',
-    city: '',
-    area: '',
-    address: '',
-    gender: '',
-    birthday: '',
-    avatar: '',
-  });
-  const genderWrap = ['生理男', '生理女', '其他'];
-  const [gender, setGender] = useState('');
-  const [year, setYear] = useState('');
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-  const [city, setCity] = useState('');
-  const [area, setArea] = useState('');
-  const [address, setAddress] = useState('');
-  const yearList = [];
-  const monthList = [];
-  const dayList = [];
-  const days = new Date(year, month, 0).getDate();
+  const [mail, setMail] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
 
-  for (let i = 1900; i <= 2055; i++) {
-    yearList.push(i);
-  }
-  for (let i = 1; i <= 12; i++) {
-    monthList.push(i);
-  }
-  for (let i = 1; i <= days; i++) {
-    dayList.push(i);
-  }
-
-  const [cityData, setCityData] = useState([
-    {
-      sid: '',
-      city_name: '',
-    },
-  ]);
-
-  const [areaData, setAreaData] = useState([
-    {
-      sid: '',
-      city_name: '',
-      city_sid: '',
-    },
-  ]);
-
-  const [filterAreaData, setFilterAreaData] = useState([
-    {
-      sid: '',
-      name: '',
-      city_sid: '',
-    },
-  ]);
-  //圖片上傳
-  //選擇檔案
-  const [selectedFile, setSelectedFile] = useState(null);
-  // console.log(selectedFile);
-  //是否有檔案被選到
-  const [isFilePicked, setIsFilePicked] = useState(null);
-  //預覽圖片
-  const [preview, setPreview] = useState('');
-
-  //拿到縣市資料
-  const getCityData = async () => {
-    try {
-      const res = await axios(`http://localhost:6001/member/citydata`);
-
-      const citydata = res.data.rows;
-
-      setCityData(citydata);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-
-  const getAreaData = async () => {
-    try {
-      const res = await axios(`http://localhost:6001/member/areadata`);
-
-      const areadata = res.data.rows;
-
-      setAreaData(areadata);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-  // console.log(cityData);
-  // console.log(areaData);
-
-  useEffect(() => {
-    getCityData();
-    getAreaData();
-  }, []);
-
-  useEffect(() => {
-    // console.log(areaData);
-    const filterData = areaData.filter((e, i) => {
-      const { city_sid } = e;
-      return city_sid == city;
-    });
-    setFilterAreaData(filterData);
-  }, [city]);
-
-  //當選擇檔案更動時建立預覽圖
-  useEffect(() => {
-    if (!selectedFile) {
-      setPreview('');
-      return;
-    }
-    const objectUrl = URL.createObjectURL(selectedFile);
-
-    console.log(objectUrl);
-
-    setPreview(objectUrl);
-
-    //當元件unmounted時清除記憶體
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
-
-  const changeHandler = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      setIsFilePicked(true);
-      setSelectedFile(file);
-    } else {
-      setIsFilePicked(false);
-      setSelectedFile(null);
-    }
-  };
-  //上傳圖片Button
-  const hiddenFileInput = useRef(null);
-
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
-  };
-
-  const postUser = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
   const addUser = async () => {
-    const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY/MM/DD');
-
     const fd = new FormData();
 
-    fd.append('account', user.account);
-    fd.append('password', user.password);
-    fd.append('name', user.name);
-    fd.append('mail', user.email);
-    fd.append('mobile', user.mobile);
-    fd.append('city', user.city);
-    fd.append('area', user.area);
-    fd.append('address', user.address);
-    fd.append('date', d);
-    fd.append('member_photo', selectedFile || 'noname.png');
+    fd.append('mail', mail);
+    fd.append('password', checkPassword);
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
-    // const { send } = await axios.post('http://localhost:6001/member/send', fd);
     console.log(data);
-    // console.log(send);
     if (data.success) {
-      alert('註冊成功');
+      MySwal.fire({
+        title: <strong>註冊成功</strong>,
+        icon: 'success',
+      });
       navigate('/member/memberLogIn');
     }
   };
+
+  const addLine =async()=>{
+    const {data} = await axios.get('')
+  }
+  const addgoogle = async () => {
+    const { data } = await axios.get('http://localhost:6001/member/login');
+    console.log(data);
+    window.open(data);
+  };
+
   return (
     <JoinPage>
-      {/* <div className="fill"></div>
-      <div className="success">
-        <h1>註冊成功</h1>
-      </div> */}
       <BreadcrumbBox>
         <Breadcrumb
           routes={Memberroutes}
           separator={<BreadcrumbRightArrowIcon />}
         />
       </BreadcrumbBox>
-      <div className="member-page">
-        <div className="singUp-page">
-          <div className="page">
-            <div className="page-left">
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">使用者帳號</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  name="account"
-                  value={user.account}
-                  onChange={(e) => {
-                    postUser(e);
-                  }}
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">設定密碼</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  name="password"
-                  value={user.password}
-                  onChange={(e) => {
-                    postUser(e);
-                  }}
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">確認密碼</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">姓名</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  name="name"
-                  value={user.name}
-                  onChange={(e) => {
-                    postUser(e);
-                  }}
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">信箱</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  name="email"
-                  value={user.email}
-                  onChange={(e) => {
-                    postUser(e);
-                  }}
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">手機</h2>
-                <input
-                  type="text"
-                  className="cc"
-                  name="mobile"
-                  value={user.mobile}
-                  onChange={(e) => {
-                    postUser(e);
-                  }}
-                  style={{
-                    border: '1px solid #727171',
-                    outline: 'none',
-                    backgroundColor: 'transparent',
-                  }}
-                />
-              </div>
-              <div className="enter-A" style={{ display: 'flex' }}>
-                <div
-                  className="text_main_dark_color2"
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-start',
-                    height: '60px',
-                    fontWeight: '700',
-                  }}
-                >
-                  地址
-                </div>
-
-                <div
-                  className="address"
-                  style={{ display: 'flex', flexDirection: 'column' }}
-                >
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: '10px',
-                    }}
-                  >
-                    <div className="enter-C">
-                      <select
-                        name=""
-                        id=""
-                        value={city}
-                        onChange={(e) => {
-                          setCity(e.target.value);
-                        }}
-                        className="member_select"
-                      >
-                        {cityData.map((e, i) => {
-                          const { sid, city_name } = e;
-                          return (
-                            <option value={sid} key={i}>
-                              {city_name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                    <div className="enter-C">
-                      <select
-                        name=""
-                        id=""
-                        value={area}
-                        onChange={(e) => {
-                          setArea(e.target.value);
-                        }}
-                        className="member_select"
-                      >
-                        {filterAreaData.map((e, i) => {
-                          const { area_name, sid } = e;
-                          return (
-                            <option value={sid} key={i}>
-                              {area_name}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </div>
-                  </div>
-                  <input
-                    type="text"
-                    className="cc addressText"
-                    value={address}
-                    onChange={(e) => {
-                      setAddress(e.target.value);
-                    }}
-                    style={{
-                      border: '1px solid #727171',
-                      outline: 'none',
-                      backgroundColor: 'transparent',
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">性別</h2>
-                <div className="radio">
-                  {genderWrap.map((v, i) => {
-                    return (
-                      <span key={i}>
-                        <input
-                          type="radio"
-                          value={v}
-                          checked={gender === v}
-                          onChange={(e) => {
-                            setGender(e.target.value);
-                          }}
-                        />
-                        <label htmlFor="">{v}</label>
-                      </span>
-                    );
-                  })}
-                  {/* <input type="radio" />
-                  <label for="">生理男</label>
-                  <input type="radio" />
-                  <label for="">生理女</label>
-                  <input type="radio" />
-                  <label for="">其他</label> */}
-                </div>
-              </div>
-              <div className="enter-A">
-                <h2 className="text_main_dark_color2">生日</h2>
-                <div className="address">
-                  <div className="enter-D">
-                    <select
-                      name=""
-                      id=""
-                      value={year}
-                      onChange={(e) => {
-                        setYear(e.target.value);
-                      }}
-                      className="member_select"
-                    >
-                      <option>年</option>
-                      {yearList.map((e, i) => {
-                        return (
-                          <option value={e} key={i}>
-                            {e}年
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="enter-D">
-                    <select
-                      name=""
-                      id=""
-                      value={month}
-                      onChange={(e) => {
-                        setMonth(e.target.value);
-                      }}
-                      className="member_select"
-                    >
-                      <option>月</option>
-                      {monthList.map((e, i) => {
-                        return (
-                          <option value={e} key={i}>
-                            {e}月
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div className="enter-D">
-                    <select
-                      name=""
-                      id=""
-                      value={day}
-                      onChange={(e) => {
-                        setDay(e.target.value);
-                      }}
-                      className="member_select"
-                    >
-                      <option>日</option>
-                      {dayList.map((e, i) => {
-                        return (
-                          <option value={e} key={i}>
-                            {e}日
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div className="button-A">
-                <button
-                  className="button bg_main_light_color1"
-                  onClick={addUser}
-                >
-                  註冊
-                </button>
-              </div>
-            </div>
-            <div className="photo">
-              <div className="up-photo" style={{ overflow: 'hidden' }}>
-                {isFilePicked ? (
-                  <img src={preview} alt="" style={{ width: '100%' }} />
-                ) : (
-                  <img
-                    src="/images/noname.png"
-                    alt=""
-                    style={{ height: '100%', objectFit: 'contain' }}
-                  />
-                )}
-              </div>
-              <div
-                style={{
-                  border: '1px solid #727171',
-                  borderRadius: '15px',
-                  padding: '5px 10px',
-                  color: '#727171',
-                  cursor: 'pointer',
-                }}
-                onClick={handleClick}
-              >
-                上傳照片
-              </div>
+      <div className="loginpage">
+        <div className="logInenterA">
+          <h2 className="text_main_dark_color2">使用者信箱</h2>
+          <div className="logInenterC">
+            <div className="logIninput">
               <input
-                type="file"
-                onChange={changeHandler}
-                ref={hiddenFileInput}
-                style={{ display: 'none' }}
+                type="text"
+                name="mail"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
+                value={mail}
+                onChange={(e) => {
+                  setMail(e.target.value);
+                }}
               />
+            </div>
+          </div>
+        </div>
+        <div className="logInenterA">
+          <h2 className="text_main_dark_color2">輸入密碼</h2>
+          <div className="logInenterB">
+            <div style={{ marginLeft: '15px' }}>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="logInenterA">
+          <h2 className="text_main_dark_color2">確認密碼</h2>
+          <div className="logInenterB" style={{ marginLeft: '15px' }}>
+            <div style={{ marginLeft: '15px' }}>
+              <input
+                type="password"
+                name="password"
+                value={checkPassword}
+                onChange={(e) => {
+                  setCheckPassword(e.target.value);
+                }}
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          className="buttonLogIn"
+          style={{
+            backgroundColor: mail && password && checkPassword && '#f8b62d',
+            color: mail && password && checkPassword && '#fff',
+            fontWeight: '700',
+          }}
+          onClick={addUser}
+        >
+          註冊
+        </button>
+        <div
+          style={{
+            width: '50%',
+            borderBottom: '1px solid #c9caca',
+            margin: '30px 0px',
+            position: 'relative',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '-10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              backgroundColor: '#fff',
+              width: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            OR
+          </div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '50%',
+          }}
+        >
+          <div
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #727171',
+              borderRadius: '10px',
+              padding: '5px 10px',
+              width: '48%',
+            }}
+            onClick={addgoogle}
+          >
+            <div
+              style={{
+                width: '25%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <img
+                src={`${imgUrl}/images/google-icon.png`}
+                alt=""
+                style={{ width: '100%' }}
+              />
+            </div>
+            <div
+              style={{
+                width: '75%',
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '12px',
+              }}
+            >
+              Register With Google
+            </div>
+          </div>
+          <div
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #727171',
+              borderRadius: '10px',
+              padding: '5px 10px',
+              width: '48%',
+            }}
+          >
+            <div
+              style={{
+                width: '25%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <img
+                src={`${imgUrl}/images/line-icon.png`}
+                alt=""
+                style={{ width: '100%' }}
+              />
+            </div>
+            <div
+              style={{
+                width: '75%',
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '12px',
+              }}
+            >
+              Register With Line
             </div>
           </div>
         </div>
