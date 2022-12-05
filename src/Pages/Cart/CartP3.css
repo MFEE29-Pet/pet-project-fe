@@ -116,7 +116,7 @@
 }
 
 .eason_check_logo {
-  color: green;
+  color: #13ae67;
   margin-right: 15px;
 }
 
@@ -153,4 +153,8 @@
   display: flex;
   flex-direction: column;
   line-height: 22px;
+}
+
+.eason_completed_payment {
+  display: flex;
 }
