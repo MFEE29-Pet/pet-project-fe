@@ -4,11 +4,15 @@ import './cart.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext'; //主題變色按鈕
 import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車數量連動商品
+import Swal from 'sweetalert2'; //警告套件
+import withReactContent from 'sweetalert2-react-content'; //警告套件
 import axios from 'axios';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 // import photoJsonData from './photoTest.json';
+
+const MySwal = withReactContent(Swal);
 
 // 進度條隨主題變色-------------------------------------------------------------------------------------
 const EasonProgressBar = styled.div`
@@ -74,10 +78,6 @@ function Cart() {
   const myPhotoTotalPrice = myCartItem.photo_totalPrice;
   // console.log(myPhotoTotalPrice);
   const myTotalPrice = myCartItem.totalPrice;
-
-  // 最終結帳總額
-  const finalPrice = myPhotoTotalPrice + myTotalPrice;
-  // console.log(finalPrice);
 
   // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
@@ -157,6 +157,35 @@ function Cart() {
   // 購物車加減刪除Context
   const { cartItem, setCartItem, handleAddCart, handleReduce } =
     useContext(CartInfoContext);
+
+  const [discount, setDiscount] = useState(0);
+
+  // 最終結帳總額
+  let finalPrice = myPhotoTotalPrice + myTotalPrice - discount;
+  // console.log(finalPrice);
+
+  // 優惠代碼測試
+  const coupon = () => {
+    const myDiscount = document.getElementById('discount');
+    console.log(myDiscount.value);
+
+    if (myDiscount.value === '1234') {
+      setDiscount(100);
+      finalPrice = finalPrice - discount;
+      MySwal.fire({
+        title: '<strong>優惠代碼兌換成功</strong>',
+        icon: 'success',
+      });
+    } else if (myDiscount.value === '2222') {
+      console.log('-200');
+    } else {
+      setDiscount(0);
+      Swal.fire({
+        title: '<strong>沒有此優惠代碼</strong>',
+        icon: 'info',
+      });
+    }
+  };
 
   return (
     <>
@@ -549,20 +578,13 @@ function Cart() {
             <div className="eason_s3_right_top">
               <h2 className="text_main_dark_color2">優惠代碼</h2>
               <div className="discountArea">
-                <input className="eason_discount_code" id="rrr" type="text" />
+                <input
+                  className="eason_discount_code"
+                  id="discount"
+                  type="text"
+                />
                 <span
-                  onClick={() => {
-                    //折扣碼測試
-                    // const discount = document.getElementById('rrr');
-
-                    // if (discount.value === '1234') {
-                    //   console.log('-100');
-                    // } else if (discount.value === '2222') {
-                    //   console.log('-200');
-                    // }
-
-                    // console.log(discount.value);
-                  }}
+                  onClick={coupon}
                   className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "
                 ></span>
               </div>
@@ -584,7 +606,7 @@ function Cart() {
 
                   <tr>
                     <th className="text_main_dark_color2">優惠折扣</th>
-                    <td>10%</td>
+                    <td>{discount}</td>
                   </tr>
 
                   <tr>
@@ -597,9 +619,9 @@ function Cart() {
                     <td style={{ color: 'red', fontSize: 'large' }}>
                       ${' '}
                       {Math.ceil(
-                        ((productChecked ? myTotalPrice : 0) +
-                          (photoChecked ? myPhotoTotalPrice : 0)) *
-                          0.9
+                        (productChecked ? myTotalPrice : 0) +
+                          (photoChecked ? myPhotoTotalPrice : 0) -
+                          discount
                       )}
                     </td>
                   </tr>
