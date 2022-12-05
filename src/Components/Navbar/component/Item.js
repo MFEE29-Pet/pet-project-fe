@@ -32,7 +32,7 @@ const ItemBox = styled.div`
 
 function Item() {
   return (
-    <ItemBox>
+    <ItemBox className="nav_left">
       <LittleItem
         ItemData={forumItem}
         Title="寵物論壇"

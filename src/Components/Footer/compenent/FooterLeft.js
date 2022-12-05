@@ -39,7 +39,7 @@ const Item = styled.div`
 
 function FooterLeft() {
   return (
-    <Item>
+    <Item className="index_footer_left">
       <LeftLittleItem ItemData={forumItem} Title="寵物論壇" />
       <LeftLittleItem ItemData={clinicItem} Title="醫療診所" />
       <LeftLittleItem ItemData={productItem} Title="購物商城" />

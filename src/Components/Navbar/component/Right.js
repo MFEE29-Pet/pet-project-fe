@@ -23,8 +23,8 @@ const CART = styled(Link)`
 function Right(props) {
   const { myAuth } = useContext(AuthContext);
   return (
-    <RightBox>
-    {/* {console.log(myAuth)} */}
+    <RightBox className="nav_right">
+      {/* {console.log(myAuth)} */}
       {myAuth.authorized ? <LoginInfo /> : <Login />}
 
       <CART to="/cart">

@@ -20,8 +20,8 @@ const FOOTERBOX = styled.div`
 function Footer() {
   return (
     <>
-      <FOOTER>
-        <FOOTERBOX>
+      <FOOTER className="index_footer">
+        <FOOTERBOX className="index_footer_box">
           <FooterLeft />
           <FooterRight />
         </FOOTERBOX>

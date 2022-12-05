@@ -37,7 +37,8 @@ const IconBox = styled.div`
     border-radius: 50%;
     display: block;
     transition: all 265ms ease-out;
-    background-color: ${(props) => (props.$mode === 'dog' ? '#40220f' : '#18334e')};
+    background-color: ${(props) =>
+      props.$mode === 'dog' ? '#40220f' : '#18334e'};
   }
   &:hover {
     &::before {
@@ -58,7 +59,7 @@ const IconBox = styled.div`
 function Icon() {
   const { mode } = useContext(SwitchButtonContext);
   return (
-    <UL>
+    <UL className="footer_right_item">
       <LI>
         <IconBox $mode={mode}>
           <i className="fa-brands fa-whatsapp"></i>

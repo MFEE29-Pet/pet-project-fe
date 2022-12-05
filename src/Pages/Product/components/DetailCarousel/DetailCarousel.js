@@ -55,7 +55,7 @@ function DetailCarousel({ relatedProducts }) {
 
   return (
     <>
-      <div className="degreeWrap">
+      <div className="product_degreeWrap">
         <Slider {...settings}>
           {relatedProducts.map((e, i) => {
             return (
@@ -82,7 +82,7 @@ function DetailCarousel({ relatedProducts }) {
                     }}
                     onClick={() => {
                       // console.log(e.sid)
-                      navigate(`?sid=${e.sid}`)
+                      navigate(`?sid=${e.sid}`);
                     }}
                   />
                 </div>

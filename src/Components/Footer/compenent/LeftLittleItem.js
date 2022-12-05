@@ -33,7 +33,7 @@ const LI = styled.li`
 function LeftLittleItem({ ItemData, Title }) {
   const {mode} = useContext(SwitchButtonContext)
   return (
-    <LITTLE_ITEM>
+    <LITTLE_ITEM className="footer_left_item">
       <H2 className="text_main_dark_color2" $mode={mode}>{Title}</H2>
       <ul >
         {ItemData.map((e, i) => {
