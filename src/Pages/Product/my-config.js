@@ -11,5 +11,6 @@ export const PHOTOGRAPH_FORM = `${MY_HOST}/product/photographersForm`;
 export const GET_LOVED = `${MY_HOST}/product/lovedList`;
 export const ADD_LOVED = `${MY_HOST}/product/addLoved-api`;
 export const DEL_LOVED = `${MY_HOST}/product/delLoved-api`;
+export const GET_RECOMMEND = `${MY_HOST}/product/recommended`;
 
 export const LOGIN_API = `${MY_HOST}/product/login-api`;
