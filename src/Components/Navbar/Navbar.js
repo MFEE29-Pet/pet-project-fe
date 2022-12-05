@@ -29,8 +29,8 @@ const NAVBOX = styled.div`
 
 function Navbar() {
   return (
-    <NAV>
-      <NAVBOX>
+    <NAV className="navbar">
+      <NAVBOX className="nav_box">
         <Logo />
         <Item />
         <Right />

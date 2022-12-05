@@ -15,8 +15,8 @@ const LOGO = styled(Link)`
 
 function Logo() {
   return (
-    <LOGOBOX>
-      <LOGO className="logo" to="/"></LOGO>
+    <LOGOBOX className="logo_container">
+      <LOGO className="logo index_logo" to="/"></LOGO>
     </LOGOBOX>
   );
 }

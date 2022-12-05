@@ -1,7 +1,7 @@
-import React from "react";
-import Copyright from "./Copyright";
-import Icon from "./Icon";
-import styled from "styled-components";
+import React from 'react';
+import Copyright from './Copyright';
+import Icon from './Icon';
+import styled from 'styled-components';
 
 const RIGHT = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const RIGHT = styled.div`
 
 function FooterRight() {
   return (
-    <RIGHT>
+    <RIGHT className="index_footer_right">
       <Icon />
       <Copyright />
     </RIGHT>

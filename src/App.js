@@ -8,7 +8,6 @@ import ForumDetail from './Pages/Forum/ForumDetail';
 import ForumPost from './Pages/Forum/ForumPost';
 import Cart from './Pages/Cart/Cart';
 import CartP3 from './Pages/Cart/CartP3';
-
 import Member from './Pages/Member/Member';
 import MemberSing from './Pages/Member/MemberSing';
 import MemberLogIn from './Pages/Member/MemberLogIn';
@@ -24,8 +23,6 @@ import PhotoReservePage from './Pages/Product/PhotoReservePage';
 import PhotoReserve from './Pages/Product/PhotoReserve';
 import PhotoCheck from './Pages/Product/PhotoCheck';
 import AllContextProviders from './contexts/AllContextProviders';
-// import LoginPro from './Pages/Product/Login';
-// import Login from './Pages/Clinic/Login';
 import Check from './Pages/Clinic/Check';
 import ReservePage from './Pages/Clinic/ReservePage';
 import Pay from './Pages/Clinic/Pay';
@@ -43,12 +40,9 @@ import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
 import GoogleCallback from './Pages/Member/GoogleCallback';
 
 // try socket io
-// import Socket from './Pages/Product/components/Socket/Socket';
-import Home from './Pages/Product/components/Chat/Home/Home';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
-import Chat from './Pages/Product/components/Chat/Room/Chat';
-// import RoomList from './Pages/Product/components/Chat/RoomList/RoomList';
+import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -98,16 +92,12 @@ function App() {
   //   }
   // };
 
-  // try socket io
-  const [username, setUsername] = useState('');
-  const [room, setRoom] = useState('');
-
   return (
     <div id={mode} className="bg_bright_color" style={{ width: '100%' }}>
       {/* 以下為路由，如需新增請通知 */}
       <BrowserRouter>
         <AllContextProviders>
-          {/* <CartProvider> */}
+          {/* Navbar */}
           <Navbar />
           <i
             className={`fa-light fa-shield-cat text_main_light_color1`}
@@ -116,9 +106,13 @@ function App() {
             // id="switch_button"
           ></i>
           <section style={{ height: '100px' }}></section>
+
+          {/* Routes */}
           <Routes>
+            {/* index */}
             <Route path="/" element={<Index />} />
 
+            {/* Product */}
             <Route path="product" element={<Product />} />
             <Route path="product/detail/" element={<ProductDetail />} />
             <Route path="product/photographers/" element={<Photographers />} />
@@ -126,33 +120,14 @@ function App() {
               <Route path="reserve" element={<PhotoReserve />} />
               <Route path="check" element={<PhotoCheck />} />
             </Route>
-            {/* <Route path="chat" element={<Socket />} /> */}
-            <Route
-              path="chat_home"
-              element={
-                <Home
-                  username={username}
-                  setUsername={setUsername}
-                  room={room}
-                  setRoom={setRoom}
-                  socket={socket}
-                />
-              }
-            />
-            <Route
-              path="chat_room"
-              element={<Chat username={username} room={room} socket={socket} />}
-            />
-            {/* <Route
-              path="room_list"
-              element={
-                <RoomList username={username} room={room} socket={socket} />
-              }
-            /> */}
+            {/* online service */}
+            <Route path="service" element={<ServiceIndex socket={socket} />} />
 
+            {/* Cart */}
             <Route path="cart" element={<Cart />} />
             <Route path="cart_p3" element={<CartP3 />} />
 
+            {/* Clinic */}
             <Route path="clinic" element={<Clinic />} />
             <Route path="clinic/pay" element={<Pay />} />
             <Route path="clinic/payresult" element={<PayResult />} />
@@ -161,10 +136,12 @@ function App() {
               <Route path="check" element={<Check />} />
             </Route>
 
+            {/* Forum */}
             <Route path="forum" element={<ForumList />} />
             <Route path="forum/detail" element={<ForumDetail />} />
             <Route path="forum/post" element={<ForumPost />} />
 
+            {/* Member */}
             <Route path="member" element={<Member />}>
               <Route path="memberCenter" element={<MemberLevel />} />
               <Route path="memberPet" element={<MemberPetAdd />} />
@@ -196,6 +173,8 @@ function App() {
             />
             <Route path="member/callback" element={<GoogleCallback />} />
           </Routes>
+
+          {/* Footer */}
           <Footer />
         </AllContextProviders>
       </BrowserRouter>

@@ -545,6 +545,7 @@ function PhotoReserve() {
             <h3>日期時段</h3>
             {final[0].time === 4 ? (
               <DatePicker
+                className="date_picker"
                 selected={startDate}
                 dateFormat="yyyy/MM/dd"
                 onChange={(date) => setStartDate(date)}
@@ -559,6 +560,7 @@ function PhotoReserve() {
               />
             ) : (
               <DatePicker
+                className="date_picker"
                 selected={startDate}
                 dateFormat="yyyy/MM/dd"
                 onChange={(date) => setStartDate(date)}

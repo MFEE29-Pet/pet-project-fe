@@ -13,7 +13,6 @@ import styled from 'styled-components';
 import ProductLine from './components/ProductLine';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import GoToTop from './components/GoToTop';
-import Socket from './components/Socket/Socket';
 
 const PAGE = styled.div`
   ul {
@@ -165,7 +164,6 @@ function Product() {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={() => navigate('/chat_home')}>進入聊天室</button>
       <main>
         <ProductSidebar isLoading={isLoading} />
         <section className="right">
@@ -210,6 +208,7 @@ function Product() {
             />
           </PAGE>
         </section>
+        <GoToTop />
       </main>
       <Popup
         trigger={trigger}
@@ -222,7 +221,6 @@ function Product() {
         salesType={salesType}
       />
       {/* <Socket /> */}
-      <GoToTop />
     </>
   );
 }

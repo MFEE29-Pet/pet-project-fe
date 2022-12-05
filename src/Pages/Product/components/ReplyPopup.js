@@ -94,8 +94,10 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
   // const fd = new FormData(form);
 
   return (
-    <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}>
+    <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}
+    className='popup_reply_bg'>
       <Reply
+      className='popup_reply_container'
         $mode={mode}
         style={{
           display: `${showDiv ? 'flex' : 'none'}`,
