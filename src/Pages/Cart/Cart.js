@@ -40,7 +40,8 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
-  const matches = useMediaQuery('(max-width: 490px)');
+  // 手機版畫面切換功能
+  const matches = useMediaQuery('(max-width: 600px)');
 
   //拿到會員資料
   const member = JSON.parse(localStorage.getItem('auth'));
@@ -308,7 +309,7 @@ function Cart() {
                         <div>
                           {v.date} {v.time ? '早上' : '晚上'}
                         </div>
-                        <div style={{color:'red'}}>$ {v.price}</div>
+                        <div style={{ color: 'red' }}>$ {v.price}</div>
                       </div>
 
                       <div className="eason_mobile_photo_box_right">
