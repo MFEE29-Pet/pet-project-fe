@@ -9,29 +9,28 @@ const MySwal = withReactContent(Swal);
 
 function GoogleCallback() {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { setMyAuth } = useContext(AuthContext);
 
   const code = new URLSearchParams(location.search).get('code');
 
-  // console.log(code);
+  console.log(code);
 
   const googleBack = async () => {
     const { data } = await axios.get(
-      `http://localhost:6001/member/callback?code=${code}`
+      `http://localhost:6001/member/googlecallback?code=${code}`
     );
     console.log(data);
 
-    if(data.registersuccess){
+    if (data.registersuccess) {
       MySwal.fire({
         title: <strong>註冊成功</strong>,
         text: '歡迎回來PetBen',
         icon: 'success',
       });
-      navigate('/member/memberLogIn')
+      navigate('/member/memberLogIn');
     }
-
 
     if (data.loginsuccess) {
       localStorage.setItem('auth', JSON.stringify(data.auth));
@@ -41,7 +40,7 @@ function GoogleCallback() {
         text: '歡迎回來PetBen',
         icon: 'success',
       });
-      navigate('/')
+      navigate('/');
     }
   };
 

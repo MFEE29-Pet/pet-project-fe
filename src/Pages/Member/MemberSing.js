@@ -61,11 +61,12 @@ function MemberSing() {
   };
 
   const addLine =async()=>{
-    const {data} = await axios.get('')
+    const {data} = await axios.get('http://localhost:6001/member/linelogin')
+    window.open(data)
   }
   const addgoogle = async () => {
-    const { data } = await axios.get('http://localhost:6001/member/login');
-    console.log(data);
+    const { data } = await axios.get('http://localhost:6001/member/googlelogin');
+    //console.log(data);
     window.open(data);
   };
 
@@ -225,6 +226,7 @@ function MemberSing() {
               padding: '5px 10px',
               width: '48%',
             }}
+            onClick={addLine}
           >
             <div
               style={{
