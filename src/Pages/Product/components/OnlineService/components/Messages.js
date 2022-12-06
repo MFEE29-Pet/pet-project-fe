@@ -26,7 +26,7 @@ function Messages({ own, message }) {
             <p className="messageText">{message.messages}</p>
           </div>
         </div>
-        <div className="messageBottom">
+        <div className="messageBottom" style={{ marginBottom: '8px' }}>
           {dayjs(message.created_at).fromNow()}
         </div>
       </div>
