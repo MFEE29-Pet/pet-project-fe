@@ -69,6 +69,10 @@ function ServiceIndex({ socket }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!newMessage) {
+      alert('請輸入訊息');
+      return;
+    }
     const message = {
       conversationId: currentChat,
       senderId: myAuth.sid,
@@ -123,7 +127,7 @@ function ServiceIndex({ socket }) {
         className="servicePage_wrap"
         style={{
           width: '70%',
-          height: '800px',
+          height: '500px',
           margin: '10px auto 50px auto',
           backgroundColor: '#fff',
           display: 'flex',
