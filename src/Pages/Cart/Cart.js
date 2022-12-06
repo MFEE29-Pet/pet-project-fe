@@ -161,6 +161,7 @@ function Cart() {
   const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
     useContext(CartInfoContext);
 
+  // 把前端畫面資料送進資料庫
   const SendData = async () => {
     const cartData = {
       ...myCartItem,
@@ -193,6 +194,7 @@ function Cart() {
     console.log(data);
   };
 
+  // 歐付寶串接
   const LinkOpay = async () => {
     try {
       const res = await axios.get('http://localhost:6001/clinic/paymentaction');
@@ -207,7 +209,6 @@ function Cart() {
   function createMarkup() {
     return { __html: link };
   }
-
   const Opay = useRef(null);
   useEffect(() => {
     const result = document.querySelector('#_form_aiochk');
@@ -217,9 +218,9 @@ function Cart() {
     result.submit();
   }, [link]);
 
+  // 優惠代碼
   const [discount, setDiscount] = useState(0);
 
-  // 優惠代碼測試
   const coupon = () => {
     const myDiscount = document.getElementById('discount');
     // console.log(myDiscount.value);
@@ -245,6 +246,7 @@ function Cart() {
   // 最終結帳總額
   let finalPrice = myPhotoTotalPrice + myTotalPrice - discount;
   // console.log(finalPrice);
+  
   return (
     <>
       <button
