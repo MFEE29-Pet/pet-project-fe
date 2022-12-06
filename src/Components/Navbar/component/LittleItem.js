@@ -111,10 +111,10 @@ const LI = styled(Link)`
 export const LittleItem = ({ ItemData, Title, EnTitle, to }) => {
   const { mode } = useContext(SwitchButtonContext);
   return (
-    <LittleItemBox>
-      <TitleBox className="text_main_dark_color2" to={to}>
+    <LittleItemBox className="littleItemBox">
+      <TitleBox className="text_main_dark_color2 littleItem" to={to}>
         {Title}
-        <EnTitleBox className="text_main_dark_color2">{EnTitle}</EnTitleBox>
+        <EnTitleBox className="text_main_dark_color2  littleItemSmall">{EnTitle}</EnTitleBox>
       </TitleBox>
       <Foot className="foot foot_type" />
       <Shadow src={`${imgUrl}/images/shadow.png`} alt="" className="shadow" />
