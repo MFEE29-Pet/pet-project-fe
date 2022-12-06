@@ -161,63 +161,6 @@ function Cart() {
   const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
     useContext(CartInfoContext);
 
-  // 把前端畫面資料送進資料庫
-  const SendData = async () => {
-    const cartData = {
-      ...myCartItem,
-      memberID: member.sid,
-      cartTotalPrice: finalPrice,
-    };
-    /*
-    const fd = new FormData();
-
-    fd.append('photoCart', myCartItem.photoCart);
-    fd.append('photoPrice', myCartItem.photo_totalPrice);
-    fd.append('productCart', myCartItem.productCart);
-    fd.append('productPrice', myCartItem.totalPrice);
-    fd.append('memberID', member.sid);
-    fd.append('cartTotalPrice', finalPrice);
-
-    console.log(
-      myCartItem.photoCart,
-      myCartItem.photo_totalPrice,
-      myCartItem.productCart,
-      myCartItem.totalPrice,
-      member.sid,
-      finalPrice
-    );
-*/
-    const { data } = await axios.post(
-      'http://localhost:6001/cart/addOrder',
-      cartData
-    );
-    console.log(data);
-  };
-
-  // 歐付寶串接
-  const LinkOpay = async () => {
-    try {
-      const res = await axios.get('http://localhost:6001/clinic/paymentaction');
-
-      setLink(res.data);
-
-      console.log(res.data);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-  function createMarkup() {
-    return { __html: link };
-  }
-  const Opay = useRef(null);
-  useEffect(() => {
-    const result = document.querySelector('#_form_aiochk');
-    if (!result) {
-      return;
-    }
-    result.submit();
-  }, [link]);
-
   // 優惠代碼
   const [discount, setDiscount] = useState(0);
 
@@ -246,10 +189,75 @@ function Cart() {
   // 最終結帳總額
   let finalPrice = myPhotoTotalPrice + myTotalPrice - discount;
   // console.log(finalPrice);
+
+  // 把前端畫面資料送進資料庫並清空購物車
+
+  const clearAll = () => {
+    handleClear();
+    setMyProductData([{}]);
+    setMyPhotoData([{}]);
+    setDiscount(0);
+  };
+  const SendData = async () => {
+    const cartData = {
+      ...myCartItem,
+      memberID: member.sid,
+      cartTotalPrice: finalPrice,
+    };
+    /*
+      const fd = new FormData();
   
+      fd.append('photoCart', myCartItem.photoCart);
+      fd.append('photoPrice', myCartItem.photo_totalPrice);
+      fd.append('productCart', myCartItem.productCart);
+      fd.append('productPrice', myCartItem.totalPrice);
+      fd.append('memberID', member.sid);
+      fd.append('cartTotalPrice', finalPrice);
+  
+      console.log(
+        myCartItem.photoCart,
+        myCartItem.photo_totalPrice,
+        myCartItem.productCart,
+        myCartItem.totalPrice,
+        member.sid,
+        finalPrice
+      );
+  */
+    const { data } = await axios.post(
+      'http://localhost:6001/cart/addOrder',
+      cartData
+    );
+    console.log(data);
+    clearAll();
+  };
+
+  // 歐付寶串接
+  const LinkOpay = async () => {
+    try {
+      const res = await axios.get('http://localhost:6001/clinic/paymentaction');
+
+      setLink(res.data);
+
+      console.log(res.data);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+  function createMarkup() {
+    return { __html: link };
+  }
+  const Opay = useRef(null);
+  useEffect(() => {
+    const result = document.querySelector('#_form_aiochk');
+    if (!result) {
+      return;
+    }
+    result.submit();
+  }, [link]);
+
   return (
     <>
-      <button
+      {/* <button
         onClick={() => {
           handleClear();
           setMyProductData([{}]);
@@ -257,7 +265,7 @@ function Cart() {
         }}
       >
         清空
-      </button>
+      </button> */}
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
