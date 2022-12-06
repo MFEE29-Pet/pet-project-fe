@@ -234,7 +234,7 @@ function Cart() {
   // 歐付寶串接
   const LinkOpay = async () => {
     try {
-      const res = await axios.get('http://localhost:6001/clinic/paymentaction');
+      const res = await axios.get('http://localhost:6001/cart/paymentaction');
 
       setLink(res.data);
 
