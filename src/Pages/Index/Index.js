@@ -8,7 +8,7 @@ function Index() {
   return (
     <>
       {/* <Draw /> */}
-      <div style={{ height: '800px' }}>
+      <div style={{ height: '750px' }}>
         <ThreeAnimate />
       </div>
       <About />

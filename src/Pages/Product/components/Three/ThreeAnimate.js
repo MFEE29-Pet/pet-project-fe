@@ -11,7 +11,7 @@ import { Physics, usePlane, useBox } from '@react-three/cannon';
 import SwitchButtonContext from '../../../../contexts/SwitchButtonContext';
 
 function Box() {
-  const [ref, api] = useBox(() => ({ mess: 1, position: [0, 2, 0] }));
+  const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
   return (
     <mesh
       onClick={() => {
@@ -31,6 +31,16 @@ function Plane() {
     <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
       <boxBufferGeometry attach="geometry" args={[500, 500]} />
       <meshLambertMaterial attach="material" color="#f8b62b" />
+    </mesh>
+  );
+}
+
+function Ball() {
+  // const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
+  return (
+    <mesh scale={10} onClick={() => {}}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial color="#f8b62b" />
     </mesh>
   );
 }
@@ -71,7 +81,16 @@ function Model() {
   //   const a = clock.getElapsedTime();
   //   myAnimate.current.rotation.y = a;
   // });
-  return <primitive ref={group} object={scene} dispose={null} />;
+  return (
+    <primitive
+      ref={group}
+      object={scene}
+      dispose={null}
+      position={[60, 0, 0]}
+      rotation={[-0.25, 0, 0]}
+      scale={100}
+    />
+  );
 }
 
 function Model2(props) {
@@ -97,7 +116,14 @@ function Model2(props) {
   //   const a = clock.getElapsedTime();
   //   myAnimate.current.rotation.y = a;
   // });
-  return <primitive ref={group} object={scene} dispose={null} />;
+  return (
+    <primitive
+      ref={group}
+      object={scene}
+      dispose={null}
+      position={[-50, 0, 0]}
+    />
+  );
 }
 
 function Camera(props) {
@@ -111,8 +137,9 @@ function Camera(props) {
 function ThreeAnimate() {
   return (
     <Canvas
+      id="three_canvas_container"
       camera={{
-        position: [50, 140, 160],
+        position: [40, 140, 160],
         fov: 50,
         // far: mode === 'dog' ? 1000 : 200,
       }}
@@ -137,14 +164,15 @@ function ThreeAnimate() {
         segments={20} // Number of particles
         position={[0,100,30]}
       /> */}
-      <ambientLight intensity={0.5} />
-      <spotLight position={[0, 150, 120]} angle={0.5} />
+      <ambientLight intensity={0.8} />
+      <spotLight position={[150, 130, 190]} angle={0.5} />
       <Physics>
         <Model2 />
-        {/* <Model /> */}
+        <Model />
+        <Ball />
+        {/* <Box /> */}
 
         {/* <Model2 /> */}
-        {/* <Box /> */}
         {/* <Plane /> */}
       </Physics>
     </Canvas>
