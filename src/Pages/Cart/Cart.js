@@ -78,7 +78,7 @@ function Cart() {
   const myProductCart = JSON.parse(getCartItem).productCart;
   const myPhotoCart = JSON.parse(getCartItem).photoCart;
 
-  const myPhotoTotalPrice = myCartItem.photo_totalPrice;
+  const myPhotoTotalPrice = myCartItem.photo_totalPrice || 0;
   // console.log(myPhotoTotalPrice);
   const myTotalPrice = myCartItem.totalPrice;
 
@@ -158,7 +158,7 @@ function Cart() {
   };
 
   // 購物車加減刪除Context
-  const { cartItem, setCartItem, handleAddCart, handleReduce } =
+  const { cartItem, setCartItem, handleAddCart, handleReduce, handleClear } =
     useContext(CartInfoContext);
 
   const SendData = async () => {
@@ -247,6 +247,15 @@ function Cart() {
   // console.log(finalPrice);
   return (
     <>
+      <button
+        onClick={() => {
+          handleClear();
+          setMyProductData([{}]);
+          setMyPhotoData([{}]);
+        }}
+      >
+        清空
+      </button>
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
