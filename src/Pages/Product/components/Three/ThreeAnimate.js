@@ -85,7 +85,8 @@ function Model2(props) {
   // });
   useEffect(() => {
     // console.log(actions);
-    const animate = actions['0|play_dead_0'];
+    // const animate = actions['0|play_dead_0'];
+    const animate = actions['0|shake_0'];
     const animate2 = actions['0|shake_0'];
 
     // mode === 'dog' ?
@@ -111,7 +112,7 @@ function ThreeAnimate() {
   return (
     <Canvas
       camera={{
-        position: [10, 180, 100],
+        position: [50, 140, 160],
         fov: 50,
         // far: mode === 'dog' ? 1000 : 200,
       }}
