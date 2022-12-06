@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { MemberContext } from '../../contexts/MemberContext.js';
-import './Member.css';
+import styled from  './Member.module.scss';
 function MemberForgrtPassword() {
   const { auth } = useContext(MemberContext);
   const changePassword = async () => {
@@ -15,11 +15,11 @@ function MemberForgrtPassword() {
   };
   const [password, setPassword] = useState({ password: '', editPassword: '' });
   return (
-    <div className="pagePassword">
-      <div className="enter-A">
+    <div className={styled.pagePassword}>
+      <div className={`${styled.enterA} ${styled.passwordEnterA}`}>
         <h2>目前的密碼</h2>
-        <div className="enter-C">
-          <div className="input">
+        <div className={styled.enterC}>
+          <div className={styled.input}>
             <input
               type="password"
               name="password"
@@ -31,10 +31,10 @@ function MemberForgrtPassword() {
           </div>
         </div>
       </div>
-      <div className="enter-A">
+      <div className={`${styled.enterA} ${styled.passwordEnterA}`}>
         <h2>新密碼</h2>
-        <div className="enter-B">
-          <div className="input">
+        <div className={styled.enterB}>
+          <div className={styled.input}>
             <input
               type="text"
               name="editPassword"
@@ -46,15 +46,15 @@ function MemberForgrtPassword() {
           </div>
         </div>
       </div>
-      <div className="enter-A">
+      <div className={`${styled.enterA} ${styled.passwordEnterA}`}>
         <h2>新密碼確認</h2>
-        <div className="enter-B">
-          <div className="input">
+        <div className={styled.enterB}>
+          <div className={styled.input}>
             <input type="text" />
           </div>
         </div>
       </div>
-      <button className="button" onClick={changePassword}>
+      <button className={styled.button} onClick={changePassword}>
         確認
       </button>
     </div>

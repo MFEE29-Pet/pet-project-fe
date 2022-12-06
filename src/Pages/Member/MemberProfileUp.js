@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { MemberContext } from '../../contexts/MemberContext';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import styled from './Member.module.scss'
 function MemberProfileUp() {
   const { auth } = useContext(MemberContext);
   const [editUser, setEditUser] = useState({
@@ -61,49 +62,49 @@ function MemberProfileUp() {
 
   return (
     <>
-      <div className="pageProfileUp">
-        <div className="page-left">
-          <div className="enter-A user">
+      <div className={styled.pageProfileUp}>
+        <div className={styled.pageLeft}>
+          <div className={`${styled.enterA} ${styled.user}`}>
             <h2>使用者帳號</h2>
             <input
               type="text"
-              className="cc"
+              className={styled.cc}
               value={editUser.account}
-              readonly
+              readOnly
               name="account"
             />
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>姓名</h2>
             <input
               type="text"
-              className="cc"
+              className={styled.cc}
               value={editUser.name}
               name="name"
             />
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>信箱</h2>
             <input
               type="text"
-              className="cc"
+              className={styled.cc}
               value={editUser.email}
               name="email"
             />
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>手機</h2>
             <input
               type="text"
-              className="cc"
-              value={editUser.mobile}
+              className={styled.cc}
+              value={0+editUser.mobile}
               name="mobile"
             />
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>地址</h2>
-            <div className="address">
-              <div className="enter-C">
+            <div className={styled.address}>
+              <div className={styled.enterC}>
                 <select
                   onChange={(e) => {
                     getArea(e.target.value);
@@ -121,8 +122,8 @@ function MemberProfileUp() {
                     })}
                 </select>
               </div>
-              <div className="enter-C">
-                <div className="input-Choose">
+              <div className={styled.enterC}>
+                <div className={styled.inputChoose}>
                   <select
                     name="area"
                     onChange={(e) => {
@@ -143,10 +144,10 @@ function MemberProfileUp() {
               </div>
             </div>
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <input
               type="text"
-              className="cc addressText"
+              className={`${styled.cc} ${styled.addressText}`}
               name="address"
               value={editUser.address}
               onChange={(e) => {
@@ -154,9 +155,9 @@ function MemberProfileUp() {
               }}
             />
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>性別</h2>
-            <div className="radio">
+            <div className={styled.radio}>
               {genderWrap.map((v, i) => {
                 return (
                   <span key={i}>
@@ -174,14 +175,14 @@ function MemberProfileUp() {
               })}
             </div>
           </div>
-          <div className="enter-A">
+          <div className={styled.enterA}>
             <h2>生日</h2>
-            <div className="address">
-              <div className="enter-C">
+            <div className={styled.address}>
+              <div className={styled.enterC}>
                 <select
                   name=""
                   id=""
-                  className="year"
+                  className={styled.year}
                   onChange={(e) => {
                     setYear(+e.target.value);
                   }}
@@ -198,8 +199,8 @@ function MemberProfileUp() {
                     })}
                 </select>
               </div>
-              <div className="enter-C">
-                <div className="input-Choose">
+              <div className={styled.enterC}>
+                <div className={styled.inputChoose}>
                   <select
                     name=""
                     id=""
@@ -220,8 +221,8 @@ function MemberProfileUp() {
                   </select>
                 </div>
               </div>
-              <div className="enter-C">
-                <div className="input-Choose">
+              <div className={styled.enterC}>
+                <div className={styled.inputChoose}>
                   <select
                     name=""
                     id=""
@@ -242,12 +243,12 @@ function MemberProfileUp() {
               </div>
             </div>
           </div>
-          <div className="button-A">
-            <button className="button">儲存</button>
+          <div className={styled.buttonA}>
+            <button className={styled.button}>儲存</button>
           </div>
         </div>
-        <div className="photo">
-          <div className="up-photoProfile">
+        <div className={styled.photo}>
+          <div className={styled.upPhotoProfile}>
             {editUser.member_photo !== '' && (
               <img
                 src={`http://localhost:6002/uploads/${editUser.member_photo}`}

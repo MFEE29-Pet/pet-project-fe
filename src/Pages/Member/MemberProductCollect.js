@@ -1,62 +1,62 @@
 import React from 'react'
-
+import styled from  './Member.module.scss';
 function MemberProductCollect() {
   return (
     <>
-      <div className="product-title">
-        <div className="checkbox-title">
+      <div className={styled.productTitle}>
+        <div className={styled.checkboxTitle}>
           <div>
             <input type="checkbox" name="" id="" />
             <span>全選</span>
           </div>
 
-          <button className="delete">刪除選中收藏</button>
+          <button className={styled.delete}>刪除選中收藏</button>
 
         </div>
-        <div className="product-page">
-          <div className="product-photo">
-            <div className="line"></div>
-            <div className="product-name">
-              <div className="product-img">
+        <div className={styled.productPage}>
+          <div className={styled.productPhoto}>
+            <div className={styled.line}></div>
+            <div className={styled.productName}>
+              <div className={styled.productImg}>
                 <img src="../image/product_3.png" alt="" />
               </div>
-              <div className="product-wrap">
+              <div className={styled.productWrap}>
                 <input type="checkbox" name="" id="" />
                 <span>寵物商品</span>
               </div>
-              <div className="proudct-price">
+              <div className={styled.proudctPrice}>
                 <p>$1,280</p>
                 <h5>$980</h5>
               </div>
             </div>
-            <div className="product-name">
-              <div className="product-img">
+            <div className={styled.productName}>
+              <div className={styled.productImg}>
                 <img src="../image/product_4.png" alt="" />
               </div>
-              <div className="product-wrap">
+              <div className={styled.productWrap}>
                 <input type="checkbox" name="" id="" />
                 <span>寵物商品</span>
               </div>
-              <div className="proudct-price">
+              <div className={styled.proudctPrice}>
                 <p>$1,280</p>
                 <h5>$980</h5>
               </div>
             </div>
-            <div className="product-name">
-              <div className="product-img">
+            <div className={styled.productName}>
+              <div className={styled.productImg}>
                 <img src="../image/product_5.png" alt="" />
               </div>
-              <div className="product-wrap">
+              <div className={styled.productWrap}>
                 <input type="checkbox" name="" id="" />
                 <span>寵物商品</span>
               </div>
-              <div className="proudct-price">
+              <div className={styled.proudctPrice}>
                 <p>$1,280</p>
                 <h5>$980</h5>
               </div>
             </div>
           </div>
-          <div className="memberorderPage">
+          <div className={styled.memberorderPage}>
             <i className="fa-solid fa-angle-left"></i>
             <i className="fa-light light fa-1"></i>
             <i className="fa-light light fa-2"></i>

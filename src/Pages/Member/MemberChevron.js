@@ -1,23 +1,23 @@
-import './Member.css';
+import styled from  './Member.module.scss';
 function MemberChevron() {
   return (
     <>
-      <div class="aa-tital">
-        <div class="aa">
+      <div class={styled.aaTital}>
+        <div class={styled.aa}>
           <input type="text" name="" id="" />
-          <div class="orange">
+          <div class={styled.orange}>
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
-        <div class="aa-page">
+        <div class={styled.aaPage}>
           <span>5</span>
           <span>/10</span>
         </div>
-        <div class="chevron">
-          <div class="chevron-a" onclick="">
+        <div class={styled.chevron}>
+          <div class={styled.chevronA} onclick="">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
-          <div class="chevron-b" onclick="">
+          <div class={styled.chevronB} onclick="">
             <i class="fa-solid fa-chevron-right"></i>
           </div>
         </div>

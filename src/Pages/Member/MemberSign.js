@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import styled from  './MemberSign.module.scss'
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import './MemberSign.css';
 import axios from 'axios';
 function MemberSign() {
   const nav = useNavigate();
@@ -171,22 +171,22 @@ function MemberSign() {
   return (
     <>
       {signSuccess && (
-        <div className="fill">
-          <div className="success">
+        <div className={styled.fill}>
+          <div className={styled.success}>
             <h1>註冊成功</h1>
           </div>
         </div>
       )}
 
-      <div className="member-page">
-        <div className="signUp-page">
-          <div className="page">
-            <div className="page-left">
-              <div className="enter-A">
+      <div className={styled.memberPage}>
+        <div className={styled.signUpPage}>
+          <div className={styled.page}>
+            <div className={styled.pageLeft}>
+              <div className={styled.enterA}>
                 <h2>使用者帳號</h2>
                 <input
                   type="text"
-                  className="cc"
+                  className={styled.cc}
                   name="account"
                   value={user.account}
                   onChange={(e) => {
@@ -194,12 +194,12 @@ function MemberSign() {
                   }}
                 />
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>設定密碼</h2>
                 <input
                   // 更改類型password不顯示
                   type={showEye}
-                  className="cc"
+                  className={styled.cc}
                   name="password"
                   placeholder='8位數以上,需要有英文大小寫，數字'
                   value={user.password}
@@ -212,7 +212,7 @@ function MemberSign() {
                     class="fa-light light fa-eye"
                     onClick={() => {
                       setShow(!show);
-                      setShowEye('text')
+                      setShowEye('password')
                     }}
                   ></i>
                 ) : (
@@ -220,17 +220,17 @@ function MemberSign() {
                     className="fa-light light fa-eye-slash"
                     onClick={() => {
                       setShow(!show);
-                      setShowEye('password')
+                      setShowEye('text')
                     }}
                   ></i>
                 )}
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>確認密碼</h2>
                 <input
                   // 更改類型password不顯示
                   type={checkShowEye}
-                  className="cc"
+                  className={styled.cc}
 
                   onChange={(e) => {
                     setCheckPass(e.target.value);
@@ -241,7 +241,7 @@ function MemberSign() {
                     class="fa-light light fa-eye"
                     onClick={() => {
                       setcheckShow(!checkShow);
-                      setcheckShowEye('text');
+                      setcheckShowEye('password');
                     }}
                   ></i>
                 ) : (
@@ -249,16 +249,16 @@ function MemberSign() {
                     className="fa-light light fa-eye-slash"
                     onClick={() => {
                       setcheckShow(!checkShow);
-                      setcheckShowEye('password');
+                      setcheckShowEye('text');
                     }}
                   ></i>
                 )}
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>姓名</h2>
                 <input
                   type="text"
-                  className="cc"
+                  className={styled.cc}
                   name="name"
                   value={user.name}
                   onChange={(e) => {
@@ -266,11 +266,11 @@ function MemberSign() {
                   }}
                 />
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>信箱</h2>
                 <input
                   type="text"
-                  className="cc"
+                  className={styled.cc}
                   name="email"
                   value={user.email}
                   onChange={(e) => {
@@ -278,11 +278,11 @@ function MemberSign() {
                   }}
                 />
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>手機</h2>
                 <input
                   type="text"
-                  className="cc"
+                  className={styled.cc}
                   name="mobile"
                   placeholder='09-xxx-xxx-xxx'
                   value={user.mobile ? user.mobile : ''}
@@ -291,10 +291,10 @@ function MemberSign() {
                   }}
                 />
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>地址</h2>
-                <div className="address">
-                  <div className="enter-C">
+                <div className={styled.address}>
+                  <div className={styled.enterD}>
                     <select
                       onChange={(e) => {
                         getArea(e.target.value);
@@ -312,8 +312,8 @@ function MemberSign() {
                         })}
                     </select>
                   </div>
-                  <div className="enter-C">
-                    <div className="input-Choose">
+                  <div className={styled.enterD}>
+                    <div className={styled.inputChoose}>
                       <select
                         name="area"
                         onChange={(e) => {
@@ -334,10 +334,10 @@ function MemberSign() {
                   </div>
                 </div>
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <input
                   type="text"
-                  className="cc addressText"
+                  className={`${styled.cc} ${styled.addressText}`}
                   name="address"
                   value={user.address}
                   onChange={(e) => {
@@ -345,9 +345,9 @@ function MemberSign() {
                   }}
                 />
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>性別</h2>
-                <div className="radio">
+                <div className={styled.radio}>
                   {genderWrap.map((v, i) => {
                     return (
                       <span key={i}>
@@ -366,14 +366,14 @@ function MemberSign() {
                   })}
                 </div>
               </div>
-              <div className="enter-A">
+              <div className={styled.enterA}>
                 <h2>生日</h2>
-                <div className="address">
-                  <div className="enter-C">
+                <div className={styled.address}>
+                  <div className={styled.enterD}>
                     <select
                       name=""
                       id=""
-                      className="year"
+                      className={styled.year}
                       onChange={(e) => {
                         setYear(+e.target.value);
                       }}
@@ -390,8 +390,8 @@ function MemberSign() {
                         })}
                     </select>
                   </div>
-                  <div className="enter-C">
-                    <div className="input-Choose">
+                  <div className={styled.enterD}>
+                    <div className={styled.inputChoose}>
                       <select
                         name=""
                         id=""
@@ -412,8 +412,8 @@ function MemberSign() {
                       </select>
                     </div>
                   </div>
-                  <div className="enter-C">
-                    <div className="input-Choose">
+                  <div className={styled.enterD}>
+                    <div className={styled.inputChoose}>
                       <select
                         name=""
                         id=""
@@ -434,14 +434,14 @@ function MemberSign() {
                   </div>
                 </div>
               </div>
-              <div className="button-A">
-                <button className="button" onClick={addUser}>
+              <div className={styled.buttonA}>
+                <button className={styled.button} onClick={addUser}>
                   註冊
                 </button>
               </div>
             </div>
-            <div className="photo">
-              <div className="up-Signphoto">
+            <div className={styled.photo}>
+              <div className={styled.upSignphoto}>
                 {photos === '' ? (
                   <i className="fa-thin thin fa-user"></i>
                 ) : (

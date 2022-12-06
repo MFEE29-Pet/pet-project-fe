@@ -1,4 +1,4 @@
-import './Member.css';
+import  styled from './Member.module.scss';
 import MemberShipLeft from './MemberShipLeft';
 import MemberLevel from './MemberLevel.js';
 import MemberPetAdd from './MemberPetAdd';
@@ -28,7 +28,7 @@ function Member() {
   const Nowcomponents = components[pageIndex];
   return (
     <>
-      <div className="member">
+      <div className={styled.member}>
         <MemberShipLeft
           totalPage={components}
           pageIndex={pageIndex}

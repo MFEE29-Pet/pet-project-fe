@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; //登入後跳轉換面
-import './MemberLogIn.css';
+import styled from './MemberLogIn.module.scss';
 import { MemberContext } from '../../contexts/MemberContext';
 function MemberLogIn() {
   const { logout,setAuth } = useContext(MemberContext);
@@ -39,11 +39,11 @@ function MemberLogIn() {
   };
   return (
     <>
-      <div className="loginpage">
-        <div className="logInenterA">
+      <div className={styled.loginpage}>
+        <div className={styled.logInenterA}>
           <h2>使用者帳號</h2>
-          <div className="logInenterC">
-            <div className="logIninput">
+          <div className={styled.logInenterC}>
+            <div className={styled.logIninput}>
               <i className="fa-thin thin fa-user"></i>
               <input
                 type="text"
@@ -56,9 +56,9 @@ function MemberLogIn() {
             </div>
           </div>
         </div>
-        <div className="logInenterA">
+        <div className={styled.logInenterA}>
           <h2>密碼</h2>
-          <div className="logInenterB">
+          <div className={styled.logInenterB}>
             <div>
               <i className="fa-thin thin fa-lock"></i>
               {show ? (
@@ -100,7 +100,7 @@ function MemberLogIn() {
           </div>
         </div>
         <button
-          className="buttonLogIn"
+          className={styled.buttonLogIn}
           onClick={login}
           style={{
             backgroundColor: user.username && user.password && '#f8b62d',
@@ -115,11 +115,11 @@ function MemberLogIn() {
         >
           登出
         </button> */}
-        <div className='forget'>
+        <div className={styled.forget}>
           <span>忘記密碼</span>
           <i className="fa-regular fa-pipe"></i>
           <span
-            className="s1"
+            className={styled.s1}
             onClick={() => {
               navigate('/member/memberShipAdd');
             }}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Member.css';
+import styled from  './Member.module.scss';
 function MemberPetAdd() {
   const [photos, setPhotos] = useState('');
   const [addOpen, setAddOpen] = useState(true);
@@ -16,13 +16,13 @@ function MemberPetAdd() {
 
   return (
     <>
-      <div class="peat-ship">
-        <div class="peat-name">
-          <div class="peat">
-            <div class="peat-photo">
+      <div className={styled.peatShip}>
+        <div className={styled.peatName}>
+          <div className={styled.peat}>
+            <div className={styled.peatPhoto}>
               <img src="../image/pet_dog_1.jpg" alt="" />
             </div>
-            <div class="text">
+            <div className={styled.text}>
               <span>狗勾</span>
               <span>阿柴醬</span>
               <span>2歲</span>
@@ -30,19 +30,19 @@ function MemberPetAdd() {
               <span>已節育</span>
               <span>PID-2960824</span>
             </div>
-            <div class="peticon">
-              <i class="fa-regular regular fa-pen-to-square"></i>
+            <div className={styled.peticon}>
+              <i className="fa-regular regular fa-pen-to-square"></i>
 
-              <i class="fa-light fa-trash-can"></i>
+              <i className="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
-        <div class="peat-name">
-          <div class="peat">
-            <div class="peat-photo">
+          <div className={styled.peatName}>
+          <div className={styled.peat}>
+            <div className={styled.peatPhoto}>
               <img src="../image/pet_cat_2.jpg" alt="" />
             </div>
-            <div class="text">
+            <div className={styled.text}>
               <span>貓咪</span>
               <span>老爺子</span>
               <span>5歲</span>
@@ -50,19 +50,19 @@ function MemberPetAdd() {
               <span>已節育</span>
               <span>PID-1244908</span>
             </div>
-            <div class="peticon">
-              <i class="fa-regular regular fa-pen-to-square"></i>
+            <div className={styled.peticon}>
+              <i className="fa-regular regular fa-pen-to-square"></i>
 
-              <i class="fa-light fa-trash-can"></i>
+              <i className="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
-        <div class="peat-name">
-          <div class="peat">
-            <div class="peat-photo">
+        <div className={styled.peatName}>
+          <div className={styled.peat}>
+            <div className={styled.peatPhoto}>
               <img src="../image/pet_dog_2.jpeg" alt="" />
             </div>
-            <div class="text">
+            <div className={styled.text}>
               <span>狗勾</span>
               <span>kuro</span>
               <span>7歲</span>
@@ -70,40 +70,41 @@ function MemberPetAdd() {
               <span>未節育</span>
               <span>PID-5621920</span>
             </div>
-            <div class="peticon">
-              <i class="fa-regular regular fa-pen-to-square"></i>
-              <i class="fa-light fa-trash-can"></i>
+            <div className={styled.peticon}>
+              <i className="fa-regular regular fa-pen-to-square"></i>
+              <i className="fa-light fa-trash-can"></i>
             </div>
           </div>
         </div>
 
         {addOpen && (
           <div
-            class="addPetbutton"
+            className={styled.addPetbutton}
             onClick={() => {
               setAddOpen(!addOpen);
             }}
           >
             {/* 點擊以後Ｔ＝>F ! */}
             新增寵物資料
-            <i class="fa-solid fa-plus-large"></i>
+            <i className="fa-solid fa-plus-large"></i>
           </div>
         )}
         {addOpen || (
-          <div class="peat-add">
-            <div class="up-photo">
+          <div className={styled.peatAdd}>
+            <div className={styled.upPhoto}>
               {photos === '' ? (
-                <i class="fa-regular regular fa-upload">上傳圖片</i>
+                <i className="fa-regular regular fa-upload"></i>
               ) : (
                 <img src={photos} alt="" />
               )}
+              上傳圖片
             </div>
-            <div class="peatAll">
-              <div class="peatAddID">
+            <div className={styled.peatAll}>
+              <div className={styled.peatAddID}>
                 <input type="text" id="uname" name="name" placeholder="名稱" />
                 <input type="text" id="uname" name="name" placeholder="生日" />
-
-                <div class="peatPID">
+                <div style={{width:'40px',height:'30px'}}></div>
+                <div className={styled.peatPID}>
                   <label for="uname">PID - </label>
                   <input
                     type="text"
@@ -113,7 +114,7 @@ function MemberPetAdd() {
                   />
                 </div>
               </div>
-              <div class="peatChoose">
+              <div className={styled.peatChoose}>
                 <select name="" id="">
                   <option value="">寵物類型</option>
                   <option value="">拉布拉多</option>
@@ -131,7 +132,7 @@ function MemberPetAdd() {
                   <option value="">未節育</option>
                 </select>
 
-                <input type="button" className="buttonAdd" value="新增" />
+                <input type="button" className={styled.buttonAdd} value="新增" />
               </div>
             </div>
           </div>

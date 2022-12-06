@@ -2,6 +2,18 @@
   font-family: big_circle;
   src: url(../../../public/font/GenSenRounded-R.ttc);
 }
+.signUpPage {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.pageLeft {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .fill {
   width: 100%;
   height: 100vh;
@@ -28,7 +40,7 @@
   font-size: 25px;
 }
 
-.signUp-page {
+.signUpPage {
   width: 1200px;
   display: flex;
   justify-content: space-between;
@@ -36,7 +48,7 @@
   padding-bottom: 55px;
 }
 
-.memberWeb-path {
+.memberWebPath {
   color: #dcdddd;
   margin-bottom: 40px;
 }
@@ -71,7 +83,7 @@
   justify-content: center;
 }
 
-.enter-B {
+.enterB {
   width: 250px;
   height: 30px;
   border: 1px solid #989898;
@@ -80,7 +92,7 @@
   justify-content: space-around;
   align-items: center;
 }
-.enter-C {
+.enterC {
   display: flex;
 
   align-items: center;
@@ -101,7 +113,7 @@
   justify-content: center;
 }
 
-.up-Signphoto {
+.upSignphoto {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -113,12 +125,12 @@
   margin-bottom: 20px;
   overflow: hidden;
 }
-.up-Signphoto i {
+.upSignphoto i {
   margin: 0;
   color: #a4a5a5;
   font-size: 40px;
 }
-.up-Signphoto img {
+.upSignphoto img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -141,4 +153,115 @@
   border: 1px solid#989898;
   color: #989898;
   cursor: pointer;
+}
+.cc {
+  width: 250px;
+  border: 1px solid #989898;
+  outline: none;
+  height: 30px;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+.enterA {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 80%;
+}
+.enterA i {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  color: #40210f;
+}
+/* placehold  */
+.enterA input::-webkit-input-placeholder {
+  font-size: 6px;
+}
+
+.enterB {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.enterC {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #989898;
+  border-radius: 30px;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.enterD select {
+  width: 80px;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  border: 1px solid #989898;
+  color: #a4a5a5;
+  background-color: #fff;
+  padding: 5px 10px;
+  outline: none;
+  margin-left: 15px;
+}
+.address {
+  display: flex;
+  width: 270px;
+}
+.addressText {
+  margin-left: 140px;
+  margin-bottom: 10px;
+}
+.input {
+  margin-left: 15px;
+}
+
+.s1 {
+  color: darkorange;
+}
+
+.text {
+  justify-content: center;
+}
+
+.upPhotoProfile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #dcdddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a4a5a5;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.upPhotoProfile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.radio {
+  width: 250px;
+}
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo input {
+  background-color: #fff;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid#989898;
+  color: #989898;
 }

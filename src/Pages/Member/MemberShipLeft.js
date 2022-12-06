@@ -1,4 +1,4 @@
-import './Member.css';
+import styled from  './Member.module.scss'
 import { useContext } from 'react';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import { MemberContext } from '../../contexts/MemberContext';
@@ -12,9 +12,9 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           <h2>首頁會員中心會員首頁</h2>
         </div> */}
       {/* <div className="member"> */}
-      <div className="member-shipL">
-        <div className="member-ship">
-          <div className="member-photo">
+      <div className={styled.memberShipL}>
+        <div className={styled.memberShip}>
+          <div className={styled.memberPhoto}>
             <img
               src={`http://localhost:6002/uploads/${auth.row.member_photo}`}
               alt=""
@@ -23,7 +23,7 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
           <h5 style={{ color: mode === 'cat' && '#fff5de' }}>{auth.row.name}</h5>
         </div>
 
-        <div className="member-icon">
+        <div className={styled.memberIcon}>
           <ul style={{ color: mode === 'cat' && '#fff5de' }}>
             <i className="fa-light light fa-house-user" style={{ color: mode === 'cat' && '#18334e' }}></i>
             <li
