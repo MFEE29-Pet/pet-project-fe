@@ -8,6 +8,8 @@ import Swal from 'sweetalert2'; //警告套件
 import withReactContent from 'sweetalert2-react-content'; //警告套件
 import axios from 'axios';
 
+import useMediaQuery from 'use-mediaquery';
+
 //測試用假來源資料
 // import jsonData from './orderTest.json';
 // import photoJsonData from './photoTest.json';
@@ -38,6 +40,8 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
+  const matches = useMediaQuery('(max-width: 490px)');
+
   //拿到會員資料
   const member = JSON.parse(localStorage.getItem('auth'));
 
@@ -255,17 +259,81 @@ function Cart() {
     result.submit();
   }, [link]);
 
-  return (
+  // 手機版頁面-----------------------------------------------------------------------------------
+  const mob = (
     <>
-      {/* <button
-        onClick={() => {
-          handleClear();
-          setMyProductData([{}]);
-          setMyPhotoData([{}]);
-        }}
-      >
-        清空
-      </button> */}
+      <div className="mobile_eason_container">
+        <h1 className="mobile_eason_top_title">- 確認訂單 -</h1>
+
+        {/* 手機版 攝影預約------------------------------------------------------------------------- */}
+        <div>
+          <div className="mobile_eason_section_photo">
+            <div className="mobile_eason_mid_title">
+              {myPhotoData && myPhotoData.length !== 0 && (
+                <>
+                  <h2 className="text_main_dark_color2">攝影預約明細</h2>
+                  <div className="eason_mobile_checkbox">
+                    <input
+                      type="checkbox"
+                      name=""
+                      id=""
+                      checked={photoChecked ? 'checked' : ''}
+                      onClick={() => {
+                        setPhotoChecked(!photoChecked);
+                      }}
+                    />
+                    <p className="text_main_dark_color2">加入結算</p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {myPhotoData && myPhotoData.length !== 0 && (
+              <>
+                {myPhotoData.map((v, i) => {
+                  return (
+                    <div className="eason_mobile_photo_box" key={v.sid}>
+                      <div className="eason_mobile_photo_box_left">
+                        <img
+                          style={{ verticalAlign: 'middle' }}
+                          src={`./images/test/${v.img}`}
+                          alt=""
+                          width="80px"
+                          height="80px"
+                        />
+                      </div>
+
+                      <div className="eason_mobile_photo_box_mid">
+                        <div>攝影師 - {v.name}</div>
+                        <div>
+                          {v.date} {v.time ? '早上' : '晚上'}
+                        </div>
+                        <div style={{color:'red'}}>$ {v.price}</div>
+                      </div>
+
+                      <div className="eason_mobile_photo_box_right">
+                        <span
+                          onClick={() => {
+                            removePhotoData(v.sid);
+                          }}
+                        >
+                          <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  // 電腦版頁面-----------------------------------------------------------------------------------
+  const web = (
+    <>
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
@@ -719,6 +787,23 @@ function Cart() {
           </div>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <>
+      {matches || web}
+      {matches && mob}
+
+      {/* <button
+        onClick={() => {
+          handleClear();
+          setMyProductData([{}]);
+          setMyPhotoData([{}]);
+        }}
+      >
+        清空
+      </button> */}
     </>
   );
 }
