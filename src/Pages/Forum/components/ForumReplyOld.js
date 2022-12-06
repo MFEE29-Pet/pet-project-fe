@@ -63,19 +63,17 @@ function ForumReplyOld({
         <div className="evaluateItem">
           {forumComment.map((e, i) => {
             return (
-              <>
-                <div className="reply_card">
-                  <img className="headImg" src="" alt="" />
-                  <div className="senderProfile">
-                    <div className="nickNameBox">
-                      <div className="nickName">{e.name}</div>
-                      <div className="sendTime">{e.created_at}</div>
-                      <div className="evaluate">{e.r_content}</div>
-                      <div>{e.a_reply}</div>
-                    </div>
+              <div className="reply_card" key={i}>
+                <img className="headImg" src="" alt="" />
+                <div className="senderProfile">
+                  <div className="nickNameBox">
+                    <div className="nickName">{e.name}</div>
+                    <div className="sendTime">{e.created_at}</div>
+                    <div className="evaluate">{e.r_content}</div>
+                    <div>{e.a_reply}</div>
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>

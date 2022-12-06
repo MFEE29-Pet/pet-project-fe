@@ -111,7 +111,7 @@ function ProductSidebar() {
         }}
         className="bg_main_light_color1"
       >
-        <i class="fa-solid fa-messages" style={{ marginRight: '5px' }}></i>
+        <i className="fa-solid fa-messages" style={{ marginRight: '5px' }}></i>
         <p style={{ color: '#fff5de' }}>線上客服</p>
       </div>
       <DIV className="side-title" $mode={mode}>
