@@ -13,7 +13,7 @@
 .forum_btn_post_select{
   width: 300px;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
 }
 
 .forum_list_button_wrap{

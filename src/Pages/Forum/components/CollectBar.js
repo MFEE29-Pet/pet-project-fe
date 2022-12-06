@@ -39,9 +39,9 @@ const CollectButton = () => {
   const sid = +params.get('sid') || 0;
   // console.log(collection.findIndex((e) => e.a_sid === sid));
 
-  // let lovedNum = [];
-  // for (let i = 0; i < lovedList.length; i++) {
-  //   lovedNum.push(lovedList[i].p_sid);
+  // let indexNum = [];
+  // for (let i = 0; i < collectionList.length; i++) {
+  //   indexNum.push(collectionList[i].p_sid);
   // }
 
   // 新增收藏

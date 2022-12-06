@@ -1,3 +1,10 @@
+.post_crumb{
+  width: 1200px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+
 .forum_post_card{
   width: 1200px;
   height: 550px;
@@ -16,8 +23,14 @@ display: flex;
 align-items: center;
 justify-content: space-between;
   }
-.forum_post_select{
-display: flex;
+
+.forumPostSort{
+  border: 1px solid #727171;
+  border-radius: 15px;
+  height: 30px;
+  color: #727171;
+  width: 120px;
+  padding-left: 15px ;
 }
 
 #forum_post_title_bar{
@@ -81,9 +94,9 @@ border: none;
 
 margin: 40px 0px 0px 0px;
 width: 120px;
-height: 25px;
+height: 30px;
 border: none;
-border-radius: 10px;
+border-radius: 20px;
 color: white;
 
 

@@ -1,15 +1,9 @@
-/* .btn_area{
-    margin: auto;
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
 
-  } */
   .btn_total{
   margin: 40px 0px 0px 0px;
   width: 120px;
-  height: 25px;
+  height: 30px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   color: white;
   }

@@ -4,6 +4,8 @@ import SelectBar from './components/SelectBar';
 import ButtonBar from './components/ButtonBar';
 import ForumListBar3Activity from './components/ForumListBar3Activity';
 import './ForumList.css';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/forum' },
@@ -15,15 +17,34 @@ const buttonText = [
   { value: 7, label: '其他', to: '/forum/other' },
 ];
 
+const forumroutes = [
+  {
+    to: '/',
+    label: '首頁',
+  },
+  {
+    to: '/forum',
+    label: '寵物論壇',
+  },
+  {
+    to: '/forum/activity',
+    label: '活動版',
+  },
+];
+
 function ForumList3Activity() {
   return (
     <>
       <div className="forum_list_wrap">
-        <div className="forum_search_select">
+        <Breadcrumb
+          routes={forumroutes}
+          separator={<BreadcrumbRightArrowIcon />}
+        />
+        <div className="forum_search_select" style={{ marginTop: '20px' }}>
           <SearchBar />
           <div className="forum_btn_post_select">
             <ButtonPost />
-            <SelectBar />
+            {/* <SelectBar /> */}
           </div>
         </div>
 

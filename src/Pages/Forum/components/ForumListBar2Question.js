@@ -59,11 +59,16 @@ function ForumListBar2Question({ talkListData }) {
               <i
                 className="fa-light fa-message-question text_main_dark_color2"
                 id="forum_big_Icon"
-              ></i>
+              >
+                <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                  【發問】
+                </i>
+              </i>
             </div>
             <div className="forumTitleBar">
               <p
-                className="forumTitle"
+                className="text_main_dark_color2"
+                id="forumTitle"
                 onClick={() => {
                   navigate(`/forum/detail?sid=${e.article_sid}`);
                 }}

@@ -6,16 +6,26 @@
   border-radius: 15px;
   display: flex;
 }
+
 .forumIconBar{
   display: flex;
-  width: 200px;
+  width: 250px;
   justify-content:right;
   align-items: center;
 }
 
-
 #forum_big_Icon{
 font-size: 320%;
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+}
+
+#forum_big_Icon_text{
+  font-size: 35%;
+  margin-top: 15px;
+  padding-right: 8px;
 }
 
 .forumTitleBar{
@@ -23,9 +33,9 @@ font-size: 320%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-left: 50px;
+  padding-left: 120px;
 }
-.forumTitle{
+#forumTitle{
   font-weight: bold;
   line-height: 30px;
 }

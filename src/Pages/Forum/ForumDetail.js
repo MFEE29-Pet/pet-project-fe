@@ -9,8 +9,9 @@ import UserBar from './components/UserBar';
 import axios from 'axios';
 import { GET_DETAILS } from './my-config';
 import { useLocation } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useNavigate } from 'react';
 import dayjs from 'dayjs';
+// import axios from 'axios';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/forum' },
@@ -30,6 +31,19 @@ function ForumDetail() {
   ]);
   const [forumComment, setForumComment] = useState([]);
   const [reRenderForum, setReRenderForum] = useState(false);
+  const [articles, setArticles] = useState([
+    {
+      article_sid: 0,
+      category: '',
+      content: '',
+      create_at: '',
+      img: '',
+      m_sid: 0,
+      title: '',
+      tag: [],
+    },
+  ]);
+
   // 取得 queryString
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -84,8 +98,58 @@ function ForumDetail() {
           })}
         </div>
         <div className="forum_detail_title_area">
-          <ForumDetailTitle title={details[0] ? details[0].title : ''} />
-          <UserBar name={details[0].name} />
+          <div className="forum_detail_page_icon">
+            {details[0].category === 'A' ? (
+              <i
+                className="fa-light fa-comment-dots text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            {details[0].category === 'B' ? (
+              <i
+                className="fa-light fa-message-question text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            {details[0].category === 'C' ? (
+              <i
+                className="fa-light fa-party-horn text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            {details[0].category === 'D' ? (
+              <i
+                className="fa-light fa-hand-holding-heart text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            {details[0].category === 'E' ? (
+              <i
+                className="fa-light fa-house-chimney-heart text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            {details[0].category === 'F' ? (
+              <i
+                className="fa-light fa-icons text_main_dark_color2 text_main_dark_color2"
+                id="forum_detail_Icon"
+              ></i>
+            ) : (
+              <></>
+            )}
+            <ForumDetailTitle title={details[0] ? details[0].title : ''} />{' '}
+          </div>
+          {/* <UserBar name={details[0].name} /> */}
         </div>
         <div className="forum_article_area">
           <ForumDetailBar details={details[0] ? details[0] : ''} />
