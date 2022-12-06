@@ -114,7 +114,7 @@ function App() {
             // onClick={handleClick}
             // id="switch_button"
           ></i>
-          <section style={{ height: '100px' }}></section>
+          {/* <section style={{ height: '100px' }}></section> */}
 
           {/* Routes */}
           <Routes>

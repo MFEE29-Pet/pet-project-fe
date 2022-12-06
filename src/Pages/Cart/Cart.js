@@ -81,7 +81,7 @@ function Cart() {
   const myPhotoTotalPrice = myCartItem.photo_totalPrice;
   // console.log(myPhotoTotalPrice);
   const myTotalPrice = myCartItem.totalPrice;
-
+  console.log({ myTotalPrice, myPhotoTotalPrice });
   // console.log(myCart.productCart);
   // localStorage抓出來的資料格式
   // photoCart:[]
