@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import AuthContext from '../../../contexts/AuthContext';
 
 const P = styled.p`
   color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
@@ -36,6 +37,7 @@ function ProductSidebar() {
   const [cates, setCates] = useState([]);
   const [hover, setHover] = useState(true);
   const { mode } = useContext(SwitchButtonContext);
+  const { myAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // 取得 queryString
@@ -95,7 +97,14 @@ function ProductSidebar() {
   return (
     <section className="side-bar">
       <div
-        onClick={() => navigate('/service')}
+        onClick={() => {
+          if (!myAuth.sid) {
+            alert('請先登入會員');
+            navigate('/member/memberLogIn');
+            return;
+          }
+          navigate('/service');
+        }}
         style={{
           display: 'flex',
           position: 'absolute',
