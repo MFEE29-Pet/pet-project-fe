@@ -43,10 +43,15 @@ export default function AnimateControl() {
   // 球
   function BallYellow() {
     // const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
+    // const img = '/images/logo_PetBan_2_2(ImgOnly).png';
+    // const texture = useLoader(THREE.TextureLoader, img);
     return (
       <mesh scale={10} position={[-50, 10, 70]} onClick={() => {}} castShadow>
         <sphereGeometry args={[1, 32, 32]} />
-        <meshStandardMaterial color="#f8b62b" />
+        <meshStandardMaterial
+          color="#f8b62b"
+          // map={texture}
+        />
       </mesh>
     );
   }
