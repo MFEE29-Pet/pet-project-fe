@@ -10,6 +10,26 @@
   justify-content: space-between;
 }
 
+#forum_detail_Icon{
+  font-size: 48px;
+}
+
+.forum_detail_big_title{
+  font-size: 400%;
+}
+
 .forum_detail_title_area{
   display: flex;
+  width: 1200px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.forum_detail_page_icon{
+display: flex;
+justify-content: start;
+align-items: flex-end;
+font-size: 48px;
+margin: 44px 0px 0px 80px ;
 }

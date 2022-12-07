@@ -15,8 +15,8 @@
 .evaluateItem {
   width: 1000px;
   min-height: 100px;
-  display: flex;
-  padding: 50px;
+  /* display: flex; */
+  padding: 50px 50px 0px 50px;
 }
 
 .senderProfile {

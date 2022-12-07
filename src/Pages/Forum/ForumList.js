@@ -4,6 +4,9 @@ import SelectBar from './components/SelectBar';
 import ButtonBar from './components/ButtonBar';
 import ForumListBar from './components/ForumListBar';
 import './ForumList.css';
+import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
+import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import { Link } from 'react-router-dom';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/forum' },
@@ -15,15 +18,39 @@ const buttonText = [
   { value: 7, label: '其他', to: '/forum/other' },
 ];
 
+const forumroutes = [
+  {
+    to: '/',
+    label: '首頁',
+  },
+  {
+    to: '/forum',
+    label: '寵物論壇',
+  },
+  {
+    to: '/forum',
+    label: '綜合版',
+  },
+];
+
 function ForumList() {
   return (
     <>
       <div className="forum_list_wrap">
-        <div className="forum_search_select">
+        <Breadcrumb
+          routes={forumroutes}
+          separator={<BreadcrumbRightArrowIcon />}
+        />
+        <div className="forum_search_select" style={{ marginTop: '20px' }}>
           <SearchBar />
           <div className="forum_btn_post_select">
             <ButtonPost />
-            <SelectBar />
+            <Link to={'/member/memberArticle'}>
+              <button className="border_main_light_color1" id="btnGoCollection">
+                前往收藏
+              </button>
+            </Link>
+            {/* <SelectBar /> */}
           </div>
         </div>
 

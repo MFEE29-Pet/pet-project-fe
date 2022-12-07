@@ -30,4 +30,5 @@ margin: 60px 0px 0px 0px;
   } */
 .reply_card{
   display: flex;
+  margin-bottom: 50px;
 }

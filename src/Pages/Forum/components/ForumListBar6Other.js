@@ -59,11 +59,16 @@ function ForumListBar6Other({ talkListData }) {
               <i
                 className="fa-light fa-icons text_main_dark_color2"
                 id="forum_big_Icon"
-              ></i>
+              >
+                <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                  【其他】
+                </i>
+              </i>
             </div>
             <div className="forumTitleBar">
               <p
-                className="forumTitle"
+                className="text_main_dark_color2"
+                id="forumTitle"
                 onClick={() => {
                   navigate(`/forum/detail?sid=${e.article_sid}`);
                 }}

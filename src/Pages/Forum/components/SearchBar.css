@@ -1,20 +1,21 @@
 #forum_search {
-  height: 25px;
+  height: 30px;
   border: none;
-  border-radius: 10px 0px 0px 10px;
-  width: 300px;
+  border-radius: 20px 0px 0px 20px;
+  width: 260px;
   padding-left: 15px;
   }
 
   #forum_search_glass {
   color: white;
   text-align: center;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 40px;
   margin: 0;
-  border-radius: 0 10px 10px 0;
-  line-height: 25px;
+  border-radius: 0 20px 20px 0;
+  line-height: 30px;
   cursor: pointer;
+  padding-top: 1px;
   }
 /* 
   #select{

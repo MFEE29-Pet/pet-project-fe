@@ -63,7 +63,11 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-comment-dots text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【閒聊】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -71,7 +75,11 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-message-question text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【發問】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -79,7 +87,11 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-party-horn text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【活動】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -87,7 +99,11 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-hand-holding-heart text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【送養】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -95,7 +111,12 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-house-chimney-heart text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  {' '}
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【領養】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -103,7 +124,12 @@ function ForumListBar() {
                 <i
                   className="fa-light fa-icons text_main_dark_color2"
                   id="forum_big_Icon"
-                ></i>
+                >
+                  {' '}
+                  <i className="text_main_dark_color2" id="forum_big_Icon_text">
+                    【其他】
+                  </i>
+                </i>
               ) : (
                 <></>
               )}
@@ -111,7 +137,8 @@ function ForumListBar() {
 
             <div className="forumTitleBar">
               <p
-                className="forumTitle"
+                className="text_main_dark_color2"
+                id="forumTitle"
                 onClick={() => {
                   navigate(`detail?sid=${e.article_sid}`);
                 }}
@@ -126,7 +153,7 @@ function ForumListBar() {
             </div>
             {/* 喜歡跟讚數 */}
             <div className="forum_list_like_bar">
-              <CollectLikeBar />
+              <CollectLikeBar a_sid={e.article_sid} />
             </div>
             <div className="forumUserBar">{e.user}</div>
           </div>

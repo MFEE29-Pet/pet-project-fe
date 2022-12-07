@@ -12,10 +12,10 @@ const LoginBox = styled.div`
 function Login() {
   return (
     <LoginBox>
-      <Link to='/member/memberShipAdd'>
+      <Link to="/member/memberShipAdd">
         <DogButton Text="JoinNow" ClassName="bg_main_light_color1" />
       </Link>
-      <Link to='/member/memberLogIn'>
+      <Link to="/member/memberLogIn">
         <DogButton Text="LOGIN" ClassName="border_main_light_color1" />
       </Link>
     </LoginBox>
