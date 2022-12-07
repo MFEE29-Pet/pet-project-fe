@@ -354,7 +354,7 @@
 }
 
 .mobile_eason_mid_title {
-  width: 290px;
+  width: 315px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -373,12 +373,13 @@
   align-items: center;
 }
 
-.eason_mobile_photo_box {
-  width: 300px;
+.eason_mobile_photo_box,
+.eason_mobile_product_box {
+  width: 330px;
   background-color: #fff;
   border-radius: 15px;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -387,8 +388,55 @@
   font-weight: 900;
 }
 
-.eason_mobile_photo_box_mid {
+.eason_mobile_photo_box_mid,
+.eason_mobile_product_box_mid {
   display: flex;
   flex-direction: column;
   line-height: 25px;
+}
+
+.eason_mobile_section_payment_btn_group {
+  width: 290px;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.eason_mobile_section_payment_btn_group button {
+  border-radius: 20px;
+  padding: 8px 30px;
+  border: 3.5px solid #c9caca;
+  color: #727171;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.eason_mobile_discount_area{
+  margin-top: 10px;
+  margin-left: 45px;
+  margin-bottom: 50px;
+}
+
+.eason_mobile_total table {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  width: 230px;
+  margin-left: 50px;
+  line-height: 25px;
+}
+
+.eason_mobile_total th {
+  text-align: left;
+  color: #40220f;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.eason_mobile_total td {
+  text-align: right;
+  color: #727171;
+  font-size: 14px;
+  font-weight: 900;
 }

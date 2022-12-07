@@ -196,7 +196,6 @@ function Cart() {
   // console.log(finalPrice);
 
   // 把前端畫面資料送進資料庫並清空購物車
-
   const clearAll = () => {
     handleClear();
     setMyProductData([{}]);
@@ -264,69 +263,393 @@ function Cart() {
   const mob = (
     <>
       <div className="mobile_eason_container">
-        <h1 className="mobile_eason_top_title">- 確認訂單 -</h1>
+        <h1 className="mobile_eason_top_title text_main_dark_color2">
+          - 確認訂單 -
+        </h1>
 
         {/* 手機版 攝影預約------------------------------------------------------------------------- */}
-        <div>
-          <div className="mobile_eason_section_photo">
-            <div className="mobile_eason_mid_title">
-              {myPhotoData && myPhotoData.length !== 0 && (
-                <>
-                  <h2 className="text_main_dark_color2">攝影預約明細</h2>
-                  <div className="eason_mobile_checkbox">
-                    <input
-                      type="checkbox"
-                      name=""
-                      id=""
-                      checked={photoChecked ? 'checked' : ''}
-                      onClick={() => {
-                        setPhotoChecked(!photoChecked);
-                      }}
-                    />
-                    <p className="text_main_dark_color2">加入結算</p>
-                  </div>
-                </>
-              )}
-            </div>
-
+        <div className="mobile_eason_section_photo">
+          <div className="mobile_eason_mid_title">
             {myPhotoData && myPhotoData.length !== 0 && (
               <>
-                {myPhotoData.map((v, i) => {
-                  return (
-                    <div className="eason_mobile_photo_box" key={v.sid}>
-                      <div className="eason_mobile_photo_box_left">
-                        <img
-                          style={{ verticalAlign: 'middle' }}
-                          src={`./images/test/${v.img}`}
-                          alt=""
-                          width="80px"
-                          height="80px"
-                        />
-                      </div>
-
-                      <div className="eason_mobile_photo_box_mid">
-                        <div>攝影師 - {v.name}</div>
-                        <div>
-                          {v.date} {v.time ? '早上' : '晚上'}
-                        </div>
-                        <div style={{ color: 'red' }}>$ {v.price}</div>
-                      </div>
-
-                      <div className="eason_mobile_photo_box_right">
-                        <span
-                          onClick={() => {
-                            removePhotoData(v.sid);
-                          }}
-                        >
-                          <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+                <h2 className="text_main_dark_color2">攝影預約明細</h2>
+                <div className="eason_mobile_checkbox">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    checked={photoChecked ? 'checked' : ''}
+                    onClick={() => {
+                      setPhotoChecked(!photoChecked);
+                    }}
+                  />
+                  <p className="text_main_dark_color2">加入結算</p>
+                </div>
               </>
             )}
           </div>
+
+          {myPhotoData && myPhotoData.length !== 0 && (
+            <>
+              {myPhotoData.map((v, i) => {
+                return (
+                  <div className="eason_mobile_photo_box" key={v.sid}>
+                    <div className="eason_mobile_photo_box_left">
+                      <img
+                        style={{ verticalAlign: 'middle' }}
+                        src={`./images/test/${v.img}`}
+                        alt=""
+                        width="80px"
+                        height="80px"
+                      />
+                    </div>
+
+                    <div className="eason_mobile_photo_box_mid">
+                      <div>攝影師 - {v.name}</div>
+                      <div>
+                        {v.date} {v.time ? '早上' : '晚上'}
+                      </div>
+                      <div style={{ color: 'red', fontSize: '19px' }}>
+                        $ {v.price}
+                      </div>
+                    </div>
+
+                    <div className="eason_mobile_photo_box_right">
+                      <span
+                        onClick={() => {
+                          removePhotoData(v.sid);
+                        }}
+                      >
+                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
+
+        {/* 手機板 商品訂單明細------------------------------------------------------------------------- */}
+        <div className="eason_mobile_section_product">
+          <div className="mobile_eason_mid_title">
+            {myProductData && myProductData.length !== 0 && (
+              <>
+                <h2 className="text_main_dark_color2">商品訂單明細</h2>
+                <div className="eason_mobile_checkbox">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    checked={productChecked ? 'checked' : ''}
+                    onClick={() => {
+                      setProductChecked(!productChecked);
+                    }}
+                  />
+                  <p className="text_main_dark_color2">加入結算</p>
+                </div>
+              </>
+            )}
+          </div>
+
+          {myProductData.map((v, i) => {
+            return (
+              <div className="eason_mobile_product_box" key={v.sid}>
+                <div className="eason_mobile_product_box_left">
+                  <img
+                    style={{ verticalAlign: 'middle' }}
+                    src={`./images/test/${v.img}`}
+                    alt=""
+                    width="70px"
+                    height="80px"
+                  />
+                </div>
+
+                <div className="eason_mobile_product_box_mid">
+                  <div>{v.name}</div>
+                  <div className="eason_mobile_product_amount">
+                    <span
+                      className=""
+                      onClick={() => {
+                        handleReduce(myProductData[i]);
+                        if (amount[i] > 1) {
+                          const decreaseAmount = [...amount];
+                          decreaseAmount[i] = +decreaseAmount[i] - 1;
+                          // console.log(amount);
+
+                          const decreasePrice = [...totalPrice];
+                          decreasePrice[i] = decreaseAmount[i] * v.member_price;
+                          // console.log(decreasePrice);
+                          setNewTotalPrice(
+                            decreasePrice.reduce((a, b) => a + b)
+                          );
+
+                          setAmount(decreaseAmount);
+
+                          setTotalPrice(decreasePrice);
+                          console.log({ amount });
+                        } else {
+                          setNewTotalPrice(
+                            newTotalPrice - v.member_price * amount[i]
+                          );
+                          removeProductData(v.sid);
+
+                          amount.splice(i, 1);
+                          // console.log(v.sid);
+
+                          const deleteItem = JSON.parse(
+                            localStorage.getItem('cartItem')
+                          );
+                          const productList = deleteItem.productCart;
+
+                          const index = productList.findIndex(
+                            (e) => e.sid === v.sid
+                          );
+
+                          const sliceP1 = productList.slice(0, index);
+
+                          const sliceP2 = productList.slice(index + 1);
+
+                          const newProductList = [...sliceP1, ...sliceP2];
+
+                          deleteItem.productCart = newProductList;
+
+                          const totalItem = newProductList.length;
+                          let totalAmount = 0;
+                          let totalPrice = 0;
+                          if (cartItem.photoCart.length === 1) {
+                            totalAmount = 1;
+                            totalPrice = 0;
+                          } else {
+                            totalAmount = 0;
+                            totalPrice = 0;
+                          }
+
+                          newProductList.forEach((v, i) => {
+                            totalAmount += v.amount;
+                            totalPrice += v.amount * v.member_price;
+                          });
+
+                          deleteItem.totalItem = totalItem;
+                          deleteItem.totalAmount = totalAmount;
+                          deleteItem.totalPrice = totalPrice;
+                          localStorage.setItem(
+                            'cartItem',
+                            JSON.stringify(deleteItem)
+                          );
+
+                          setCartItem(deleteItem);
+                        }
+                      }}
+                    >
+                      <i className="eason_fa-solid fa-solid fa-circle-minus">
+                        {' '}
+                      </i>
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{amount[i]}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span
+                      className=""
+                      onClick={() => {
+                        handleAddCart(myProductData[i], 1);
+
+                        const newAmount = [...amount];
+                        newAmount[i] = +newAmount[i] + 1;
+                        const newPrice = [...totalPrice];
+                        newPrice[i] = newAmount[i] * v.member_price;
+                        // console.log(newPrice);
+
+                        setAmount(newAmount);
+                        setTotalPrice(newPrice);
+
+                        setNewTotalPrice(newPrice.reduce((a, b) => a + b));
+                      }}
+                    >
+                      <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
+                    </span>
+                  </div>
+                  <div style={{ color: 'red', fontSize: '19px' }}>
+                    $ {v.member_price * amount[i]}
+                  </div>
+                </div>
+
+                <div className="eason_mobile_product_box_right">
+                  <span
+                    onClick={() => {
+                      setNewTotalPrice(
+                        newTotalPrice - v.member_price * amount[i]
+                      );
+                      removeProductData(v.sid);
+
+                      // amount.splice(i, 1);
+                      // console.log(v.sid);
+
+                      const deleteItem = JSON.parse(
+                        localStorage.getItem('cartItem')
+                      );
+                      const productList = deleteItem.productCart;
+
+                      const index = productList.findIndex(
+                        (e) => e.sid === v.sid
+                      );
+
+                      const sliceP1 = productList.slice(0, index);
+
+                      const sliceP2 = productList.slice(index + 1);
+
+                      const newProductList = [...sliceP1, ...sliceP2];
+
+                      deleteItem.productCart = newProductList;
+
+                      const totalItem = newProductList.length;
+                      let totalAmount = 0;
+                      let totalPrice = 0;
+                      if (cartItem.photoCart.length === 1) {
+                        totalAmount = 1;
+                        totalPrice = 0;
+                      } else {
+                        totalAmount = 0;
+                        totalPrice = 0;
+                      }
+
+                      newProductList.forEach((v, i) => {
+                        totalAmount =
+                          totalAmount + v.amount + cartItem.photoCart.length;
+                        totalPrice =
+                          totalPrice +
+                          v.amount * v.member_price +
+                          cartItem.photoCart.price;
+                      });
+
+                      deleteItem.totalItem = totalItem;
+                      deleteItem.totalAmount = totalAmount;
+                      deleteItem.totalPrice = totalPrice;
+                      localStorage.setItem(
+                        'cartItem',
+                        JSON.stringify(deleteItem)
+                      );
+
+                      setCartItem(deleteItem);
+                    }}
+                  >
+                    <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 手機版 付款方式------------------------------------------------------------------------ */}
+        <div className="mobile_eason_mid_title">
+          <h2 className="text_main_dark_color2">付款方式</h2>
+        </div>
+        <div className="eason_mobile_section_payment">
+          <div className="eason_mobile_section_payment_btn_group">
+            <button
+              style={
+                arrivedClick === false
+                  ? { color: '#c9caca', border: '3.5px solid #c9caca' }
+                  : { color: '#727171', border: '3.5px solid #727171' }
+              }
+              className="bg_bright_color text_main_dark_color2"
+              // {
+              //   arrivedClick === false
+              //     ? 'bg_main_light_color1'
+              //     : 'bg_main_color'
+              // }
+              onClick={() => {
+                if (arrivedClick === false) {
+                  setArrivedClick(true);
+                  setCreditClick(false);
+                } else {
+                  setArrivedClick(false);
+                }
+              }}
+            >
+              貨到付款
+            </button>
+
+            <button
+              style={
+                creditClick === false
+                  ? { color: '#c9caca', border: '3.5px solid #c9caca' }
+                  : { color: '#727171', border: '3.5px solid #727171' }
+              }
+              className="bg_bright_color text_main_dark_color2 "
+              //  { creditClick === false ? 'bg_main_light_color1' : 'bg_main_color'
+              // }
+              onClick={() => {
+                if (creditClick === false) {
+                  setCreditClick(true);
+                  setArrivedClick(false);
+                } else {
+                  setCreditClick(false);
+                }
+              }}
+            >
+              信用卡
+            </button>
+          </div>
+        </div>
+
+        {/* 手機版 優惠代碼------------------------------------------------------------------------ */}
+        <div className="mobile_eason_mid_title">
+          <h2 className="text_main_dark_color2">優惠代碼</h2>
+        </div>
+        <div className='eason_mobile_discount_area'>
+              <div className="discountArea">
+                <input
+                  className="eason_discount_code"
+                  id="discount"
+                  type="text"
+                />
+                <span
+                  onClick={coupon}
+                  className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "
+                ></span>
+              </div>
+        </div>
+
+        {/* 手機版 結算總額------------------------------------------------------------------------ */}
+        <div className="mobile_eason_mid_title">
+          <h2 className="text_main_dark_color2">結算總額</h2>
+        </div>
+        <div>
+        <div className="eason_mobile_total">
+                <table>
+                  <tr>
+                    <th className="text_main_dark_color2">商品金額</th>
+                    <td>
+                      ${' '}
+                      {(productChecked ? myTotalPrice : 0) +
+                        (photoChecked ? myPhotoTotalPrice : 0)}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th className="text_main_dark_color2">優惠折扣</th>
+                    <td>{discount}</td>
+                  </tr>
+
+                  <tr>
+                    <th className="text_main_dark_color2">運費</th>
+                    <td style={{ fontWeight: '900' }}>免運</td>
+                  </tr>
+
+                  <tr>
+                    <th className="text_main_dark_color2">付款總額</th>
+                    <td style={{ color: 'red', fontSize: 'large' }}>
+                      ${' '}
+                      {Math.ceil(
+                        (productChecked ? myTotalPrice : 0) +
+                          (photoChecked ? myPhotoTotalPrice : 0) -
+                          discount
+                      )}
+                    </td>
+                  </tr>
+                </table>
+              </div>
         </div>
       </div>
     </>
