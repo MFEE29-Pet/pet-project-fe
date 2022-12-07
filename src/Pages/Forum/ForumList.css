@@ -13,7 +13,7 @@
 .forum_btn_post_select{
   width: 300px;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .forum_list_button_wrap{
@@ -21,5 +21,9 @@
   width: 1200px;
   display: flex;
   justify-content: space-between;
-
+}
+#btnGoCollection{
+  width: 120px;
+  height: 30px;
+  border-radius: 20px;
 }

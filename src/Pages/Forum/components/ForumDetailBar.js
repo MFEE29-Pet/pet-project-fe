@@ -23,7 +23,7 @@ function ForumDetailBar({ details }) {
               id="proIcon"
             ></i> */}
           {/* </div> */}
-          <div className="forum_detail_text">{details.content}</div>
+          <pre className="forum_detail_text">{details.content}</pre>
         </div>
 
         <div className="forum_detail_pic" style={{ width: '1000px' }}>

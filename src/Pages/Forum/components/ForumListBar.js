@@ -153,7 +153,7 @@ function ForumListBar() {
             </div>
             {/* 喜歡跟讚數 */}
             <div className="forum_list_like_bar">
-              <CollectLikeBar />
+              <CollectLikeBar a_sid={e.article_sid} />
             </div>
             <div className="forumUserBar">{e.user}</div>
           </div>

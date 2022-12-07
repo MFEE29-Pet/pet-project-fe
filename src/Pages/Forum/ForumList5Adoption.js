@@ -6,6 +6,7 @@ import ForumListBar5Adoption from './components/ForumListBar5Adoption';
 import './ForumList.css';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import { Link } from 'react-router-dom';
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/forum' },
@@ -43,6 +44,11 @@ function ForumList5Adoption() {
           <SearchBar />
           <div className="forum_btn_post_select">
             <ButtonPost />
+            <Link to={'/member/memberArticle'}>
+              <button className="border_main_light_color1" id="btnGoCollection">
+                前往收藏
+              </button>
+            </Link>
             {/* <SelectBar /> */}
           </div>
         </div>

@@ -4,10 +4,11 @@ import './CollectBar.css';
 import axios from 'axios';
 import { GET_COLL, ADD_COLL, DEL_COLL } from '../my-config';
 
-const CollectButton = () => {
+const CollectButton = ({ a_sid }) => {
   const [isLike, setIsCollect] = useState(false);
   const [collection, setCollection] = useState([]);
   const [indexNum, setIndexNum] = useState(-1);
+  const [collectionNum, setCollectionNum] = useState([]);
   const onCollectButtonClick = () => {
     if (isLike !== true) {
       setIsCollect(true);
@@ -32,12 +33,16 @@ const CollectButton = () => {
     const list = res.data.rows;
 
     setCollection(list);
+    const numbers = collection.map((e, i) => e.a_sid);
+    setCollectionNum(numbers);
+    // console.log(collectionNum);
   };
 
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const sid = +params.get('sid') || 0;
-  // console.log(collection.findIndex((e) => e.a_sid === sid));
+  // console.log(a_sid);
+  // console.log(collection.findIndex((e) => e.a_sid === a_sid));
 
   // let indexNum = [];
   // for (let i = 0; i < collectionList.length; i++) {
@@ -111,6 +116,7 @@ const CollectButton = () => {
           } else {
             delCollection(sid, indexNum);
           }
+          // console.log(a_sid);
         }}
       >
         收藏
@@ -120,6 +126,7 @@ const CollectButton = () => {
   );
 };
 
-export default function CollectBar() {
-  return <CollectButton />;
+export default function CollectBar({ a_sid }) {
+  // console.log(a_sid);
+  return <CollectButton a_sid={a_sid} />;
 }
