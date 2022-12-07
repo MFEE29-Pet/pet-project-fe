@@ -32,7 +32,10 @@ export default function AnimateControl() {
     return (
       <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[2300, 2300]} />
-        <meshPhongMaterial color="#f8b62b" map={texture} />
+        <meshPhongMaterial
+          color="#f8b62b"
+          // map={texture}
+        />
       </mesh>
     );
   }
@@ -84,9 +87,9 @@ export default function AnimateControl() {
         ref={group}
         object={scene}
         dispose={null}
-        position={[60, 0, 0]}
+        position={[60, 5, 0]}
         rotation={[-0.25, 0, 0]}
-        scale={100}
+        scale={65}
       />
     );
   }
@@ -107,6 +110,7 @@ export default function AnimateControl() {
         ref={group}
         object={scene}
         dispose={null}
+        scale={0.8}
         position={[-50, 0, 0]}
       />
     );
@@ -228,7 +232,7 @@ export default function AnimateControl() {
         // angle={0.5}
       />
       {/* DirectionalLight */}
-      {/* <directionalLight args={['#fff', 1]} position={[1, 40, 10]} /> */}
+      <directionalLight args={['#fff', 0.8]} position={[1, 40, 10]} />
 
       <Physics>
         <Model2 />
