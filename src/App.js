@@ -120,7 +120,6 @@ function App() {
           <Routes>
             {/* index */}
             <Route path="/" element={<Index />} />
-
             {/* Product */}
             <Route path="product" element={<Product />} />
             <Route path="product/detail/" element={<ProductDetail />} />

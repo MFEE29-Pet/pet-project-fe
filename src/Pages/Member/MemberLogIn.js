@@ -8,7 +8,7 @@ import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRigh
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {imgUrl} from '../../config'
+import { imgUrl } from '../../config';
 
 const MySwal = withReactContent(Swal);
 
@@ -48,7 +48,7 @@ function MemberLogIn() {
   const { setMyAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    username: '',
+    mail: '',
     password: '',
   });
 
@@ -83,18 +83,18 @@ function MemberLogIn() {
   };
 
   const googleLogin = async () => {
-    const { data } = await axios.get('http://localhost:6001/member/googlelogin');
+    const { data } = await axios.get(
+      'http://localhost:6001/member/googlelogin'
+    );
     console.log(data);
     window.open(data);
   };
 
-  const lineLogin =async ()=>{
-    const {data} = await axios.get('http://localhost:6001/member/linelogin')
+  const lineLogin = async () => {
+    const { data } = await axios.get('http://localhost:6001/member/linelogin');
     console.log(data);
     window.open(data);
-  }
-
-
+  };
 
   return (
     <LoginPage>
@@ -114,14 +114,14 @@ function MemberLogIn() {
                 style={{ marginRight: '5px' }}
               ></i>
               <input
-                type="text"
-                name="username"
+                type="mail"
+                name="mail"
                 style={{
                   border: 'none',
                   outline: 'none',
                   backgroundColor: 'transparent',
                 }}
-                value={user.username}
+                value={user.mail}
                 onChange={(e) => {
                   handle(e);
                 }}
@@ -195,7 +195,7 @@ function MemberLogIn() {
         >
           登入
         </button>
-        <div className="login_bottom" >
+        <div className="login_bottom">
           <div>
             <Link
               to="/member/memberForgetPassword"
@@ -211,18 +211,109 @@ function MemberLogIn() {
             </Link>
           </div>
         </div>
-        <div style={{width:'50%',borderBottom:'1px solid #c9caca',margin:'50px 0px',position:'relative'}}>
-          <div style={{position:'absolute',bottom:'-10px',left:'50%',transform:'translateX(-50%)',backgroundColor:'#fff',width:'40px',display:'flex',justifyContent:'center'}}>OR</div>
-        </div>
-        <div onClick={googleLogin} style={{cursor:'pointer',display:'flex',alignItems:'center',border:'1px solid #727171',borderRadius:'10px',padding:'5px 10px'}}>
-          <div style={{width:'25%',display:'flex',justifyContent:'center'}}>
-            <img src={`${imgUrl}/images/google-icon.png`} alt="" style={{width:'100%'}}/>
+        <div
+          style={{
+            width: '50%',
+            borderBottom: '1px solid #c9caca',
+            margin: '50px 0px',
+            position: 'relative',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '-10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              backgroundColor: '#fff',
+              width: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            OR
           </div>
-          <div style={{width:'75%',display:'flex',justifyContent:'center'}}> 
-            Login With Google
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '50%',
+          }}
+        >
+          <div
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #727171',
+              borderRadius: '10px',
+              padding: '5px 10px',
+              width: '48%',
+            }}
+            onClick={googleLogin}
+          >
+            <div
+              style={{
+                width: '25%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <img
+                src={`${imgUrl}/images/google-icon2.png`}
+                alt=""
+                style={{ width: '100%' }}
+              />
+            </div>
+            <div
+              style={{
+                width: '75%',
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '12px',
+              }}
+            >
+              Login With Google
+            </div>
+          </div>
+          <div
+            style={{
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              border: '1px solid #727171',
+              borderRadius: '10px',
+              padding: '5px 10px',
+              width: '48%',
+            }}
+            onClick={lineLogin}
+          >
+            <div
+              style={{
+                width: '25%',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <img
+                src={`${imgUrl}/images/line-icon2.png`}
+                alt=""
+                style={{ width: '100%' }}
+              />
+            </div>
+            <div
+              style={{
+                width: '75%',
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '12px',
+              }}
+            >
+              Login With Line
+            </div>
           </div>
         </div>
-        <div style={{marginTop:'10px',cursor:'pointer'}} onClick={lineLogin}>加賴較過去</div>
       </div>
       <AUTO_LOGIN_ROOT
         onClick={() => {

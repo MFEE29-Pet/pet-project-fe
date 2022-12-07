@@ -248,12 +248,6 @@ function MemberProfileUp() {
     >
       <div className="pageProfileUp">
         <div className="page-left">
-          <div className="enter-P user">
-            <h2 style={{ fontSize: '18px', color: '#727171' }}>使用者帳號</h2>
-            <div style={{ fontSize: '18px', color: '#727171', width: '250px' }}>
-              {memberData[0].account}
-            </div>
-          </div>
           <div className="enter-P">
             <h2 style={{ fontSize: '18px', color: '#727171' }}>姓名</h2>
             <div

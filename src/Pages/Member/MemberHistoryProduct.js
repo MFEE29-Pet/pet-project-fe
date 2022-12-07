@@ -57,6 +57,9 @@ function MemberHistoryProduct() {
         fontSize: '20px',
       }}
     >
+      <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
+        商品訂單紀錄
+      </h2>
       <div
         className="orderProduct-right"
         style={{ height: '700px', overflowY: 'scroll' }}

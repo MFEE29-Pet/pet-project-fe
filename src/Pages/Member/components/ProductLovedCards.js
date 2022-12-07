@@ -1,9 +1,7 @@
-import { useContext, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
-import axios from 'axios';
-import { LOVE_LIST } from '../my-config';
 
 const LIST = styled.div`
   &::before {
@@ -14,15 +12,10 @@ const LIST = styled.div`
   }
 `;
 
-function ProductLovedCards() {
-  const { mode } = useContext(SwitchButtonContext);
+function ProductLovedCards({ deleteList, setDeleteList, loveList }) {
   const navigate = useNavigate();
 
-  const [loveList, setLoveList] = useState([]);
-
-  const m_sid = JSON.parse(localStorage.getItem('auth'))
-    ? JSON.parse(localStorage.getItem('auth')).sid
-    : '未登入';
+  const { mode } = useContext(SwitchButtonContext);
 
   function formatPrice(price) {
     let parts = price.toString().split('.');
@@ -30,64 +23,119 @@ function ProductLovedCards() {
     return parts.join('.');
   }
 
-  // 取得商品資料
-  const getProducts = async () => {
-    try {
-      const res = await axios.get(`${LOVE_LIST}?m_sid=${m_sid}`);
+  const handleChange = (e) => {
+    //toggle(切換)
+    // 如果目前這個值在陣列中 -> 移出陣列
+    if (deleteList.includes(+e.target.value)) {
+      // 1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
+      // 2. 在拷貝出的新陣列(物件)上運算或處理
+      const newDeleteList = deleteList.filter((v, i) => {
+        return v !== +e.target.value;
+      });
+      // 3. 設定回原本的狀態
+      setDeleteList(newDeleteList);
+    } else {
+      // 反之如果目前這個值"沒在"陣列中 -> 加入陣列
+      // 1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
+      // 2. 在拷貝出的新陣列(物件)上運算或處理
+      const newDeleteList = [...deleteList, +e.target.value];
 
-      // console.log(res);
-
-      const loved = res.data.rows;
-      setLoveList(loved);
-      console.log(loved);
-    } catch (e) {
-      console.log(e.message);
+      // 3. 設定回原本的狀態
+      setDeleteList(newDeleteList);
     }
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   return (
-    <>
-      <LIST
-        $mode={mode}
-        className="list-row"
-        style={{ display: 'flex', justifyContent: 'space-around' }}
-      >
-        {loveList.map((e, i) => {
-          return (
+    <LIST
+      $mode={mode}
+      className="list-row"
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        width: '100%',
+        flexWrap: 'wrap',
+      }}
+    >
+      {loveList.map((e, i) => {
+        return (
+          <div
+            className="pro-card"
+            key={e.p_sid}
+            style={{ padding: '20px 0', width: '25%' }}
+          >
             <div
-              className="pro-card"
-              key={e.p_sid}
-              onClick={() => {
-                // console.log(e2.sid);
-                navigate(`/product/detail/?sid=${e.p_sid}`);
+              style={{
+                height: '280px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'center',
               }}
-              style={{ margin: '20px 0' }}
             >
-              <Link to="">
-                <div className="img-wrap" style={{ height: '200px' }}>
-                  <img
-                    src={`/images/test/${e.img}`}
-                    alt=""
-                    style={{ height: '100%' }}
+              <div
+                className="img-wrap"
+                style={{ height: '200px', cursor: 'pointer' }}
+                onClick={() => {
+                  // console.log(e2.sid);
+                  navigate(`/product/detail/?sid=${e.p_sid}`);
+                }}
+              >
+                <img
+                  src={`/images/test/${e.img}`}
+                  alt=""
+                  style={{ height: '100%' }}
+                />
+              </div>
+              <div
+                className="pro-title"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '10px',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    value={e.p_sid}
+                    checked={deleteList.includes(e.p_sid)}
+                    onChange={handleChange}
                   />
+                  <p style={{ fontSize: '18px' }}>{e.name}</p>
                 </div>
-                <div className="pro-title">
-                  <p>{e.name}</p>
-                  <p>
-                    <s>${formatPrice(e.price)}</s>{' '}
-                    <span>${formatPrice(e.member_price)}</span>
-                  </p>
+
+                <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                  <s
+                    style={{
+                      color: '#c9caca',
+                      fontSize: '14px',
+                      marginRight: '10px',
+                    }}
+                  >
+                    ${formatPrice(e.price)}
+                  </s>
+                  <span
+                    style={{
+                      color: '#f00',
+                      fontSize: '18px',
+                      fontWeight: '700',
+                    }}
+                  >
+                    ${formatPrice(e.member_price)}
+                  </span>
                 </div>
-              </Link>
+              </div>
             </div>
-          );
-        })}
-      </LIST>
-    </>
+          </div>
+        );
+      })}
+    </LIST>
   );
 }
 

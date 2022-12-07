@@ -1,7 +1,82 @@
 import React from 'react';
 import ProductLovedCards from './components/ProductLovedCards';
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+import { LOVE_LIST } from './my-config';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
+
+const Page = styled.div`
+  width: 100%;
+  height: 700px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #ccc;
+  }
+`;
 
 function MemberProductCollect() {
+  const [deleteList, setDeleteList] = useState([]);
+  const [deleteAll, setDeleteAll] = useState(false);
+  const [allSid, setAllSid] = useState([]);
+
+  const [loveList, setLoveList] = useState([]);
+
+  const m_sid = JSON.parse(localStorage.getItem('auth'))
+    ? JSON.parse(localStorage.getItem('auth')).sid
+    : '未登入';
+
+  // 取得商品資料
+  const getProducts = async () => {
+    try {
+      const res = await axios.get(`${LOVE_LIST}?m_sid=${m_sid}`);
+
+      // console.log(res);
+
+      const loved = res.data.rows;
+      setLoveList(loved);
+      //console.log(loved);
+      setAllSid(
+        loved.map((v, i) => {
+          return v.p_sid;
+        })
+      );
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const delData = async () => {
+    const res = await axios.post(
+      `http://localhost:6001/member/deleteproudctlist`,
+      deleteList
+    );
+    setDeleteList([]);
+    console.log(res);
+    if (res.data.success) {
+      MySwal.fire({
+        title: <strong>成功刪除</strong>,
+        icon: 'success',
+      });
+      getProducts();
+      setDeleteAll(false)
+    }
+  };
+
+  console.log(deleteList);
   return (
     <>
       <div
@@ -19,89 +94,35 @@ function MemberProductCollect() {
         <div className="product-title">
           <div className="checkbox-title">
             <div>
-              <input type="checkbox" name="" id="" />
+              <input
+                type="checkbox"
+                checked={deleteAll}
+                name=""
+                id=""
+                onChange={(e) => {
+                  setDeleteAll(e.target.checked);
+                  if (e.target.checked) {
+                    setDeleteList(allSid);
+                  } else {
+                    setDeleteList([]);
+                  }
+                }}
+              />
               <span>全選</span>
             </div>
 
-            <button className="delete">刪除選中收藏</button>
+            <button className="delete" type="button" onClick={delData}>
+              刪除選中收藏
+            </button>
           </div>
 
-          <div className="product-page">
-            <ProductLovedCards />
-            {/* <div className="product-photo">
-              <div className="product-name">
-                <div className="product-img">
-                  <img src="../image/product_3.png" alt="" />
-                </div>
-                <div className="product-wrap">
-                  <input type="checkbox" name="" id="" />
-                  <span>寵物商品</span>
-                </div>
-                <div className="proudct-price">
-                  <p
-                    style={{
-                      fontSize: '16px',
-                      color: '#c9caca',
-                      textDecoration: 'line-through',
-                    }}
-                  >
-                    $1,280
-                  </p>
-                  <h5 style={{ fontSize: '20px' }}>$980</h5>
-                </div>
-              </div>
-              <div className="product-name">
-                <div className="product-img">
-                  <img src="../image/product_4.png" alt="" />
-                </div>
-                <div className="product-wrap">
-                  <input type="checkbox" name="" id="" />
-                  <span>寵物商品</span>
-                </div>
-                <div className="proudct-price">
-                  <p
-                    style={{
-                      fontSize: '16px',
-                      color: '#c9caca',
-                      textDecoration: 'line-through',
-                    }}
-                  >
-                    $1,280
-                  </p>
-                  <h5 style={{ fontSize: '20px' }}>$980</h5>
-                </div>
-              </div>
-              <div className="product-name">
-                <div className="product-img">
-                  <img src="../image/product_5.png" alt="" />
-                </div>
-                <div className="product-wrap">
-                  <input type="checkbox" name="" id="" />
-                  <span>寵物商品</span>
-                </div>
-                <div className="proudct-price">
-                  <p
-                    style={{
-                      fontSize: '16px',
-                      color: '#c9caca',
-                      textDecoration: 'line-through',
-                    }}
-                  >
-                    $1,280
-                  </p>
-                  <h5 style={{ fontSize: '20px' }}>$980</h5>
-                </div>
-              </div>
-            </div>
-            <div className="orderPage">
-              <i className="fa-solid fa-angle-left"></i>
-              <i className="fa-light light fa-1"></i>
-              <i className="fa-light light fa-2"></i>
-              <i className="fa-light light fa-3"></i>
-              <i className="fa-light light fa-4"></i>
-              <i className="fa-solid fa-angle-right"></i>
-            </div> */}
-          </div>
+          <Page>
+            <ProductLovedCards
+              deleteList={deleteList}
+              setDeleteList={setDeleteList}
+              loveList={loveList}
+            />
+          </Page>
         </div>
       </div>
     </>
