@@ -8,7 +8,14 @@ function Index() {
   return (
     <>
       {/* <Draw /> */}
-      <div style={{ height: '900px' }}>
+      <div
+        style={{
+          height: '900px',
+          borderRadius: '15px',
+          position: 'relative',
+          zIndex: '0',
+        }}
+      >
         <ThreeAnimate />
       </div>
       <About />

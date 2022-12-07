@@ -4,6 +4,7 @@ import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
 import { Physics, usePlane } from '@react-three/cannon';
 import { angleToRadians } from '../utils/angle';
+import gsap from 'gsap';
 
 export default function AnimateControl() {
   // XXX 測試盒子
@@ -138,13 +139,45 @@ export default function AnimateControl() {
       // const animate = actions['0|shake_0'];
       animate.play();
     });
+    useEffect(() => {
+      if (group.current) {
+        // x motion
+        gsap.to(group.current.position, {
+          x: -95,
+          duration: 15,
+          ease: 'rough({ template: none.out, strength: 1, points: 20, taper: none, randomize: true, clamp: false})"',
+        });
+
+        // y motion
+        gsap.to(group.current.position, {
+          y: 20,
+          duration: 3,
+          ease: 'rough({ template: none.out, strength: 1, points: 20, taper: none, randomize: true, clamp: false})"',
+        });
+      }
+    }, [group.current]);
     return (
       <primitive
         scale={20}
         ref={group}
         object={scene}
         dispose={null}
-        position={[30, 80, 0]}
+        position={[30, 80, 70]}
+      />
+    );
+  }
+
+  // flower
+  function Flower() {
+    const flowerRef = useRef();
+    const { scene } = useGLTF('/images/flower.glb');
+
+    return (
+      <primitive
+        ref={flowerRef}
+        object={scene}
+        dispose={null}
+        position={[-100, 10, 50]}
       />
     );
   }
@@ -208,6 +241,7 @@ export default function AnimateControl() {
         {/* <Model2 /> */}
         {/* floor */}
         <Butterfly position={[120, 0, 10]} />
+        <Flower />
         <Grass position={[120, 0, 10]} />
         <Grass position={[-100, 0, 30]} />
         <Grass position={[-30, 0, -20]} />
