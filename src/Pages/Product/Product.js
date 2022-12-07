@@ -164,6 +164,7 @@ function Product() {
   const navigate = useNavigate();
   return (
     <>
+      <div style={{ height: '100px' }}></div>
       <main>
         <ProductSidebar isLoading={isLoading} />
         <section className="right">
