@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-/* 進度條CSS--------------------------------------------------------------- */
+/* 電腦版 進度條CSS--------------------------------------------------------------- */
 .eason_progress_bar {
   width: 880px;
   margin-top: 0;
@@ -73,7 +73,7 @@
   font-size: x-small;
 }
 
-/* 攝影預約 CSS----------------------------------------------------------- */
+/* 電腦版 攝影預約 CSS----------------------------------------------------------- */
 .eason_section_1 .eason_list_title {
   margin-top: 50px;
   display: flex;
@@ -183,7 +183,7 @@
   cursor: pointer;
 }
 
-/* 商品訂單 CSS----------------------------------------------------------- */
+/* 電腦版 商品訂單 CSS----------------------------------------------------------- */
 .eason_section_2 .eason_list_title {
   margin-top: 20px;
   display: flex;
@@ -235,7 +235,7 @@
   width: 10%;
 }
 
-/* 下方區域 CSS----------------------------------------------------------- */
+/* 電腦版 下方區域 CSS----------------------------------------------------------- */
 .eason_section_3 {
   width: 880px;
   display: flex;
@@ -335,5 +335,108 @@
   text-align: right;
   color: #727171;
   font-size: x-small;
+  font-weight: 900;
+}
+
+/* 手機版 CSS--------------------------------------------------------------------- */
+.mobile_eason_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.mobile_eason_top_title {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.mobile_eason_mid_title {
+  width: 315px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile_eason_mid_title h2 {
+  font-size: 21px;
+}
+
+.mobile_eason_mid_title p {
+  font-size: 17px;
+}
+
+.eason_mobile_checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.eason_mobile_photo_box,
+.eason_mobile_product_box {
+  width: 330px;
+  background-color: #fff;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #727171;
+  font-weight: 900;
+}
+
+.eason_mobile_photo_box_mid,
+.eason_mobile_product_box_mid {
+  display: flex;
+  flex-direction: column;
+  line-height: 25px;
+}
+
+.eason_mobile_section_payment_btn_group {
+  width: 290px;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.eason_mobile_section_payment_btn_group button {
+  border-radius: 20px;
+  padding: 8px 30px;
+  border: 3.5px solid #c9caca;
+  color: #727171;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.eason_mobile_discount_area{
+  margin-top: 10px;
+  margin-left: 45px;
+  margin-bottom: 50px;
+}
+
+.eason_mobile_total table {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  width: 230px;
+  margin-left: 50px;
+  line-height: 25px;
+}
+
+.eason_mobile_total th {
+  text-align: left;
+  color: #40220f;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.eason_mobile_total td {
+  text-align: right;
+  color: #727171;
+  font-size: 14px;
   font-weight: 900;
 }

@@ -133,7 +133,7 @@ function App() {
 
             {/* Cart */}
             <Route path="cart" element={<Cart />} />
-            <Route path="cart_p3" element={<CartP3 />} />
+            <Route path="cart/cart_p3" element={<CartP3 />} />
 
             {/* Clinic */}
             <Route path="clinic" element={<Clinic />} />

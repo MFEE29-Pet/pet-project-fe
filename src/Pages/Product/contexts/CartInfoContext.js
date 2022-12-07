@@ -128,7 +128,16 @@ export const CartInfoContextProvider = function ({ children }) {
       totalPrice: 0,
       totalAmount: 0,
     });
-    localStorage.removeItem('cartItem');
+    localStorage.setItem(
+      'cartItem',
+      JSON.stringify({
+        productCart: [],
+        photoCart: [],
+        totalItem: 0,
+        totalPrice: 0,
+        totalAmount: 0,
+      })
+    );
   };
 
   return (
