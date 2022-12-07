@@ -160,6 +160,7 @@ function ProductDetail() {
 
   return (
     <>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <main>
         <ProductSidebar />
 
@@ -414,7 +415,10 @@ function ProductDetail() {
         <div className="bottom-list-pro-title">
           <h2>相關商品</h2>
         </div>
-        <RelatedProduct relatedProducts={relatedProducts} setRelatedProducts={setRelatedProducts} />
+        <RelatedProduct
+          relatedProducts={relatedProducts}
+          setRelatedProducts={setRelatedProducts}
+        />
       </section>
       {/* Go To Top */}
       <GoToTop />
