@@ -18,7 +18,7 @@ function RecommendedCards() {
 
       // console.log(res);
       setRecommendedProducts(res.data.rows);
-      console.log(recommendedProducts);
+      // console.log(recommendedProducts);
     } catch (err) {
       console.log(err);
     }

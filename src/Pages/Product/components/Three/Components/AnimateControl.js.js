@@ -1,14 +1,8 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { Canvas, useThree, useFrame, useLoader } from '@react-three/fiber';
-import {
-  OrbitControls,
-  Sky,
-  useGLTF,
-  useAnimations,
-  Cloud,
-} from '@react-three/drei';
-import { Physics, usePlane, useBox } from '@react-three/cannon';
+import { useThree, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
+import { Physics, usePlane } from '@react-three/cannon';
 import { angleToRadians } from '../utils/angle';
 
 export default function AnimateControl() {
@@ -133,6 +127,28 @@ export default function AnimateControl() {
     );
   }
 
+  // Butterfly
+  function Butterfly() {
+    const group = useRef();
+    const { scene, animations } = useGLTF('/images/butterfly.glb');
+    const { actions } = useAnimations(animations, group);
+    useEffect(() => {
+      // console.log(actions);
+      const animate = actions['ArmatureAction.001'];
+      // const animate = actions['0|shake_0'];
+      animate.play();
+    });
+    return (
+      <primitive
+        scale={20}
+        ref={group}
+        object={scene}
+        dispose={null}
+        position={[30, 80, 0]}
+      />
+    );
+  }
+
   // XXX 使用OrbitControls後 camera作用問題 (x,y & polar angle,azimuthal angle )
   const orbitControlsRef = useRef(null);
   useFrame((state) => {
@@ -191,6 +207,7 @@ export default function AnimateControl() {
 
         {/* <Model2 /> */}
         {/* floor */}
+        <Butterfly position={[120, 0, 10]} />
         <Grass position={[120, 0, 10]} />
         <Grass position={[-100, 0, 30]} />
         <Grass position={[-30, 0, -20]} />
