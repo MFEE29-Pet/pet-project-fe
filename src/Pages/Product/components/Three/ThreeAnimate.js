@@ -11,8 +11,6 @@ import { Physics, usePlane, useBox } from '@react-three/cannon';
 import SwitchButtonContext from '../../../../contexts/SwitchButtonContext';
 import AnimateControl from './Components/AnimateControl.js';
 
-
-
 // // XXX 使用OrbitControls後 camera作用問題 (x,y & polar angle,azimuthal angle )
 // // function Camera(props) {
 // //   const ref = useRef();
@@ -37,7 +35,7 @@ function ThreeAnimate() {
     <Canvas
       id="three_canvas_container"
       camera={{
-        position: [40, 160, 200],
+        position: [40, 160, 210],
         fov: 55,
         // far: mode === 'dog' ? 1000 : 200,
       }}

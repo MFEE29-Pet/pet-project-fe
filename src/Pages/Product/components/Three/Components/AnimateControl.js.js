@@ -87,7 +87,7 @@ export default function AnimateControl() {
         ref={group}
         object={scene}
         dispose={null}
-        position={[60, 5, 0]}
+        position={[60, 5, 10]}
         rotation={[-0.25, 0, 0]}
         scale={65}
       />
@@ -147,14 +147,14 @@ export default function AnimateControl() {
       if (group.current) {
         // x motion
         gsap.to(group.current.position, {
-          x: -95,
+          x: -90,
           duration: 15,
           ease: 'rough({ template: none.out, strength: 1, points: 20, taper: none, randomize: true, clamp: false})"',
         });
 
         // y motion
         gsap.to(group.current.position, {
-          y: 20,
+          y: 40,
           duration: 3,
           ease: 'rough({ template: none.out, strength: 1, points: 20, taper: none, randomize: true, clamp: false})"',
         });
@@ -166,7 +166,7 @@ export default function AnimateControl() {
         ref={group}
         object={scene}
         dispose={null}
-        position={[30, 80, 70]}
+        position={[30, 80, 85]}
       />
     );
   }
@@ -181,7 +181,78 @@ export default function AnimateControl() {
         ref={flowerRef}
         object={scene}
         dispose={null}
-        position={[-100, 10, 50]}
+        position={[-100, 20, 50]}
+      />
+    );
+  }
+
+  //Dog house
+  function DogHouse() {
+    const houseRef = useRef();
+    const { scene } = useGLTF('/images/dog_house.glb');
+
+    return (
+      <primitive
+        ref={houseRef}
+        object={scene}
+        dispose={null}
+        position={[-30, 40, -90]}
+        rotation={[0, angleToRadians(-90), 0]}
+        scale={3}
+      />
+    );
+  }
+  //Cat house
+  function CatHouse() {
+    const houseRef = useRef();
+    const { scene } = useGLTF('/images/cat_house.glb');
+
+    return (
+      <primitive
+        ref={houseRef}
+        object={scene}
+        dispose={null}
+        position={[50, 40, -60]}
+        rotation={[0, angleToRadians(-10), 0]}
+        scale={550}
+      />
+    );
+  }
+  //Anya
+  function Anya() {
+    const anyaRef = useRef();
+    const { scene } = useGLTF('/images/anya_forger_spy_x_family.glb');
+
+    return (
+      <primitive
+        ref={anyaRef}
+        object={scene}
+        dispose={null}
+        position={[15, 15, -30]}
+        // rotation={[0, angleToRadians(-90), 0]}
+        scale={40}
+      />
+    );
+  }
+  //Heart
+  function Heart() {
+    const heartRef = useRef();
+    const { scene, animations } = useGLTF('/images/pumping_heart_model.glb');
+    const { actions } = useAnimations(animations, heartRef);
+    // console.log(actions);
+    useEffect(() => {
+      // console.log(actions["All Animations"]);
+      const animate = actions['Take 001'];
+      animate.play();
+    });
+    return (
+      <primitive
+        ref={heartRef}
+        object={scene}
+        dispose={null}
+        position={[-100, 70, -70]}
+        // rotation={[0, angleToRadians(-90), 0]}
+        scale={0.3}
       />
     );
   }
@@ -252,6 +323,10 @@ export default function AnimateControl() {
         <Grass position={[-120, 0, -50]} />
         <Grass position={[70, 0, 90]} />
         <Plane />
+        <DogHouse />
+        <CatHouse />
+        <Anya />
+        <Heart />
       </Physics>
     </>
   );
