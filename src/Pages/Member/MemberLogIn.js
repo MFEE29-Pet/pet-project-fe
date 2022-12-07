@@ -48,7 +48,7 @@ function MemberLogIn() {
   const { setMyAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    username: '',
+    mail: '',
     password: '',
   });
 
@@ -114,14 +114,14 @@ function MemberLogIn() {
                 style={{ marginRight: '5px' }}
               ></i>
               <input
-                type="text"
-                name="username"
+                type="mail"
+                name="mail"
                 style={{
                   border: 'none',
                   outline: 'none',
                   backgroundColor: 'transparent',
                 }}
-                value={user.username}
+                value={user.mail}
                 onChange={(e) => {
                   handle(e);
                 }}

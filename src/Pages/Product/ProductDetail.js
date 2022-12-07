@@ -176,7 +176,7 @@ function ProductDetail() {
                   setLovedHover(!lovedHover);
                 }}
                 onClick={() => {
-                  if (!JSON.stringify(localStorage.getItem('auth'))) {
+                  if (JSON.stringify(localStorage.getItem('auth'))) {
                     navigate('/member/memberProductCollect');
                   } else {
                     alert('請先登入');
