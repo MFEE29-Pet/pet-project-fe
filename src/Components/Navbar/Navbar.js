@@ -7,8 +7,6 @@ const NAV = styled.div`
   width: 100%;
   height: 100px;
   background-color: #fff;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
   box-shadow: 0px 4px 4px #ccc;
   display: flex;
   justify-content: center;

@@ -93,6 +93,7 @@ function CartP3() {
     <>
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
+        <div className="p_space" style={{ height: '100px' }}></div>
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
           <div className="eason_order">
             <i className="fa-light fa-file-pen fa-3x text_main_dark_color2"></i>

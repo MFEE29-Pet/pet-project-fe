@@ -597,18 +597,14 @@ function Cart() {
         <div className="mobile_eason_mid_title">
           <h2 className="text_main_dark_color2">優惠代碼</h2>
         </div>
-        <div className='eason_mobile_discount_area'>
-              <div className="discountArea">
-                <input
-                  className="eason_discount_code"
-                  id="discount"
-                  type="text"
-                />
-                <span
-                  onClick={coupon}
-                  className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "
-                ></span>
-              </div>
+        <div className="eason_mobile_discount_area">
+          <div className="discountArea">
+            <input className="eason_discount_code" id="discount" type="text" />
+            <span
+              onClick={coupon}
+              className="bg_main_light_color1 fa-solid fa-magnifying-glass eason_fa-magnifying-glass  "
+            ></span>
+          </div>
         </div>
 
         {/* 手機版 結算總額------------------------------------------------------------------------ */}
@@ -616,40 +612,40 @@ function Cart() {
           <h2 className="text_main_dark_color2">結算總額</h2>
         </div>
         <div>
-        <div className="eason_mobile_total">
-                <table>
-                  <tr>
-                    <th className="text_main_dark_color2">商品金額</th>
-                    <td>
-                      ${' '}
-                      {(productChecked ? myTotalPrice : 0) +
-                        (photoChecked ? myPhotoTotalPrice : 0)}
-                    </td>
-                  </tr>
+          <div className="eason_mobile_total">
+            <table>
+              <tr>
+                <th className="text_main_dark_color2">商品金額</th>
+                <td>
+                  ${' '}
+                  {(productChecked ? myTotalPrice : 0) +
+                    (photoChecked ? myPhotoTotalPrice : 0)}
+                </td>
+              </tr>
 
-                  <tr>
-                    <th className="text_main_dark_color2">優惠折扣</th>
-                    <td>{discount}</td>
-                  </tr>
+              <tr>
+                <th className="text_main_dark_color2">優惠折扣</th>
+                <td>{discount}</td>
+              </tr>
 
-                  <tr>
-                    <th className="text_main_dark_color2">運費</th>
-                    <td style={{ fontWeight: '900' }}>免運</td>
-                  </tr>
+              <tr>
+                <th className="text_main_dark_color2">運費</th>
+                <td style={{ fontWeight: '900' }}>免運</td>
+              </tr>
 
-                  <tr>
-                    <th className="text_main_dark_color2">付款總額</th>
-                    <td style={{ color: 'red', fontSize: 'large' }}>
-                      ${' '}
-                      {Math.ceil(
-                        (productChecked ? myTotalPrice : 0) +
-                          (photoChecked ? myPhotoTotalPrice : 0) -
-                          discount
-                      )}
-                    </td>
-                  </tr>
-                </table>
-              </div>
+              <tr>
+                <th className="text_main_dark_color2">付款總額</th>
+                <td style={{ color: 'red', fontSize: 'large' }}>
+                  ${' '}
+                  {Math.ceil(
+                    (productChecked ? myTotalPrice : 0) +
+                      (photoChecked ? myPhotoTotalPrice : 0) -
+                      discount
+                  )}
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </>
@@ -660,6 +656,7 @@ function Cart() {
     <>
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
+        <div className="p_space" style={{ height: '100px' }}></div>
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
           <div className="eason_order">
             <i className="fa-light fa-file-pen fa-3x text_main_dark_color2"></i>
@@ -1051,6 +1048,7 @@ function Cart() {
                   className="eason_discount_code"
                   id="discount"
                   type="text"
+                  style={{ padding: '0px 10px' }}
                 />
                 <span
                   onClick={coupon}

@@ -142,6 +142,7 @@ function ReservePage() {
   }, []);
   return (
     <ReserveBox>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <BreadcrumbBox>
         <Breadcrumb
           routes={Clinicroutes}
@@ -206,6 +207,7 @@ function ReservePage() {
           ]}
         />
       </ReserveForm>
+      <div className="p_space" style={{ height: '100px' }}></div>
     </ReserveBox>
   );
 }

@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
+
+const MySwal = withReactContent(Swal);
 
 const ResultBox = styled.div`
   display: flex;
@@ -67,16 +73,38 @@ const Button = styled.div`
   align-items: center;
 `;
 
-function ClinicItem({ name, address, mobile,code, sid, lat, lng,setLocation }) {
-  
-
+function ClinicItem({
+  name,
+  address,
+  mobile,
+  code,
+  sid,
+  lat,
+  lng,
+  setLocation,
+}) {
   const navigate = useNavigate();
+  const { myAuth } = useContext(AuthContext);
+
+  const Login = () => {
+    if (myAuth.sid) {
+      navigate(`reserve/?sid=${sid}`);
+    } else {
+      Swal.fire({
+        title: '<strong>請先登入會員</strong>',
+        icon: 'info',
+      });
+    }
+  };
   return (
     <ResultBox>
       <div className="title text_main_dark_color2">{name}</div>
       <div className="address">
         <i className="fa-sharp fa-solid fa-location-dot text_main_light_color1"></i>
-        <h2>{code}{address}</h2>
+        <h2>
+          {code}
+          {address}
+        </h2>
       </div>
       <div className="phone">
         <i className="fa-sharp fa-solid fa-phone text_main_light_color1"></i>
@@ -86,19 +114,13 @@ function ClinicItem({ name, address, mobile,code, sid, lat, lng,setLocation }) {
         <button
           className="reserve text_main_light_color1"
           onClick={() => {
-            setLocation({lat:lat,lng:lng})
-
+            setLocation({ lat: lat, lng: lng });
           }}
         >
           尋找
         </button>
         {/* {console.log(location, name)} */}
-        <button
-          className="reserve text_main_light_color1"
-          onClick={() => {
-            navigate(`reserve/?sid=${sid}`);
-          }}
-        >
+        <button className="reserve text_main_light_color1" onClick={Login}>
           預約
         </button>
       </Button>

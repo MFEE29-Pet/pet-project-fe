@@ -53,6 +53,7 @@ function MemberHistoryProduct() {
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
+        height:'800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
@@ -62,7 +63,7 @@ function MemberHistoryProduct() {
       </h2>
       <div
         className="orderProduct-right"
-        style={{ height: '700px', overflowY: 'scroll' }}
+        style={{ height: '700px', overflowY: 'auto' }}
       >
         {data.map((e, i) => {
           const { product_total_price, ordered_at, orders_num } = e;

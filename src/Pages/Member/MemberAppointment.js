@@ -38,6 +38,7 @@ function MemberAppointment() {
           display: 'flex',
           flexDirection: 'column',
           width: '80%',
+          height:'800px',
           marginTop: '80px',
           fontSize: '20px',
         }}

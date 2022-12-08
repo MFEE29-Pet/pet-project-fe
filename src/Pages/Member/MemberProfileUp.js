@@ -18,6 +18,7 @@ function MemberProfileUp() {
   const [month, setMonth] = useState(0);
   const [day, setDay] = useState(0);
   const [gender, setGender] = useState('');
+  const [photo, setPhoto] = useState('');
   const { setMyAuth, myAuth } = useContext(AuthContext);
   const [memberData, setMemberData] = useState([
     {
@@ -149,6 +150,7 @@ function MemberProfileUp() {
       setYear(birthSplit[0]);
       setMonth(birthSplit[1]);
       setDay(birthSplit[2]);
+      setPhoto(m_data[0].member_photo);
     } catch (e) {
       console.log(e.message);
     }
@@ -184,14 +186,11 @@ function MemberProfileUp() {
     getAreaData();
   }, []);
 
-  useEffect(() => {
-    // console.log(areaData);
-    const filterData = areaData.filter((e, i) => {
-      const { city_sid } = e;
-      return city_sid == city;
-    });
-    setFilterAreaData(filterData);
-  }, [city]);
+  // useEffect(() => {
+  //   // console.log(areaData);
+  //   const filterData = areaData.filter((e) => e.city_sid == city);
+  //   setFilterAreaData(filterData);
+  // }, [city]);
 
   const saveData = async () => {
     const d = dayjs(Date.parse(`${year}-${month}-${day}`)).format('YYYY-MM-DD');
@@ -242,6 +241,7 @@ function MemberProfileUp() {
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
+        height: '800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
@@ -351,14 +351,16 @@ function MemberProfileUp() {
                       setArea(e.target.value);
                     }}
                   >
-                    {filterAreaData.map((e, i) => {
-                      const { area_name, sid } = e;
-                      return (
-                        <option value={sid} key={i}>
-                          {area_name}
-                        </option>
-                      );
-                    })}
+                    {areaData
+                      .filter((e) => e.city_sid == city)
+                      .map((e, i) => {
+                        const { area_name, sid } = e;
+                        return (
+                          <option value={sid} key={i}>
+                            {area_name}
+                          </option>
+                        );
+                      })}
                   </select>
                 </div>
               </div>
@@ -484,7 +486,11 @@ function MemberProfileUp() {
             {isFilePicked ? (
               <img src={preview} alt="" style={{ width: '100%' }} />
             ) : (
-              <i className="fa-thin thin fa-user"></i>
+              <img
+                src={`http://localhost:6001/uploads/imgs/${photo}`}
+                alt=""
+                style={{ width: '100%' }}
+              />
             )}
           </div>
           <div
