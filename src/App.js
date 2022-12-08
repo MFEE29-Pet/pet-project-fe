@@ -52,6 +52,7 @@ import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
 import LineCallback from './Pages/Member/LineCallback';
+// import Game from './Pages/Product/components/ThreeGame/Game';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -124,6 +125,7 @@ function App() {
             <Route path="product" element={<Product />} />
             <Route path="product/detail/" element={<ProductDetail />} />
             <Route path="product/photographers/" element={<Photographers />} />
+            {/* <Route path="product/game/" element={<Game />} /> */}
             <Route path="product/photographers/" element={<PhotoReservePage />}>
               <Route path="reserve" element={<PhotoReserve />} />
               <Route path="check" element={<PhotoCheck />} />

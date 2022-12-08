@@ -45,43 +45,59 @@ export default function AnimateControl() {
 
   // 球
   function BallYellow() {
-    const [ref, api] = useSphere(() => ({ mess: 1, position: [-50, 10, 70] }));
+    const [hover, setHover] = useState(false);
+    const [ref, api] = useSphere(() => ({ position: [-50, 8, 70] }));
     // const img = '/images/logo_PetBan_2_2(ImgOnly).png';
     // const texture = useLoader(THREE.TextureLoader, img);
     // console.log(ref.current);
     return (
       <mesh
         ref={ref}
+        // scale={hover ? 10.8 : 10}
         scale={10}
-        position={[-50, 10, 70]}
-        onClick={(e) => {
+        onPointerOver={(e) => {
+          setHover(!hover);
           // api.position.set(-50, 10, 90);
           // console.log(api.velocity);
           // console.log(ref.current)
+        }}
+        onPointerOut={(e) => {
+          setHover(!hover);
         }}
         castShadow
       >
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial
-          color="#f8b62b"
+          color={hover ? '#fd594e' : '#f8b62b'}
           // map={texture}
         />
       </mesh>
     );
   }
   function BallBlue() {
-    // const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
+    const [hover, setHover] = useState(false);
+    // const [ref, api] = useBox(() => ({ mass: 1, position: [50, 2, 0] }));
     return (
-      <mesh scale={10} position={[50, 10, 70]} onClick={() => {}} castShadow>
+      <mesh
+        scale={10}
+        position={[50, 8, 70]}
+        onPointerOver={() => {
+          setHover(!hover);
+        }}
+        onPointerOut={(e) => {
+          setHover(!hover);
+        }}
+        castShadow
+      >
         <sphereGeometry args={[1, 32, 32]} />
-        <meshStandardMaterial color="#00a29a" />
+        <meshStandardMaterial color={hover ? '#fd594e' : '#00a29a'} />
       </mesh>
     );
   }
   function BallRed() {
-    // const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
+    // const [ref, api] = useBox(() => ({ mass: 1, position: [50, 2, 0] }));
     return (
-      <mesh scale={10} position={[0, 10, 70]} onClick={() => {}} castShadow>
+      <mesh scale={10} position={[0, 8, 70]} onClick={() => {}} castShadow>
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial color="#fd594e" />
       </mesh>
@@ -276,6 +292,22 @@ export default function AnimateControl() {
     );
   }
 
+  // bowl
+  function Bowl() {
+    const bowlRef = useRef();
+    const { scene } = useGLTF('/images/dog_bowl.glb');
+
+    return (
+      <primitive
+        ref={bowlRef}
+        object={scene}
+        dispose={null}
+        position={[-5, 0, -30]}
+        scale={7}
+      />
+    );
+  }
+
   // XXX 使用OrbitControls後 camera作用問題 (x,y & polar angle,azimuthal angle )
   const orbitControlsRef = useRef(null);
   useFrame((state) => {
@@ -330,10 +362,7 @@ export default function AnimateControl() {
         <BallYellow />
         <BallRed />
         <BallBlue />
-        {/* <Box /> */}
         <Sky />
-        {/* <Model2 /> */}
-        {/* floor */}
         <Butterfly position={[120, 0, 10]} />
         <Flower />
         <Grass position={[120, 0, 10]} />
@@ -346,6 +375,7 @@ export default function AnimateControl() {
         <CatHouse />
         {/* <Anya /> */}
         <Heart />
+        <Bowl />
       </Physics>
     </>
   );

@@ -1,5 +1,7 @@
 import GoToTop from '../Product/components/GoToTop';
 import ThreeAnimate from '../Product/components/Three/ThreeAnimate';
+import Game from '../Product/components/ThreeGame/Game';
+// import Games from '../Product/components/ThreeGame';
 import About from './About';
 import RecommendedProduct from './Components/RecommendedProduct';
 import Photo from './Photo';
@@ -7,12 +9,10 @@ import Photo from './Photo';
 function Index() {
   return (
     <>
+      {/* <Games /> */}
       <div
         style={{
           height: '900px',
-          borderRadius: '15px',
-          position: 'relative',
-          zIndex: '0',
         }}
       >
         <ThreeAnimate />
@@ -20,6 +20,17 @@ function Index() {
       <About />
       <RecommendedProduct />
       <Photo />
+      <div
+        style={{
+          height: '300px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        className="catch_game"
+      >
+        <Game />
+      </div>
       <GoToTop />
     </>
   );
