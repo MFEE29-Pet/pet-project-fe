@@ -3,6 +3,8 @@ import { useState, useContext, useEffect } from 'react';
 import './CartP3.css';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
+import axios from 'axios';
+import dayjs from 'dayjs';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
@@ -44,6 +46,17 @@ const EasonPayEnd = styled.div`
 function CartP3() {
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
+  const [data, setData] = useState([
+    {
+      sid: '',
+      orders_num: '',
+      member_sid: '',
+      photo_total_price: '',
+      product_total_price: '',
+      final_price: '',
+      ordered_at: '',
+    },
+  ]);
 
   // 真實串接資料來源
   // const myCart = localStorage.getItem('cartItem');
@@ -53,8 +66,28 @@ function CartP3() {
   // 獲取來源資料
   // const getData = () => {};
 
+  const getData = async () => {
+    const memberID = JSON.parse(localStorage.getItem('auth'));
+    const res = await axios.get(
+      `http://localhost:6001/cart/member_order/${memberID.sid}`
+    );
+
+    console.log(res);
+    const data = res.data.rows;
+
+    const m_data = data.map((e, i) => {
+      const { ordered_at } = e;
+
+      return { ...data[i], ordered_at: dayjs(ordered_at).format('YYYY-MM-DD') };
+    });
+    setData(m_data);
+  };
+  console.log(data);
+
   // 一進來頁面就載入來源資料
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -118,13 +151,13 @@ function CartP3() {
                   <p className="text_main_dark_color2">
                     訂單日期&nbsp;&nbsp;&nbsp;
                   </p>
-                  <span className="">2022-12-14</span>
+                  <span className="">{data[0].ordered_at}</span>
                 </div>
                 <div className="eason_order_num">
                   <p className="text_main_dark_color2">
                     訂單編號&nbsp;&nbsp;&nbsp;
                   </p>
-                  <span className="">88888888</span>
+                  <span className="">{data[0].orders_num}</span>
                 </div>
               </div>
               <div className="eason_box_bottom_right">
