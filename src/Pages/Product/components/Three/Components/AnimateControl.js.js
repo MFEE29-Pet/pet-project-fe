@@ -55,7 +55,7 @@ export default function AnimateControl() {
         scale={10}
         position={[-50, 10, 70]}
         onClick={(e) => {
-          // api.position.set(-50, 50, 70);
+          // api.position.set(-50, 10, 90);
           // console.log(api.velocity);
           // console.log(ref.current)
         }}
@@ -344,7 +344,7 @@ export default function AnimateControl() {
         <Plane />
         <DogHouse />
         <CatHouse />
-        <Anya />
+        {/* <Anya /> */}
         <Heart />
       </Physics>
     </>

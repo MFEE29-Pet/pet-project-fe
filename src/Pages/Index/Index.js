@@ -1,4 +1,3 @@
-import Draw from '../Product/components/Draw/Draw';
 import GoToTop from '../Product/components/GoToTop';
 import ThreeAnimate from '../Product/components/Three/ThreeAnimate';
 import About from './About';
@@ -8,7 +7,6 @@ import Photo from './Photo';
 function Index() {
   return (
     <>
-      {/* <Draw /> */}
       <div
         style={{
           height: '900px',
@@ -17,7 +15,6 @@ function Index() {
           zIndex: '0',
         }}
       >
-      
         <ThreeAnimate />
       </div>
       <About />

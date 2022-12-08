@@ -1,21 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import {
-  EmailIcon,
-  FacebookIcon,
-  InstapaperIcon,
-  LineIcon,
-  MailruIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from 'react-share';
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-} from 'react-share';
+import { FacebookIcon } from 'react-share';
+import { FacebookShareButton } from 'react-share';
 
 // import AuthContext from '../../contexts/AuthContext';
 import { PRODUCT_DETAIL } from './my-config';
