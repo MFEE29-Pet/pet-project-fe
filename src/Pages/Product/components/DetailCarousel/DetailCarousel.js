@@ -76,7 +76,7 @@ function DetailCarousel({ relatedProducts }) {
                     style={{
                       width: '500px',
                       position: 'relative',
-                      right: '-50px',
+                      // right: '-50px',
                       height: '500px',
                       objectFit: 'cover',
                     }}
