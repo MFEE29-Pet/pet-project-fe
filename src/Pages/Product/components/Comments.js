@@ -1,3 +1,5 @@
+import { MY_HOST } from '../my-config';
+
 function Comments({ comments }) {
   // console.log(comments);
   return (
@@ -6,35 +8,39 @@ function Comments({ comments }) {
         className="score-reply"
         style={{ height: '355px', overflow: 'auto' }}
       >
-        {comments && comments.map((e, i) => {
-          return (
-            <div
-              className="reply-card"
-              style={{
-                height: '90px',
-                // paddingTop: '20px',
-                marginBottom: '5px 0',
-              }}
-              key={e.sid}
-            >
-              <div className="user-img-wrap">
-                <img src={`/images/test/${e.member_photo}`} alt="" />
-              </div>
-              <div className="star-reply">
-                <div className="star-score">
-                  {Array(Math.floor(e.scores))
-                    .fill(1)
-                    .map((e2, i2) => {
-                      return <i key={i2} className="fa-solid fa-star"></i>;
-                    })}
+        {comments &&
+          comments.map((e, i) => {
+            return (
+              <div
+                className="reply-card"
+                style={{
+                  height: '90px',
+                  // paddingTop: '20px',
+                  marginBottom: '5px 0',
+                }}
+                key={e.sid}
+              >
+                <div className="user-img-wrap">
+                  <img
+                    src={`${MY_HOST}/uploads/imgs/${e.member_photo}`}
+                    alt=""
+                  />
                 </div>
-                <div className="reply-text">
-                  <p>{e.comment}</p>
+                <div className="star-reply">
+                  <div className="star-score">
+                    {Array(Math.floor(e.scores))
+                      .fill(1)
+                      .map((e2, i2) => {
+                        return <i key={i2} className="fa-solid fa-star"></i>;
+                      })}
+                  </div>
+                  <div className="reply-text">
+                    <p>{e.comment}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
         {/* <div className="reply-card">
           <div className="user-img-wrap">
