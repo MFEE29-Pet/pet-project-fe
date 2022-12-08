@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { GET_RECOMMEND } from '../../Product/my-config';
 
 function RecommendedCards() {
   const { mode } = useContext(SwitchButtonContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   // console.log(mode);
 
@@ -51,6 +52,10 @@ function RecommendedCards() {
                   width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
+                  cursor: 'pointer',
+                }}
+                onClick={() => {
+                  navigate(`/product/detail?sid=${e.sid}`);
                 }}
               >
                 <img
