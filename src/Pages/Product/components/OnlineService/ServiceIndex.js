@@ -220,7 +220,7 @@ function ServiceIndex({ socket }) {
               className="messages_window"
               style={{
                 height: '88%',
-                overflowY: 'scroll',
+                overflowY: 'auto',
                 paddingRight: '10px',
                 position: 'relative',
               }}

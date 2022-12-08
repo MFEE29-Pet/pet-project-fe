@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
+import AuthContext from '../../../contexts/AuthContext';
 import { useContext, useState, useEffect } from 'react';
 import StarRate from './StarRate';
 import axios from 'axios';
-import { INSERT_REPLY } from '../my-config';
+import { INSERT_REPLY, MY_HOST } from '../my-config';
 
 const ReplyBackground = styled.div`
   width: 100vw;
@@ -41,6 +42,7 @@ const Textarea = styled.textarea`
 
 function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
   const { mode } = useContext(SwitchButtonContext);
+  const { myAuth } = useContext(AuthContext);
   const [starValue, setStarValue] = useState(0);
   const [pSid, setPSid] = useState(sid);
   // console.log(pSid);
@@ -94,10 +96,12 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
   // const fd = new FormData(form);
 
   return (
-    <ReplyBackground style={{ display: `${showDiv ? 'block' : 'none'}` }}
-    className='popup_reply_bg'>
+    <ReplyBackground
+      style={{ display: `${showDiv ? 'block' : 'none'}` }}
+      className="popup_reply_bg"
+    >
       <Reply
-      className='popup_reply_container'
+        className="popup_reply_container"
         $mode={mode}
         style={{
           display: `${showDiv ? 'flex' : 'none'}`,
@@ -116,15 +120,17 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
             marginBottom: '20px',
           }}
         >
-          {/* //TODO 待抓取localStorage的使用者圖片 */}
+          {/* //DONE 待抓取localStorage的使用者圖片 */}
           <img
-            src={`/images/test/person_5.jpeg`}
+            src={`${MY_HOST}/uploads/imgs/${
+              myAuth ? myAuth.member_photo : 'person5.jpg'
+            }`}
             style={{
               textAlign: 'center',
               objectFit: 'contain',
               height: '100%',
               position: 'absolute',
-              left: '-25px',
+              // left: '-25px',
             }}
             alt="person_image"
           />
