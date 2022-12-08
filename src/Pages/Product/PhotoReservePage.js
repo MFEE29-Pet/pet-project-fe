@@ -152,78 +152,82 @@ function PhotoReservePage() {
   }
 
   return (
-    <ReserveBox className="photo_container">
-      <BreadcrumbBox className="photo_breadcrumb">
-        <Breadcrumb
-          routes={PhotoRoutes}
-          separator={<BreadcrumbRightArrowIcon />}
-        />
-      </BreadcrumbBox>
-      <ReserveForm className="photo_reserve_form">
-        <h1 className="text_main_dark_color2">預約寵物攝影</h1>
-        <div className="content_box">
-          <div className="form_address">
-            <i
-              className="fa-solid fa-camera text_main_light_color1"
-              style={{ fontSize: '20px' }}
-            ></i>
-            <p className="text_main_dark_color2">攝影師 - {final[0].name}</p>
+    <>
+      <div className="p_space" style={{ height: '100px' }}></div>
+      <ReserveBox className="photo_container">
+        <BreadcrumbBox className="photo_breadcrumb">
+          <Breadcrumb
+            routes={PhotoRoutes}
+            separator={<BreadcrumbRightArrowIcon />}
+          />
+        </BreadcrumbBox>
+        <ReserveForm className="photo_reserve_form">
+          <h1 className="text_main_dark_color2">預約寵物攝影</h1>
+          <div className="content_box">
+            <div className="form_address">
+              <i
+                className="fa-solid fa-camera text_main_light_color1"
+                style={{ fontSize: '20px' }}
+              ></i>
+              <p className="text_main_dark_color2">攝影師 - {final[0].name}</p>
+            </div>
+            <div className="mobile">
+              <i className="fa-sharp fa-solid fa-phone text_main_light_color1"></i>
+              <p className="text_main_dark_color2">{final[0].phone}</p>
+            </div>
+            <div className="mobile photo_price" style={{ marginLeft: '20px' }}>
+              <i className="fa-solid fa-circle-dollar text_main_light_color1"></i>
+              <p className="text_main_dark_color2" style={{ color: 'red' }}>
+                {formatPrice(final[0].price)}
+              </p>
+            </div>
           </div>
-          <div className="mobile">
-            <i className="fa-sharp fa-solid fa-phone text_main_light_color1"></i>
-            <p className="text_main_dark_color2">{final[0].phone}</p>
-          </div>
-          <div className="mobile photo_price" style={{ marginLeft: '20px' }}>
-            <i className="fa-solid fa-circle-dollar text_main_light_color1"></i>
-            <p className="text_main_dark_color2" style={{ color: 'red' }}>
-              {formatPrice(final[0].price)}
-            </p>
-          </div>
-        </div>
-        <Outlet
-          context={[
-            memberId,
-            setMemberId,
-            petId,
-            setPetId,
-            photographerDetail,
-            setPhotographerDetail,
-            startDate,
-            setStartDate,
-            time,
-            setTime,
-            memberName,
-            setMemberName,
-            memberEmail,
-            setMemberEmail,
-            memberMobile,
-            setMemberMobile,
-            city,
-            setCity,
-            area,
-            setArea,
-            address,
-            setAddress,
-            variety,
-            setVariety,
-            petName,
-            setPetName,
-            petAge,
-            setPetAge,
-            gender,
-            setGender,
-            control,
-            setControl,
-            petPid,
-            setPetPid,
-            textArea,
-            setTextArea,
-            preview,
-            setPreview,
-          ]}
-        />
-      </ReserveForm>
-    </ReserveBox>
+          <Outlet
+            context={[
+              memberId,
+              setMemberId,
+              petId,
+              setPetId,
+              photographerDetail,
+              setPhotographerDetail,
+              startDate,
+              setStartDate,
+              time,
+              setTime,
+              memberName,
+              setMemberName,
+              memberEmail,
+              setMemberEmail,
+              memberMobile,
+              setMemberMobile,
+              city,
+              setCity,
+              area,
+              setArea,
+              address,
+              setAddress,
+              variety,
+              setVariety,
+              petName,
+              setPetName,
+              petAge,
+              setPetAge,
+              gender,
+              setGender,
+              control,
+              setControl,
+              petPid,
+              setPetPid,
+              textArea,
+              setTextArea,
+              preview,
+              setPreview,
+            ]}
+          />
+        </ReserveForm>
+      </ReserveBox>
+      <div className="p_space" style={{ height: '100px' }}></div>
+    </>
   );
 }
 
