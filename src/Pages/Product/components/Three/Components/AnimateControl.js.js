@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { useThree, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
-import { Physics, usePlane } from '@react-three/cannon';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls, useGLTF, useAnimations, Sky } from '@react-three/drei';
+import { Physics, usePlane, useBox, useSphere } from '@react-three/cannon';
 import { angleToRadians } from '../utils/angle';
+import SwitchButtonContext from '../../../../../contexts/SwitchButtonContext';
 import gsap from 'gsap';
+import { useContext } from 'react';
 
 export default function AnimateControl() {
   // XXX 測試盒子
@@ -26,14 +28,15 @@ export default function AnimateControl() {
 
   // XXX 地板
   function Plane() {
+    const { mode } = useContext(SwitchButtonContext);
     const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0] }));
-    const img = '/images/grass.jpeg';
-    const texture = useLoader(THREE.TextureLoader, img);
+    // const img = '/images/grass.jpeg';
+    // const texture = useLoader(THREE.TextureLoader, img);
     return (
       <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[2300, 2300]} />
+        <planeGeometry args={[2500, 2500]} />
         <meshPhongMaterial
-          color="#f8b62b"
+          color={mode === 'dog' ? '#f8b62b' : '#00a29a'}
           // map={texture}
         />
       </mesh>
@@ -42,11 +45,22 @@ export default function AnimateControl() {
 
   // 球
   function BallYellow() {
-    // const [ref, api] = useBox(() => ({ mess: 1, position: [50, 2, 0] }));
+    const [ref, api] = useSphere(() => ({ mess: 1, position: [-50, 10, 70] }));
     // const img = '/images/logo_PetBan_2_2(ImgOnly).png';
     // const texture = useLoader(THREE.TextureLoader, img);
+    // console.log(ref.current);
     return (
-      <mesh scale={10} position={[-50, 10, 70]} onClick={() => {}} castShadow>
+      <mesh
+        ref={ref}
+        scale={10}
+        position={[-50, 10, 70]}
+        onClick={(e) => {
+          // api.position.set(-50, 50, 70);
+          // console.log(api.velocity);
+          // console.log(ref.current)
+        }}
+        castShadow
+      >
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial
           color="#f8b62b"
@@ -317,7 +331,7 @@ export default function AnimateControl() {
         <BallRed />
         <BallBlue />
         {/* <Box /> */}
-
+        <Sky />
         {/* <Model2 /> */}
         {/* floor */}
         <Butterfly position={[120, 0, 10]} />
