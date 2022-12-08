@@ -114,7 +114,7 @@ function ProductDetail() {
 
       const productData = res.data.rows;
       setProductDetail(productData);
-      setAvgNum(res.data.avgScores);
+      setAvgNum(+res.data.avgScores);
       // DONE sql 商品sid超過125 抓不到 ???  (後端sql語法問題)
       setRelatedProducts(res.data ? res.data.related_p : []);
       setComments(res.data.comment);
@@ -336,7 +336,8 @@ function ProductDetail() {
             <div className="score-content">
               <div className="star-score-total">
                 <div className="score">
-                  <h1>{avgNum ? avgNum.toFixed(1) : 0}</h1>
+                  <h1>{avgNum > 0 ? avgNum.toFixed(1) : 0}</h1>
+                  {/* {console.log(avgNum)} */}
                 </div>
                 <div className="stars">
                   <div className="showStars" style={{ position: 'relative' }}>

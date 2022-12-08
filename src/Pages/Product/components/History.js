@@ -48,7 +48,7 @@ function History(props) {
       result.push(res.data.history_p);
     }
     setHistory(result);
-    // console.log(history);
+    // console.log({ history, result });
   };
 
   useEffect(() => {
@@ -103,32 +103,33 @@ function History(props) {
                 {show ? '最近看過' : ''}
               </h2>
             </div>
-            {history.map((e, i) => {
-              return (
-                <div
-                  key={e[0].sid}
-                  className="product-img-wrap"
-                  style={{
-                    backgroundColor: '#fff',
-                    width: '100%',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Link to={`${location.pathname}?sid=${e[0].sid}`}>
-                    <img
-                      src={`/images/test/${e[0].img}`}
-                      alt=""
-                      style={{
-                        width: '100%',
-                        height: '60%',
-                        objectFit: 'cover',
-                        margin: '10px 0',
-                      }}
-                    />
-                  </Link>
-                </div>
-              );
-            })}
+            {history.length > 0 &&
+              history.map((e, i) => {
+                return (
+                  <div
+                    key={e[0].sid}
+                    className="product-img-wrap"
+                    style={{
+                      backgroundColor: '#fff',
+                      width: '100%',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Link to={`${location.pathname}?sid=${e[0].sid}`}>
+                      <img
+                        src={`/images/test/${e[0].img}`}
+                        alt=""
+                        style={{
+                          width: '100%',
+                          height: '60%',
+                          objectFit: 'cover',
+                          margin: '10px 0',
+                        }}
+                      />
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>
