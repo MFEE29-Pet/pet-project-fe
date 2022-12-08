@@ -108,7 +108,7 @@ function ProductSidebar() {
         style={{
           display: 'flex',
           position: 'absolute',
-          left: '2%',
+          left: '1%',
           top: '-10px',
           width: '120px',
           justifyContent: 'center',
