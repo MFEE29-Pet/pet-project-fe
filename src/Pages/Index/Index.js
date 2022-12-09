@@ -26,6 +26,7 @@ function Index() {
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
+          marginTop: '15px',
         }}
         className="catch_game"
       >
