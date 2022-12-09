@@ -84,6 +84,7 @@ function ForumDetail() {
   return (
     <>
       <div className="forum_detail_wrap">
+        <div className="p_space" style={{ height: '100px' }}></div>
         <div className="forum_search_bar">
           <SearchBar />
         </div>

@@ -64,7 +64,11 @@ function ForumReplyOld({
           {forumComment.map((e, i) => {
             return (
               <div className="reply_card" key={i}>
-                <img className="headImg" src="" alt="" />
+                <img
+                  className="headImg"
+                  src={`http://localhost:6001/uploads/imgs/${e.member_photo}`}
+                  alt=""
+                />
                 <div className="senderProfile">
                   <div className="nickNameBox">
                     <div className="nickName">{e.name}</div>

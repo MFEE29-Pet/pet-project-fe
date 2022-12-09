@@ -51,21 +51,29 @@ function Member() {
   // const Nowcomponents = components[pageIndex];
   return (
     <>
-      <div className="member" style={{display:'flex',flexDirection:'column',justifyContent:'flex-start',height:'1000px'}}>
+      <div
+        className="member"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+        }}
+      >
+        <div className="p_space" style={{ height: '100px' }}></div>
         <BreadcrumbBox>
           <Breadcrumb
             routes={Memberroutes}
             separator={<BreadcrumbRightArrowIcon />}
           />
         </BreadcrumbBox>
-        <div style={{display:'flex'}}>
-        <MemberShipLeft
-        // totalPage={components}
-        // pageIndex={pageIndex}
-        // setPageIndex={setPageIndex}
-        />
-        {/* <Nowcomponents /> */}
-        <Outlet />
+        <div style={{ display: 'flex' }}>
+          <MemberShipLeft
+          // totalPage={components}
+          // pageIndex={pageIndex}
+          // setPageIndex={setPageIndex}
+          />
+          {/* <Nowcomponents /> */}
+          <Outlet />
         </div>
       </div>
     </>

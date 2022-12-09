@@ -137,6 +137,7 @@ function MemberPetAdd() {
           display: 'flex',
           flexDirection: 'column',
           width: '80%',
+          height:'800px',
           marginTop: '80px',
           fontSize: '20px',
         }}
@@ -159,7 +160,7 @@ function MemberPetAdd() {
             <div className="peat-name" key={i}>
               <div className="peat">
                 <div className="peat-photo">
-                  <img src="../image/pet_dog_1.jpg" alt="" />
+                  <img src={`http://localhost:6001/uploads/imgs/${pet_photo}`} alt="" />
                 </div>
                 <div className="pet_text text_main_dark_color2">
                   <div

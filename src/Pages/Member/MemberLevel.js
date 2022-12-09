@@ -97,6 +97,7 @@ function MemberLevel() {
         style={{
           display: 'flex',
           flexDirection: 'column',
+          height:'800px',
           width: '80%',
           marginTop: '80px',
           fontSize: '20px',

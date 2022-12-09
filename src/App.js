@@ -52,7 +52,8 @@ import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
 import LineCallback from './Pages/Member/LineCallback';
-// import Game from './Pages/Product/components/ThreeGame/Game';
+import LinePay from './Pages/Cart/LinePay';
+import StartPage from './Pages/StartPage/StartPage';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -108,7 +109,9 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           {/* Navbar */}
+          {/* <StartPage/> */}
           <Navbar />
+          
           <i
             className={`fa-light fa-shield-cat text_main_light_color1`}
             style={{ opacity: 0, position: 'absolute' }}
@@ -136,6 +139,7 @@ function App() {
             {/* Cart */}
             <Route path="cart" element={<Cart />} />
             <Route path="cart/cartp3" element={<CartP3 />} />
+            <Route path="cart/pay-confirm" element={<LinePay />} />
 
             {/* Clinic */}
             <Route path="clinic" element={<Clinic />} />

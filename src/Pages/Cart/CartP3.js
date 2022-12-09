@@ -93,6 +93,7 @@ function CartP3() {
     <>
       <div className="eason_container">
         {/* <!-- 進度條------------------------------------------------------------------------> */}
+        <div className="p_space" style={{ height: '100px' }}></div>
         <EasonProgressBar className="eason_progress_bar" $mode={mode}>
           <div className="eason_order">
             <i className="fa-light fa-file-pen fa-3x text_main_dark_color2"></i>
@@ -168,7 +169,11 @@ function CartP3() {
                   <p className="text_main_dark_color2">
                     付款方式&nbsp;&nbsp;&nbsp;
                   </p>
-                  <span className="">信用卡</span>
+                  {data[0].pay_way ? (
+                    <span className="">信用卡</span>
+                  ) : (
+                    <span className="">LinePay</span>
+                  )}
                 </div>
                 <div className="eason_completed_payment">
                   <p className="text_main_dark_color2">

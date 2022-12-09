@@ -54,6 +54,7 @@ function Clinic() {
   });
   return (
     <ClinicBox>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <BreadcrumbBox>
         <Breadcrumb
           routes={Clinicroutes}

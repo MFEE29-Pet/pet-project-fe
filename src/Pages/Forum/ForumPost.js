@@ -95,6 +95,7 @@ function ForumPost({ setDoRerender, doRerender }) {
 
   return (
     <>
+    <div className="p_space" style={{ height: '100px' }}></div>
       <form>
         <div className="post_crumb">
           <Breadcrumb

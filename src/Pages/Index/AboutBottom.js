@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { imgUrl } from '../../config';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger);
 
 const About = styled.div`
@@ -81,7 +82,9 @@ function AboutBottom() {
         <p className="text_main_dark_color1">
           毛孩透過陪伴，把全部最好的給了我們，而我們雖不能給他們全部，但絕對能選擇給毛孩們最好的!
         </p>
-        <Button className="bg_main_light_color1">珍惜夥伴</Button>
+        <Link to='/product?cate=9&page=1'>
+          <Button className="bg_main_light_color1">至高寵愛</Button>
+        </Link>
       </div>
       <div className="right" ref={right}>
         <img src={`${imgUrl}/images/Dog.png`} alt="" />

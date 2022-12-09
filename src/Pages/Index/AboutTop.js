@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { imgUrl } from '../../config';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger);
 
 const About = styled.div`
@@ -74,7 +75,9 @@ function AboutTop() {
         <p className="text_main_dark_color1">
           如果交朋友需要一個值得好好相處的理由，那毛孩絕對是人類排第一的益友，不論是哪種毛孩在你生活中，都是有益身心的好夥伴!
         </p>
+        <Link to='/product?cate=17&page=1'>
         <Button className="bg_main_light_color1">珍惜夥伴</Button>
+        </Link>
       </div>
     </About>
   );
