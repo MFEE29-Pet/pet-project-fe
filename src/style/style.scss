@@ -11,6 +11,8 @@
 body{
   &::-webkit-scrollbar {
     width: 8px;
+    display: none;
+    position: absolute;
   }
   &::-webkit-scrollbar-track{
     background-color: #72371288;
@@ -19,6 +21,7 @@ body{
   &::-webkit-scrollbar-thumb {
     background-color: white;
     border: 1px solid slategrey;
+    display: none;
   }
 }
 
