@@ -73,6 +73,9 @@ function Cart() {
   const [myProductData, setMyProductData] = useState([{}]);
   const [myPhotoData, setMyPhotoData] = useState([{}]);
 
+  //付款方式
+  const [payWay, setPayWay] = useState(0);
+
   // 真實串接 Local Storage 資料來源
   // cartItem 是 Local Storage 的 Key
   // productCart 和 photoCart 是 cartItem 的 Value
@@ -202,11 +205,13 @@ function Cart() {
     setMyPhotoData([{}]);
     setDiscount(0);
   };
+
   const SendData = async () => {
     const cartData = {
       ...myCartItem,
       memberID: member.sid,
       cartTotalPrice: finalPrice,
+      payWay: payWay,
     };
     /*
       const fd = new FormData();
@@ -258,6 +263,33 @@ function Cart() {
     }
     result.submit();
   }, [link]);
+
+  //LinePay
+
+  const LinePay = async () => {
+    try {
+      const res = await axios.post('http://localhost:6001/cart/linepay');
+
+      console.log(res);
+
+      window.open(res.data, '_self');
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const handlePay = async () => {
+    await SendData();
+    if (arrivedClick) {
+      await LinePay();
+    } else {
+      await LinkOpay();
+    }
+  };
+
+  console.log('arrivedClick', arrivedClick);
+  console.log('creditClick', creditClick);
+  console.log('payWay', payWay);
 
   // 手機版頁面-----------------------------------------------------------------------------------
   const mob = (
@@ -562,12 +594,10 @@ function Cart() {
                 if (arrivedClick === false) {
                   setArrivedClick(true);
                   setCreditClick(false);
-                } else {
-                  setArrivedClick(false);
                 }
               }}
             >
-              貨到付款
+              LinePay
             </button>
 
             <button
@@ -583,8 +613,6 @@ function Cart() {
                 if (creditClick === false) {
                   setCreditClick(true);
                   setArrivedClick(false);
-                } else {
-                  setCreditClick(false);
                 }
               }}
             >
@@ -1014,13 +1042,12 @@ function Cart() {
               onClick={() => {
                 if (arrivedClick === false) {
                   setArrivedClick(true);
+                  setPayWay(0);
                   setCreditClick(false);
-                } else {
-                  setArrivedClick(false);
                 }
               }}
             >
-              貨到付款
+              LinePay
             </button>
 
             <button
@@ -1030,9 +1057,8 @@ function Cart() {
               onClick={() => {
                 if (creditClick === false) {
                   setCreditClick(true);
+                  setPayWay(1);
                   setArrivedClick(false);
-                } else {
-                  setCreditClick(false);
                 }
               }}
             >
@@ -1096,10 +1122,7 @@ function Cart() {
               </div>
 
               <button
-                onClick={async () => {
-                  await SendData();
-                  await LinkOpay();
-                }}
+                onClick={handlePay}
                 className="eason_pay_btn bg_main_light_color1 "
               >
                 前往付款

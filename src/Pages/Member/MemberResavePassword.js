@@ -1,13 +1,45 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import './Member.css';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 function MemberResavePassword() {
+  const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
+  const memberID = JSON.parse(localStorage.getItem('auth'));
+  const sendData = async () => {
+    const fd = new FormData();
+
+    fd.append('password', password);
+    fd.append('sid', memberID.sid);
+
+    const { data } = await axios.put(
+      'http://localhost:6001/member/resetpassword',
+      fd
+    );
+
+    if (data.success) {
+      MySwal.fire({
+        title: <strong>成功修改</strong>,
+        icon: 'success',
+      });
+    } else {
+      Swal.fire({
+        title: '<strong>資料未修改</strong>',
+        icon: 'info',
+      });
+    }
+  };
+
   return (
     <div
       style={{
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
-        height:'800px',
+        height: '800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
@@ -19,10 +51,14 @@ function MemberResavePassword() {
             <div>
               <input
                 type="text"
+                value={password}
                 style={{
                   backgroundColor: 'transparent',
                   border: 'none',
                   outline: 'none',
+                }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
                 }}
               />
             </div>
@@ -34,10 +70,14 @@ function MemberResavePassword() {
             <div>
               <input
                 type="text"
+                value={checkPassword}
                 style={{
                   backgroundColor: 'transparent',
                   border: 'none',
                   outline: 'none',
+                }}
+                onChange={(e) => {
+                  setCheckPassword(e.target.value);
                 }}
               />
             </div>
@@ -53,6 +93,7 @@ function MemberResavePassword() {
               color: '#fff',
               borderRadius: '15px',
             }}
+            onClick={sendData}
           >
             儲存
           </button>

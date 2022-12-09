@@ -11,10 +11,11 @@ const NAV = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   // position: fixed
   // top: 0px
   // right: 0px
-  z-index: 3;
+  z-index: 100;
 `;
 
 const NAVBOX = styled.div`
