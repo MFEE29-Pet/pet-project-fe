@@ -28,16 +28,12 @@ function GoToTop() {
         </svg> */}
         {mode === 'dog' ? (
           <img
-            src={`/images/${
-              hover ? 'icons8-dog-bone-64_2.png' : 'icons8-dog-bone-64.png'
-            }`}
+            src={`/images/${hover ? 'GoToTop_Dog2.png' : 'GoToTop_Dog1.png'}`}
             alt=""
           />
         ) : (
           <img
-            src={`/images/${
-              hover ? 'icons8-cat-64_2.png' : 'icons8-cat-64_1.png'
-            }`}
+            src={`/images/${hover ? 'GoToTop_Cat2.png' : 'GoToTop_Cat1.png'}`}
             alt=""
           />
         )}
