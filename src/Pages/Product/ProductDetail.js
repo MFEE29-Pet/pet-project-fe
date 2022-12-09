@@ -110,6 +110,7 @@ function ProductDetail() {
     } catch (e) {
       console.log(e.message);
     }
+    // console.log(comments);
   };
 
   // didMount 載入資料
