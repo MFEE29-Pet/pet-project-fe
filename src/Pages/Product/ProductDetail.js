@@ -127,7 +127,7 @@ function ProductDetail() {
     return { ...e };
   });
   const data = pd[0];
-  console.log(data);
+  // console.log(data);
 
   // console.log(avgNum);
 

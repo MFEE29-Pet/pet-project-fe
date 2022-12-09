@@ -53,8 +53,6 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
     p_sid: pSid || 0,
     m_sid: 1,
     // localStorage or session 取得
-    o_sid: 1,
-    // 考慮刪除
   };
   // 傳送出去的資料
   const [fields, setFields] = useState(initFields);
@@ -156,7 +154,6 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
         >
           <input type="number" name="p_sid" value={sid} readOnly hidden />
           <input type="number" name="m_sid" defaultValue={1} hidden />
-          <input type="number" name="o_sid" defaultValue={1} hidden />
           {/* 接收星星的值 */}
           <input
             type="number"
