@@ -214,7 +214,7 @@ const MyCarousel = ({
           </ImageWrapper>
         </CarouselWrapper>
       </div>
-      <ImageWrapper $mode={mode} style={{ transform: 'translateX(20%)' }}>
+      <ImageWrapper $mode={mode} style={{ transform: 'translateX(21%)' }}>
         {styleImages[floatNum - 1]?.map((imageUrl, index) => (
           <Image
             key={imageUrl}
