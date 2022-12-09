@@ -147,7 +147,7 @@ export const IsLovedContextProvider = function ({ children }) {
 
   useEffect(() => {
     getLovedList();
-  }, [loved, productShow]);
+  }, [location, loved, productShow, isLovedNum]);
   // console.log(...lovedList);
 
   return (

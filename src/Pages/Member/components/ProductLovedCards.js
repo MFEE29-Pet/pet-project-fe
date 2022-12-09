@@ -12,7 +12,7 @@ const LIST = styled.div`
   }
 `;
 
-function ProductLovedCards({ deleteList, setDeleteList, loveList }) {
+function ProductLovedCards({ deleteList, setDeleteList, loveList, isLovedNum }) {
   const navigate = useNavigate();
 
   const { mode } = useContext(SwitchButtonContext);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductLovedCards from './components/ProductLovedCards';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { LOVE_LIST } from './my-config';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import IsLovedContext from '../Product/contexts/IsLovedContext';
 
 const MySwal = withReactContent(Swal);
 
@@ -28,6 +29,7 @@ function MemberProductCollect() {
   const [deleteList, setDeleteList] = useState([]);
   const [deleteAll, setDeleteAll] = useState(false);
   const [allSid, setAllSid] = useState([]);
+  const { setIsLovedNum } = useContext(IsLovedContext);
 
   const [loveList, setLoveList] = useState([]);
 
@@ -72,7 +74,8 @@ function MemberProductCollect() {
         icon: 'success',
       });
       getProducts();
-      setDeleteAll(false)
+      setDeleteAll(false);
+      setIsLovedNum([]);
     }
   };
 
