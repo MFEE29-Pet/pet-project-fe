@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { FacebookIcon } from 'react-share';
 import { FacebookShareButton } from 'react-share';
+import Swal from 'sweetalert2';
 
 // import AuthContext from '../../contexts/AuthContext';
 import { PRODUCT_DETAIL } from './my-config';
@@ -19,6 +20,7 @@ import RelatedProduct from './components/RelatedProduct';
 import History from './components/History';
 import Comments from './components/Comments';
 import GoToTop from './components/GoToTop';
+import AuthContext from '../../contexts/AuthContext';
 
 // styled components
 const InfoDiv = styled.div`
@@ -47,6 +49,8 @@ function ProductDetail() {
   // 收藏項目
   const { lovedList, delLoved, addLoved, loved, indexNum } =
     useContext(IsLovedContext);
+  // 驗證登入用
+  const { myAuth } = useContext(AuthContext);
 
   // states
   // 收藏連結 Hover
@@ -272,7 +276,7 @@ function ProductDetail() {
                   quote={`GitHub`}
                   className="Demo__some-network__share-button"
                 >
-                  <FacebookIcon size={32} round />
+                  <FacebookIcon size={28} round />
                 </FacebookShareButton>
               </div>
 
@@ -353,6 +357,13 @@ function ProductDetail() {
                   <div
                     className="write-reply"
                     onClick={() => {
+                      if (!myAuth.sid) {
+                        Swal.fire({
+                          title: '<strong>請先登入會員</strong>',
+                          icon: 'warning',
+                        });
+                        return;
+                      }
                       setShowDiv(!showDiv);
                     }}
                   >

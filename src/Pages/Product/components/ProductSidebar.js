@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import AuthContext from '../../../contexts/AuthContext';
+import Swal from 'sweetalert2';
 
 const P = styled.p`
   color: ${(props) => (props.$mode === 'dog' ? '#956134' : '#18334e')};
@@ -99,7 +100,10 @@ function ProductSidebar() {
       <div
         onClick={() => {
           if (!myAuth.sid) {
-            alert('請先登入會員');
+            Swal.fire({
+              title: '<strong>請先登入會員</strong>',
+              icon: 'warning',
+            });
             navigate('/member/memberLogIn');
             return;
           }
