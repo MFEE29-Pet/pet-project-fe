@@ -4,6 +4,7 @@ import GameItem from './Components/GameItem';
 function Game() {
   const [scores, setScores] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [highScores, setHighScores] = useState(0);
   useEffect(() => {
     const count = setInterval(() => {
       setScores((scores) => scores + 1);

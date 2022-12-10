@@ -4,9 +4,9 @@ import './Service.scss';
 import Messages from './components/Messages';
 import AuthContext from '../../../../contexts/AuthContext';
 import axios from 'axios';
-import { SOCKET, SOCKET_HOST } from '../../my-config';
+import { SOCKET } from '../../my-config';
 import Conversation from './components/Conversation';
-import { io } from 'socket.io-client';
+
 
 function ServiceIndex({ socket }) {
   const { mode } = useContext(SwitchButtonContext);

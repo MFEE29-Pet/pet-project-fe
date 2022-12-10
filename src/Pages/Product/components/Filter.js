@@ -104,6 +104,9 @@ function Filter({
               className={`newProduct bg_main_light_color1 ${
                 sortMethod === 'top_sell' ? 'active' : ''
               }`}
+              onClick={() => {
+                setSortMethod('top_sell');
+              }}
             >
               熱賣商品
             </button>

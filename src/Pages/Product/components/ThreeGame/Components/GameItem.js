@@ -1,12 +1,10 @@
 import { Physics, useBox, useSphere, usePlane } from '@react-three/cannon';
-import { OrbitControls, useGLTF } from '@react-three/drei';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useGLTF } from '@react-three/drei';
+
 import { useContext } from 'react';
 import { useRef } from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 import SwitchButtonContext from '../../../../../contexts/SwitchButtonContext';
-import { angleToRadians } from '../../Three/utils/angle';
 
 function Spin({ children }) {
   const ref = useRef();
@@ -23,8 +21,8 @@ function Ball({ args = [0.5, 32, 32], setScores, gameOver, setGameOver }) {
     position: [0, -viewport.height, 0],
     rotation: [-Math.PI / 2, 0, 0],
     onCollide: () => {
+      // setGameOver(true);
       setScores(0);
-      setGameOver(!gameOver);
       // console.log('1');
       api.position.set(0, 0, 0);
       api.velocity.set(0, 10, 0);
