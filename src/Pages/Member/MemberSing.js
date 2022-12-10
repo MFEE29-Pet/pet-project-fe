@@ -25,6 +25,13 @@ const BreadcrumbBox = styled.div`
   margin-bottom: 50px;
 `;
 
+const AUTO_LOGIN_ROOT = styled.div`
+  background-color: #fff;
+  &:hover {
+    background-color: #fff5de;
+  }
+`;
+
 const Memberroutes = [
   {
     to: '/',
@@ -41,6 +48,11 @@ function MemberSing() {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [notDo, setNotDo] = useState(true);
+  const [code, setCode] = useState('');
+  const [pass, setPass] = useState(false);
+  const [allPass, setAllPass] = useState(true);
 
   const addUser = async () => {
     const fd = new FormData();
@@ -60,18 +72,71 @@ function MemberSing() {
     }
   };
 
-  const addLine =async()=>{
-    const {data} = await axios.get('http://localhost:6001/member/linelogin')
-    window.open(data)
-  }
+  const addLine = async () => {
+    const { data } = await axios.get('http://localhost:6001/member/linelogin');
+    window.open(data);
+  };
   const addgoogle = async () => {
-    const { data } = await axios.get('http://localhost:6001/member/googlelogin');
+    const { data } = await axios.get(
+      'http://localhost:6001/member/googlelogin'
+    );
     //console.log(data);
     window.open(data);
   };
 
+  const sendCode = async () => {
+    const fd = new FormData();
+
+    fd.append('mobile', mobile);
+
+    const { data } = await axios.post(
+      'http://localhost:6001/member/phonecheck',
+      fd
+    );
+
+    console.log(data);
+    if (data.msg === 'success') {
+      setNotDo(false);
+    }
+  };
+
+  const checkCode = async () => {
+    const fd = new FormData();
+
+    fd.append('code', code);
+
+    const res = await axios.post('http://localhost:6001/member/checkcode', fd);
+
+    console.log(res);
+
+    if (res.data.msg === 'success') {
+      MySwal.fire({
+        title: <strong>驗證碼正確</strong>,
+        icon: 'success',
+      });
+      setPass(true);
+    } else {
+      Swal.fire({
+        title: '<strong>驗證碼錯誤</strong>',
+        icon: 'info',
+      });
+    }
+  };
+  if (
+    mail &&
+    password &&
+    checkPassword &&
+    checkCode &&
+    code &&
+    mobile &&
+    pass
+  ) {
+    setAllPass(false);
+  }
+
   return (
     <JoinPage>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <BreadcrumbBox>
         <Breadcrumb
           routes={Memberroutes}
@@ -98,6 +163,94 @@ function MemberSing() {
               />
             </div>
           </div>
+        </div>
+        <div className="logInenterA" style={{ position: 'relative' }}>
+          <h2 className="text_main_dark_color2">手機號碼</h2>
+          <div
+            className="logInenterC"
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
+            <div className="logIninput">
+              <input
+                type="mobile"
+                name="mobile"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                  width: '130px',
+                }}
+                value={mobile}
+                onChange={(e) => {
+                  setMobile(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <button
+            style={{
+              padding: '5px 5px',
+              width: '90px',
+              borderRadius: '5px',
+              marginRight: '5px',
+              border: 'none',
+              color: '#fff',
+              fontWeight: '500',
+              position: 'absolute',
+              top: '0px',
+              bottom: '0px',
+              right: '-100px',
+            }}
+            className="bg_main_light_color1"
+            // onClick={sendCode}
+          >
+            發送驗證碼
+          </button>
+        </div>
+        <div className="logInenterA" style={{ position: 'relative' }}>
+          <h2 className="text_main_dark_color2">驗證碼</h2>
+          <div
+            className="logInenterC"
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
+            <div className="logIninput">
+              <input
+                id="code"
+                type="number"
+                name="check"
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  backgroundColor: 'transparent',
+                  width: '130px',
+                }}
+                value={code}
+                onChange={(e) => {
+                  setCode(e.target.value);
+                }}
+                disabled={notDo}
+              />
+            </div>
+          </div>
+          <button
+            style={{
+              padding: '5px 5px',
+              width: '90px',
+              borderRadius: '5px',
+              marginRight: '5px',
+              border: 'none',
+              color: '#fff',
+              fontWeight: '500',
+              position: 'absolute',
+              top: '0px',
+              bottom: '0px',
+              right: '-100px',
+            }}
+            className="bg_main_light_color1"
+            onClick={checkCode}
+          >
+            驗證
+          </button>
         </div>
         <div className="logInenterA">
           <h2 className="text_main_dark_color2">輸入密碼</h2>
@@ -142,11 +295,13 @@ function MemberSing() {
         <button
           className="buttonLogIn"
           style={{
-            backgroundColor: mail && password && checkPassword && '#f8b62d',
-            color: mail && password && checkPassword && '#fff',
+            backgroundColor:
+              mail && password && checkPassword && code && pass && '#f8b62d',
+            color: mail && password && checkPassword && code && pass && '#fff',
             fontWeight: '700',
           }}
           onClick={addUser}
+          disabled={allPass}
         >
           註冊
         </button>
@@ -254,6 +409,21 @@ function MemberSing() {
           </div>
         </div>
       </div>
+      <AUTO_LOGIN_ROOT
+        onClick={() => {
+          setMail('petproject1214@gmail.com');
+          setPassword('1214');
+          setCheckPassword('1214');
+        }}
+        style={{
+          width: '20px',
+          height: '20px',
+          position: 'absolute',
+          top: '315px',
+          right: '730px',
+          borderRadius: '50%',
+        }}
+      ></AUTO_LOGIN_ROOT>
     </JoinPage>
   );
 }

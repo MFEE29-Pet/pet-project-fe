@@ -1,6 +1,5 @@
 import React, { useContext, useLayoutEffect, useRef } from 'react';
 import { imgUrl } from '../../config';
-import img from '../../images/person_2_uncolor.jpg';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../contexts/SwitchButtonContext';
 import gsap from 'gsap';
@@ -14,14 +13,12 @@ const PhotographerBox = styled.div`
     width: 400px;
     height: 550px;
     border-radius: 200px;
+    position: relative;
     position: absolute;
     top: 20px;
     left: 70px;
-    background: url(${img});
-    background-repeat: no-repeat;
-    background-position: 60% center;
-    background-size: 210%;
     z-index: 2;
+    overflow: hidden;
   }
   .photo {
     width: 560px;
@@ -92,7 +89,9 @@ function PhotographerOne() {
   }, []);
   return (
     <PhotographerBox>
-      <People className="people" $mode={mode}></People>
+      <People className="people" $mode={mode}>
+        <img src={`${imgUrl}/images/Photographer_Index_Yen.png`} alt="" style={{height:'100%',position:'absolute',top:'0',left:'50%',transform:'translateX(-50%)'}}/>
+      </People>
       <div className="photo" ref={photo}>
         <img
           className="aaa"

@@ -36,7 +36,7 @@ const Memberroutes = [
 
 function MemberForgetPassword() {
   const [mail, setMail] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const sendMail = async () => {
     const fd = new FormData();
@@ -47,18 +47,19 @@ function MemberForgetPassword() {
     );
     console.log(data);
 
-    if(data.msg === 'success'){
+    if (data.msg === 'success') {
       MySwal.fire({
         title: <strong>已更換密碼</strong>,
         text: '請至您的信箱查看新密碼',
         icon: 'success',
       });
-      navigate('/member/memberLogIn')
+      navigate('/member/memberLogIn');
     }
   };
 
   return (
     <ForgetPasswordPage>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <BreadcrumbBox>
         <Breadcrumb
           routes={Memberroutes}
@@ -153,6 +154,7 @@ function MemberForgetPassword() {
           </button>
         </div>
       </div>
+      <div className="p_space" style={{ height: '100px' }}></div>
     </ForgetPasswordPage>
   );
 }

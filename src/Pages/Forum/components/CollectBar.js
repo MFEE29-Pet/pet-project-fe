@@ -3,6 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './CollectBar.css';
 import axios from 'axios';
 import { GET_COLL, ADD_COLL, DEL_COLL } from '../my-config';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const CollectButton = ({ a_sid }) => {
   const [isLike, setIsCollect] = useState(false);
@@ -53,8 +57,11 @@ const CollectButton = ({ a_sid }) => {
   const addCollect = async (forumSid) => {
     // 判斷登入
     if (m_sid === '未登入') {
-      alert('請先登入會員');
-      navigate('/login');
+      Swal.fire({
+        title: '<strong>請先登入會員</strong>',
+        icon: 'info',
+      });
+      navigate('/member/memberLogIn');
       return;
     }
 
