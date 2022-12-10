@@ -1,20 +1,33 @@
-import React from 'react';
-// import { useNavigate } from 'react-router';
+import React, { useContext } from 'react';
 import './ButtonPost.css';
-import { Link } from 'react-router-dom';
+import AuthContext from '../../../contexts/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 function ButtonPost() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { myAuth } = useContext(AuthContext);
+
   return (
     <>
-      <Link to={'/forum/post'}>
-        <button
-          className="btn_post bg_main_light_color1"
-          // onClick={() => navigate('post')}
-        >
-          發表文章
-        </button>
-      </Link>
+      <button
+        className="btn_post bg_main_light_color1"
+        onClick={() => {
+          if (!myAuth.sid) {
+            Swal.fire({
+              title: '<strong>請先登入會員</strong>',
+              icon: 'info',
+            });
+            return
+          }
+          navigate('/forum/post');
+        }}
+      >
+        發表文章
+      </button>
     </>
   );
 }

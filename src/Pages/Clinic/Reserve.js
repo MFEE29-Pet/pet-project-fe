@@ -271,6 +271,8 @@ function Reserve() {
     setTextArea,
     preview,
     setPreview,
+    which,
+    setWhich,
   ] = useOutletContext();
   const final = { ...clinicDetail };
 
@@ -347,7 +349,7 @@ function Reserve() {
 
       setMemberData(memberData);
       console.log(memberData.area_sid);
-      setMemberId(memberData.sid)
+      setMemberId(memberData.sid);
       setMemberName(memberData.name);
       setMemberEmail(memberData.email);
       setMemberMobile(memberData.mobile);
@@ -366,30 +368,48 @@ function Reserve() {
       const res = await axios.get(
         `http://localhost:6001/clinic/pet/${memberID.sid}`
       );
-      const petData = res.data.rows[0];
+      const petData = res.data.rows;
 
       //處理寵物年紀
-      const birth = dayjs(petData.pet_birthday).valueOf();
 
-      const now = Date.now();
+      const data = petData.map((e, i) => {
+        const { pet_birthday } = e;
+        const birth = dayjs(pet_birthday).valueOf();
 
-      const final = Math.ceil((now - birth) / (365.25 * 24 * 60 * 60 * 1000));
+        const now = Date.now();
 
-      console.log(final);
-      setPetAge(final);
+        const final = Math.ceil((now - birth) / (365.25 * 24 * 60 * 60 * 1000));
 
-      // console.log(petData);
-      setPetData(petData);
-      setPetId(petData.sid)
-      setPetName(petData.pet_name);
-      setVariety(petData.Kind_of_pet);
-      setGender(petData.pet_gender);
-      setControl(petData.birth_control);
-      setPetPid(petData.pet_pid);
+        return { ...petData[i], pet_age: final };
+      });
+
+      //console.log(final);
+
+      //console.log(petData);
+      setPetData(data);
+      setPetId(petData[which].sid);
+      setPetName(petData[which].pet_name);
+      setVariety(petData[which].Kind_of_pet);
+      setGender(petData[which].pet_gender);
+      setControl(petData[which].birth_control);
+      setPetPid(petData[which].pet_pid);
     } catch (e) {
       console.log(e.message);
     }
   };
+  console.log(petData);
+  
+  setPetAge(petData[which].pet_age);
+
+  useEffect(() => {
+    setPetId(petData[which].sid);
+    setPetAge(petData[which].pet_age);
+    setPetName(petData[which].pet_name);
+    setVariety(petData[which].Kind_of_pet);
+    setGender(petData[which].pet_gender);
+    setControl(petData[which].birth_control);
+    setPetPid(petData[which].pet_pid);
+  }, [which]);
 
   //拿到city資料
   const getCityData = async () => {
@@ -557,7 +577,6 @@ function Reserve() {
     hiddenFileInput.current.click();
   };
 
-
   // const date = dayjs(startDate).format('YYYY/MM/DD');
 
   return (
@@ -613,7 +632,7 @@ function Reserve() {
 
         {/* <!-- 會員資料 --> */}
         <div className="member-data">
-          <input type="hidden" value={memberId}/>
+          <input type="hidden" value={memberId} />
           <h2 className="text_main_dark_color2">飼主資料</h2>
           <div className="name">
             <label htmlFor="name">姓名</label>
@@ -674,6 +693,22 @@ function Reserve() {
         <div className="pet-data">
           <input type="hidden" value={petId} />
           <h2 className="text_main_dark_color2">寵物資料</h2>
+          <select
+            name=""
+            id=""
+            onChange={(e) => {
+              setWhich(e.target.value);
+            }}
+          >
+            {petData.map((e, i) => {
+              const { pet_name } = e;
+              return (
+                <option value={i} key={i}>
+                  {pet_name}
+                </option>
+              );
+            })}
+          </select>
           <div className="pet-variety">
             {/* <!-- 寵物種類 --> */}
             <h1 htmlFor="variety">種類</h1>
@@ -705,7 +740,15 @@ function Reserve() {
           {/* <!-- 寵物年紀 --> */}
           <div className="pet-age">
             <label htmlFor="pet-age">年紀</label>
-            <input type="number" id="pet-age" value={petAge} disabled />
+            <input
+              type="number"
+              id="pet-age"
+              value={petAge}
+              onChange={(e) => {
+                setPetAge(e.target.value);
+              }}
+              disabled
+            />
           </div>
           {/* <!-- 寵物性別 --> */}
           <div className="pet-gender">

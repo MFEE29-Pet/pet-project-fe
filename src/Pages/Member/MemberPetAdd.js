@@ -4,6 +4,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import {imgUrl} from '../../config'
 
 const MySwal = withReactContent(Swal);
 function MemberPetAdd() {
@@ -86,7 +87,7 @@ function MemberPetAdd() {
 
   const sendData = async () => {
     const date = dayjs(birthday).format('YYYY/MM/DD');
-    const pic_name = type === '狗' ? 'dog_food.png' : 'cat_food.png';
+    const pic_name = type === '狗' ? 'dog.png' : 'cat.png';
 
     const fd = new FormData();
 
@@ -257,13 +258,13 @@ function MemberPetAdd() {
                     <img src={preview} alt="" style={{ width: '100%' }} />
                   ) : type === '狗' ? (
                     <img
-                      src="/images/dog_food.png"
+                      src={`${imgUrl}/images/dog_1.png`}
                       alt=""
                       style={{ height: '50%', objectFit: 'cover' }}
                     />
                   ) : (
                     <img
-                      src="/images/cat_food.png"
+                      src={`${imgUrl}/images/cat_1.png`}
                       alt=""
                       style={{ height: '50%', objectFit: 'cover' }}
                     />
