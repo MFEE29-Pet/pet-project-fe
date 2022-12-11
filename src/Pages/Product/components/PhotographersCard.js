@@ -44,9 +44,9 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 position: 'relative',
                 zIndex: 0,
                 transformOrigin: ' top left',
-                transform: ' rotateZ(135deg)',
-                top: '5%',
-                left: '10%',
+                // transform: ' rotateZ(135deg)',
+                top: floatNum === 3 ? '30%' : '35%',
+                left: '30%',
               }}
             >
               <img
@@ -56,6 +56,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 style={{
                   position: 'absolute',
                   width: '30px',
+
                   // transform: 'rotateX(45deg)',
                 }}
                 alt=""
@@ -72,6 +73,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 display: 'flex',
                 justifyContent: 'center',
                 margin: '0 0 20px 0',
+                backgroundColor: 'transparent',
               }}
               key={el.sid}
               onClick={() => {
@@ -79,7 +81,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
               }}
             >
               <img
-                src={`/images/test/${el.image}`}
+                src={`/images/${el.image}`}
                 alt=""
                 style={{ height: '100%' }}
               />
