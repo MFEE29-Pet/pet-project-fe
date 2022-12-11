@@ -347,7 +347,7 @@ function Check() {
   console.log(cityName);
 
   const getAreaName = async () => {
-    const { res } = await axios.get(
+    const  res  = await axios.get(
       `http://localhost:6001/clinic/areaname/${area}`
     );
     const data = res.data.rows[0];

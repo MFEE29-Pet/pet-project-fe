@@ -769,14 +769,29 @@ function Cart() {
               {myPhotoData.map((v, i) => {
                 return (
                   <tr key={v.sid}>
-                    <td className="eason_table_img">
-                      <img
-                        style={{ verticalAlign: 'middle' }}
-                        src={`./images/test/${v.img}`}
-                        alt=""
-                        width="80px"
-                        height="80px"
-                      />
+                    <td
+                      className="eason_table_img"
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                    >
+                      <div
+                        style={{
+                          width: '90%',
+                          height: '90% ',
+                          textAlign: 'center',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            width: '150%',
+                            objectPosition:'center center'
+                          }}
+                          src={`./images/test/${v.img}`}
+                          alt=""
+                          width="100%"
+                        />
+                      </div>
                     </td>
                     <td>{v.name}</td>
                     <td>{v.date}</td>
