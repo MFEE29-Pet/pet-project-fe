@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import './Member.css';
+
+const MySwal = withReactContent(Swal);
 function MemberAppointment() {
   const [clinicData, setClinicData] = useState([]);
   //取出會員ID
@@ -14,7 +17,7 @@ function MemberAppointment() {
       );
 
       const data = res.data.rows;
-      console.log(data);
+      //console.log(data);
 
       const daydata = data.map((e, i) => {
         const { date } = e;
@@ -31,6 +34,20 @@ function MemberAppointment() {
   useEffect(() => {
     getClinicData();
   }, []);
+
+  const delData = async (sid) => {
+    const res = await axios.delete(
+      `http://localhost:6001/member/delclinic/${sid}`
+    );
+    if (res.data.success) {
+      MySwal.fire({
+        title: <strong>成功刪除</strong>,
+        icon: 'success',
+      });
+    }
+
+    getClinicData();
+  };
   return (
     <>
       <div
@@ -38,7 +55,7 @@ function MemberAppointment() {
           display: 'flex',
           flexDirection: 'column',
           width: '80%',
-          height:'800px',
+          height: '800px',
           marginTop: '80px',
           fontSize: '20px',
         }}
@@ -47,7 +64,15 @@ function MemberAppointment() {
           掛號預約紀錄
         </h2>
         {clinicData.map((e, i) => {
-          const { address, code, mobile, clinic_name, date, sid } = e;
+          const {
+            address,
+            code,
+            mobile,
+            clinic_name,
+            date,
+            reserve_sid,
+            time,
+          } = e;
           return (
             <div className="Hospital-all" key={i}>
               <div className="Hospital-order">
@@ -61,7 +86,7 @@ function MemberAppointment() {
                     <h3
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
-                        console.log(sid);
+                        delData(reserve_sid);
                       }}
                     >
                       取消預約
@@ -95,7 +120,9 @@ function MemberAppointment() {
                 </div>
                 <div className="Hospital-A">
                   <h5>時段</h5>
-                  <span>下午</span>
+                  {time === 1 ? <span>早診</span> : <></>}
+                  {time === 2 ? <span>午診</span> : <></>}
+                  {time === 3 ? <span>晚診</span> : <></>}
                 </div>
                 <div className="Hospital-A">
                   <h5>序號</h5>

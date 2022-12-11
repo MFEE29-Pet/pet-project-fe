@@ -124,6 +124,10 @@ function MemberPetAdd() {
     const res = await axios.delete(
       `http://localhost:6001/member/delpet/${sid}`
     );
+    MySwal.fire({
+        title: <strong>成功刪除</strong>,
+        icon: 'success',
+      });
     getPetData();
     console.log(res);
   };

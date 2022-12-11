@@ -105,7 +105,7 @@ const ReserveForm = styled.div`
       font-size: 18px;
       font-family: art;
       font-weight: bold;
-      margin: 50px 30px;
+      margin: 0px 30px;
     }
     .pet-variety {
       display: flex;
@@ -398,7 +398,7 @@ function Reserve() {
     }
   };
   console.log(petData);
-  
+
   setPetAge(petData[which].pet_age);
 
   useEffect(() => {
@@ -692,23 +692,27 @@ function Reserve() {
         {/* <!-- 寵物資料 --> */}
         <div className="pet-data">
           <input type="hidden" value={petId} />
-          <h2 className="text_main_dark_color2">寵物資料</h2>
-          <select
-            name=""
-            id=""
-            onChange={(e) => {
-              setWhich(e.target.value);
-            }}
-          >
-            {petData.map((e, i) => {
-              const { pet_name } = e;
-              return (
-                <option value={i} key={i}>
-                  {pet_name}
-                </option>
-              );
-            })}
-          </select>
+          <div style={{display:'flex',margin:'50px 0px',alignItems:'center'}}>
+            <h2 className="text_main_dark_color2">寵物資料</h2>
+            <select
+              name=""
+              id=""
+              onChange={(e) => {
+                setWhich(e.target.value);
+              }}
+              style={{borderRadius:'10px',width:'100px',height:'20px',marginLeft:'40px'}}
+            >
+              {petData.map((e, i) => {
+                const { pet_name } = e;
+                return (
+                  <option value={i} key={i}>
+                    {pet_name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
           <div className="pet-variety">
             {/* <!-- 寵物種類 --> */}
             <h1 htmlFor="variety">種類</h1>

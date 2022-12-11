@@ -48,6 +48,7 @@ import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
 import GoogleCallback from './Pages/Member/GoogleCallback';
 import LineCallback from './Pages/Member/LineCallback';
 import LinePay from './Pages/Cart/LinePay';
+import StartPage from './Pages/StartPage/StartPage';
 
 // try socket io
 import io from 'socket.io-client';
@@ -108,7 +109,7 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           {/* Navbar */}
-          {/* <StartPage/> */}
+          <StartPage/>
           <Navbar />
           
           <i

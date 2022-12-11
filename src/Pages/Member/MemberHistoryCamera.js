@@ -5,7 +5,7 @@ import axios from 'axios';
 import PhotoDetail from './components/PhotoDetail';
 
 function MemberHistoryCamera() {
-  const [open, setOpen] = useState(-1);
+  const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [detailNum, setDetailNum] = useState('');
 
@@ -53,12 +53,12 @@ function MemberHistoryCamera() {
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
-        height:'800px',
+        height: '800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
     >
-    <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
+      <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
         攝影訂單紀錄
       </h2>
       <div
@@ -122,16 +122,26 @@ function MemberHistoryCamera() {
                   >
                     ${photo_total_price}
                   </p>
-                  <i
-                    className="fa-regular fa-circle-chevron-down"
-                    style={{ cursor: 'pointer', fontSize: '22px' }}
-                    onClick={() => {
-                      click(orders_num, i);
-                    }}
-                  ></i>
+                  {open ? (
+                    <i
+                      className="fa-regular fa-circle-chevron-down"
+                      style={{ cursor: 'pointer', fontSize: '22px' }}
+                      onClick={() => {
+                        click(orders_num, i);
+                      }}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fa-regular fa-circle-chevron-up"
+                      style={{ cursor: 'pointer', fontSize: '22px' }}
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                    ></i>
+                  )}
                 </div>
               </div>
-              <PhotoDetail open={open} detailNum={detailNum} i={i}/>
+              <PhotoDetail open={open} detailNum={detailNum} i={i} />
             </div>
           );
         })}
