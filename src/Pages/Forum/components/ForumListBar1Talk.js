@@ -41,9 +41,9 @@ function ForumListBar1Talk({ talkListData }) {
     //     }),
     //   };
     // });
-    setCollection(article);
-    const numbers = collection.map((e, i) => e.a_sid);
-    setCollectionNum(numbers);
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
 
     const A = article.filter((e, i) => {
       const { category } = e;

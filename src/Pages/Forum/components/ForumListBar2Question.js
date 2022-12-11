@@ -3,7 +3,7 @@ import CollectLikeBar from './CollectLikeBar';
 import { GET_ALL_ARTICLE } from '../my-config';
 import { useEffect, useState } from 'react';
 import './ForumListBar.css';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 function ForumListBar2Question({ talkListData }) {
   const [articles, setArticles] = useState([
@@ -20,6 +20,7 @@ function ForumListBar2Question({ talkListData }) {
   ]);
   const [tags, setTags] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
   const [collection, setCollection] = useState([]);
   const [collectionNum, setCollectionNum] = useState([]);
 
@@ -37,9 +38,9 @@ function ForumListBar2Question({ talkListData }) {
       return category === 'B';
     });
 
-    setCollection(article);
-    const numbers = collection.map((e, i) => e.a_sid);
-    setCollectionNum(numbers);
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
 
     console.log(A);
     setArticles(A);
@@ -68,6 +69,7 @@ function ForumListBar2Question({ talkListData }) {
     getArticles();
     getCollection();
   }, []);
+
   return (
     <>
       {articles.map((e, i) => {

@@ -331,7 +331,7 @@ function MemberLogIn() {
         onClick={() => {
           setUser({
             mail: 'petproject1214@gmail.com',
-            password: '0721',
+            password: '1214',
           });
         }}
         style={{

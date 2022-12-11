@@ -37,9 +37,9 @@ function ForumListBar3Activity({ talkListData }) {
       return category === 'C';
     });
 
-    setCollection(article);
-    const numbers = collection.map((e, i) => e.a_sid);
-    setCollectionNum(numbers);
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
 
     console.log(A);
     setArticles(A);

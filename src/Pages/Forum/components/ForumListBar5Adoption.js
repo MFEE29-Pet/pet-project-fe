@@ -36,9 +36,9 @@ function ForumListBar5Adoption({ talkListData }) {
       const { category } = e;
       return category === 'E';
     });
-    setCollection(article);
-    const numbers = collection.map((e, i) => e.a_sid);
-    setCollectionNum(numbers);
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
 
     console.log(A);
     setArticles(A);

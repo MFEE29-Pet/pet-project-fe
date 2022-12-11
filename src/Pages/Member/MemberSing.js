@@ -120,7 +120,7 @@ function MemberSing() {
         title: <strong>驗證碼正確</strong>,
         icon: 'success',
       });
-      setPass(true);
+      // setPass(true);
     } else {
       Swal.fire({
         title: '<strong>驗證碼錯誤</strong>',
@@ -128,17 +128,9 @@ function MemberSing() {
       });
     }
   };
-  if (
-    mail &&
-    password &&
-    checkPassword &&
-    checkCode &&
-    code &&
-    mobile &&
-    pass
-  ) {
-    setAllPass(false);
-  }
+  // if (mail && password && checkPassword && code && mobile) {
+  //   setAllPass(false);
+  // }
 
   return (
     <JoinPage>
@@ -302,12 +294,12 @@ function MemberSing() {
           className="buttonLogIn"
           style={{
             backgroundColor:
-              mail && password && checkPassword && code && pass && '#f8b62d',
-            color: mail && password && checkPassword && code && pass && '#fff',
+              mail && password && checkPassword && code && '#f8b62d',
+            color: mail && password && checkPassword && code && '#fff',
             fontWeight: '700',
           }}
           onClick={addUser}
-          disabled={allPass}
+          // disabled={allPass}
         >
           註冊
         </button>
