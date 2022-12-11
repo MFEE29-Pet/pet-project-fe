@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MemberSing.css';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -105,7 +105,7 @@ function MemberSing() {
       setNotDo(false);
     }
   };
-
+  let msg = false;
   const checkCode = async () => {
     const fd = new FormData();
 
@@ -120,7 +120,8 @@ function MemberSing() {
         title: <strong>驗證碼正確</strong>,
         icon: 'success',
       });
-      // setPass(true);
+      msg = true;
+      setPass(true);
     } else {
       Swal.fire({
         title: '<strong>驗證碼錯誤</strong>',
@@ -294,12 +295,12 @@ function MemberSing() {
           className="buttonLogIn"
           style={{
             backgroundColor:
-              mail && password && checkPassword && code && '#f8b62d',
-            color: mail && password && checkPassword && code && '#fff',
+              mail && password && checkPassword && code && pass && '#f8b62d',
+            color: mail && password && checkPassword && code && pass && '#fff',
             fontWeight: '700',
           }}
           onClick={addUser}
-          // disabled={allPass}
+          disabled={!pass}
         >
           註冊
         </button>
