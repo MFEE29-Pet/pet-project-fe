@@ -87,13 +87,13 @@ function MemberLogIn() {
       'http://localhost:6001/member/googlelogin'
     );
     console.log(data);
-    window.open(data);
+    window.open(data, '_self');
   };
 
   const lineLogin = async () => {
     const { data } = await axios.get('http://localhost:6001/member/linelogin');
     console.log(data);
-    window.open(data);
+    window.open(data, '_self');
   };
 
   return (
@@ -115,7 +115,7 @@ function MemberLogIn() {
                 password: 'root',
               });
             }}
-            style={{cursor:'default'}}
+            style={{ cursor: 'default' }}
           >
             使用者信箱
           </h2>

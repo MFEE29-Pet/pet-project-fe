@@ -29,14 +29,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
       {loveList.map((e, i) => {
         return (
           <div className="articleInfo" key={i}>
-            <div
-              className="article-details"
-              onClick={() => {
-                // console.log(e2.sid);
-                navigate(`/forum/detail/?sid=${e.a_sid}`);
-              }}
-              style={{ cursor: 'pointer' }}
-            >
+            <div className="article-details" style={{ cursor: 'pointer' }}>
               <div className="article-all">
                 <input
                   type="checkbox"
@@ -86,7 +79,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                       className="text_main_dark_color2"
                       style={{ fontSize: '16px', marginTop: '10px' }}
                     >
-                      【閒聊】
+                      【發問】
                     </div>
                   </div>
                 ) : (
@@ -109,7 +102,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                       className="text_main_dark_color2"
                       style={{ fontSize: '16px', marginTop: '10px' }}
                     >
-                      【閒聊】
+                      【活動】
                     </div>
                   </div>
                 ) : (
@@ -132,7 +125,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                       className="text_main_dark_color2"
                       style={{ fontSize: '16px', marginTop: '10px' }}
                     >
-                      【閒聊】
+                      【送養】
                     </div>
                   </div>
                 ) : (
@@ -155,7 +148,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                       className="text_main_dark_color2"
                       style={{ fontSize: '16px', marginTop: '10px' }}
                     >
-                      【閒聊】
+                      【領養】
                     </div>
                   </div>
                 ) : (
@@ -178,7 +171,7 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                       className="text_main_dark_color2"
                       style={{ fontSize: '16px', marginTop: '10px' }}
                     >
-                      【閒聊】
+                      【其他】
                     </div>
                   </div>
                 ) : (
@@ -186,7 +179,14 @@ function ArticleLovedCards({ loveList, setDeleteList, deleteList }) {
                 )}
 
                 <div className="article">
-                  <h5>{e.title}</h5>
+                  <h5
+                    onClick={() => {
+                      // console.log(e2.sid);
+                      navigate(`/forum/detail/?sid=${e.a_sid}`);
+                    }}
+                  >
+                    {e.title}
+                  </h5>
                 </div>
               </div>
               <div

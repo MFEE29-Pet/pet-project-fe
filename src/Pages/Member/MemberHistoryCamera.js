@@ -5,7 +5,7 @@ import axios from 'axios';
 import PhotoDetail from './components/PhotoDetail';
 
 function MemberHistoryCamera() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(-1);
   const [data, setData] = useState([]);
   const [detailNum, setDetailNum] = useState('');
 
@@ -122,23 +122,13 @@ function MemberHistoryCamera() {
                   >
                     ${photo_total_price}
                   </p>
-                  {open ? (
-                    <i
-                      className="fa-regular fa-circle-chevron-down"
-                      style={{ cursor: 'pointer', fontSize: '22px' }}
-                      onClick={() => {
-                        click(orders_num, i);
-                      }}
-                    ></i>
-                  ) : (
-                    <i
-                      className="fa-regular fa-circle-chevron-up"
-                      style={{ cursor: 'pointer', fontSize: '22px' }}
-                      onClick={() => {
-                        setOpen(true);
-                      }}
-                    ></i>
-                  )}
+                  <i
+                    className="fa-regular fa-circle-chevron-down"
+                    style={{ cursor: 'pointer', fontSize: '22px' }}
+                    onClick={() => {
+                      click(orders_num, i);
+                    }}
+                  ></i>
                 </div>
               </div>
               <PhotoDetail open={open} detailNum={detailNum} i={i} />

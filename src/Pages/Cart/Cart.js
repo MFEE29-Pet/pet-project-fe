@@ -784,10 +784,10 @@ function Cart() {
                         <img
                           style={{
                             verticalAlign: 'middle',
-                            width: '150%',
-                            objectPosition:'center center'
+                            width: '100%',
+                            objectPosition: 'center center',
                           }}
-                          src={`./images/test/${v.img}`}
+                          src={`./images/${v.img}`}
                           alt=""
                           width="100%"
                         />
@@ -858,14 +858,29 @@ function Cart() {
               {myProductData.map((v, i) => {
                 return (
                   <tr key={v.sid}>
-                    <td className="eason_table_img">
-                      <img
-                        style={{ verticalAlign: 'middle' }}
-                        src={`./images/test/${v.img}`}
-                        alt=""
-                        width="70px"
-                        height="80px"
-                      />
+                    <td
+                      className="eason_table_img"
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                    >
+                      <div
+                        style={{
+                          width: '90%',
+                          height: '90% ',
+                          textAlign: 'center',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            width: '100%',
+                            objectPosition: 'center center',
+                          }}
+                          src={`./images/test/${v.img}`}
+                          alt=""
+                          width="100%"
+                        />
+                      </div>
                     </td>
                     <td className="eason_p_name">{v.name}</td>
                     <td className="eason_table_price">{v.member_price}</td>
