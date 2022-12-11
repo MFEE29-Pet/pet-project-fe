@@ -30,7 +30,7 @@ function RecommendedProduct() {
         <div
           className="recommend_list"
           style={{
-            overflowX: 'scroll',
+            overflowX: 'hidden',
             height: '90%',
             display: 'flex',
           }}
