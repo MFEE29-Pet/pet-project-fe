@@ -28,7 +28,7 @@ const PAGE = styled.div`
 `;
 
 function Product() {
-  const { productShow } = useContext(SwitchButtonContext);
+  const { productShow, setProductShow } = useContext(SwitchButtonContext);
   const [trigger, setTrigger] = useState(false);
   // 排序
   const [sortMethod, setSortMethod] = useState('created_at');
@@ -122,6 +122,7 @@ function Product() {
   // didMount 載入資料
   useEffect(() => {
     getProducts();
+    setProductShow('card');
   }, [location]);
 
   // 排序
