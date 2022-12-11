@@ -362,6 +362,7 @@ function ProductDetail() {
                           title: '<strong>請先登入會員</strong>',
                           icon: 'warning',
                         });
+                        navigate('/member/memberLogIn');
                         return;
                       }
                       setShowDiv(!showDiv);
