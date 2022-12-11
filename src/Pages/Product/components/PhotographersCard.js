@@ -67,7 +67,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 floatNum === el.sid ? 'floatUp' : ''
               }`}
               style={{
-                width: '150px',
+                width: '200px',
                 height: '200px',
                 overflow: 'hidden',
                 display: 'flex',
@@ -92,7 +92,10 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 {el.name}
               </NAME>
             </div>
-            <div className="reserver_btn">
+            <div
+              className="reserver_btn"
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
               <button
                 type="button"
                 className="bg_main_light_color1"

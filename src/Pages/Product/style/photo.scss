@@ -249,7 +249,13 @@ main {
 }
 
 .photo_img_wrap.floatUp {
-  box-shadow: 12px 8px 12px rgb(82, 82, 82, 0.6);
+
+  // box-shadow: 12px 8px 12px rgb(82, 82, 82, 0.6);
+  img {
+    -webkit-filter: drop-shadow(-3px 0px 5px rgb(82, 82, 82, 0.85));
+    filter: drop-shadow(-3px 0px 5px rgb(82, 82, 82, 0.85));
+  }
+
   transition: 0.5s;
   position: relative;
   bottom: 3%;
