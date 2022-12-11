@@ -37,6 +37,8 @@ function Conversation({
           style={{
             width: '70px',
             height: '70px',
+            minWidth: '70px',
+            minHeight: '70px',
             borderRadius: '50%',
             overflow: 'hidden',
           }}
