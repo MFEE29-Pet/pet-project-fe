@@ -875,6 +875,18 @@ span {
   flex-direction: column;
 }
 
+.orderProduct-right::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+.orderProduct-right::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.orderProduct-right::-webkit-scrollbar-thumb {
+  background-color: #727171;
+  border-radius: 4px;
+}
+
 .orderProduct {
   display: flex;
   justify-content: space-between;
@@ -1158,4 +1170,3 @@ span {
   align-items: center;
   font-size: 25px;
 }
-

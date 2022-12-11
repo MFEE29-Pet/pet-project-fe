@@ -59,10 +59,16 @@ function MemberSing() {
 
     fd.append('mail', mail);
     fd.append('password', checkPassword);
+    fd.append('phone', mobile);
 
     console.log(fd);
     const { data } = await axios.post('http://localhost:6001/member/add', fd);
+    const { data2 } = await axios.post(
+      'http://localhost:6001/member/sendregister',
+      fd
+    );
     console.log(data);
+    console.log(data2);
     if (data.success) {
       MySwal.fire({
         title: <strong>註冊成功</strong>,
@@ -202,7 +208,7 @@ function MemberSing() {
               right: '-100px',
             }}
             className="bg_main_light_color1"
-            // onClick={sendCode}
+            onClick={sendCode}
           >
             發送驗證碼
           </button>

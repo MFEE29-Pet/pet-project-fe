@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { Link, useOutletContext, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const CheckForm = styled.div`
   font-family: art;
@@ -327,12 +331,16 @@ function Check() {
 
     const { data } = await axios.post('http://localhost:6001/clinic/add', fd);
     if (data.success === true) {
-      navigate('/');
+      MySwal.fire({
+        title: <strong>預約成功</strong>,
+        icon: 'success',
+      });
+
+      navigate('/member/memberCenter');
     }
 
     console.log(data);
   };
-
 
   const getCityName = async () => {
     const res = await axios.get(
@@ -342,19 +350,19 @@ function Check() {
 
     console.log(data);
 
-    setCityName(data.city_name) ;
+    setCityName(data.city_name);
   };
   console.log(cityName);
 
   const getAreaName = async () => {
-    const  res  = await axios.get(
+    const res = await axios.get(
       `http://localhost:6001/clinic/areaname/${area}`
     );
     const data = res.data.rows[0];
 
     console.log(data);
 
-    setAreaName(data.area_name) ;
+    setAreaName(data.area_name);
   };
 
   useEffect(() => {

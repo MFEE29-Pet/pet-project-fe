@@ -9,7 +9,7 @@ const PETBOX = styled.div`
   height: 100vh;
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #ccc;
   z-index: 50;
@@ -88,7 +88,8 @@ function StartPage() {
       pathname === '/forum' ||
       pathname === '/product' ||
       pathname === '/clinic' ||
-      pathname === '/member/memberCenter'
+      pathname === '/member/memberCenter' ||
+      pathname === '/cart'
     ) {
       setShow(true);
       document.body.style = 'overflow:hidden';
@@ -107,7 +108,7 @@ function StartPage() {
     <>
       {show ? (
         <PETBOX>
-          <div ref={all}>
+          <div ref={all} style={{width:'500px',display:'flex',justifyContent:'space-around'}}>
             <Img
               className="pet1"
               src={`${imgUrl}/images/logo_PetBan_1(ImgOnly).png`}
