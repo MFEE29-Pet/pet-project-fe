@@ -112,6 +112,7 @@ function PhotoReservePage() {
   const [petPid, setPetPid] = useState('');
   const [textArea, setTextArea] = useState('');
   const [preview, setPreview] = useState('');
+  const [which,setWhich] = useState(0)
 
   console.log(startDate);
   //取得qureyString
@@ -222,6 +223,8 @@ function PhotoReservePage() {
               setTextArea,
               preview,
               setPreview,
+              which,
+              setWhich
             ]}
           />
         </ReserveForm>

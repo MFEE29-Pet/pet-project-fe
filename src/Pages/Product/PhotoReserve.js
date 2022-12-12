@@ -105,7 +105,7 @@ const ReserveForm = styled.div`
       font-size: 18px;
       font-family: art;
       font-weight: bold;
-      margin: 50px 30px;
+      margin: 0px 30px;
     }
     .pet-variety {
       display: flex;
@@ -271,6 +271,8 @@ function PhotoReserve() {
     setTextArea,
     preview,
     setPreview,
+    which,
+    setWhich,
   ] = useOutletContext();
   const final = { ...photographerDetail };
   console.log(final);
@@ -363,30 +365,47 @@ function PhotoReserve() {
       const res = await axios.get(
         `http://localhost:6001/clinic/pet/${memberID.sid}`
       );
-      const petData = res.data.rows[0];
+      const petData = res.data.rows;
 
       //處理寵物年紀
-      const birth = dayjs(petData.pet_birthday).valueOf();
+      const data = petData.map((e, i) => {
+        const { pet_birthday } = e;
+        const birth = dayjs(pet_birthday).valueOf();
 
-      const now = Date.now();
+        const now = Date.now();
 
-      const final = Math.ceil((now - birth) / (365.25 * 24 * 60 * 60 * 1000));
+        const final = Math.ceil((now - birth) / (365.25 * 24 * 60 * 60 * 1000));
+
+        return { ...petData[i], pet_age: final };
+      });
 
       console.log(final);
-      setPetAge(final);
+
 
       // console.log(petData);
-      setPetData(petData);
-      setPetId(petData.sid);
-      setPetName(petData.pet_name);
-      setVariety(petData.Kind_of_pet);
-      setGender(petData.pet_gender);
-      setControl(petData.birth_control);
-      setPetPid(petData.pet_pid);
+      setPetData(data);
+      setPetId(petData[which].sid);
+      setPetName(petData[which].pet_name);
+      setVariety(petData[which].Kind_of_pet);
+      setGender(petData[which].pet_gender);
+      setControl(petData[which].birth_control);
+      setPetPid(petData[which].pet_pid);
     } catch (e) {
       console.log(e.message);
     }
   };
+
+  setPetAge(petData[which].pet_age);
+
+  useEffect(() => {
+    setPetId(petData[which].sid);
+    setPetAge(petData[which].pet_age);
+    setPetName(petData[which].pet_name);
+    setVariety(petData[which].Kind_of_pet);
+    setGender(petData[which].pet_gender);
+    setControl(petData[which].birth_control);
+    setPetPid(petData[which].pet_pid);
+  }, [which]);
 
   //拿到city資料
   const getCityData = async () => {
@@ -617,7 +636,38 @@ function PhotoReserve() {
         {/* <!-- 寵物資料 --> */}
         <div className="pet-data">
           <input type="hidden" value={petId} />
-          <h2 className="text_main_dark_color2">寵物資料</h2>
+          <div
+            style={{
+              display: 'flex',
+              margin: '50px 0px',
+              alignItems: 'center',
+            }}
+          >
+            <h2 className="text_main_dark_color2">寵物資料</h2>
+            <select
+              name=""
+              id=""
+              onChange={(e) => {
+                setWhich(e.target.value);
+              }}
+              style={{
+                borderRadius: '10px',
+                width: '100px',
+                height: '20px',
+                marginLeft: '40px',
+              }}
+            >
+              {petData.map((e, i) => {
+                const { pet_name } = e;
+                return (
+                  <option value={i} key={i}>
+                    {pet_name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
           <div className="pet-variety">
             {/* <!-- 寵物種類 --> */}
             <h1 htmlFor="variety">種類</h1>
