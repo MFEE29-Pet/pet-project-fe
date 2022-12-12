@@ -332,7 +332,7 @@ section.right {
                     width: 50%;
                     display: flex;
                     justify-content: space-around;
-                    align-items: flex-end;
+                    align-items: center;
 
                     // 以下為去除 input number 箭頭
                     /* Chrome, Safari, Edge, Opera */
@@ -350,7 +350,9 @@ section.right {
 
                     .q-reduce,
                     .q-add {
-                        background-color: $p_color3;
+                        background-color: transparent;
+                        text-align: center;
+                        vertical-align: middle;
                         border-radius: 50%;
                         cursor: pointer;
                         height: 14px;
@@ -386,7 +388,7 @@ section.right {
 
                 .Demo__some-network__share-button {
                     position: relative;
-                    bottom: -5px;
+                    bottom: -3px;
                 }
             }
 

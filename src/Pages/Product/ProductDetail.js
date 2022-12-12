@@ -226,6 +226,7 @@ function ProductDetail() {
                     onClick={() => {
                       setAmount(amount > 1 ? amount - 1 : 1);
                     }}
+                    
                   ></i>
                   <input
                     className="q-num"
@@ -279,7 +280,7 @@ function ProductDetail() {
                   quote={`GitHub`}
                   className="Demo__some-network__share-button"
                 >
-                  <FacebookIcon size={28} round />
+                  <FacebookIcon size={25} round />
                 </FacebookShareButton>
               </div>
 
