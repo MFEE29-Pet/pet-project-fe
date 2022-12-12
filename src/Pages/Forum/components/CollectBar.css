@@ -20,3 +20,9 @@
   border: none;
   background-color: transparent;
 }
+
+@media screen and (max-width:400px)  {
+  .forum_unCollect_button #forum_Collect{
+    margin-left: 0px;
+  }
+}

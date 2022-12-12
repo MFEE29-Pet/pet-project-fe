@@ -60,13 +60,13 @@ function Member() {
         }}
       >
         <div className="p_space" style={{ height: '100px' }}></div>
-        <BreadcrumbBox>
+        <BreadcrumbBox className='member_1'>
           <Breadcrumb
             routes={Memberroutes}
             separator={<BreadcrumbRightArrowIcon />}
           />
         </BreadcrumbBox>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex'}} className='member_4'>
           <MemberShipLeft
           // totalPage={components}
           // pageIndex={pageIndex}

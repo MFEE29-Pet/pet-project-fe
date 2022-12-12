@@ -55,3 +55,28 @@ align-items: center;
   justify-content: left;
   align-items: center;
 }
+
+@media screen and (max-width:400px)  {
+  .forum_list_wrap{
+    width: 350px !important;
+  }
+  .forum_search_select{
+    width: 350px !important;
+    justify-content: center !important;
+  }
+  .forumBar{
+    width: 350px !important;
+  }
+  .forum_list_button_wrap{
+    width: 350px !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  .forum_search_bar{
+    display: none !important;
+  }
+  .forumTitleBar{
+    padding-left :0px;
+  }
+
+}

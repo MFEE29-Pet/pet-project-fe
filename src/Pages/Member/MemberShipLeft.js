@@ -31,6 +31,12 @@ function MemberShipLeft({ components, pageIndex, setPageIndex }) {
               <li className="text_main_dark_color1">我的寵物</li>
             </ul>
           </Link>
+          <Link to="memberPost">
+            <ul>
+              <i className="fa-light light fa-keyboard text_main_dark_color1"></i>
+              <li className="text_main_dark_color1">發文紀錄</li>
+            </ul>
+          </Link>
           <Link to="memberArticle">
             <ul>
               <i className="fa-light light fa-books text_main_dark_color1"></i>
