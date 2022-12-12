@@ -349,6 +349,7 @@
 }
 
 .mobile_eason_top_title {
+  margin-top: 10px;
   font-size: 20px;
   margin-bottom: 30px;
 }
@@ -413,7 +414,7 @@
   font-weight: 900;
 }
 
-.eason_mobile_discount_area{
+.eason_mobile_discount_area {
   margin-top: 10px;
   margin-left: 45px;
   margin-bottom: 50px;
