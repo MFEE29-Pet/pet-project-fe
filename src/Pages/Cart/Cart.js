@@ -9,6 +9,8 @@ import withReactContent from 'sweetalert2-react-content'; //警告套件
 import axios from 'axios';
 
 import useMediaQuery from 'use-mediaquery';
+import AuthContext from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 //測試用假來源資料
 // import jsonData from './orderTest.json';
@@ -40,11 +42,13 @@ const EasonProgressBar = styled.div`
 
 // 整套購物車本體-------------------------------------------------------------------------------------
 function Cart() {
+  const navigate = useNavigate();
   // 手機版畫面切換功能
   const matches = useMediaQuery('(max-width: 600px)');
 
   //拿到會員資料
   const member = JSON.parse(localStorage.getItem('auth'));
+  const { myAuth } = useContext(AuthContext);
 
   // 主題變色
   const { mode } = useContext(SwitchButtonContext);
@@ -279,7 +283,16 @@ function Cart() {
   };
 
   const handlePay = async () => {
+    if (!myAuth.sid) {
+      Swal.fire({
+        title: '<strong>請先登入會員</strong>',
+        icon: 'warning',
+      });
+      navigate('/member/memberLogIn');
+      return;
+    }
     await SendData();
+
     if (arrivedClick) {
       await LinePay();
     } else {

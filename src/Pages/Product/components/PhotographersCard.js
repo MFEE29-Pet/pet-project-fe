@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import AuthContext from '../../../contexts/AuthContext';
+import Swal from 'sweetalert2';
 
 const NAME = styled.p`
   text-align: center;
@@ -21,6 +23,7 @@ const SPAN = styled.span`
 
 function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
   const { mode } = useContext(SwitchButtonContext);
+  const { myAuth } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location.pathname);
@@ -107,6 +110,14 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                   fontWeight: 'bold ',
                 }}
                 onClick={() => {
+                  if (!myAuth.sid) {
+                    Swal.fire({
+                      title: '<strong>請先登入會員</strong>',
+                      icon: 'warning',
+                    });
+                    navigate('/member/memberLogIn');
+                    return;
+                  }
                   navigate(`${location.pathname}/reserve?sid=${el.sid}`);
                 }}
               >

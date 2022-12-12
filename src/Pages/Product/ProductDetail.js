@@ -170,12 +170,15 @@ function ProductDetail() {
                   setLovedHover(!lovedHover);
                 }}
                 onClick={() => {
-                  if (JSON.stringify(localStorage.getItem('auth'))) {
-                    navigate('/member/memberProductCollect');
-                  } else {
-                    alert('請先登入');
+                  if (!myAuth.sid) {
+                    Swal.fire({
+                      title: '<strong>請先登入會員</strong>',
+                      icon: 'warning',
+                    });
                     navigate('/member/memberLogIn');
+                    return;
                   }
+                  navigate('/member/memberProductCollect');
                 }}
               >
                 <i
