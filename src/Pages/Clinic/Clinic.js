@@ -4,6 +4,7 @@ import ClinicMap from './components/ClinicMap';
 import styled from 'styled-components';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
+import './style.scss'
 
 const ClinicBox = styled.div`
   width: 100%;
@@ -53,15 +54,15 @@ function Clinic() {
     lng: '121.564427',
   });
   return (
-    <ClinicBox>
+    <ClinicBox className='clinic_3'>
       <div className="p_space" style={{ height: '100px' }}></div>
-      <BreadcrumbBox>
+      <BreadcrumbBox className='clinic_2'>
         <Breadcrumb
           routes={Clinicroutes}
           separator={<BreadcrumbRightArrowIcon />}
         />
       </BreadcrumbBox>
-      <ClinicBoxContainer>
+      <ClinicBoxContainer className='clinic_1'>
         <ListBox>
           <ClinicSelect
             setDataFromSelect={setDataFromSelect}

@@ -176,7 +176,7 @@ function Cart() {
     const myDiscount = document.getElementById('discount');
     // console.log(myDiscount.value);
 
-    if (myDiscount.value === '1234') {
+    if (myDiscount.value === 'PetBen1214') {
       setDiscount(100);
       finalPrice = finalPrice - discount;
       MySwal.fire({

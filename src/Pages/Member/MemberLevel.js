@@ -102,6 +102,7 @@ function MemberLevel() {
           marginTop: '80px',
           fontSize: '20px',
         }}
+        className='member_2'
       >
         <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
           會員等級介紹
@@ -280,6 +281,7 @@ function MemberLevel() {
                 display: 'flex',
                 justifyContent: 'space-between',
               }}
+              className='member_3'
             >
               <div className="inputRange">
                 <div className="input-text">

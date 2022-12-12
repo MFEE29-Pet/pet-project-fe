@@ -233,6 +233,18 @@ function MemberProfileUp() {
 
       console.log(newAuth);
     }
+
+    if (data.success) {
+      setMyAuth({ ...myAuth, name: data.name });
+
+      const authOld = JSON.parse(localStorage.getItem('auth'));
+
+      const newAuth = { ...authOld, name: data.name };
+
+      localStorage.setItem('auth', JSON.stringify(newAuth));
+
+      console.log(newAuth);
+    }
   };
 
   return (

@@ -25,6 +25,8 @@ function MemberResavePassword() {
         title: <strong>成功修改</strong>,
         icon: 'success',
       });
+      setPassword('');
+      setCheckPassword('');
     } else {
       Swal.fire({
         title: '<strong>資料未修改</strong>',

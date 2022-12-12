@@ -54,6 +54,7 @@ import StartPage from './Pages/StartPage/StartPage';
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
+import MemberPostRecord from './Pages/Member/MemberPostRecord';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -173,6 +174,7 @@ function App() {
                 element={<MemberProductCollect />}
               />
               <Route path="memberClinic" element={<MemberAppointment />} />
+              <Route path="memberPost" element={<MemberPostRecord />} />
               <Route
                 path="memberProductHistory"
                 element={<MemberHistoryProduct />}

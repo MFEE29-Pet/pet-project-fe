@@ -127,7 +127,14 @@ const CollectButton = ({ a_sid }) => {
         }}
       >
         收藏
-        <i className="fa-light fa-bookmark" id="forum_Collect"></i>
+        <i
+          className={`${
+            collection.findIndex((v) => v.a_sid === sid) === -1
+              ? 'fa-regular fa-bookmark'
+              : 'fa-solid fa-bookmark'
+          }`}
+          id="forum_Collect"
+        ></i>
       </button>
     </>
   );
