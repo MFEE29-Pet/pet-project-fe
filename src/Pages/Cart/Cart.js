@@ -7,6 +7,8 @@ import CartInfoContext from '../Product/contexts/CartInfoContext'; //購物車�
 import Swal from 'sweetalert2'; //警告套件
 import withReactContent from 'sweetalert2-react-content'; //警告套件
 import axios from 'axios';
+import { CircularProgress } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import useMediaQuery from 'use-mediaquery';
 import AuthContext from '../../contexts/AuthContext';
@@ -79,6 +81,9 @@ function Cart() {
 
   //付款方式
   const [payWay, setPayWay] = useState(0);
+
+  //切換付款狀態
+  const [show, setShow] = useState(false);
 
   // 真實串接 Local Storage 資料來源
   // cartItem 是 Local Storage 的 Key
@@ -292,7 +297,7 @@ function Cart() {
       return;
     }
     await SendData();
-
+    await setShow(true);
     if (arrivedClick) {
       await LinePay();
     } else {
@@ -738,339 +743,349 @@ function Cart() {
         </EasonProgressBar>
 
         {/* <!-- 攝影預約明細------------------------------------------------------------------------> */}
-        <div className="eason_section_1">
-          <div className="eason_list_title ">
-            {myPhotoData && myPhotoData.length !== 0 && (
-              <>
-                <h2 className="text_main_dark_color2">攝影預約明細</h2>
-                <div className="eason_product_check">
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    checked={photoChecked ? 'checked' : ''}
-                    onClick={() => {
-                      setPhotoChecked(!photoChecked);
-                    }}
-                  />
-                  <p
-                    className="text_main_dark_color2"
-                    style={{ fontSize: ' smaller' }}
-                  >
-                    加入結算
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-          <table className="eason_list_table">
-            {myPhotoData && myPhotoData.length !== 0 && (
-              <thead>
-                <tr>
-                  <th>頭像</th>
-                  <th>攝影師</th>
-                  <th>預約日期</th>
-                  <th>預約時段</th>
-                  <th>單價</th>
-                  <th>刪除</th>
-                </tr>
-              </thead>
-            )}
-
-            <tbody>
-              {/* 預約攝影資料引入------------------------------------------------------------------- */}
-              {myPhotoData.map((v, i) => {
-                return (
-                  <tr key={v.sid}>
-                    <td
-                      className="eason_table_img"
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    >
-                      <div
-                        style={{
-                          width: '90%',
-                          height: '90% ',
-                          textAlign: 'center',
-                          overflow: 'hidden',
-                        }}
-                      >
-                        <img
-                          style={{
-                            verticalAlign: 'middle',
-                            width: '100%',
-                            objectPosition: 'center center',
-                          }}
-                          src={`./images/${v.img}`}
-                          alt=""
-                          width="100%"
-                        />
-                      </div>
-                    </td>
-                    <td>{v.name}</td>
-                    <td>{v.date}</td>
-                    <td>{v.time ? '早上' : '晚上'}</td>
-                    <td className="eason_table_price">{v.price}</td>
-                    <td>
-                      <span
+        {show ? (
+          <Box>
+            <CircularProgress color="inherit" />
+          </Box>
+        ) : (
+          <>
+            <div className="eason_section_1">
+              <div className="eason_list_title ">
+                {myPhotoData && myPhotoData.length !== 0 && (
+                  <>
+                    <h2 className="text_main_dark_color2">攝影預約明細</h2>
+                    <div className="eason_product_check">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={photoChecked ? 'checked' : ''}
                         onClick={() => {
-                          removePhotoData(v.sid);
+                          setPhotoChecked(!photoChecked);
                         }}
+                      />
+                      <p
+                        className="text_main_dark_color2"
+                        style={{ fontSize: ' smaller' }}
                       >
-                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                        加入結算
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+              <table className="eason_list_table">
+                {myPhotoData && myPhotoData.length !== 0 && (
+                  <thead>
+                    <tr>
+                      <th>頭像</th>
+                      <th>攝影師</th>
+                      <th>預約日期</th>
+                      <th>預約時段</th>
+                      <th>單價</th>
+                      <th>刪除</th>
+                    </tr>
+                  </thead>
+                )}
 
-        {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
-        <div className="eason_section_2">
-          <div className="eason_list_title">
-            {myProductData && myProductData.length !== 0 && (
-              <>
-                <h2 className="text_main_dark_color2">商品訂單明細</h2>
-                <div className="eason_product_check">
-                  <input
-                    type="checkbox"
-                    name=""
-                    id=""
-                    checked={productChecked ? 'checked' : ''}
-                    onClick={() => {
-                      setProductChecked(!productChecked);
-                    }}
-                  />
-                  <p
-                    className="text_main_dark_color2"
-                    style={{ fontSize: 'smaller' }}
-                  >
-                    加入結算
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-          <table className="eason_list_table">
-            {myProductData && myProductData.length !== 0 && (
-              <thead>
-                <tr>
-                  <th>商品圖</th>
-                  <th>商品名</th>
-                  <th>單價</th>
-                  <th>數量</th>
-                  <th>小計</th>
-                  <th>刪除</th>
-                </tr>
-              </thead>
-            )}
+                <tbody>
+                  {/* 預約攝影資料引入------------------------------------------------------------------- */}
+                  {myPhotoData.map((v, i) => {
+                    return (
+                      <tr key={v.sid}>
+                        <td
+                          className="eason_table_img"
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                          <div
+                            style={{
+                              width: '90%',
+                              height: '90% ',
+                              textAlign: 'center',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <img
+                              style={{
+                                verticalAlign: 'middle',
+                                width: '100%',
+                                objectPosition: 'center center',
+                              }}
+                              src={`./images/${v.img}`}
+                              alt=""
+                              width="100%"
+                            />
+                          </div>
+                        </td>
+                        <td>{v.name}</td>
+                        <td>{v.date}</td>
+                        <td>{v.time ? '早上' : '晚上'}</td>
+                        <td className="eason_table_price">{v.price}</td>
+                        <td>
+                          <span
+                            onClick={() => {
+                              removePhotoData(v.sid);
+                            }}
+                          >
+                            <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
 
-            <tbody>
-              {/* 商品資料引入 --------------------------------------------------------------------*/}
-              {myProductData.map((v, i) => {
-                return (
-                  <tr key={v.sid}>
-                    <td
-                      className="eason_table_img"
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    >
-                      <div
-                        style={{
-                          width: '90%',
-                          height: '90% ',
-                          textAlign: 'center',
-                          overflow: 'hidden',
-                        }}
-                      >
-                        <img
-                          style={{
-                            verticalAlign: 'middle',
-                            width: '100%',
-                            objectPosition: 'center center',
-                          }}
-                          src={`./images/test/${v.img}`}
-                          alt=""
-                          width="100%"
-                        />
-                      </div>
-                    </td>
-                    <td className="eason_p_name">{v.name}</td>
-                    <td className="eason_table_price">{v.member_price}</td>
-                    <td className="eason_table_amount">
-                      <span
-                        className=""
+            {/* <!-- 商品訂單明細------------------------------------------------------------------------> */}
+            <div className="eason_section_2">
+              <div className="eason_list_title">
+                {myProductData && myProductData.length !== 0 && (
+                  <>
+                    <h2 className="text_main_dark_color2">商品訂單明細</h2>
+                    <div className="eason_product_check">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        checked={productChecked ? 'checked' : ''}
                         onClick={() => {
-                          handleReduce(myProductData[i]);
-                          if (amount[i] > 1) {
-                            const decreaseAmount = [...amount];
-                            decreaseAmount[i] = +decreaseAmount[i] - 1;
-                            // console.log(amount);
-
-                            const decreasePrice = [...totalPrice];
-                            decreasePrice[i] =
-                              decreaseAmount[i] * v.member_price;
-                            // console.log(decreasePrice);
-                            setNewTotalPrice(
-                              decreasePrice.reduce((a, b) => a + b)
-                            );
-
-                            setAmount(decreaseAmount);
-
-                            setTotalPrice(decreasePrice);
-                            console.log({ amount });
-                          } else {
-                            setNewTotalPrice(
-                              newTotalPrice - v.member_price * amount[i]
-                            );
-                            removeProductData(v.sid);
-
-                            amount.splice(i, 1);
-                            // console.log(v.sid);
-
-                            const deleteItem = JSON.parse(
-                              localStorage.getItem('cartItem')
-                            );
-                            const productList = deleteItem.productCart;
-
-                            const index = productList.findIndex(
-                              (e) => e.sid === v.sid
-                            );
-
-                            const sliceP1 = productList.slice(0, index);
-
-                            const sliceP2 = productList.slice(index + 1);
-
-                            const newProductList = [...sliceP1, ...sliceP2];
-
-                            deleteItem.productCart = newProductList;
-
-                            const totalItem = newProductList.length;
-                            let totalAmount = 0;
-                            let totalPrice = 0;
-                            if (cartItem.photoCart.length === 1) {
-                              totalAmount = 1;
-                              totalPrice = 0;
-                            } else {
-                              totalAmount = 0;
-                              totalPrice = 0;
-                            }
-
-                            newProductList.forEach((v, i) => {
-                              totalAmount += v.amount;
-                              totalPrice += v.amount * v.member_price;
-                            });
-
-                            deleteItem.totalItem = totalItem;
-                            deleteItem.totalAmount = totalAmount;
-                            deleteItem.totalPrice = totalPrice;
-                            localStorage.setItem(
-                              'cartItem',
-                              JSON.stringify(deleteItem)
-                            );
-
-                            setCartItem(deleteItem);
-                          }
+                          setProductChecked(!productChecked);
                         }}
+                      />
+                      <p
+                        className="text_main_dark_color2"
+                        style={{ fontSize: 'smaller' }}
                       >
-                        <i className="eason_fa-solid fa-solid fa-circle-minus">
-                          {' '}
-                        </i>
-                      </span>
-                      {amount[i]}
-                      <span
-                        className=""
-                        onClick={() => {
-                          handleAddCart(myProductData[i], 1);
+                        加入結算
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+              <table className="eason_list_table">
+                {myProductData && myProductData.length !== 0 && (
+                  <thead>
+                    <tr>
+                      <th>商品圖</th>
+                      <th>商品名</th>
+                      <th>單價</th>
+                      <th>數量</th>
+                      <th>小計</th>
+                      <th>刪除</th>
+                    </tr>
+                  </thead>
+                )}
 
-                          const newAmount = [...amount];
-                          newAmount[i] = +newAmount[i] + 1;
-                          const newPrice = [...totalPrice];
-                          newPrice[i] = newAmount[i] * v.member_price;
-                          // console.log(newPrice);
+                <tbody>
+                  {/* 商品資料引入 --------------------------------------------------------------------*/}
+                  {myProductData.map((v, i) => {
+                    return (
+                      <tr key={v.sid}>
+                        <td
+                          className="eason_table_img"
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                          <div
+                            style={{
+                              width: '90%',
+                              height: '90% ',
+                              textAlign: 'center',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <img
+                              style={{
+                                verticalAlign: 'middle',
+                                width: '100%',
+                                objectPosition: 'center center',
+                              }}
+                              src={`./images/test/${v.img}`}
+                              alt=""
+                              width="100%"
+                            />
+                          </div>
+                        </td>
+                        <td className="eason_p_name">{v.name}</td>
+                        <td className="eason_table_price">{v.member_price}</td>
+                        <td className="eason_table_amount">
+                          <span
+                            className=""
+                            onClick={() => {
+                              handleReduce(myProductData[i]);
+                              if (amount[i] > 1) {
+                                const decreaseAmount = [...amount];
+                                decreaseAmount[i] = +decreaseAmount[i] - 1;
+                                // console.log(amount);
 
-                          setAmount(newAmount);
-                          setTotalPrice(newPrice);
+                                const decreasePrice = [...totalPrice];
+                                decreasePrice[i] =
+                                  decreaseAmount[i] * v.member_price;
+                                // console.log(decreasePrice);
+                                setNewTotalPrice(
+                                  decreasePrice.reduce((a, b) => a + b)
+                                );
 
-                          setNewTotalPrice(newPrice.reduce((a, b) => a + b));
-                        }}
-                      >
-                        <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
-                      </span>
-                    </td>
-                    <td className="eason_table_total">
-                      {v.member_price * amount[i]}
-                    </td>
-                    <td>
-                      <span
-                        onClick={() => {
-                          setNewTotalPrice(
-                            newTotalPrice - v.member_price * amount[i]
-                          );
-                          removeProductData(v.sid);
+                                setAmount(decreaseAmount);
 
-                          // amount.splice(i, 1);
-                          // console.log(v.sid);
+                                setTotalPrice(decreasePrice);
+                                console.log({ amount });
+                              } else {
+                                setNewTotalPrice(
+                                  newTotalPrice - v.member_price * amount[i]
+                                );
+                                removeProductData(v.sid);
 
-                          const deleteItem = JSON.parse(
-                            localStorage.getItem('cartItem')
-                          );
-                          const productList = deleteItem.productCart;
+                                amount.splice(i, 1);
+                                // console.log(v.sid);
 
-                          const index = productList.findIndex(
-                            (e) => e.sid === v.sid
-                          );
+                                const deleteItem = JSON.parse(
+                                  localStorage.getItem('cartItem')
+                                );
+                                const productList = deleteItem.productCart;
 
-                          const sliceP1 = productList.slice(0, index);
+                                const index = productList.findIndex(
+                                  (e) => e.sid === v.sid
+                                );
 
-                          const sliceP2 = productList.slice(index + 1);
+                                const sliceP1 = productList.slice(0, index);
 
-                          const newProductList = [...sliceP1, ...sliceP2];
+                                const sliceP2 = productList.slice(index + 1);
 
-                          deleteItem.productCart = newProductList;
+                                const newProductList = [...sliceP1, ...sliceP2];
 
-                          const totalItem = newProductList.length;
-                          let totalAmount = 0;
-                          let totalPrice = 0;
-                          if (cartItem.photoCart.length === 1) {
-                            totalAmount = 1;
-                            totalPrice = 0;
-                          } else {
-                            totalAmount = 0;
-                            totalPrice = 0;
-                          }
+                                deleteItem.productCart = newProductList;
 
-                          newProductList.forEach((v, i) => {
-                            totalAmount =
-                              totalAmount +
-                              v.amount +
-                              cartItem.photoCart.length;
-                            totalPrice =
-                              totalPrice +
-                              v.amount * v.member_price +
-                              cartItem.photoCart.price;
-                          });
+                                const totalItem = newProductList.length;
+                                let totalAmount = 0;
+                                let totalPrice = 0;
+                                if (cartItem.photoCart.length === 1) {
+                                  totalAmount = 1;
+                                  totalPrice = 0;
+                                } else {
+                                  totalAmount = 0;
+                                  totalPrice = 0;
+                                }
 
-                          deleteItem.totalItem = totalItem;
-                          deleteItem.totalAmount = totalAmount;
-                          deleteItem.totalPrice = totalPrice;
-                          localStorage.setItem(
-                            'cartItem',
-                            JSON.stringify(deleteItem)
-                          );
+                                newProductList.forEach((v, i) => {
+                                  totalAmount += v.amount;
+                                  totalPrice += v.amount * v.member_price;
+                                });
 
-                          setCartItem(deleteItem);
-                        }}
-                      >
-                        <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                                deleteItem.totalItem = totalItem;
+                                deleteItem.totalAmount = totalAmount;
+                                deleteItem.totalPrice = totalPrice;
+                                localStorage.setItem(
+                                  'cartItem',
+                                  JSON.stringify(deleteItem)
+                                );
+
+                                setCartItem(deleteItem);
+                              }
+                            }}
+                          >
+                            <i className="eason_fa-solid fa-solid fa-circle-minus">
+                              {' '}
+                            </i>
+                          </span>
+                          {amount[i]}
+                          <span
+                            className=""
+                            onClick={() => {
+                              handleAddCart(myProductData[i], 1);
+
+                              const newAmount = [...amount];
+                              newAmount[i] = +newAmount[i] + 1;
+                              const newPrice = [...totalPrice];
+                              newPrice[i] = newAmount[i] * v.member_price;
+                              // console.log(newPrice);
+
+                              setAmount(newAmount);
+                              setTotalPrice(newPrice);
+
+                              setNewTotalPrice(
+                                newPrice.reduce((a, b) => a + b)
+                              );
+                            }}
+                          >
+                            <i className="eason_fa-solid   fa-solid fa-circle-plus"></i>
+                          </span>
+                        </td>
+                        <td className="eason_table_total">
+                          {v.member_price * amount[i]}
+                        </td>
+                        <td>
+                          <span
+                            onClick={() => {
+                              setNewTotalPrice(
+                                newTotalPrice - v.member_price * amount[i]
+                              );
+                              removeProductData(v.sid);
+
+                              // amount.splice(i, 1);
+                              // console.log(v.sid);
+
+                              const deleteItem = JSON.parse(
+                                localStorage.getItem('cartItem')
+                              );
+                              const productList = deleteItem.productCart;
+
+                              const index = productList.findIndex(
+                                (e) => e.sid === v.sid
+                              );
+
+                              const sliceP1 = productList.slice(0, index);
+
+                              const sliceP2 = productList.slice(index + 1);
+
+                              const newProductList = [...sliceP1, ...sliceP2];
+
+                              deleteItem.productCart = newProductList;
+
+                              const totalItem = newProductList.length;
+                              let totalAmount = 0;
+                              let totalPrice = 0;
+                              if (cartItem.photoCart.length === 1) {
+                                totalAmount = 1;
+                                totalPrice = 0;
+                              } else {
+                                totalAmount = 0;
+                                totalPrice = 0;
+                              }
+
+                              newProductList.forEach((v, i) => {
+                                totalAmount =
+                                  totalAmount +
+                                  v.amount +
+                                  cartItem.photoCart.length;
+                                totalPrice =
+                                  totalPrice +
+                                  v.amount * v.member_price +
+                                  cartItem.photoCart.price;
+                              });
+
+                              deleteItem.totalItem = totalItem;
+                              deleteItem.totalAmount = totalAmount;
+                              deleteItem.totalPrice = totalPrice;
+                              localStorage.setItem(
+                                'cartItem',
+                                JSON.stringify(deleteItem)
+                              );
+
+                              setCartItem(deleteItem);
+                            }}
+                          >
+                            <i className="fa-light fa-trash-can eason_fa-trash-can"></i>
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
 
         {/* <!-- 下方區域------------------------------------------------------------------------> */}
         <div className="eason_section_3">

@@ -692,7 +692,13 @@ function Reserve() {
         {/* <!-- 寵物資料 --> */}
         <div className="pet-data">
           <input type="hidden" value={petId} />
-          <div style={{display:'flex',margin:'50px 0px',alignItems:'center'}}>
+          <div
+            style={{
+              display: 'flex',
+              margin: '50px 0px',
+              alignItems: 'center',
+            }}
+          >
             <h2 className="text_main_dark_color2">寵物資料</h2>
             <select
               name=""
@@ -700,7 +706,12 @@ function Reserve() {
               onChange={(e) => {
                 setWhich(e.target.value);
               }}
-              style={{borderRadius:'10px',width:'100px',height:'20px',marginLeft:'40px'}}
+              style={{
+                borderRadius: '10px',
+                width: '100px',
+                height: '20px',
+                marginLeft: '40px',
+              }}
             >
               {petData.map((e, i) => {
                 const { pet_name } = e;
