@@ -174,6 +174,7 @@ function ProductDetail() {
                     Swal.fire({
                       title: '<strong>請先登入會員</strong>',
                       icon: 'warning',
+                      scrollbarPadding: false,
                     });
                     navigate('/member/memberLogIn');
                     return;
@@ -226,7 +227,6 @@ function ProductDetail() {
                     onClick={() => {
                       setAmount(amount > 1 ? amount - 1 : 1);
                     }}
-                    
                   ></i>
                   <input
                     className="q-num"
@@ -365,6 +365,7 @@ function ProductDetail() {
                         Swal.fire({
                           title: '<strong>請先登入會員</strong>',
                           icon: 'warning',
+                          scrollbarPadding: false,
                         });
                         navigate('/member/memberLogIn');
                         return;

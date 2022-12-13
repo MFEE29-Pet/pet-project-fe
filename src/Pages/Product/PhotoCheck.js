@@ -353,6 +353,7 @@ function PhotoCheck() {
       title: <strong>已加入購物車</strong>,
       text: '歡迎回來PetBan!',
       icon: 'success',
+      scrollbarPadding: false,
     });
     navigate('/product');
     // setCartItem();

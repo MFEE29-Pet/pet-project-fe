@@ -114,6 +114,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                     Swal.fire({
                       title: '<strong>請先登入會員</strong>',
                       icon: 'warning',
+                      scrollbarPadding: false,
                     });
                     navigate('/member/memberLogIn');
                     return;
