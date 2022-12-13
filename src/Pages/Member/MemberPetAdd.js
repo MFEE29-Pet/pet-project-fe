@@ -4,7 +4,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {imgUrl} from '../../config'
+import { imgUrl } from '../../config';
 
 const MySwal = withReactContent(Swal);
 function MemberPetAdd() {
@@ -84,6 +84,7 @@ function MemberPetAdd() {
       console.log(e.message);
     }
   };
+  console.log(selectedFile);
 
   const sendData = async () => {
     const date = dayjs(birthday).format('YYYY/MM/DD');
@@ -117,6 +118,13 @@ function MemberPetAdd() {
         icon: 'success',
       });
       getPetData();
+      setName('')
+      setBirthday('')
+      setPid('')
+      setType('')
+      setGender('')
+      setControl('')
+      setSelectedFile(null)
     }
   };
 
@@ -125,9 +133,9 @@ function MemberPetAdd() {
       `http://localhost:6001/member/delpet/${sid}`
     );
     MySwal.fire({
-        title: <strong>成功刪除</strong>,
-        icon: 'success',
-      });
+      title: <strong>成功刪除</strong>,
+      icon: 'success',
+    });
     getPetData();
     console.log(res);
   };
@@ -142,7 +150,7 @@ function MemberPetAdd() {
           display: 'flex',
           flexDirection: 'column',
           width: '80%',
-          height:'800px',
+          height: '800px',
           marginTop: '80px',
           fontSize: '20px',
         }}
@@ -165,7 +173,10 @@ function MemberPetAdd() {
             <div className="peat-name" key={i}>
               <div className="peat">
                 <div className="peat-photo">
-                  <img src={`http://localhost:6001/uploads/imgs/${pet_photo}`} alt="" />
+                  <img
+                    src={`http://localhost:6001/uploads/imgs/${pet_photo}`}
+                    alt=""
+                  />
                 </div>
                 <div className="pet_text text_main_dark_color2">
                   <div

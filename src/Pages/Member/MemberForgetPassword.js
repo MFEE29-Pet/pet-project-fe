@@ -23,6 +23,13 @@ const BreadcrumbBox = styled.div`
   margin-bottom: 50px;
 `;
 
+const AUTO_LOGIN_ROOT = styled.div`
+  background-color: #fff;
+  &:hover {
+    background-color: #fff5de;
+  }
+`;
+
 const Memberroutes = [
   {
     to: '/',
@@ -155,6 +162,19 @@ function MemberForgetPassword() {
         </div>
       </div>
       <div className="p_space" style={{ height: '100px' }}></div>
+      <AUTO_LOGIN_ROOT
+        onClick={() => {
+          setMail('petproject1214@gmail.com');
+        }}
+        style={{
+          width: '20px',
+          height: '20px',
+          position: 'absolute',
+          top: '380px',
+          right: '730px',
+          borderRadius: '50%',
+        }}
+      ></AUTO_LOGIN_ROOT>
     </ForgetPasswordPage>
   );
 }

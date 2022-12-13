@@ -830,7 +830,7 @@ function Reserve() {
               {isFilePicked ? (
                 <img src={preview} alt="" style={{ width: '100%' }} />
               ) : (
-                <div>
+                <div style={{display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center'}}>
                   <i className="fa-regular fa-upload"></i>
                   <p>上傳圖片</p>
                 </div>

@@ -102,6 +102,10 @@ function MemberSing() {
 
     console.log(data);
     if (data.msg === 'success') {
+      MySwal.fire({
+        title: <strong>已發送驗證碼</strong>,
+        icon: 'success',
+      });
       setNotDo(false);
     }
   };

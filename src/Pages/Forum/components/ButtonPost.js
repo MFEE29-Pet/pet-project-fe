@@ -21,9 +21,8 @@ function ButtonPost() {
               title: '<strong>請先登入會員</strong>',
               icon: 'info',
             });
-            return
+            navigate('/member/memberLogIn');
           }
-          navigate('/forum/post');
         }}
       >
         發表文章

@@ -64,9 +64,8 @@ function ForumList4Give() {
                     title: '<strong>請先登入會員</strong>',
                     icon: 'info',
                   });
-                  return;
+                  navigate('/member/memberLogIn');
                 }
-                navigate('/member/memberArticle');
               }}
             >
               前往收藏
