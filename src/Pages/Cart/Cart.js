@@ -1054,19 +1054,14 @@ function Cart() {
                               }
 
                               newProductList.forEach((v, i) => {
-                                totalAmount =
-                                  totalAmount +
-                                  v.amount +
-                                  cartItem.photoCart.length;
-                                totalPrice =
-                                  totalPrice +
-                                  v.amount * v.member_price +
-                                  cartItem.photoCart.price;
-                              });
+                                  totalAmount += v.amount;
+                                  totalPrice += v.amount * v.member_price;
+                                });
 
                               deleteItem.totalItem = totalItem;
                               deleteItem.totalAmount = totalAmount;
                               deleteItem.totalPrice = totalPrice;
+                              // console.log({ newTotalPrice });
                               localStorage.setItem(
                                 'cartItem',
                                 JSON.stringify(deleteItem)
