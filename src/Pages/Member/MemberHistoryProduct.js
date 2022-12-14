@@ -53,7 +53,7 @@ function MemberHistoryProduct() {
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
-        height:'800px',
+        height: '800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
@@ -66,7 +66,7 @@ function MemberHistoryProduct() {
         style={{ height: '700px', overflowY: 'auto' }}
       >
         {data.map((e, i) => {
-          const { product_total_price, ordered_at, orders_num } = e;
+          const { product_total_price, ordered_at, orders_num, pay_way } = e;
           return (
             <div className="orderProductWrap" key={i}>
               <div
@@ -75,6 +75,8 @@ function MemberHistoryProduct() {
                   backgroundColor: '#fff',
                   padding: '30px',
                   borderRadius: '15px',
+                  display:'flex',
+                  alignItems:'center'
                 }}
               >
                 <div
@@ -82,8 +84,8 @@ function MemberHistoryProduct() {
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'flex-end',
-                    width: '66%',
+                    alignItems: 'center',
+                    width: '80%',
                   }}
                 >
                   <div
@@ -93,15 +95,36 @@ function MemberHistoryProduct() {
                     商品訂單
                   </div>
                   <div
-                    style={{ color: '#727171', fontSize: '16px', width: '50%' }}
+                    style={{ color: '#727171', fontSize: '16px', width: '40%' }}
                   >
                     訂單編號:{orders_num}
                   </div>
                   <div
-                    style={{ color: '#727171', fontSize: '16px', width: '35%' }}
+                    style={{ color: '#727171', fontSize: '16px', width: '30%' }}
                   >
                     訂單已完成於{ordered_at}
                   </div>
+                  {pay_way ? (
+                    <div
+                      style={{
+                        color: '#727171',
+                        fontSize: '16px',
+                        width: '15%',
+                      }}
+                    >
+                      信用卡支付
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        color: '#727171',
+                        fontSize: '16px',
+                        width: '15%',
+                      }}
+                    >
+                      LinePay支付
+                    </div>
+                  )}
                 </div>
                 <div
                   className="priceProduct"

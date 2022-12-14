@@ -222,16 +222,16 @@ function MemberProfileUp() {
       });
     }
 
-    if (selectedFile) {
-      setMyAuth({ ...myAuth, member_photo: data.img });
+    if (data.success) {
+      setMyAuth({ ...myAuth, name: data.name, member_photo: data.img });
 
       const authOld = JSON.parse(localStorage.getItem('auth'));
 
-      const newAuth = { ...authOld, member_photo: data.img };
+      const newAuth = { ...authOld, name: data.name, member_photo: data.img };
 
       localStorage.setItem('auth', JSON.stringify(newAuth));
 
-      console.log(newAuth);
+      // console.log(newAuth);
     }
   };
 

@@ -65,7 +65,7 @@ function PhotoDetail({ detailNum, open, i }) {
                   }}
                 >
                   <img
-                    src=""
+                    src={`/images/${photographer_img}`}
                     alt=""
                     style={{ width: '100px', height: '100px' }}
                   />

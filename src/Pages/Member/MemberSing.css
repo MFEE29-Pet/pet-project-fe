@@ -21,6 +21,13 @@
   left: 40%;
 }
 
+
+#code[type=number]::-webkit-outer-spin-button,
+#code[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .success h1 {
   height: 100%;
   display: flex;
@@ -61,7 +68,7 @@ ul {
   color: #727171;
   background-color: #fff;
   padding: 5px 10px;
-} 
+}
 
 .singUp-page {
   width: 1200px;

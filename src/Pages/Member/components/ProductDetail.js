@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function ProductDetail({i, open, detailNum }) {
+function ProductDetail({ i, open, detailNum }) {
   const [data, setData] = useState([]);
 
   const getProductDetailData = async () => {
@@ -24,7 +24,7 @@ function ProductDetail({i, open, detailNum }) {
         borderRadius: '20px',
         padding: '20px',
         marginBottom: '10px',
-        display: open===i ? 'block' : 'none',
+        display: open === i ? 'block' : 'none',
       }}
     >
       <table style={{ width: '100%' }}>
@@ -49,7 +49,7 @@ function ProductDetail({i, open, detailNum }) {
                   }}
                 >
                   <img
-                    src=""
+                    src={`/images/test/${product_img}`}
                     alt=""
                     style={{ width: '100px', height: '100px' }}
                   />

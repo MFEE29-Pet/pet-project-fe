@@ -102,6 +102,7 @@ function MemberLevel() {
           marginTop: '80px',
           fontSize: '20px',
         }}
+        className='member_2'
       >
         <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
           會員等級介紹
@@ -200,7 +201,7 @@ function MemberLevel() {
                       style={{ marginRight: '5px' }}
                     ></i>
                     <span className="text_main_dark_color2">
-                      單筆凡超過2,500元可享5%折扣
+                      單筆凡超過2,500元可享100元折扣
                     </span>
                   </div>
                 </>
@@ -224,7 +225,7 @@ function MemberLevel() {
                       style={{ marginRight: '5px' }}
                     ></i>
                     <span className="text_main_dark_color2">
-                      單筆凡超過5,000元可享5%折扣
+                      單筆凡超過5,000元可享150元折扣
                     </span>
                   </div>
                 </>
@@ -248,7 +249,7 @@ function MemberLevel() {
                       style={{ marginRight: '5px' }}
                     ></i>
                     <span className="text_main_dark_color2">
-                      單筆凡超過8,000元可享5%折扣
+                      單筆凡超過8,000元可享200元折扣
                     </span>
                   </div>
                 </>
@@ -280,6 +281,7 @@ function MemberLevel() {
                 display: 'flex',
                 justifyContent: 'space-between',
               }}
+              className='member_3'
             >
               <div className="inputRange">
                 <div className="input-text">

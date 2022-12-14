@@ -19,7 +19,13 @@ function ForumListBar1Talk({ talkListData }) {
     },
   ]);
   const [tags, setTags] = useState([]);
+  const [collection, setCollection] = useState([]);
+  const [collectionNum, setCollectionNum] = useState([]);
   const navigate = useNavigate();
+
+  const m_sid = JSON.parse(localStorage.getItem('auth'))
+    ? JSON.parse(localStorage.getItem('auth')).sid
+    : '未登入';
 
   const getArticles = async () => {
     const res = await axios.get(`${GET_ALL_ARTICLE}`);
@@ -35,6 +41,9 @@ function ForumListBar1Talk({ talkListData }) {
     //     }),
     //   };
     // });
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
 
     const A = article.filter((e, i) => {
       const { category } = e;
@@ -47,10 +56,28 @@ function ForumListBar1Talk({ talkListData }) {
     // console.log({ articles, tags });
   };
 
+  const getCollection = async () => {
+    if (m_sid === '未登入') {
+      // console.log('未登入，無法取得收藏列表');
+      return;
+    }
+    const res = await axios.get(
+      `http://localhost:6001/forum/collection?m_sid=${m_sid}`
+    );
+    console.log(res);
+    const list = res.data.rows;
+
+    setCollection(list);
+    const numbers = collection.map((e, i) => e.a_sid);
+    setCollectionNum(numbers);
+    // console.log(collectionNum);
+  };
+
   console.log(articles);
 
   useEffect(() => {
     getArticles();
+    getCollection();
   }, []);
   return (
     <>
@@ -101,8 +128,25 @@ function ForumListBar1Talk({ talkListData }) {
               </p>
             </div>
             {/* 喜歡跟讚數 */}
-            <div className="forum_list_like_bar">
-              <CollectLikeBar />
+            <div className="forum_list_like_bar" style={{ cursor: 'pointer' }}>
+              <button
+                className={`${
+                  collection.findIndex((v) => v.a_sid === e.article_sid) === -1
+                    ? 'forum_unCollect_button'
+                    : 'forum_Collect_button'
+                }`}
+              >
+                收藏
+                <i
+                  className={`${
+                    collection.findIndex((v) => v.a_sid === e.article_sid) ===
+                    -1
+                      ? 'fa-regular fa-bookmark'
+                      : 'fa-solid fa-bookmark'
+                  }`}
+                  id="forum_Collect"
+                ></i>
+              </button>
             </div>
             <div className="forumUserBar">{e.user}</div>
           </div>

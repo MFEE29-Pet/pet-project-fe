@@ -115,18 +115,36 @@ function History(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <Link to={`${location.pathname}?sid=${e[0].sid}`}>
-                      <img
-                        src={`/images/test/${e[0].img}`}
-                        alt=""
-                        style={{
-                          width: '100%',
-                          height: '60%',
-                          objectFit: 'cover',
-                          margin: '10px 0',
-                        }}
-                      />
-                    </Link>
+                    {show ? (
+                      <Link to={`${location.pathname}?sid=${e[0].sid}`}>
+                        <img
+                          src={`/images/test/${e[0].img}`}
+                          alt=""
+                          style={{
+                            width: '100%',
+                            height: '60%',
+                            objectFit: 'cover',
+                            margin: '10px 0',
+                          }}
+                        />
+                      </Link>
+                    ) : (
+                      <Link
+                        to={`${location.pathname}?sid=${e[0].sid}`}
+                        style={{ display: 'none' }}
+                      >
+                        <img
+                          src={`/images/test/${e[0].img}`}
+                          alt=""
+                          style={{
+                            width: '100%',
+                            height: '60%',
+                            objectFit: 'cover',
+                            margin: '10px 0',
+                          }}
+                        />
+                      </Link>
+                    )}
                   </div>
                 );
               })}

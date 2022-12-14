@@ -1,0 +1,21 @@
+@media screen and (max-width:400px) {
+  .clinic_1{
+    width: 350px !important;
+    height: 800px !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  .clinic_2{
+    width: 350px !important;
+  }
+  .leaflet-container{
+    width: 100% !important;
+    margin-top: 20px;
+  }
+  .sc-lllmON{
+    width: 100%;
+  }
+  .imsjxn{
+    width: 350px !important;
+  }
+}

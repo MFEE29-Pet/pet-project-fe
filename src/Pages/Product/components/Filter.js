@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import PageContext from '../contexts/PageContext';
@@ -10,10 +10,12 @@ function Filter({
   setSortMethod,
   totalPages,
   setSearchWord,
+  searchWord,
   page,
 }) {
   const { nowPage, location, cate } = useContext(PageContext);
   const { mode, productShow, setProductShow } = useContext(SwitchButtonContext);
+  const inputRef = useRef();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,16 +28,38 @@ function Filter({
         <div className="filter-s-p">
           <div className="search-bar">
             <input
+              ref={inputRef}
               type="search"
               name="search"
               id="search"
-              onChange={handleChange}
+              // onChange={handleChange}
               style={{ outline: 'none', paddingLeft: '10px' }}
             />
             <i
               className="fa-solid fa-magnifying-glass bg_main_light_color1"
               id="pro-search"
+              onClick={(e) => {
+                setSearchWord(inputRef.current.value);
+                navigate('?page=1');
+              }}
             ></i>
+            {searchWord ? (
+              <i
+                class="fa-solid fa-circle-xmark"
+                style={{
+                  color: mode === 'dog' ? '#ea5514' : '#4c748e',
+                  marginLeft: '5px',
+                  paddingTop: '5px',
+                }}
+                onClick={() => {
+                  setSearchWord('');
+                  inputRef.current.value = '';
+                  navigate('?page=1');
+                }}
+              ></i>
+            ) : (
+              ''
+            )}
           </div>
           <div className="filter_and_show">
             <div
@@ -104,6 +128,9 @@ function Filter({
               className={`newProduct bg_main_light_color1 ${
                 sortMethod === 'top_sell' ? 'active' : ''
               }`}
+              onClick={() => {
+                setSortMethod('top_sell');
+              }}
             >
               熱賣商品
             </button>

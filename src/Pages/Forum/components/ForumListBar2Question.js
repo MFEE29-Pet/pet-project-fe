@@ -3,7 +3,7 @@ import CollectLikeBar from './CollectLikeBar';
 import { GET_ALL_ARTICLE } from '../my-config';
 import { useEffect, useState } from 'react';
 import './ForumListBar.css';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 function ForumListBar2Question({ talkListData }) {
   const [articles, setArticles] = useState([
@@ -20,6 +20,13 @@ function ForumListBar2Question({ talkListData }) {
   ]);
   const [tags, setTags] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [collection, setCollection] = useState([]);
+  const [collectionNum, setCollectionNum] = useState([]);
+
+  const m_sid = JSON.parse(localStorage.getItem('auth'))
+    ? JSON.parse(localStorage.getItem('auth')).sid
+    : '未登入';
 
   const getArticles = async () => {
     const res = await axios.get(`${GET_ALL_ARTICLE}`);
@@ -31,15 +38,38 @@ function ForumListBar2Question({ talkListData }) {
       return category === 'B';
     });
 
+    // setCollection(article);
+    // const numbers = collection.map((e, i) => e.a_sid);
+    // setCollectionNum(numbers);
+
     console.log(A);
     setArticles(A);
+  };
+
+  const getCollection = async () => {
+    if (m_sid === '未登入') {
+      // console.log('未登入，無法取得收藏列表');
+      return;
+    }
+    const res = await axios.get(
+      `http://localhost:6001/forum/collection?m_sid=${m_sid}`
+    );
+    console.log(res);
+    const list = res.data.rows;
+
+    setCollection(list);
+    const numbers = collection.map((e, i) => e.a_sid);
+    setCollectionNum(numbers);
+    // console.log(collectionNum);
   };
 
   console.log(articles);
 
   useEffect(() => {
     getArticles();
+    getCollection();
   }, []);
+
   return (
     <>
       {articles.map((e, i) => {
@@ -86,8 +116,21 @@ function ForumListBar2Question({ talkListData }) {
               </p>
             </div>
             {/* 喜歡跟讚數 */}
-            <div className="forum_list_like_bar">
-              <CollectLikeBar />
+            <div className="forum_list_like_bar" style={{ cursor: 'pointer' }}>
+              <button
+                className={`${
+                  collection.findIndex((v) => v.a_sid === e.article_sid) === -1
+                    ? 'forum_unCollect_button'
+                    : 'forum_Collect_button'
+                }`}
+              >
+                收藏
+                <i className={`${
+                  collection.findIndex((v) => v.a_sid === e.article_sid) === -1
+                    ? 'fa-regular fa-bookmark'
+                    : 'fa-solid fa-bookmark'
+                }`} id="forum_Collect"></i>
+              </button>
             </div>
             <div className="forumUserBar">{e.user}</div>
           </div>

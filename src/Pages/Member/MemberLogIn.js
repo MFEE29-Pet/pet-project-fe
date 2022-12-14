@@ -87,17 +87,18 @@ function MemberLogIn() {
       'http://localhost:6001/member/googlelogin'
     );
     console.log(data);
-    window.open(data);
+    window.open(data, '_self');
   };
 
   const lineLogin = async () => {
     const { data } = await axios.get('http://localhost:6001/member/linelogin');
     console.log(data);
-    window.open(data);
+    window.open(data, '_self');
   };
 
   return (
     <LoginPage>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <BreadcrumbBox>
         <Breadcrumb
           routes={Memberroutes}
@@ -106,7 +107,18 @@ function MemberLogIn() {
       </BreadcrumbBox>
       <div className="loginpage">
         <div className="logInenterA">
-          <h2 className="text_main_dark_color2">使用者信箱</h2>
+          <h2
+            className="text_main_dark_color2"
+            onClick={() => {
+              setUser({
+                mail: 'pet_project1214@gmail.com',
+                password: 'root',
+              });
+            }}
+            style={{ cursor: 'default' }}
+          >
+            使用者信箱
+          </h2>
           <div className="logInenterC">
             <div className="logIninput">
               <i
@@ -188,8 +200,8 @@ function MemberLogIn() {
           className="buttonLogIn"
           onClick={login}
           style={{
-            backgroundColor: user.username && user.password && '#f8b62d',
-            color: user.username && user.password && '#fff',
+            backgroundColor: user.mail && user.password && '#f8b62d',
+            color: user.mail && user.password && '#fff',
             fontWeight: '700',
           }}
         >
@@ -318,16 +330,32 @@ function MemberLogIn() {
       <AUTO_LOGIN_ROOT
         onClick={() => {
           setUser({
-            username: 'root',
-            password: 'root',
+            mail: 'petproject1214@gmail.com',
+            password: '1214',
           });
         }}
         style={{
           width: '20px',
           height: '20px',
           position: 'absolute',
-          top: '30%',
-          right: '30%',
+          top: '315px',
+          right: '730px',
+          borderRadius: '50%',
+        }}
+      ></AUTO_LOGIN_ROOT>
+      <AUTO_LOGIN_ROOT
+        onClick={() => {
+          setUser({
+            mail: 'dogcat@gmail.com',
+            password: '0721',
+          });
+        }}
+        style={{
+          width: '20px',
+          height: '20px',
+          position: 'absolute',
+          top: '375px',
+          right: '730px',
           borderRadius: '50%',
         }}
       ></AUTO_LOGIN_ROOT>

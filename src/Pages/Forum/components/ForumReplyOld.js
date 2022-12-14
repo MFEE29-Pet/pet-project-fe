@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router';
 import './ForumReply.css';
@@ -6,6 +6,8 @@ import './ForumReplyOld.css';
 import '../components/EvaluateComponents/EvaluateComponent.css';
 import '../components/InputComponents/InputComponent.css';
 import { SEND_REPLY, MY_HOST } from '../my-config';
+import AuthContext from '../../../contexts/AuthContext';
+import { useEffect } from 'react';
 
 const buttonReply = [{ value: 1, label: '發表', to: '/forum' }];
 
@@ -20,6 +22,9 @@ function ForumReplyOld({
   const sid = Number(new URLSearchParams(location.search).get('sid'));
   // console.log(sid);
   const [replyMessage, setReplyMessage] = useState('');
+  const { myAuth } = useContext(AuthContext);
+
+  const [show, setShow] = useState(true);
   // const [content, setContent] = useState('');
   // const [forumReplyArt, setForumReplyArt] = useState({
   //   a_sid: '',
@@ -54,6 +59,13 @@ function ForumReplyOld({
     }
     console.log(data);
   };
+  useEffect(() => {
+    if (!myAuth.sid) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, []);
 
   return (
     <>
@@ -80,28 +92,53 @@ function ForumReplyOld({
               </div>
             );
           })}
-        </div>
-      </div>
 
-      <div className="sendEvaluate">
-        <img className="headImg" src="" alt="" />
-        <div className="inputBox">
-          <textarea
-            className="inputText"
-            placeholder="請輸入回覆"
-            // value={this.state.inputMess}
-            // onChange={(e) => this.getEvaluate(e)}
-            value={replyMessage}
-            onChange={(e) => setReplyMessage(e.target.value)}
-          />
-          <button
-            className="btn_post bg_main_light_color1"
-            id="send_reply"
-            // onClick={() => this.sendSubmit()}
-            onClick={addReply}
-          >
-            留言
-          </button>
+          {show ? (
+            <button
+              className="bg_main_light_color1"
+              style={{
+                width: '200px',
+                alignSelf: 'center',
+                padding: '5px 10px',
+                borderRadius: '17px',
+                color: '#fff',
+                border: 'none',
+                marginBottom: '20px',
+                fontSize: '20px',
+              }}
+              onClick={() => {
+                navigate('/member/memberLogIn');
+              }}
+            >
+              登入後回覆
+            </button>
+          ) : (
+            <div className="sendEvaluate">
+              <img
+                className="headImg"
+                src={`http://localhost:6001/uploads/imgs/${myAuth.member_photo}`}
+                alt=""
+              />
+              <div className="inputBox">
+                <textarea
+                  className="inputText"
+                  placeholder="請輸入回覆"
+                  // value={this.state.inputMess}
+                  // onChange={(e) => this.getEvaluate(e)}
+                  value={replyMessage}
+                  onChange={(e) => setReplyMessage(e.target.value)}
+                />
+                <button
+                  className="btn_post bg_main_light_color1"
+                  id="send_reply"
+                  // onClick={() => this.sendSubmit()}
+                  onClick={addReply}
+                >
+                  留言
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

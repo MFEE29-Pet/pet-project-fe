@@ -2,14 +2,14 @@ import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { imgUrl } from '../../config';
 import styled from 'styled-components';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 
 const PETBOX = styled.div`
   width: 100%;
   height: 100vh;
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #ccc;
   z-index: 50;
@@ -22,79 +22,93 @@ const Img = styled.img`
 `;
 
 function StartPage() {
-  const pet1 = useRef(null);
-  const pet2 = useRef(null);
-  const pet3 = useRef(null);
-  const pet4 = useRef(null);
-  const pet5 = useRef(null);
+  const pet1 = useRef();
+  const pet2 = useRef();
+  const pet3 = useRef();
+  const pet4 = useRef();
+  const pet5 = useRef();
+  const all = useRef();
 
   const [show, setShow] = useState(true);
-
 
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    let t1 = gsap.timeline();
+    const aaa = pet1.current;
+    const ALL = all.current;
 
-    t1.to('.pet1', {
-      y: 50,
-      x: 0, // any properties (not limited to CSS)
-      duration: 0.5, // seconds
-      ease: 'power2.inOut',
-      opacity: 1,
-    })
-      .to('.pet2', {
+    const ctx = gsap.context(() => {
+      let t1 = gsap.timeline();
+
+      t1.to(aaa, {
         y: 50,
         x: 0, // any properties (not limited to CSS)
-        duration: 0.5, // seconds
+        duration: 0.3, // seconds
         ease: 'power2.inOut',
         opacity: 1,
       })
-      .to('.pet3', {
-        y: 50,
-        x: 0, // any properties (not limited to CSS)
-        duration: 0.5, // seconds
-        ease: 'power2.inOut',
-        opacity: 1,
-      })
-      .to('.pet4', {
-        y: 50,
-        x: 0, // any properties (not limited to CSS)
-        duration: 0.5, // seconds
-        ease: 'power2.inOut',
-        opacity: 1,
-      })
-      .to('.pet5', {
-        y: 50,
-        x: 0, // any properties (not limited to CSS)
-        duration: 0.5, // seconds
-        ease: 'power2.inOut',
-        opacity: 1,
-      });
+        .to('.pet2', {
+          y: 50,
+          x: 0, // any properties (not limited to CSS)
+          duration: 0.3, // seconds
+          ease: 'power2.inOut',
+          opacity: 1,
+        })
+        .to('.pet3', {
+          y: 50,
+          x: 0, // any properties (not limited to CSS)
+          duration: 0.3, // seconds
+          ease: 'power2.inOut',
+          opacity: 1,
+        })
+        .to('.pet4', {
+          y: 50,
+          x: 0, // any properties (not limited to CSS)
+          duration: 0.3, // seconds
+          ease: 'power2.inOut',
+          opacity: 1,
+        })
+        .to('.pet5', {
+          y: 50,
+          x: 0, // any properties (not limited to CSS)
+          duration: 0.3, // seconds
+          ease: 'power2.inOut',
+          opacity: 1,
+        });
+    }, ALL);
+
+    return () => {
+      ctx.revert();
+    };
+  }, [show]);
+
+  useEffect(() => {
+    if (
+      pathname === '/' ||
+      pathname === '/forum' ||
+      pathname === '/product' ||
+      pathname === '/clinic' ||
+      pathname === '/member/memberCenter' ||
+      pathname === '/cart'
+    ) {
+      setShow(true);
+      document.body.style = 'overflow:hidden';
+    }
   }, [pathname]);
-
-  // useEffect(() => {
-  //   if (pathname === '/') {
-  //     setShow(true);
-  //     document.body.style = 'overflow:hidden';
-  //   }
-  //   // } else {
-  //   //   setShow(false);
-  //   //   document.body.style = 'overflow:visiable';
-  //   // }
-  // }, [pathname]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShow(false);
-  //     document.body.style = 'overflow:visiable';
-  //   }, 1000);
-  // }, [show]);
+  useEffect(() => {
+    if (show) {
+      setTimeout(() => {
+        setShow(false);
+        document.body.style = 'overflow:visiable';
+      }, 1500);
+    }
+  }, [show]);
 
   return (
     <>
       {show ? (
         <PETBOX>
-          <div>
+          <div ref={all} style={{width:'500px',display:'flex',justifyContent:'space-around'}}>
             <Img
               className="pet1"
               src={`${imgUrl}/images/logo_PetBan_1(ImgOnly).png`}

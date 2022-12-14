@@ -105,13 +105,13 @@ function ReservePage() {
   const [address, setAddress] = useState('');
   const [variety, setVariety] = useState('');
   const [petName, setPetName] = useState('');
-  const [petAge, setPetAge] = useState('');
+  const [petAge, setPetAge] = useState(0);
   const [gender, setGender] = useState('');
   const [control, setControl] = useState('');
   const [petPid, setPetPid] = useState('');
   const [textArea, setTextArea] = useState('');
   const [preview, setPreview] = useState('');
-
+  const [which, setWhich] = useState(0);
   console.log(startDate);
   //取得qureyString
   const location = useLocation();
@@ -204,6 +204,8 @@ function ReservePage() {
             setTextArea,
             preview,
             setPreview,
+            which,
+            setWhich,
           ]}
         />
       </ReserveForm>

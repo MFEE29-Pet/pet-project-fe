@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { ADD_LOVED, GET_LOVED, DEL_LOVED } from '../my-config';
+
 
 const IsLovedContext = createContext([]);
 
@@ -61,10 +63,18 @@ export const IsLovedContextProvider = function ({ children }) {
   const addLoved = async (productSid) => {
     // 判斷登入
     if (m_sid === '未登入') {
-      alert('請先登入會員');
-      navigate('/login');
+      Swal.fire({
+        title: '<strong>請先登入會員</strong>',
+        icon: 'warning',
+      });
+      navigate('/member/memberLogIn');
       return;
     }
+    // if (m_sid === '未登入') {
+    //   alert('請先登入會員');
+    //   navigate('/login');
+    //   return;
+    // }
 
     const res = await axios.get(
       `${ADD_LOVED}?p_sid=${productSid}&m_sid=${m_sid}`
@@ -84,9 +94,17 @@ export const IsLovedContextProvider = function ({ children }) {
   const delLoved = async (productSid, index) => {
     // 判斷登入
     if (m_sid === '未登入') {
-      alert('請先登入會員');
+      Swal.fire({
+        title: '<strong>請先登入會員</strong>',
+        icon: 'warning',
+      });
+      navigate('/member/memberLogIn');
       return;
     }
+    // if (m_sid === '未登入') {
+    //   alert('請先登入會員');
+    //   return;
+    // }
 
     const res = await axios.get(
       `${DEL_LOVED}?p_sid=${productSid}&m_sid=${m_sid}`

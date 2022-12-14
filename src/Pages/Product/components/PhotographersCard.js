@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import SwitchButtonContext from '../../../contexts/SwitchButtonContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import AuthContext from '../../../contexts/AuthContext';
+import Swal from 'sweetalert2';
 
 const NAME = styled.p`
   text-align: center;
@@ -21,6 +23,7 @@ const SPAN = styled.span`
 
 function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
   const { mode } = useContext(SwitchButtonContext);
+  const { myAuth } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location.pathname);
@@ -44,9 +47,9 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 position: 'relative',
                 zIndex: 0,
                 transformOrigin: ' top left',
-                transform: ' rotateZ(135deg)',
-                top: '5%',
-                left: '10%',
+                // transform: ' rotateZ(135deg)',
+                top: floatNum === 3 ? '30%' : '35%',
+                left: '30%',
               }}
             >
               <img
@@ -56,6 +59,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 style={{
                   position: 'absolute',
                   width: '30px',
+
                   // transform: 'rotateX(45deg)',
                 }}
                 alt=""
@@ -66,12 +70,13 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 floatNum === el.sid ? 'floatUp' : ''
               }`}
               style={{
-                width: '150px',
+                width: '200px',
                 height: '200px',
                 overflow: 'hidden',
                 display: 'flex',
                 justifyContent: 'center',
                 margin: '0 0 20px 0',
+                backgroundColor: 'transparent',
               }}
               key={el.sid}
               onClick={() => {
@@ -79,7 +84,7 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
               }}
             >
               <img
-                src={`/images/test/${el.image}`}
+                src={`/images/${el.image}`}
                 alt=""
                 style={{ height: '100%' }}
               />
@@ -90,7 +95,10 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                 {el.name}
               </NAME>
             </div>
-            <div className="reserver_btn">
+            <div
+              className="reserver_btn"
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
               <button
                 type="button"
                 className="bg_main_light_color1"
@@ -102,6 +110,14 @@ function PhotographersCard({ photoGraphers, setFloatNum, floatNum }) {
                   fontWeight: 'bold ',
                 }}
                 onClick={() => {
+                  if (!myAuth.sid) {
+                    Swal.fire({
+                      title: '<strong>請先登入會員</strong>',
+                      icon: 'warning',
+                    });
+                    navigate('/member/memberLogIn');
+                    return;
+                  }
                   navigate(`${location.pathname}/reserve?sid=${el.sid}`);
                 }}
               >

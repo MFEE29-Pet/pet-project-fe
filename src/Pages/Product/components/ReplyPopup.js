@@ -45,13 +45,13 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
   const { myAuth } = useContext(AuthContext);
   const [starValue, setStarValue] = useState(0);
   const [pSid, setPSid] = useState(sid);
-  // console.log(pSid);
+  // console.log(myAuth.sid);
 
   let initFields = {
     scores: starValue,
     comment: '',
     p_sid: pSid || 0,
-    m_sid: 1,
+    m_sid: myAuth.sid || 1,
     // localStorage or session 取得
   };
   // 傳送出去的資料
@@ -81,7 +81,8 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
       alert('請輸入評價');
       return;
     }
-    await setFields({ ...fields, p_sid: sid });
+    await setFields({ ...fields, p_sid: sid, m_sid: myAuth.sid });
+    // console.log(fields);
 
     const res = await axios.post(`${INSERT_REPLY}`, fields);
     // console.log(res);
@@ -153,7 +154,7 @@ function ReplyPopup({ showDiv, setShowDiv, sid, getProductsDetail }) {
           }}
         >
           <input type="number" name="p_sid" value={sid} readOnly hidden />
-          <input type="number" name="m_sid" defaultValue={1} hidden />
+          <input type="number" name="m_sid" defaultValue={myAuth.sid} hidden />
           {/* 接收星星的值 */}
           <input
             type="number"

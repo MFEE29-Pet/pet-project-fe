@@ -26,6 +26,7 @@ span {
 }
 
 
+
 /* --------------------------------------------------------------------- */
 /* MemberChevron */
 .Web {
@@ -875,6 +876,18 @@ span {
   flex-direction: column;
 }
 
+.orderProduct-right::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+.orderProduct-right::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.orderProduct-right::-webkit-scrollbar-thumb {
+  background-color: #727171;
+  border-radius: 4px;
+}
+
 .orderProduct {
   display: flex;
   justify-content: space-between;
@@ -1159,3 +1172,32 @@ span {
   font-size: 25px;
 }
 
+
+@media screen and (max-width:400px)  {
+  .member{
+    width: 350px !important;
+  }
+  .member_1{
+    width: 350px !important;
+  }
+  .member-shipL{
+    width: 350px !important;
+  }
+  .member_2{
+    width: 350px !important;
+  }
+  .member_3{
+    flex-direction: column;
+  }
+  .member_4{
+    flex-direction: column;
+    align-items: center;
+  }
+  .ship-bottom{
+    height: 250px;
+  }
+  .inputRange{
+    width: 100% !important;
+    margin: 10px 0px;
+  }
+}

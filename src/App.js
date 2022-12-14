@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Product from './Pages/Product/Product';
 import Index from './Pages/Index/Index';
@@ -46,14 +46,15 @@ import MemberProfileUp from './Pages/Member/MemberProfileUp';
 import MemberResavePassword from './Pages/Member/MemberResavePassword';
 import MemberForgetPassword from './Pages/Member/MemberForgetPassword';
 import GoogleCallback from './Pages/Member/GoogleCallback';
+import LineCallback from './Pages/Member/LineCallback';
+import LinePay from './Pages/Cart/LinePay';
+import StartPage from './Pages/StartPage/StartPage';
 
 // try socket io
 import io from 'socket.io-client';
 import { SOCKET_HOST } from './Pages/Product/my-config';
 import ServiceIndex from './Pages/Product/components/OnlineService/ServiceIndex';
-import LineCallback from './Pages/Member/LineCallback';
-import LinePay from './Pages/Cart/LinePay';
-import StartPage from './Pages/StartPage/StartPage';
+import MemberPostRecord from './Pages/Member/MemberPostRecord';
 
 const socket = io.connect(SOCKET_HOST); // connect socket server
 
@@ -109,7 +110,7 @@ function App() {
       <BrowserRouter>
         <AllContextProviders>
           {/* Navbar */}
-          {/* <StartPage/> */}
+          <StartPage/>
           <Navbar />
           
           <i
@@ -173,6 +174,7 @@ function App() {
                 element={<MemberProductCollect />}
               />
               <Route path="memberClinic" element={<MemberAppointment />} />
+              <Route path="memberPost" element={<MemberPostRecord />} />
               <Route
                 path="memberProductHistory"
                 element={<MemberHistoryProduct />}

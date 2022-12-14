@@ -19,6 +19,7 @@ margin: 50px auto;
     line-height: 26px;
     /* margin: 80px -10px 50px 80px; */
     margin: 50px 0px;
+    width: 100%;
   }
 .forum_detail_pic{
   display: flex;

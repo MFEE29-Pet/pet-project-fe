@@ -53,12 +53,12 @@ function MemberHistoryCamera() {
         display: 'flex',
         flexDirection: 'column',
         width: '80%',
-        height:'800px',
+        height: '800px',
         marginTop: '80px',
         fontSize: '20px',
       }}
     >
-    <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
+      <h2 className="text_main_dark_color2" style={{ marginBottom: '20px' }}>
         攝影訂單紀錄
       </h2>
       <div
@@ -66,7 +66,7 @@ function MemberHistoryCamera() {
         style={{ height: '700px', overflowY: 'auto' }}
       >
         {data.map((e, i) => {
-          const { photo_total_price, ordered_at, orders_num } = e;
+          const { photo_total_price, ordered_at, orders_num,pay_way } = e;
           return (
             <div className="orderProductWrap" key={i}>
               <div
@@ -82,13 +82,13 @@ function MemberHistoryCamera() {
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'flex-end',
-                    width: '66%',
+                    alignItems: 'center',
+                    width: '80%',
                   }}
                 >
                   <div
                     className="text_main_dark_color2"
-                    style={{ width: '15%', fontWeight: '700' }}
+                    style={{ width: '20%', fontWeight: '700' }}
                   >
                     攝影訂單
                   </div>
@@ -102,6 +102,18 @@ function MemberHistoryCamera() {
                   >
                     訂單已完成於{ordered_at}
                   </div>
+                  {
+                    pay_way ? (<div
+                    style={{ color: '#727171', fontSize: '16px', width: '25%' }}
+                  >
+                    信用卡支付
+                  </div>) : (<div
+                    style={{ color: '#727171', fontSize: '16px', width: '25%' }}
+                  >
+                    LinePay支付
+                  </div>)
+                  }
+                  
                 </div>
                 <div
                   className="priceProduct"
@@ -131,7 +143,7 @@ function MemberHistoryCamera() {
                   ></i>
                 </div>
               </div>
-              <PhotoDetail open={open} detailNum={detailNum} i={i}/>
+              <PhotoDetail open={open} detailNum={detailNum} i={i} />
             </div>
           );
         })}

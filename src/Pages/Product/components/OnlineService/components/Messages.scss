@@ -37,3 +37,12 @@
   background-color: rgba(245, 241, 241);
   color: black;
 }
+
+@media screen and (max-width:800px) {
+  .room_list {
+    .user_img_wrap {
+      display: none;
+    }
+  }
+
+}

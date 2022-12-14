@@ -4,6 +4,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { imgUrl } from '../../config';
 
 const MySwal = withReactContent(Swal);
 function MemberPetAdd() {
@@ -83,10 +84,11 @@ function MemberPetAdd() {
       console.log(e.message);
     }
   };
+  console.log(selectedFile);
 
   const sendData = async () => {
     const date = dayjs(birthday).format('YYYY/MM/DD');
-    const pic_name = type === '狗' ? 'dog_food.png' : 'cat_food.png';
+    const pic_name = type === '狗' ? 'dog.png' : 'cat.png';
 
     const fd = new FormData();
 
@@ -116,6 +118,13 @@ function MemberPetAdd() {
         icon: 'success',
       });
       getPetData();
+      setName('')
+      setBirthday('')
+      setPid('')
+      setType('')
+      setGender('')
+      setControl('')
+      setSelectedFile(null)
     }
   };
 
@@ -123,6 +132,10 @@ function MemberPetAdd() {
     const res = await axios.delete(
       `http://localhost:6001/member/delpet/${sid}`
     );
+    MySwal.fire({
+      title: <strong>成功刪除</strong>,
+      icon: 'success',
+    });
     getPetData();
     console.log(res);
   };
@@ -137,7 +150,7 @@ function MemberPetAdd() {
           display: 'flex',
           flexDirection: 'column',
           width: '80%',
-          height:'800px',
+          height: '800px',
           marginTop: '80px',
           fontSize: '20px',
         }}
@@ -160,7 +173,10 @@ function MemberPetAdd() {
             <div className="peat-name" key={i}>
               <div className="peat">
                 <div className="peat-photo">
-                  <img src={`http://localhost:6001/uploads/imgs/${pet_photo}`} alt="" />
+                  <img
+                    src={`http://localhost:6001/uploads/imgs/${pet_photo}`}
+                    alt=""
+                  />
                 </div>
                 <div className="pet_text text_main_dark_color2">
                   <div
@@ -257,13 +273,13 @@ function MemberPetAdd() {
                     <img src={preview} alt="" style={{ width: '100%' }} />
                   ) : type === '狗' ? (
                     <img
-                      src="/images/dog_food.png"
+                      src={`${imgUrl}/images/dog_1.png`}
                       alt=""
                       style={{ height: '50%', objectFit: 'cover' }}
                     />
                   ) : (
                     <img
-                      src="/images/cat_food.png"
+                      src={`${imgUrl}/images/cat_1.png`}
                       alt=""
                       style={{ height: '50%', objectFit: 'cover' }}
                     />

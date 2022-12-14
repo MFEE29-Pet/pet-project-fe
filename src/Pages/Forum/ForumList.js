@@ -6,7 +6,13 @@ import ForumListBar from './components/ForumListBar';
 import './ForumList.css';
 import Breadcrumb from '../../Components/breadcrumb/Breadcrumb';
 import BreadcrumbRightArrowIcon from '../../Components/breadcrumb/BreadcrumbRightArrowIcon';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import AuthContext from '../../contexts/AuthContext';
+import { useContext } from 'react';
+
+const MySwal = withReactContent(Swal);
 
 const buttonText = [
   { value: 1, label: '綜合', to: '/forum' },
@@ -34,9 +40,13 @@ const forumroutes = [
 ];
 
 function ForumList() {
+  const navigate = useNavigate();
+
+  const { myAuth } = useContext(AuthContext);
+
   return (
     <>
-    <div className="p_space" style={{ height: '100px' }}></div>
+      <div className="p_space" style={{ height: '100px' }}></div>
       <div className="forum_list_wrap">
         <Breadcrumb
           routes={forumroutes}
@@ -46,11 +56,21 @@ function ForumList() {
           <SearchBar />
           <div className="forum_btn_post_select">
             <ButtonPost />
-            <Link to={'/member/memberArticle'}>
-              <button className="border_main_light_color1" id="btnGoCollection">
-                前往收藏
-              </button>
-            </Link>
+            <button
+              className="border_main_light_color1"
+              id="btnGoCollection"
+              onClick={() => {
+                if (!myAuth.sid) {
+                  Swal.fire({
+                    title: '<strong>請先登入會員</strong>',
+                    icon: 'info',
+                  });
+                  navigate('/member/memberLogIn');
+                }
+              }}
+            >
+              前往收藏
+            </button>
             {/* <SelectBar /> */}
           </div>
         </div>

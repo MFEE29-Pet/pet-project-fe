@@ -43,7 +43,7 @@ select {
 
 main {
     display: flex;
-    width: 80%;
+    width: 62.5%;
     justify-content: center;
     margin: 50px auto;
     position: relative;
@@ -332,7 +332,7 @@ section.right {
                     width: 50%;
                     display: flex;
                     justify-content: space-around;
-                    align-items: flex-end;
+                    align-items: center;
 
                     // 以下為去除 input number 箭頭
                     /* Chrome, Safari, Edge, Opera */
@@ -350,7 +350,9 @@ section.right {
 
                     .q-reduce,
                     .q-add {
-                        background-color: $p_color3;
+                        background-color: transparent;
+                        text-align: center;
+                        vertical-align: middle;
                         border-radius: 50%;
                         cursor: pointer;
                         height: 14px;
@@ -382,6 +384,11 @@ section.right {
                         color: red;
                         display: none;
                     }
+                }
+
+                .Demo__some-network__share-button {
+                    position: relative;
+                    bottom: -3px;
                 }
             }
 
@@ -487,7 +494,7 @@ section.right {
                 }
 
                 .write-reply {
-                    margin-left: 44%;
+                    margin-left: 30%;
                     display: flex;
                     cursor: pointer;
 
@@ -1218,6 +1225,9 @@ section.popup {
 
 
 @media screen and (max-width:400px) {
+    main {
+        width: 100% !important;
+    }
 
     // RWD Navbar
     .navbar {
@@ -1297,7 +1307,7 @@ section.popup {
 
     // RWD product
     .p_space {
-        display: none;
+        height: 30px !important;
     }
 
     main {
